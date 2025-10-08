@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { Roboto_Slab, Inter } from "next/font/google";
 import Image from "next/image";
@@ -33,6 +33,24 @@ const CATALOG: Item[] = [
 export default function Bestil() {
   const [cart, setCart] = useState<CartItem[]>([]);
   const total = useMemo(() => cart.reduce((s, it) => s + it.price * it.qty, 0), [cart]);
+  // Persistens af kurv på tværs af sider
+  const CART_KEY = "sliberi_cart_v1";
+
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem(CART_KEY);
+      if (saved) {
+        const parsed: CartItem[] = JSON.parse(saved);
+        if (Array.isArray(parsed)) setCart(parsed);
+      }
+    } catch {}
+  }, []);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(CART_KEY, JSON.stringify(cart));
+    } catch {}
+  }, [cart]);
 
   const add = (item: Item) => {
     setCart((prev) => {
@@ -46,16 +64,26 @@ export default function Bestil() {
     });
   };
 
+  // Juster mængder i kurven
+  const inc = (id: string) => {
+    setCart((prev) => prev.map((c) => (c.id === id ? { ...c, qty: c.qty + 1 } : c)));
+  };
+
   const dec = (id: string) => {
-    setCart((prev) => {
-      const idx = prev.findIndex((p) => p.id === id);
-      if (idx === -1) return prev;
-      const copy = [...prev];
-      const nextQty = copy[idx].qty - 1;
-      if (nextQty <= 0) return copy.filter((c) => c.id !== id);
-      copy[idx] = { ...copy[idx], qty: nextQty };
-      return copy;
-    });
+    setCart((prev) => prev
+      .map((c) => (c.id === id ? { ...c, qty: c.qty - 1 } : c))
+      .filter((c) => c.qty > 0));
+  };
+
+  // Fjern én vare helt fra kurven
+
+  const removeFromCart = (id: string) => {
+    setCart((prev) => prev.filter((c) => c.id !== id));
+  };
+
+  const clearCart = () => {
+    setCart([]);
+    try { localStorage.removeItem(CART_KEY); } catch {}
   };
 
   const groupedCatalog = CATALOG.reduce((acc, item) => {
@@ -68,20 +96,23 @@ export default function Bestil() {
       <section className="w-full">
         <h1 className={`${robotoSlab.className} text-4xl mb-10 text-neutral-800`}>Vælg dine ydelser</h1>
         {Object.entries(groupedCatalog).map(([category, items]) => (
-          <div key={category} className="mb-12">
-            <h2 className="font-semibold text-2xl mb-5 border-b-2 border-neutral-200 pb-2 text-neutral-700">{category}</h2>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {items.map((it) => (
-                <div key={it.id} className="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm hover:shadow-md transition-all">
-                  <Image src={it.image} alt={it.name} width={200} height={140} className="mb-3 mx-auto" />
-                  <div className={`${robotoSlab.className} font-medium text-lg text-neutral-800`}>{it.name}</div>
-                  <div className="text-sm text-neutral-600">{it.price} kr</div>
-                  <div className="mt-4 flex gap-2">
-                    <button onClick={() => add(it)} className="bg-neutral-800 text-white px-4 py-2 rounded-xl text-sm hover:bg-neutral-700 transition-colors">+ Læg i kurv</button>
-                    <button onClick={() => dec(it.id)} className="border border-neutral-300 px-4 py-2 rounded-xl text-sm hover:bg-neutral-100 transition-colors">− Fjern</button>
+          <div key={category} className="mb-6 rounded-2xl border border-neutral-200 bg-white shadow-sm">
+            <div className="w-full flex items-center justify-between px-5 py-3">
+              <span className={`${robotoSlab.className} text-xl text-neutral-800`}>{category}</span>
+            </div>
+            <div className="px-5 pb-5">
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {items.map((it) => (
+                  <div key={it.id} className="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm hover:shadow-md transition-all">
+                    <Image src={it.image} alt={it.name} width={200} height={140} className="mb-3 mx-auto" />
+                    <div className={`${robotoSlab.className} font-medium text-lg text-neutral-800`}>{it.name}</div>
+                    <div className="text-sm text-neutral-600">{it.price} kr</div>
+                    <div className="mt-4">
+                      <button onClick={() => add(it)} className="bg-neutral-800 text-white px-4 py-2 rounded-xl text-sm hover:bg-neutral-700 transition-colors">+ Læg i kurv</button>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         ))}
@@ -99,9 +130,21 @@ export default function Bestil() {
             <ul className="space-y-2 mb-4">
               {cart.map((c) => (
                 <li key={c.id} className="text-sm text-neutral-800">
-                  <div className="flex justify-between">
-                    <span>{c.name} × {c.qty}</span>
-                    <span>{c.price * c.qty} kr</span>
+                  <div className="flex items-center justify-between gap-2">
+                    <span>{c.name}</span>
+                    <div className="flex items-center gap-3">
+                      <div className="flex items-center border border-neutral-300 rounded-md overflow-hidden">
+                        <button onClick={() => dec(c.id)} className="px-2 py-0.5 hover:bg-neutral-100" aria-label="Minus">−</button>
+                        <span className="px-2 tabular-nums">{c.qty}</span>
+                        <button onClick={() => inc(c.id)} className="px-2 py-0.5 hover:bg-neutral-100" aria-label="Plus">+</button>
+                      </div>
+                      <span className="w-[60px] text-right tabular-nums">{c.price * c.qty} kr</span>
+                      <button onClick={() => removeFromCart(c.id)} aria-label="Fjern" className="text-neutral-500 hover:text-neutral-800">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                      </button>
+                    </div>
                   </div>
                   {c.id === "bread" && (
                     <div className="mt-1 flex items-start gap-2 text-xs text-neutral-600">
@@ -126,15 +169,28 @@ export default function Bestil() {
                 </li>
               ))}
             </ul>
+            <div className="flex items-center justify-between mt-2 mb-2">
+              <button onClick={clearCart} className="text-sm text-neutral-600 hover:text-neutral-800 hover:underline">Ryd kurv</button>
+            </div>
             <div className="flex justify-between border-t pt-3 font-medium mb-4 text-neutral-800">
               <span>I alt</span>
               <span>{total} kr</span>
             </div>
           </div>
         )}
-        <Link href="/aflevering" className="block text-center rounded-2xl bg-neutral-900 text-white px-6 py-3 hover:bg-neutral-700 transition-colors">
-          Gå til aflevering
-        </Link>
+        {cart.length === 0 ? (
+          <button
+            disabled
+            className="block w-full text-center rounded-2xl bg-neutral-300 text-neutral-600 px-6 py-3 cursor-not-allowed"
+            title="Vælg mindst én ydelse først"
+          >
+            Gå til aflevering
+          </button>
+        ) : (
+          <Link href="/aflevering" className="block text-center rounded-2xl bg-neutral-900 text-white px-6 py-3 hover:bg-neutral-700 transition-colors">
+            Gå til aflevering
+          </Link>
+        )}
       </aside>
     </main>
   );
