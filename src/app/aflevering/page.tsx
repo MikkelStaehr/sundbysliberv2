@@ -148,8 +148,12 @@ export default function Aflevering() {
       setIsConfirmOpen(false);
       // Send brugeren til en takke-side
       router.push("/tak");
-    } catch (err: any) {
-      setSendError(err.message || "Der opstod en fejl under afsendelse.");
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setSendError(err.message || "Der opstod en fejl under afsendelse.");
+      } else {
+        setSendError("Der opstod en fejl under afsendelse.");
+      }
     } finally {
       setIsSending(false);
     }
