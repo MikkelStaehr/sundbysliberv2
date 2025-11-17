@@ -103,13 +103,23 @@ export default function Bestil() {
             <div className="px-5 pb-5">
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {items.map((it) => (
-                  <div key={it.id} className="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm hover:shadow-md transition-all">
+                  <div
+                    key={it.id}
+                    className="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm hover:shadow-md transition-all flex flex-col"
+                  >
                     <Image src={it.image} alt={it.name} width={200} height={140} className="mb-3 mx-auto" />
-                    <div className={`${robotoSlab.className} font-medium text-lg text-neutral-800`}>{it.name}</div>
-                    <div className="text-sm text-neutral-600">{it.price} kr</div>
-                    <div className="mt-4">
-                      <button onClick={() => add(it)} className="bg-neutral-800 text-white px-4 py-2 rounded-xl text-sm hover:bg-neutral-700 transition-colors">+ Læg i kurv</button>
+                    <div className="flex-1 flex flex-col">
+                      <div className={`${robotoSlab.className} font-medium text-lg text-neutral-800 min-h-[3rem]`}>
+                        {it.name}
+                      </div>
+                      <div className="mt-1 text-base font-semibold text-neutral-900">{it.price} kr</div>
                     </div>
+                    <button
+                      onClick={() => add(it)}
+                      className="mt-4 bg-neutral-800 text-white px-4 py-2 rounded-xl text-sm hover:bg-neutral-700 transition-colors w-full"
+                    >
+                      + Læg i kurv
+                    </button>
                   </div>
                 ))}
               </div>
@@ -141,7 +151,7 @@ export default function Bestil() {
                       <span className="w-[60px] text-right tabular-nums">{c.price * c.qty} kr</span>
                       <button onClick={() => removeFromCart(c.id)} aria-label="Fjern" className="text-neutral-500 hover:text-neutral-800">
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                          <path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                         </svg>
                       </button>
                     </div>

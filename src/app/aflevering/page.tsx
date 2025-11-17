@@ -3,12 +3,15 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { Roboto_Slab, Inter } from "next/font/google";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const robotoSlab = Roboto_Slab({ subsets: ["latin"], weight: ["400", "700"] });
 const inter = Inter({ subsets: ["latin"], weight: ["400", "500", "600"] });
 
 export default function Aflevering() {
+  const router = useRouter();
   const PICKUP_FEE = 299;
+  const EXPRESS_FEE = 300;
   const CART_KEY = "sliberi_cart_v1";
   const [cart, setCart] = useState<{ id: string; name: string; price: number; qty: number }[]>([]);
   const [form, setForm] = useState({
@@ -20,12 +23,26 @@ export default function Aflevering() {
     city: "",
     notes: "",
     delivery: "dropoff" as "dropoff" | "pickup",
+    express: false,
   });
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
+  const [isSending, setIsSending] = useState(false);
+  const [sendError, setSendError] = useState<string | null>(null);
+  const [addressQuery, setAddressQuery] = useState("");
+  const [addressSuggestions, setAddressSuggestions] = useState<
+    { tekst: string; adresse?: { vejnavn: string; husnr: string; postnr: string; postnrnavn: string } }[]
+  >([]);
+  const [isAddressLoading, setIsAddressLoading] = useState(false);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setForm((f) => ({ ...f, [name]: value }));
+  };
+
+  const onAddressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setForm((f) => ({ ...f, address: value }));
+    setAddressQuery(value);
   };
 
   useEffect(() => {
@@ -38,7 +55,49 @@ export default function Aflevering() {
     } catch {}
   }, []);
 
+  // DAWA adresse-autocomplete
+  useEffect(() => {
+    const q = addressQuery.trim();
+    if (q.length < 3) {
+      setAddressSuggestions([]);
+      return;
+    }
+
+    const controller = new AbortController();
+    const timeout = setTimeout(async () => {
+      try {
+        setIsAddressLoading(true);
+        // DAWA / Dataforsyningen autocomplete endpoint for danske adresser
+        const res = await fetch(
+          `https://api.dataforsyningen.dk/adresser/autocomplete?q=${encodeURIComponent(q)}&per_side=5`,
+          { signal: controller.signal }
+        );
+        if (!res.ok) throw new Error("Kunne ikke hente adresseforslag.");
+        const data = (await res.json()) as {
+          tekst: string;
+          adresse?: { vejnavn: string; husnr: string; postnr: string; postnrnavn: string };
+        }[];
+        setAddressSuggestions(data);
+      } catch (err) {
+        if (!(err instanceof DOMException && err.name === "AbortError")) {
+          // Hvis der er fejl, viser vi bare ingen forslag – formen virker stadig uden autocomplete
+          setAddressSuggestions([]);
+        }
+      } finally {
+        setIsAddressLoading(false);
+      }
+    }, 250); // lille debounce for at undgå for mange kald
+
+    return () => {
+      controller.abort();
+      clearTimeout(timeout);
+    };
+  }, [addressQuery]);
+
   const cartTotal = useMemo(() => cart.reduce((s, c) => s + c.price * c.qty, 0), [cart]);
+  const deliveryFee = form.delivery === "pickup" ? PICKUP_FEE : 0;
+  const expressFee = form.express ? EXPRESS_FEE : 0;
+  const totalWithFees = cartTotal + deliveryFee + expressFee;
 
   const saveCart = (next: typeof cart) => {
     setCart(next);
@@ -62,14 +121,38 @@ export default function Aflevering() {
     setIsConfirmOpen(true);
   };
 
-  const sendOrder = () => {
-    const to = "info@sundbysliberi.dk";
-    const subject = encodeURIComponent("Aflevering – Sundby Sliberi");
-    const deliveryFee = form.delivery === "pickup" ? PICKUP_FEE : 0;
-    const cartLines = cart.map((c) => `${c.name} × ${c.qty} = ${c.price * c.qty} kr`).join("\\n");
-    const bodyRaw = `Hej Sundby Sliberi,\n\nJeg vil gerne bestille slibning.\n\nVarer:\n${cartLines || '-'}\n\nKurv i alt: ${cartTotal} kr\nAfhentningsgebyr: ${deliveryFee} kr\nTotal: ${cartTotal + deliveryFee} kr\n\nAflevering: ${form.delivery === "dropoff" ? "Jeg afleverer selv" : "Jeg ønsker afhentning"}\n\nNavn: ${form.name}\nTelefon: ${form.phone}\nEmail: ${form.email}\nAdresse: ${form.address}\nPostnr/By: ${form.postalCode} ${form.city}\n\nNoter:\n${form.notes || "-"}\n\nVenlig hilsen\n${form.name}`;
-    const body = encodeURIComponent(bodyRaw);
-    window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+  const sendOrder = async () => {
+    if (isSending) return;
+    setIsSending(true);
+    setSendError(null);
+    try {
+      const res = await fetch("/api/send-order", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          cart,
+          cartTotal,
+          delivery: form.delivery,
+          pickupFee: PICKUP_FEE,
+          express: form.express,
+          expressFee: EXPRESS_FEE,
+          form,
+        }),
+      });
+      if (!res.ok) {
+        const data = await res.json().catch(() => null);
+        throw new Error(data?.error || "Der opstod en fejl.");
+      }
+      // Nulstil kurv, så den ikke hænger ved til næste bestilling
+      saveCart([]);
+      setIsConfirmOpen(false);
+      // Send brugeren til en takke-side
+      router.push("/tak");
+    } catch (err: any) {
+      setSendError(err.message || "Der opstod en fejl under afsendelse.");
+    } finally {
+      setIsSending(false);
+    }
   };
 
   return (
@@ -94,8 +177,43 @@ export default function Aflevering() {
               <label className="block text-sm text-neutral-800">Email
                 <input type="email" name="email" value={form.email} onChange={onChange} className="mt-1 w-full border border-neutral-300 rounded-xl px-3 py-2 bg-white" />
               </label>
-              <label className="block text-sm text-neutral-800 sm:col-span-2">Adresse
-                <input name="address" value={form.address} onChange={onChange} className="mt-1 w-full border border-neutral-300 rounded-xl px-3 py-2 bg-white" placeholder="Vej og nr." />
+              <label className="block text-sm text-neutral-800 sm:col-span-2 relative">
+                Adresse
+                <input
+                  name="address"
+                  value={form.address}
+                  onChange={onAddressChange}
+                  className="mt-1 w-full border border-neutral-300 rounded-xl px-3 py-2 bg-white"
+                  placeholder="Vej og nr."
+                  autoComplete="street-address"
+                />
+                {(addressSuggestions.length > 0 || isAddressLoading) && form.address && (
+                  <div className="absolute z-20 mt-1 w-full max-h-60 overflow-auto rounded-xl border border-neutral-200 bg-white shadow-lg text-xs">
+                    {isAddressLoading && (
+                      <div className="px-3 py-2 text-neutral-500">Søger adresser…</div>
+                    )}
+                    {!isAddressLoading &&
+                      addressSuggestions.map((s) => (
+                        <button
+                          key={s.tekst}
+                          type="button"
+                          className="w-full text-left px-3 py-2 hover:bg-neutral-100"
+                          onClick={() => {
+                            const addr = s.adresse;
+                            setForm((f) => ({
+                              ...f,
+                              address: addr ? `${addr.vejnavn} ${addr.husnr}` : s.tekst,
+                              postalCode: addr?.postnr ?? f.postalCode,
+                              city: addr?.postnrnavn ?? f.city,
+                            }));
+                            setAddressSuggestions([]);
+                          }}
+                        >
+                          {s.tekst}
+                        </button>
+                      ))}
+                  </div>
+                )}
               </label>
               <label className="block text-sm text-neutral-800">Postnr.
                 <input name="postalCode" value={form.postalCode} onChange={onChange} className="mt-1 w-full border border-neutral-300 rounded-xl px-3 py-2 bg-white" placeholder="1234" />
@@ -127,10 +245,30 @@ export default function Aflevering() {
                 </label>
               </div>
             </div>
+            <div className="border border-dashed border-neutral-200 rounded-xl p-3 mt-2 flex items-start gap-3 bg-neutral-50">
+              <input
+                id="express"
+                type="checkbox"
+                checked={form.express}
+                onChange={(e) => setForm((f) => ({ ...f, express: e.target.checked }))}
+                className="mt-1 h-4 w-4 rounded border-neutral-400 text-neutral-900"
+              />
+              <label htmlFor="express" className="text-sm text-left cursor-pointer select-none">
+                <span className="font-medium text-neutral-900">Ekspres slibning (+{EXPRESS_FEE} kr)</span>
+                <span className="block text-neutral-600">
+                  Vi prioriterer din ordre ekstra højt og aftaler hurtigst mulige aflevering/afhentning.
+                </span>
+              </label>
+            </div>
             <label className="block text-sm text-neutral-800">Noter
               <textarea name="notes" value={form.notes} onChange={onChange} className="mt-1 w-full border border-neutral-300 rounded-xl px-3 py-2 min-h-[100px] bg-white" />
             </label>
             <button type="submit" className="w-full bg-neutral-900 text-white rounded-2xl px-6 py-3 hover:bg-neutral-700 transition-colors">Gennemse og godkend</button>
+            {sendError && (
+              <p className="text-sm text-red-600 mt-1">
+                {sendError}
+              </p>
+            )}
           </form>
         </section>
 
@@ -157,7 +295,7 @@ export default function Aflevering() {
                           <span className="w-[60px] text-right tabular-nums">{c.price * c.qty} kr</span>
                           <button onClick={() => remove(c.id)} aria-label="Fjern" className="text-neutral-500 hover:text-neutral-800">
                             <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                              <path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                              <path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                             </svg>
                           </button>
                         </div>
@@ -168,11 +306,12 @@ export default function Aflevering() {
               )}
             </li>
             <li className="flex justify-between"><span>Levering</span><span>{form.delivery === "pickup" ? "Afhentning" : "Afleverer selv"}</span></li>
-            <li className="flex justify-between text-neutral-600"><span>Afhentningsgebyr</span><span>{form.delivery === "pickup" ? `${PICKUP_FEE} kr` : "0 kr"}</span></li>
+            <li className="flex justify-between text-neutral-600"><span>Afhentningsgebyr</span><span>{deliveryFee ? `${deliveryFee} kr` : "0 kr"}</span></li>
+            <li className="flex justify-between text-neutral-600"><span>Ekspres slibning</span><span>{expressFee ? `${expressFee} kr` : "0 kr"}</span></li>
           </ul>
           <div className="flex justify-between border-t border-neutral-200 pt-3 mt-3 text-neutral-900 font-medium">
             <span>Total</span>
-            <span>{cartTotal + (form.delivery === "pickup" ? PICKUP_FEE : 0)} kr</span>
+            <span>{totalWithFees} kr</span>
           </div>
           {form.delivery === "pickup" && (
             <p className="text-xs text-neutral-600 mt-3">Gebyret dækker lokal afhentning og aflevering.</p>
@@ -192,13 +331,23 @@ export default function Aflevering() {
                 <div className="flex justify-between"><span>Adresse</span><span>{`${form.address}${form.address ? ', ' : ''}${form.postalCode} ${form.city}`}</span></div>
               )}
               <div className="flex justify-between"><span>Levering</span><span>{form.delivery === 'pickup' ? 'Afhentning' : 'Afleverer selv'}</span></div>
-              <div className="flex justify-between text-neutral-600"><span>Afhentningsgebyr</span><span>{form.delivery === 'pickup' ? `${PICKUP_FEE} kr` : '0 kr'}</span></div>
+              <div className="flex justify-between text-neutral-600"><span>Afhentningsgebyr</span><span>{deliveryFee ? `${deliveryFee} kr` : '0 kr'}</span></div>
+              <div className="flex justify-between text-neutral-600"><span>Ekspres slibning</span><span>{expressFee ? `${expressFee} kr` : '0 kr'}</span></div>
               {form.notes && <div><span className="block text-neutral-600">Noter</span><p className="text-neutral-800 mt-1 whitespace-pre-wrap">{form.notes}</p></div>}
-              <div className="flex justify-between border-t border-neutral-200 pt-3 mt-2 text-neutral-900 font-medium"><span>Total</span><span>{form.delivery === 'pickup' ? `${PICKUP_FEE} kr` : '0 kr'}</span></div>
+              <div className="flex justify-between border-t border-neutral-200 pt-3 mt-2 text-neutral-900 font-medium">
+                <span>Total</span>
+                <span>{totalWithFees} kr</span>
+              </div>
             </div>
             <div className="mt-5 flex gap-3 justify-end">
               <button onClick={() => setIsConfirmOpen(false)} className="rounded-xl border border-neutral-300 px-4 py-2 text-sm hover:bg-neutral-100">Annuller</button>
-              <button onClick={sendOrder} className="rounded-xl bg-neutral-900 text-white px-4 py-2 text-sm hover:bg-neutral-700">Godkend og send</button>
+              <button
+                onClick={sendOrder}
+                disabled={isSending}
+                className="rounded-xl bg-neutral-900 text-white px-4 py-2 text-sm hover:bg-neutral-700 disabled:opacity-60 disabled:cursor-not-allowed"
+              >
+                {isSending ? "Sender..." : "Godkend og send"}
+              </button>
             </div>
           </div>
         </div>
