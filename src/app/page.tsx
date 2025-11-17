@@ -19,7 +19,7 @@ export default function Home() {
         />
         <h1 className={`${robotoSlab.className} text-4xl md:text-5xl mb-4 text-neutral-800`}>Sundby Sliberi</h1>
         <p className="max-w-xl text-neutral-700 mb-8">
-          Professionel slibning af knive og værktøj. Aflever selv, eller få afhentet – lokalt i Sundby.
+          Professionel slibning af knive og værktøj. Aflever selv, eller få afhentet – lokalt i Sundby, Nykøbing Falster.
         </p>
         <Link href="/bestil" className="rounded-2xl bg-neutral-900 text-white px-6 py-3 hover:bg-neutral-700 transition-colors">
           Bestil slibning

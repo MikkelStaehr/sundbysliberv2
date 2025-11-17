@@ -13,6 +13,7 @@ export default function Aflevering() {
   const PICKUP_FEE = 299;
   const EXPRESS_FEE = 300;
   const CART_KEY = "sliberi_cart_v1";
+  const FORM_KEY = "sliberi_form_v1";
   const [cart, setCart] = useState<{ id: string; name: string; price: number; qty: number }[]>([]);
   const [form, setForm] = useState({
     name: "",
@@ -54,6 +55,27 @@ export default function Aflevering() {
       }
     } catch {}
   }, []);
+
+  // Gem og hent kundeoplysninger lokalt, så faste kunder slipper for at indtaste alt igen
+  useEffect(() => {
+    try {
+      const savedForm = localStorage.getItem(FORM_KEY);
+      if (savedForm) {
+        const parsed = JSON.parse(savedForm) as typeof form;
+        setForm((prev) => ({
+          ...prev,
+          ...parsed,
+        }));
+      }
+    } catch {}
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(FORM_KEY, JSON.stringify(form));
+    } catch {}
+  }, [form]);
 
   // DAWA adresse-autocomplete
   useEffect(() => {
@@ -159,12 +181,35 @@ export default function Aflevering() {
     }
   };
 
+  const hasItemsInCart = cart.length > 0;
+
   return (
     <main className={`${inter.className} min-h-screen bg-[#F9F7F3] text-neutral-900 px-8 py-12 w-full max-w-[90rem] mx-auto`}>
       <header className="max-w-4xl mx-auto text-center mb-10">
         <h1 className={`${robotoSlab.className} text-4xl text-neutral-800`}>Aflevering / afhentning</h1>
         <p className="text-neutral-700 mt-2">Vælg afleveringsform og udfyld dine oplysninger – vi tager os af resten.</p>
       </header>
+
+      {!hasItemsInCart && (
+        <section className="max-w-3xl mx-auto mb-10">
+          <div className="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm text-center">
+            <h2 className={`${robotoSlab.className} text-2xl text-neutral-900 mb-2`}>
+              Din kurv er tom
+            </h2>
+            <p className="text-sm text-neutral-700 mb-4">
+              For at aflevere eller bestille afhentning skal du først vælge, hvad du vil have slebet på siden{" "}
+              <span className="font-medium">Bestil</span>.
+            </p>
+            <button
+              type="button"
+              onClick={() => router.push("/bestil")}
+              className="inline-flex items-center justify-center rounded-2xl bg-neutral-900 text-white px-6 py-3 text-sm hover:bg-neutral-700 transition-colors"
+            >
+              Gå til Bestil
+            </button>
+          </div>
+        </section>
+      )}
 
       <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10">
         {/* Kundeoplysninger (centreret) */}
@@ -220,10 +265,10 @@ export default function Aflevering() {
                 )}
               </label>
               <label className="block text-sm text-neutral-800">Postnr.
-                <input name="postalCode" value={form.postalCode} onChange={onChange} className="mt-1 w-full border border-neutral-300 rounded-xl px-3 py-2 bg-white" placeholder="1234" />
+                <input name="postalCode" value={form.postalCode} onChange={onChange} className="mt-1 w-full border border-neutral-300 rounded-xl px-3 py-2 bg-white" placeholder="4800" />
               </label>
               <label className="block text-sm text-neutral-800">By
-                <input name="city" value={form.city} onChange={onChange} className="mt-1 w-full border border-neutral-300 rounded-xl px-3 py-2 bg-white" placeholder="København S" />
+                <input name="city" value={form.city} onChange={onChange} className="mt-1 w-full border border-neutral-300 rounded-xl px-3 py-2 bg-white" placeholder="Sundby, Nykøbing Falster" />
               </label>
             </div>
             <div className="border-t border-neutral-200 pt-4">
@@ -270,7 +315,9 @@ export default function Aflevering() {
             <button type="submit" className="w-full bg-neutral-900 text-white rounded-2xl px-6 py-3 hover:bg-neutral-700 transition-colors">Gennemse og godkend</button>
             {sendError && (
               <p className="text-sm text-red-600 mt-1">
-                {sendError}
+                {sendError} Du kan også skrive direkte til{" "}
+                <span className="underline underline-offset-2">info@sundby-sliberi.dk</span> eller ringe på{" "}
+                <span className="underline underline-offset-2">31 38 61 19</span>.
               </p>
             )}
           </form>

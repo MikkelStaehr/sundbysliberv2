@@ -25,7 +25,8 @@ export default function TakSide() {
           er du altid velkommen til at svare på bekræftelsesmailen, når du
           modtager den – eller kontakte os direkte på{" "}
           <span className="font-medium">info@sundby-sliberi.dk</span> eller
-          telefon <span className="font-medium">31 38 61 19</span>.
+          telefon <span className="font-medium">31 38 61 19</span>. Tjek også
+          gerne din spam-mappe, hvis du ikke kan se vores bekræftelse.
         </p>
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <Link
