@@ -1,11 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
+import { computeKnifeDiscount, CartLikeItem } from "@/lib/pricing";
 
-type CartItem = {
-  id: string;
+type CartItem = CartLikeItem & {
   name: string;
-  price: number;
-  qty: number;
 };
 
 type OrderPayload = {
@@ -56,9 +54,11 @@ export async function POST(req: NextRequest) {
             .join("\n")
         : "-";
 
+    const { discountAmount, discountRate, knifeCount } = computeKnifeDiscount(cart);
     const deliveryAmount = delivery === "pickup" ? pickupFee : 0;
     const expressAmount = express ? expressFee : 0;
-    const total = cartTotal + deliveryAmount + expressAmount;
+    const cartTotalAfterDiscount = cartTotal - discountAmount;
+    const total = cartTotalAfterDiscount + deliveryAmount + expressAmount;
 
     const text = `Hej Sundby Sliberi,
 
@@ -67,7 +67,9 @@ Jeg vil gerne bestille slibning.
 Varer:
 ${cartLines}
 
-Kurv i alt: ${cartTotal} kr
+Kurv i alt (før rabat): ${cartTotal} kr
+Rabat på knive: ${discountAmount > 0 ? `-${discountAmount} kr (${Math.round(discountRate * 100)}% på ${knifeCount >= 6 ? "6+ knive" : "3+ knive"})` : "0 kr"}
+Kurv i alt (efter rabat): ${cartTotalAfterDiscount} kr
 Afhentningsgebyr: ${deliveryAmount ? deliveryAmount + " kr" : "0 kr"}
 Ekspresgebyr: ${expressAmount ? expressAmount + " kr" : "0 kr"}
 Total: ${total} kr

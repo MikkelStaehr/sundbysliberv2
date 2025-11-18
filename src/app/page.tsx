@@ -20,8 +20,12 @@ export default function Home() {
           className="mb-8 drop-shadow-sm"
         />
         <h1 className={`${robotoSlab.className} text-4xl md:text-5xl mb-4 text-neutral-800`}>Sundby Sliberi</h1>
-        <p className="max-w-xl text-neutral-700 mb-8">
+        <p className="max-w-xl text-neutral-700 mb-3">
           Professionel slibning af knive og værktøj. Aflever selv, eller få afhentet – lokalt i Sundby, Nykøbing Falster.
+        </p>
+        <p className="max-w-xl text-neutral-700 mb-8 text-sm">
+          Vi hjælper både <span className="font-semibold">private</span> og{" "}
+          <span className="font-semibold">professionelle</span> med skarpe kanter til hverdag og arbejde.
         </p>
         <Link href="/bestil" className="rounded-2xl bg-neutral-900 text-white px-6 py-3 hover:bg-neutral-700 transition-colors">
           Bestil slibning

@@ -4,6 +4,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { Roboto_Slab, Inter } from "next/font/google";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { computeKnifeDiscount } from "@/lib/pricing";
 
 const robotoSlab = Roboto_Slab({ subsets: ["latin"], weight: ["400", "700"] });
 const inter = Inter({ subsets: ["latin"], weight: ["400", "500", "600"] });
@@ -14,7 +15,7 @@ export default function Aflevering() {
   const EXPRESS_FEE = 300;
   const CART_KEY = "sliberi_cart_v1";
   const FORM_KEY = "sliberi_form_v1";
-  const [cart, setCart] = useState<{ id: string; name: string; price: number; qty: number }[]>([]);
+  const [cart, setCart] = useState<{ id: string; name: string; price: number; qty: number; category?: string }[]>([]);
   const [form, setForm] = useState({
     name: "",
     phone: "",
@@ -117,9 +118,14 @@ export default function Aflevering() {
   }, [addressQuery]);
 
   const cartTotal = useMemo(() => cart.reduce((s, c) => s + c.price * c.qty, 0), [cart]);
+  const { knifeCount, discountAmount, discountRate } = useMemo(
+    () => computeKnifeDiscount(cart),
+    [cart]
+  );
+  const cartTotalAfterDiscount = cartTotal - discountAmount;
   const deliveryFee = form.delivery === "pickup" ? PICKUP_FEE : 0;
   const expressFee = form.express ? EXPRESS_FEE : 0;
-  const totalWithFees = cartTotal + deliveryFee + expressFee;
+  const totalWithFees = cartTotalAfterDiscount + deliveryFee + expressFee;
 
   const saveCart = (next: typeof cart) => {
     setCart(next);
@@ -360,9 +366,24 @@ export default function Aflevering() {
             <li className="flex justify-between text-neutral-600"><span>Afhentningsgebyr</span><span>{deliveryFee ? `${deliveryFee} kr` : "0 kr"}</span></li>
             <li className="flex justify-between text-neutral-600"><span>Ekspres slibning</span><span>{expressFee ? `${expressFee} kr` : "0 kr"}</span></li>
           </ul>
-          <div className="flex justify-between border-t border-neutral-200 pt-3 mt-3 text-neutral-900 font-medium">
-            <span>Total</span>
-            <span>{totalWithFees} kr</span>
+          <div className="border-t border-neutral-200 pt-3 mt-3 text-neutral-900 font-medium space-y-1">
+            <div className="flex justify-between text-sm">
+              <span>Subtotal</span>
+              <span>{cartTotal} kr</span>
+            </div>
+            {discountAmount > 0 && (
+              <div className="flex justify-between text-sm text-emerald-700">
+                <span>
+                  Rabat på knive ({Math.round(discountRate * 100)}%
+                  {knifeCount >= 6 ? ", 6+ knive" : ", 3+ knive"})
+                </span>
+                <span>-{discountAmount} kr</span>
+              </div>
+            )}
+            <div className="flex justify-between">
+              <span>Total</span>
+              <span>{totalWithFees} kr</span>
+            </div>
           </div>
           {form.delivery === "pickup" && (
             <p className="text-xs text-neutral-600 mt-3">Gebyret dækker lokal afhentning og aflevering.</p>
@@ -385,9 +406,24 @@ export default function Aflevering() {
               <div className="flex justify-between text-neutral-600"><span>Afhentningsgebyr</span><span>{deliveryFee ? `${deliveryFee} kr` : '0 kr'}</span></div>
               <div className="flex justify-between text-neutral-600"><span>Ekspres slibning</span><span>{expressFee ? `${expressFee} kr` : '0 kr'}</span></div>
               {form.notes && <div><span className="block text-neutral-600">Noter</span><p className="text-neutral-800 mt-1 whitespace-pre-wrap">{form.notes}</p></div>}
-              <div className="flex justify-between border-t border-neutral-200 pt-3 mt-2 text-neutral-900 font-medium">
-                <span>Total</span>
-                <span>{totalWithFees} kr</span>
+              <div className="border-t border-neutral-200 pt-3 mt-2 text-neutral-900 font-medium space-y-1">
+                <div className="flex justify-between text-sm">
+                  <span>Subtotal</span>
+                  <span>{cartTotal} kr</span>
+                </div>
+                {discountAmount > 0 && (
+                  <div className="flex justify-between text-sm text-emerald-700">
+                    <span>
+                      Rabat på knive ({Math.round(discountRate * 100)}%
+                      {knifeCount >= 6 ? ", 6+ knive" : ", 3+ knive"})
+                    </span>
+                    <span>-{discountAmount} kr</span>
+                  </div>
+                )}
+                <div className="flex justify-between">
+                  <span>Total</span>
+                  <span>{totalWithFees} kr</span>
+                </div>
               </div>
             </div>
             <div className="mt-5 flex gap-3 justify-end">

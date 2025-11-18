@@ -4,6 +4,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { Roboto_Slab, Inter } from "next/font/google";
 import Image from "next/image";
+import { computeKnifeDiscount } from "@/lib/pricing";
 
 const robotoSlab = Roboto_Slab({ subsets: ["latin"], weight: ["400", "700"] });
 const inter = Inter({ subsets: ["latin"], weight: ["400", "500", "600"] });
@@ -33,6 +34,11 @@ const CATALOG: Item[] = [
 export default function Bestil() {
   const [cart, setCart] = useState<CartItem[]>([]);
   const total = useMemo(() => cart.reduce((s, it) => s + it.price * it.qty, 0), [cart]);
+  const { knifeCount, discountAmount, discountRate } = useMemo(
+    () => computeKnifeDiscount(cart),
+    [cart]
+  );
+  const totalAfterDiscount = total - discountAmount;
   // Persistens af kurv på tværs af sider
   const CART_KEY = "sliberi_cart_v1";
 
@@ -94,7 +100,20 @@ export default function Bestil() {
   return (
     <main className={`${inter.className} min-h-screen bg-[#F9F7F3] text-neutral-900 px-8 py-12 w-full max-w-[90rem] mx-auto grid md:grid-cols-[2fr_1fr] gap-12`}>
       <section className="w-full">
-        <h1 className={`${robotoSlab.className} text-4xl mb-10 text-neutral-800`}>Vælg dine ydelser</h1>
+        <h1 className={`${robotoSlab.className} text-4xl mb-4 text-neutral-800`}>Vælg dine ydelser</h1>
+        <p className="text-sm text-neutral-700 mb-6 max-w-2xl">
+          Knive og værktøj er som udgangspunkt klar til afhentning{" "}
+          <span className="font-semibold">dagen efter</span> du har afleveret. Ved{" "}
+          <span className="font-semibold">ekspres slibning</span> er de typisk klar inden for{" "}
+          <span className="font-semibold">1–2 timer</span>, efter vi har modtaget dem.
+        </p>
+        <p className="text-sm text-neutral-700 mb-8 max-w-2xl">
+          Vælger du{" "}
+          <span className="font-semibold">min. 3 knive</span>, får du{" "}
+          <span className="font-semibold">10% rabat</span> på knivslibningen – ved{" "}
+          <span className="font-semibold">6 knive eller flere</span> får du{" "}
+          <span className="font-semibold">20% rabat</span> på knivene.
+        </p>
         {Object.entries(groupedCatalog).map(([category, items]) => (
           <div key={category} className="mb-6 rounded-2xl border border-neutral-200 bg-white shadow-sm">
             <div className="w-full flex items-center justify-between px-5 py-3">
@@ -182,9 +201,24 @@ export default function Bestil() {
             <div className="flex items-center justify-between mt-2 mb-2">
               <button onClick={clearCart} className="text-sm text-neutral-600 hover:text-neutral-800 hover:underline">Ryd kurv</button>
             </div>
-            <div className="flex justify-between border-t pt-3 font-medium mb-4 text-neutral-800">
-              <span>I alt</span>
-              <span>{total} kr</span>
+            <div className="border-t pt-3 font-medium mb-2 text-neutral-800 space-y-1">
+              <div className="flex justify-between text-sm">
+                <span>Subtotal</span>
+                <span>{total} kr</span>
+              </div>
+              {discountAmount > 0 && (
+                <div className="flex justify-between text-sm text-emerald-700">
+                  <span>
+                    Rabat på knive ({Math.round(discountRate * 100)}%
+                    {knifeCount >= 6 ? ", 6+ knive" : ", 3+ knive"})
+                  </span>
+                  <span>-{discountAmount} kr</span>
+                </div>
+              )}
+              <div className="flex justify-between text-base">
+                <span>I alt</span>
+                <span>{totalAfterDiscount} kr</span>
+              </div>
             </div>
           </div>
         )}
