@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { Roboto_Slab, Inter } from "next/font/google";
+import { ErhvervForm } from "./ErhvervForm";
 
 const robotoSlab = Roboto_Slab({ subsets: ["latin"], weight: ["400", "700"] });
 const inter = Inter({ subsets: ["latin"], weight: ["400", "500", "600"] });
@@ -38,34 +39,21 @@ export default function Erhverv() {
         </h1>
         <p className="text-neutral-700 mb-4 max-w-2xl mx-auto">
           Har du restaurant, café, kantine eller andet professionelt køkken på Lolland-Falster, kan
-          vi lave en fast aftale om slibning af dine knive og værktøj.
+          vi lave en fast aftale om slibning af dine knive, køkkenredskaber og håndværktøj.
         </p>
         <p className="text-neutral-700 mb-6 max-w-2xl mx-auto">
           Vi tilbyder fleksible løsninger med faste afhentningsdage eller slibning efter behov, så
-          køkkenet altid har skarpe redskaber – uden at du skal holde styr på det i hverdagen.
+          både køkken og værksted altid har skarpe redskaber – uden at du skal holde styr på det i
+          hverdagen.
         </p>
         <div className="border border-neutral-200 bg-white rounded-2xl p-6 shadow-sm mb-8 text-left md:text-center">
           <h2 className={`${robotoSlab.className} text-xl text-neutral-900 mb-3`}>
             Lad os tage en uforpligtende snak
           </h2>
-          <p className="text-sm text-neutral-700 mb-4">
-            Skriv et par linjer om din virksomhed og dit behov, så vender vi retur og
-            foreslår en løsning, der passer til jer.
+          <p className="text-sm text-neutral-700 mb-2">
+            Udfyld formularen herunder, så vender vi retur og foreslår en løsning, der passer til jer.
           </p>
-          <div className="flex flex-wrap gap-3 justify-center">
-            <a
-              href="mailto:info@sundby-sliberi.dk?subject=Erhvervsaftale%20-%20Sundby%20Sliberi"
-              className="inline-flex items-center justify-center rounded-2xl bg-neutral-900 text-white px-6 py-3 text-sm hover:bg-neutral-700 transition-colors"
-            >
-              Skriv til os på mail
-            </a>
-            <a
-              href="tel:+4531386119"
-              className="inline-flex items-center justify-center rounded-2xl border border-neutral-300 text-neutral-800 px-6 py-3 text-sm hover:bg-neutral-100 transition-colors"
-            >
-              Ring på 31 38 61 19
-            </a>
-          </div>
+          <ErhvervForm />
         </div>
         <p className="text-xs text-neutral-600">
           Vi holder til i Sundby ved Nykøbing Falster og kører primært på Lolland-Falster og omegn.
