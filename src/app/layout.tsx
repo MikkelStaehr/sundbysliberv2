@@ -84,6 +84,12 @@ export default function RootLayout({
                 >
                   31 38 61 19
                 </a>
+                <a
+                  href="/erhverv"
+                  className="mt-2 text-xs text-neutral-600 hover:text-neutral-900 hover:underline underline-offset-2"
+                >
+                  Erhvervsaftaler til restauranter, caféer og kantiner
+                </a>
               </div>
             </div>
           </footer>

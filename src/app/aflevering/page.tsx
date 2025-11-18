@@ -1,6 +1,5 @@
 "use client";
 
-import type { Metadata } from "next";
 import React, { useEffect, useMemo, useState } from "react";
 import { Roboto_Slab, Inter } from "next/font/google";
 import Image from "next/image";
@@ -9,12 +8,6 @@ import { computeKnifeDiscount } from "@/lib/pricing";
 
 const robotoSlab = Roboto_Slab({ subsets: ["latin"], weight: ["400", "700"] });
 const inter = Inter({ subsets: ["latin"], weight: ["400", "500", "600"] });
-
-export const metadata: Metadata = {
-  title: "Aflevering & afhentning – Sundby Sliberi",
-  description:
-    "Udfyld dine oplysninger og vælg afleveringsform eller lokal afhentning hos Sundby Sliberi i Sundby, Nykøbing Falster.",
-};
 
 export default function Aflevering() {
   const router = useRouter();
@@ -198,6 +191,15 @@ export default function Aflevering() {
 
   return (
     <main className={`${inter.className} min-h-screen bg-[#F9F7F3] text-neutral-900 px-8 py-12 w-full max-w-[90rem] mx-auto`}>
+      <div className="max-w-5xl mx-auto mb-4">
+        <button
+          type="button"
+          onClick={() => router.push("/")}
+          className="inline-flex items-center text-xs text-neutral-600 hover:text-neutral-900 hover:underline underline-offset-2"
+        >
+          ← Til forsiden
+        </button>
+      </div>
       <header className="max-w-4xl mx-auto text-center mb-10">
         <h1 className={`${robotoSlab.className} text-4xl text-neutral-800`}>Aflevering / afhentning</h1>
         <p className="text-neutral-700 mt-2">Vælg afleveringsform og udfyld dine oplysninger – vi tager os af resten.</p>

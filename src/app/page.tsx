@@ -23,7 +23,6 @@ export default function Home() {
           height={320}
           priority
           fetchPriority="high"
-          quality={70}
           className="mb-8 drop-shadow-sm"
         />
         <h1 className={`${robotoSlab.className} text-4xl md:text-5xl mb-4 text-neutral-800`}>Sundby Sliberi</h1>

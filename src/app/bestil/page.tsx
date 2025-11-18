@@ -1,6 +1,5 @@
 "use client";
 
-import type { Metadata } from "next";
 import React, { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { Roboto_Slab, Inter } from "next/font/google";
@@ -9,12 +8,6 @@ import { computeKnifeDiscount } from "@/lib/pricing";
 
 const robotoSlab = Roboto_Slab({ subsets: ["latin"], weight: ["400", "700"] });
 const inter = Inter({ subsets: ["latin"], weight: ["400", "500", "600"] });
-
-export const metadata: Metadata = {
-  title: "Bestil slibning – Priser på knive og værktøj | Sundby Sliberi",
-  description:
-    "Vælg knive, værktøj og maskinklinger til slibning hos Sundby Sliberi. Se priser, læg i kurv og bestil – rabat ved 3+ og 6+ knive.",
-};
 
 interface Item { id: string; name: string; price: number; category: string; image: string }
 interface CartItem extends Item { qty: number }
@@ -107,6 +100,14 @@ export default function Bestil() {
 
   return (
     <main className={`${inter.className} min-h-screen bg-[#F9F7F3] text-neutral-900 px-8 py-12 w-full max-w-[90rem] mx-auto grid md:grid-cols-[2fr_1fr] gap-12`}>
+      <div className="md:col-span-2 mb-2">
+        <Link
+          href="/"
+          className="inline-flex items-center text-xs text-neutral-600 hover:text-neutral-900 hover:underline underline-offset-2"
+        >
+          ← Til forsiden
+        </Link>
+      </div>
       <section className="w-full">
         <h1 className={`${robotoSlab.className} text-4xl mb-4 text-neutral-800`}>Vælg dine ydelser</h1>
         <p className="text-sm text-neutral-700 mb-6 max-w-2xl">
@@ -118,6 +119,13 @@ export default function Bestil() {
         <p className="text-sm text-neutral-700 mb-8 max-w-2xl">
           <span className="font-semibold block">+3 knive = 10% rabat</span>
           <span className="font-semibold block">+6 knive = 20% rabat</span>
+        </p>
+        <p className="text-xs text-neutral-600 mb-6 max-w-2xl">
+          Søger du en mere fast løsning til restaurant, café, kantine eller anden virksomhed?{" "}
+          <Link href="/erhverv" className="underline-offset-2 hover:underline text-neutral-800">
+            Læs om erhvervsaftaler hos Sundby Sliberi
+          </Link>
+          .
         </p>
         {Object.entries(groupedCatalog).map(([category, items]) => (
           <div key={category} className="mb-6 rounded-2xl border border-neutral-200 bg-white shadow-sm">
