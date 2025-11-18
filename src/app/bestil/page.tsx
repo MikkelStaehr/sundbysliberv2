@@ -108,11 +108,8 @@ export default function Bestil() {
           <span className="font-semibold">1–2 timer</span>, efter vi har modtaget dem.
         </p>
         <p className="text-sm text-neutral-700 mb-8 max-w-2xl">
-          Vælger du{" "}
-          <span className="font-semibold">min. 3 knive</span>, får du{" "}
-          <span className="font-semibold">10% rabat</span> på knivslibningen – ved{" "}
-          <span className="font-semibold">6 knive eller flere</span> får du{" "}
-          <span className="font-semibold">20% rabat</span> på knivene.
+          <span className="font-semibold block">+3 knive = 10% rabat</span>
+          <span className="font-semibold block">+6 knive = 20% rabat</span>
         </p>
         {Object.entries(groupedCatalog).map(([category, items]) => (
           <div key={category} className="mb-6 rounded-2xl border border-neutral-200 bg-white shadow-sm">
