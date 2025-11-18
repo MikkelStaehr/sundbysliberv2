@@ -35,9 +35,16 @@ export default function Home() {
         <Link href="/bestil" className="rounded-2xl bg-neutral-900 text-white px-6 py-3 hover:bg-neutral-700 transition-colors">
           Bestil slibning
         </Link>
+        <p className="mt-3 text-xs text-neutral-600">
+          Driver du restaurant, café eller kantine?{" "}
+          <Link href="/erhverv" className="underline-offset-2 hover:underline text-neutral-800">
+            Læs om erhvervsaftaler her
+          </Link>
+          .
+        </p>
       </section>
 
-      <section className="w-full mt-12 mb-4 max-w-4xl">
+      <section className="w-full mt-8 mb-4 max-w-4xl">
         <div className="rounded-2xl border border-neutral-200 bg-white shadow-sm px-6 py-7">
           <h2 className={`${robotoSlab.className} text-2xl text-neutral-900 mb-1 text-center`}>Sådan foregår det</h2>
           <p className="text-sm text-neutral-600 mb-5 text-center">

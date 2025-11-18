@@ -52,7 +52,7 @@ export default function Erhverv() {
             Skriv et par linjer om din virksomhed og dit behov, så vender vi retur og
             foreslår en løsning, der passer til jer.
           </p>
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap gap-3 justify-center">
             <a
               href="mailto:info@sundby-sliberi.dk?subject=Erhvervsaftale%20-%20Sundby%20Sliberi"
               className="inline-flex items-center justify-center rounded-2xl bg-neutral-900 text-white px-6 py-3 text-sm hover:bg-neutral-700 transition-colors"
