@@ -37,7 +37,7 @@ export default function RootLayout({
             <div className="w-full max-w-[90rem] mx-auto px-8 py-4 flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
               <div className="flex flex-col text-neutral-700">
                 <span className="font-semibold">Sundby Sliberi</span>
-                <span>CVR: 99999999</span>
+                <span>CVR: 46034759</span>
                 <span>Hamborgskovvej 11</span>
                 <span>4800, Sundby</span>
                 <span>Nykøbing Falster</span>
