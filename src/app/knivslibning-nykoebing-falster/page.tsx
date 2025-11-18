@@ -14,9 +14,9 @@ export const metadata: Metadata = {
 export default function KnivslibningNykoebingFalster() {
   return (
     <main
-      className={`${inter.className} min-h-screen bg-[#F9F7F3] text-neutral-900 px-8 py-12 w-full max-w-[90rem] mx-auto`}
+      className={`${inter.className} min-h-screen bg-[#F9F7F3] text-neutral-900 px-8 py-12 w-full max-w-[90rem] mx-auto flex flex-col`}
     >
-      <div className="max-w-3xl mb-4">
+      <div className="w-full max-w-3xl mb-4">
         <Link
           href="/"
           className="inline-flex items-center text-xs text-neutral-600 hover:text-neutral-900 hover:underline underline-offset-2"
@@ -24,21 +24,23 @@ export default function KnivslibningNykoebingFalster() {
           ← Til forsiden
         </Link>
       </div>
-      <section className="max-w-3xl">
+      <section className="max-w-3xl mx-auto text-center flex-1 flex flex-col justify-center">
         <h1 className={`${robotoSlab.className} text-3xl md:text-4xl mb-4 text-neutral-900`}>
           Knivslibning i Sundby, Nykøbing Falster
         </h1>
         <p className="text-neutral-700 mb-4">
           Hos Sundby Sliberi tilbyder vi skarp og nænsom slibning af køkkenknive, værktøj og
           maskinklinger – lokalt i Sundby, Nykøbing Falster. Du kan både aflevere selv eller
-          bestille afhentning, så du slipper for besværet.
+          bestille afhentning, så du slipper for besværet. Med mange års erfaring i slibning får du
+          et resultat, du kan stole på hver gang. Det skal være let og tilgængeligt for alle –
+          uanset om du er amatør eller professionel.
         </p>
         <p className="text-neutral-700 mb-6">
           Bestillingen foregår online: vælg hvad du vil have slebet, udfyld dine oplysninger og
           vælg afleveringsform. Når vi har modtaget din bestilling, vender vi retur indenfor{" "}
           <span className="font-semibold">24 timer</span> med en bekræftelse og aftale om tid.
         </p>
-        <div className="flex flex-wrap gap-3 mb-8">
+        <div className="flex flex-wrap gap-3 mb-8 justify-center">
           <Link
             href="/bestil"
             className="inline-flex items-center justify-center rounded-2xl bg-neutral-900 text-white px-6 py-3 text-sm hover:bg-neutral-700 transition-colors"

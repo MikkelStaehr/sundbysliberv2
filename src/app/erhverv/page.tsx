@@ -46,6 +46,11 @@ export default function Erhverv() {
           både køkken og værksted altid har skarpe redskaber – uden at du skal holde styr på det i
           hverdagen.
         </p>
+        <ul className="text-sm text-neutral-700 mb-6 max-w-2xl mx-auto space-y-1 text-left md:text-center">
+          <li>• Faste afhentningsdage eller slibning efter behov</li>
+          <li>• Slibning af køkkenknive, køkkenredskaber og håndværktøj</li>
+          <li>• Lokalt samarbejde på Lolland-Falster</li>
+        </ul>
         <div className="border border-neutral-200 bg-white rounded-2xl p-6 shadow-sm mb-8 text-left md:text-center">
           <h2 className={`${robotoSlab.className} text-xl text-neutral-900 mb-3`}>
             Lad os tage en uforpligtende snak

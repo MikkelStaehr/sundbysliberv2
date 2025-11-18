@@ -153,6 +153,11 @@ export default function Bestil() {
                         {it.name}
                       </div>
                       <div className="mt-1 text-base font-semibold text-neutral-900">{it.price} kr</div>
+                      {category === "Knive" && (
+                        <div className="mt-1 text-[11px] text-emerald-700">
+                          Tæller med til kniv-rabat
+                        </div>
+                      )}
                     </div>
                     <button
                       onClick={() => add(it)}

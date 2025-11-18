@@ -146,6 +146,11 @@ export default function Aflevering() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!form.name || !form.phone) return alert("Udfyld venligst navn og telefon.");
+    const digits = form.phone.replace(/\D/g, "");
+    if (digits.length < 8) {
+      alert("Telefonnummeret ser forkert ud. Indtast venligst mindst 8 cifre.");
+      return;
+    }
     setIsConfirmOpen(true);
   };
 
@@ -395,7 +400,18 @@ export default function Aflevering() {
             </div>
           </div>
           {form.delivery === "pickup" && (
-            <p className="text-xs text-neutral-600 mt-3">Gebyret dækker lokal afhentning og aflevering.</p>
+            <p className="text-xs text-neutral-600 mt-3">
+              Gebyret dækker lokal afhentning og aflevering.
+            </p>
+          )}
+          {hasItemsInCart && (
+            <button
+              type="button"
+              onClick={() => router.push("/bestil")}
+              className="mt-4 w-full inline-flex items-center justify-center rounded-2xl border border-neutral-300 text-neutral-800 px-4 py-2 text-xs hover:bg-neutral-50 transition-colors"
+            >
+              Glemte du noget? Bestil mere
+            </button>
           )}
         </aside>
       </div>
