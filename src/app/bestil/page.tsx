@@ -25,6 +25,7 @@ const CATALOG: Item[] = [
   { id: "scissors", name: "Saks", price: 90, category: "Værktøj", image: "/images/scissors.png" },
   { id: "chisel", name: "Mejsel/Stemmejern", price: 50, category: "Værktøj", image: "/images/wood_chisel.png" },
   { id: "woodchisel", name: "Træmejsel", price: 50, category: "Værktøj", image: "/images/woodturning_tool.png" },
+  { id: "planeiron", name: "Fladt høvl blad", price: 80, category: "Værktøj", image: "/images/planeiron.png" },
   { id: "axe", name: "Økse", price: 120, category: "Værktøj", image: "/images/axe.png" },
 
   // Maskiner
@@ -123,7 +124,15 @@ export default function Bestil() {
                     key={it.id}
                     className="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm hover:shadow-md transition-all flex flex-col"
                   >
-                    <Image src={it.image} alt={it.name} width={200} height={140} className="mb-3 mx-auto" />
+                    <div className="mb-3 mx-auto h-[140px] flex items-center justify-center">
+                      <Image
+                        src={it.image}
+                        alt={it.name}
+                        width={200}
+                        height={140}
+                        className="max-h-full w-auto object-contain"
+                      />
+                    </div>
                     <div className="flex-1 flex flex-col">
                       <div className={`${robotoSlab.className} font-medium text-lg text-neutral-800 min-h-[3rem]`}>
                         {it.name}
