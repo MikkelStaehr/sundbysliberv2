@@ -13,9 +13,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Sundby Sliberi – Slibning af knive og værktøj",
+  title: "Sundby Sliberi – Slibning af knive og værktøj i Sundby, Nykøbing Falster",
   description:
-    "Professionel slibning af knive, værktøj og maskinklinger i Sundby, Nykøbing Falster. Aflever selv eller få hentet lokalt – nem online bestilling.",
+    "Sundby Sliberi tilbyder professionel slibning af knive, værktøj og maskinklinger til både private og professionelle i Sundby, Nykøbing Falster. Aflever selv eller få afhentet lokalt – nem online bestilling.",
+  metadataBase: new URL("https://sundby-sliberi.dk"),
   icons: {
     icon: "/images/hero_rooster_icon.png",
   },
@@ -26,6 +27,33 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const localBusinessJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Sundby Sliberi",
+    "image": "https://sundby-sliberi.dk/images/hero_rooster_icon.png",
+    "@id": "https://sundby-sliberi.dk/",
+    "url": "https://sundby-sliberi.dk/",
+    "telephone": "+45 31386119",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Hamborgskovvej 11",
+      "addressLocality": "Sundby",
+      "postalCode": "4800",
+      "addressRegion": "Region Sjælland",
+      "addressCountry": "DK"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 54.764,
+      "longitude": 11.866
+    },
+    "areaServed": {
+      "@type": "AdministrativeArea",
+      "name": "Nykøbing Falster og omegn"
+    }
+  };
+
   return (
     <html lang="da">
       <body
@@ -60,6 +88,10 @@ export default function RootLayout({
             </div>
           </footer>
         </div>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
+        />
       </body>
     </html>
   );

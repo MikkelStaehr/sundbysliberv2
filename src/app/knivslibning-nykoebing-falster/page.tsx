@@ -1,8 +1,15 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Roboto_Slab, Inter } from "next/font/google";
 
 const robotoSlab = Roboto_Slab({ subsets: ["latin"], weight: ["400", "700"] });
 const inter = Inter({ subsets: ["latin"], weight: ["400", "500", "600"] });
+
+export const metadata: Metadata = {
+  title: "Knivslibning i Nykøbing Falster – Sundby Sliberi",
+  description:
+    "Knivslibning i Sundby, Nykøbing Falster. Få køkkenknive og værktøj slebet hos Sundby Sliberi – aflever selv eller bestil lokal afhentning.",
+};
 
 export default function KnivslibningNykoebingFalster() {
   return (

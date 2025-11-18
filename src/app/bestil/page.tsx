@@ -1,5 +1,6 @@
 "use client";
 
+import type { Metadata } from "next";
 import React, { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { Roboto_Slab, Inter } from "next/font/google";
@@ -8,6 +9,12 @@ import { computeKnifeDiscount } from "@/lib/pricing";
 
 const robotoSlab = Roboto_Slab({ subsets: ["latin"], weight: ["400", "700"] });
 const inter = Inter({ subsets: ["latin"], weight: ["400", "500", "600"] });
+
+export const metadata: Metadata = {
+  title: "Bestil slibning – Priser på knive og værktøj | Sundby Sliberi",
+  description:
+    "Vælg knive, værktøj og maskinklinger til slibning hos Sundby Sliberi. Se priser, læg i kurv og bestil – rabat ved 3+ og 6+ knive.",
+};
 
 interface Item { id: string; name: string; price: number; category: string; image: string }
 interface CartItem extends Item { qty: number }

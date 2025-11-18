@@ -1,5 +1,6 @@
 "use client";
 
+import type { Metadata } from "next";
 import React, { useEffect, useMemo, useState } from "react";
 import { Roboto_Slab, Inter } from "next/font/google";
 import Image from "next/image";
@@ -8,6 +9,12 @@ import { computeKnifeDiscount } from "@/lib/pricing";
 
 const robotoSlab = Roboto_Slab({ subsets: ["latin"], weight: ["400", "700"] });
 const inter = Inter({ subsets: ["latin"], weight: ["400", "500", "600"] });
+
+export const metadata: Metadata = {
+  title: "Aflevering & afhentning – Sundby Sliberi",
+  description:
+    "Udfyld dine oplysninger og vælg afleveringsform eller lokal afhentning hos Sundby Sliberi i Sundby, Nykøbing Falster.",
+};
 
 export default function Aflevering() {
   const router = useRouter();
