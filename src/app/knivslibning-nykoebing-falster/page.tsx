@@ -1,0 +1,50 @@
+import Link from "next/link";
+import { Roboto_Slab, Inter } from "next/font/google";
+
+const robotoSlab = Roboto_Slab({ subsets: ["latin"], weight: ["400", "700"] });
+const inter = Inter({ subsets: ["latin"], weight: ["400", "500", "600"] });
+
+export default function KnivslibningNykoebingFalster() {
+  return (
+    <main
+      className={`${inter.className} min-h-screen bg-[#F9F7F3] text-neutral-900 px-8 py-12 w-full max-w-[90rem] mx-auto`}
+    >
+      <section className="max-w-3xl">
+        <h1 className={`${robotoSlab.className} text-3xl md:text-4xl mb-4 text-neutral-900`}>
+          Knivslibning i Sundby, Nykøbing Falster
+        </h1>
+        <p className="text-neutral-700 mb-4">
+          Hos Sundby Sliberi tilbyder vi skarp og nænsom slibning af køkkenknive, værktøj og
+          maskinklinger – lokalt i Sundby, Nykøbing Falster. Du kan både aflevere selv eller
+          bestille afhentning, så du slipper for besværet.
+        </p>
+        <p className="text-neutral-700 mb-6">
+          Bestillingen foregår online: vælg hvad du vil have slebet, udfyld dine oplysninger og
+          vælg afleveringsform. Når vi har modtaget din bestilling, vender Mikkel retur indenfor{" "}
+          <span className="font-semibold">24 timer</span> med en bekræftelse og aftale om tid.
+        </p>
+        <div className="flex flex-wrap gap-3 mb-8">
+          <Link
+            href="/bestil"
+            className="inline-flex items-center justify-center rounded-2xl bg-neutral-900 text-white px-6 py-3 text-sm hover:bg-neutral-700 transition-colors"
+          >
+            Se priser og bestil slibning
+          </Link>
+          <Link
+            href="/aflevering"
+            className="inline-flex items-center justify-center rounded-2xl border border-neutral-300 text-neutral-800 px-6 py-3 text-sm hover:bg-neutral-100 transition-colors"
+          >
+            Læs om aflevering og afhentning
+          </Link>
+        </div>
+        <p className="text-sm text-neutral-600">
+          Vi sliber blandt andet kokkeknive, urteknive, brødknive, økser, stemmejern, plæneklipperklinger
+          og meget mere. Er du i tvivl, om vi kan hjælpe med din skærekant, er du altid velkommen til
+          at kontakte os.
+        </p>
+      </section>
+    </main>
+  );
+}
+
+
