@@ -69,7 +69,6 @@ export default function Aflevering() {
         }));
       }
     } catch {}
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

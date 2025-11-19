@@ -4,6 +4,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "../components/Analytics";
 import { CookieBanner } from "../components/CookieBanner";
+import { Suspense } from "react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -120,7 +121,9 @@ export default function RootLayout({
             </div>
           </footer>
         </div>
-        <Analytics />
+        <Suspense fallback={null}>
+          <Analytics />
+        </Suspense>
         <CookieBanner />
         <script
           type="application/ld+json"
