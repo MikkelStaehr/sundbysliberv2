@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 export default function Erhverv() {
   return (
     <main
-      className={`${inter.className} min-h-screen bg-[#F9F7F3] text-neutral-900 px-8 py-12 w-full max-w-[90rem] mx-auto flex flex-col items-center`}
+      className={`${inter.className} min-h-screen bg-[#F9F7F3] text-neutral-900 px-8 py-12 w-full max-w-[90rem] mx-auto flex flex-col`}
     >
       <div className="w-full max-w-3xl mb-6">
         <Link
@@ -26,7 +26,7 @@ export default function Erhverv() {
           ← Til forsiden
         </Link>
       </div>
-      <section className="w-full max-w-3xl text-center flex-1 flex flex-col items-center justify-center">
+      <section className="w-full max-w-4xl mx-auto text-center flex-1 flex flex-col items-center justify-center gap-7 md:gap-8">
         <Image
           src="/images/hero_rooster_icon.png"
           alt="Sundby Sliberi"
@@ -34,33 +34,48 @@ export default function Erhverv() {
           height={120}
           className="mx-auto mb-6 drop-shadow-sm"
         />
-        <h1 className={`${robotoSlab.className} text-3xl md:text-4xl mb-4 text-neutral-900`}>
+        <h1 className={`${robotoSlab.className} text-3xl md:text-4xl text-neutral-900`}>
           Erhvervsaftaler og faste samarbejder
         </h1>
-        <p className="text-neutral-700 mb-4 max-w-2xl mx-auto">
+        <p className="text-neutral-700 leading-relaxed max-w-3xl mx-auto text-left">
           Har du restaurant, café, kantine eller andet professionelt køkken på Lolland-Falster, kan
           vi lave en fast aftale om slibning af dine knive, køkkenredskaber og håndværktøj.
         </p>
-        <p className="text-neutral-700 mb-6 max-w-2xl mx-auto">
+        <p className="text-neutral-700 leading-relaxed max-w-3xl mx-auto text-left">
           Vi tilbyder fleksible løsninger med faste afhentningsdage eller slibning efter behov, så
           både køkken og værksted altid har skarpe redskaber – uden at du skal holde styr på det i
           hverdagen.
         </p>
-        <ul className="text-sm text-neutral-700 mb-6 max-w-2xl mx-auto space-y-1 text-left md:text-center">
-          <li>• Faste afhentningsdage eller slibning efter behov</li>
-          <li>• Slibning af køkkenknive, køkkenredskaber og håndværktøj</li>
-          <li>• Lokalt samarbejde på Lolland-Falster</li>
+        <ul className="text-sm text-neutral-800 max-w-3xl mx-auto space-y-3 text-left leading-relaxed">
+          <li className="flex items-start gap-3">
+            <span className="mt-1 inline-flex h-5 w-5 items-center justify-center rounded-full border border-neutral-300 text-[10px] text-neutral-600">
+              ✓
+            </span>
+            <span>Faste afhentningsdage eller slibning efter behov</span>
+          </li>
+          <li className="flex items-start gap-3">
+            <span className="mt-1 inline-flex h-5 w-5 items-center justify-center rounded-full border border-neutral-300 text-[10px] text-neutral-600">
+              ✓
+            </span>
+            <span>Slibning af køkkenknive, køkkenredskaber og håndværktøj</span>
+          </li>
+          <li className="flex items-start gap-3">
+            <span className="mt-1 inline-flex h-5 w-5 items-center justify-center rounded-full border border-neutral-300 text-[10px] text-neutral-600">
+              ✓
+            </span>
+            <span>Lokalt samarbejde på Lolland-Falster</span>
+          </li>
         </ul>
-        <div className="border border-neutral-200 bg-white rounded-2xl p-6 shadow-sm mb-8 text-left md:text-center">
+        <div className="border border-neutral-200 bg-white rounded-2xl p-7 md:p-8 shadow-sm text-left max-w-3xl mx-auto">
           <h2 className={`${robotoSlab.className} text-xl text-neutral-900 mb-3`}>
             Lad os tage en uforpligtende snak
           </h2>
-          <p className="text-sm text-neutral-700 mb-2">
+          <p className="text-sm text-neutral-700 leading-relaxed mb-3">
             Udfyld formularen herunder, så vender vi retur og foreslår en løsning, der passer til jer.
           </p>
           <ErhvervForm />
         </div>
-        <p className="text-xs text-neutral-600">
+        <p className="text-xs text-neutral-600 leading-relaxed max-w-3xl mx-auto">
           Vi holder til i Sundby ved Nykøbing Falster og kører primært på Lolland-Falster og omegn.
           Har du ønsker uden for området, så skriv – så ser vi på det.
         </p>
