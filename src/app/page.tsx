@@ -70,7 +70,7 @@ export default function Home() {
                 3
               </div>
               <div className="font-semibold">Vi aftaler nærmere</div>
-              <p className="text-neutral-600">Mikkel vender retur indenfor 24 timer.</p>
+              <p className="text-neutral-600">Vi vender retur indenfor 24 timer.</p>
             </div>
           </div>
         </div>
