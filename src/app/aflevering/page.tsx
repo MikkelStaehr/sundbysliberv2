@@ -172,7 +172,10 @@ export default function Aflevering() {
     if (!date) return "";
     const [year, month, day] = date.split("-").map(Number);
     const base = new Date(year || 1970, (month || 1) - 1, (day || 1) + (form.express ? 0 : 1));
-    return base.toISOString().slice(0, 10);
+    const y = base.getFullYear();
+    const m = String(base.getMonth() + 1).padStart(2, "0");
+    const d = String(base.getDate()).padStart(2, "0");
+    return `${y}-${m}-${d}`;
   }, [form.dropoffAt, form.express]);
 
   const handleSubmit = (e: React.FormEvent) => {
