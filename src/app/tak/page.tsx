@@ -1,15 +1,11 @@
 "use client";
 
-import { Roboto_Slab, Inter } from "next/font/google";
 import Link from "next/link";
-
-const robotoSlab = Roboto_Slab({ subsets: ["latin"], weight: ["400", "700"] });
-const inter = Inter({ subsets: ["latin"], weight: ["400", "500", "600"] });
 
 export default function TakSide() {
   return (
     <main
-      className={`${inter.className} min-h-screen bg-[#F9F7F3] text-neutral-900 px-8 py-12 w-full max-w-[60rem] mx-auto flex flex-col`}
+      className="min-h-screen bg-[#F9F7F3] text-neutral-900 px-8 py-12 w-full max-w-[60rem] mx-auto flex flex-col"
     >
       <div className="w-full mb-4">
         <Link
@@ -21,7 +17,7 @@ export default function TakSide() {
       </div>
       <section className="w-full flex-1 flex items-center">
         <div className="w-full rounded-2xl border border-neutral-200 bg-white shadow-sm px-8 py-10 text-center">
-          <h1 className={`${robotoSlab.className} text-4xl text-neutral-900 mb-4`}>
+          <h1 className="text-4xl text-neutral-900 mb-4 font-semibold tracking-tight">
             Tak for din bestilling
           </h1>
           <p className="text-[15px] text-neutral-700 max-w-xl mx-auto mb-6">

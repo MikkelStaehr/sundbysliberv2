@@ -1,13 +1,9 @@
 "use client";
 
 import React, { useEffect, useMemo, useState } from "react";
-import { Roboto_Slab, Inter } from "next/font/google";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { computeKnifeDiscount } from "@/lib/pricing";
-
-const robotoSlab = Roboto_Slab({ subsets: ["latin"], weight: ["400", "700"] });
-const inter = Inter({ subsets: ["latin"], weight: ["400", "500", "600"] });
 
 export default function Aflevering() {
   const router = useRouter();
@@ -246,7 +242,7 @@ export default function Aflevering() {
   };
 
   return (
-    <main className={`${inter.className} min-h-screen bg-[#F9F7F3] text-neutral-900 px-8 py-12 w-full max-w-[90rem] mx-auto`}>
+    <main className="min-h-screen bg-[#F9F7F3] text-neutral-900 px-8 py-12 w-full max-w-[90rem] mx-auto">
       <div className="max-w-5xl mx-auto mb-4">
         <button
           type="button"
@@ -257,7 +253,7 @@ export default function Aflevering() {
         </button>
       </div>
       <header className="max-w-4xl mx-auto text-center mb-10">
-        <h1 className={`${robotoSlab.className} text-4xl text-neutral-800`}>Aflevering / afhentning</h1>
+        <h1 className="text-4xl text-neutral-800 font-semibold tracking-tight">Aflevering / afhentning</h1>
         <p className="text-neutral-700 mt-2">Vælg afleveringsform og udfyld dine oplysninger – vi tager os af resten.</p>
       </header>
 
@@ -286,7 +282,7 @@ export default function Aflevering() {
         <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10">
           {/* Kundeoplysninger (centreret) */}
           <section className="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm w-full max-w-lg">
-            <h2 className={`${robotoSlab.className} text-3xl text-neutral-800 mb-5`}>Dine oplysninger</h2>
+            <h2 className="text-3xl text-neutral-800 mb-5 font-semibold tracking-tight">Dine oplysninger</h2>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid sm:grid-cols-2 gap-4">
                 <label className="block text-sm text-neutral-800">Navn*
@@ -344,7 +340,7 @@ export default function Aflevering() {
                 </label>
               </div>
               <div className="border-t border-neutral-200 pt-4">
-                <h3 className={`${robotoSlab.className} text-xl text-neutral-800 mb-3`}>Levering</h3>
+                <h3 className="text-xl text-neutral-800 mb-3 font-semibold tracking-tight">Levering</h3>
                 <div className="grid grid-cols-1 gap-3">
                   <label className={`cursor-pointer rounded-xl border ${form.delivery === 'dropoff' ? 'ring-2 ring-neutral-900' : 'border-neutral-300'} p-3 flex gap-2 items-center`}>
                     <input type="radio" name="delivery" value="dropoff" checked={form.delivery==='dropoff'} onChange={() => setForm((f)=>({...f,delivery:'dropoff'}))} className="sr-only" />
@@ -383,7 +379,7 @@ export default function Aflevering() {
                 </label>
               </div>
               <div className="border border-neutral-200 rounded-xl p-3 mt-2 bg-neutral-50 space-y-3">
-                <h3 className={`${robotoSlab.className} text-sm text-neutral-900`}>
+                <h3 className="text-sm text-neutral-900 font-semibold tracking-tight">
                   Tidspunkt for aflevering og afhentning
                 </h3>
                 <p className="text-xs text-neutral-600">
@@ -488,7 +484,7 @@ export default function Aflevering() {
 
           {/* Opsummering */}
           <aside className="h-fit rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm sticky top-10">
-            <h2 className={`${robotoSlab.className} text-2xl text-neutral-800 mb-4`}>Opsummering</h2>
+            <h2 className="text-2xl text-neutral-800 mb-4 font-semibold tracking-tight">Opsummering</h2>
             <ul className="text-sm text-neutral-800 space-y-2">
               <li>
                 <div className="font-medium mb-1">Kurv</div>
@@ -563,7 +559,7 @@ export default function Aflevering() {
       {isConfirmOpen && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50" onClick={() => setIsConfirmOpen(false)}>
           <div className="bg-white rounded-2xl shadow-xl p-6 w-full max-w-lg mx-4" onClick={(e) => e.stopPropagation()}>
-            <h3 className={`${robotoSlab.className} text-2xl text-neutral-900 mb-4`}>Bekræft bestilling</h3>
+            <h3 className="text-2xl text-neutral-900 mb-4 font-semibold tracking-tight">Bekræft bestilling</h3>
             <div className="space-y-2 text-sm text-neutral-800">
               <div className="flex justify-between"><span>Navn</span><span>{form.name}</span></div>
               <div className="flex justify-between"><span>Telefon</span><span>{form.phone}</span></div>

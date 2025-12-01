@@ -1,11 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import { Roboto_Slab, Inter } from "next/font/google";
 import { ErhvervForm } from "./ErhvervForm";
-
-const robotoSlab = Roboto_Slab({ subsets: ["latin"], weight: ["400", "700"] });
-const inter = Inter({ subsets: ["latin"], weight: ["400", "500", "600"] });
 
 export const metadata: Metadata = {
   title: "Erhvervsaftaler – Restauranter, kantiner & virksomheder | Sundby Sliberi",
@@ -25,7 +21,7 @@ export const metadata: Metadata = {
 export default function Erhverv() {
   return (
     <main
-      className={`${inter.className} min-h-screen bg-[#F9F7F3] text-neutral-900 px-8 py-12 w-full max-w-[90rem] mx-auto flex flex-col`}
+      className="min-h-screen bg-[#F9F7F3] text-neutral-900 px-8 py-12 w-full max-w-[90rem] mx-auto flex flex-col"
     >
       <div className="w-full max-w-3xl mb-6">
         <Link
@@ -43,7 +39,7 @@ export default function Erhverv() {
           height={120}
           className="mx-auto mb-6 drop-shadow-sm"
         />
-        <h1 className={`${robotoSlab.className} text-3xl md:text-4xl text-neutral-900`}>
+        <h1 className="text-3xl md:text-4xl text-neutral-900 font-semibold tracking-tight">
           Erhvervsaftaler og faste samarbejder
         </h1>
         <p className="text-neutral-700 leading-relaxed max-w-3xl mx-auto text-left">
@@ -76,7 +72,7 @@ export default function Erhverv() {
           </li>
         </ul>
         <div className="border border-neutral-200 bg-white rounded-2xl p-7 md:p-8 shadow-sm text-left max-w-3xl mx-auto">
-          <h2 className={`${robotoSlab.className} text-xl text-neutral-900 mb-3`}>
+          <h2 className="text-xl text-neutral-900 mb-3 font-semibold tracking-tight">
             Lad os tage en uforpligtende snak
           </h2>
           <p className="text-sm text-neutral-700 leading-relaxed mb-3">

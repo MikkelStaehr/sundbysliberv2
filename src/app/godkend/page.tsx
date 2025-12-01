@@ -1,9 +1,5 @@
-import { Roboto_Slab, Inter } from "next/font/google";
 import { parseOrderToken } from "@/lib/orderToken";
 import { redirect } from "next/navigation";
-
-const robotoSlab = Roboto_Slab({ subsets: ["latin"], weight: ["400", "700"] });
-const inter = Inter({ subsets: ["latin"], weight: ["400", "500", "600"] });
 
 type Props = {
   searchParams: {
@@ -23,10 +19,10 @@ export default function GodkendBestilling({ searchParams }: Props) {
   if (!order) {
     return (
       <main
-        className={`${inter.className} min-h-screen bg-[#F9F7F3] text-neutral-900 px-8 py-12 w-full max-w-[90rem] mx-auto flex items-center justify-center`}
+        className="min-h-screen bg-[#F9F7F3] text-neutral-900 px-8 py-12 w-full max-w-[90rem] mx-auto flex items-center justify-center"
       >
         <div className="max-w-lg rounded-2xl border border-neutral-200 bg-white shadow-sm px-8 py-10 text-center">
-          <h1 className={`${robotoSlab.className} text-2xl text-neutral-900 mb-3`}>
+          <h1 className="text-2xl text-neutral-900 mb-3 font-semibold tracking-tight">
             Linket er desværre udløbet eller ugyldigt
           </h1>
           <p className="text-sm text-neutral-700">
@@ -45,10 +41,10 @@ export default function GodkendBestilling({ searchParams }: Props) {
 
   return (
     <main
-      className={`${inter.className} min-h-screen bg-[#F9F7F3] text-neutral-900 px-8 py-12 w-full max-w-[90rem] mx-auto flex items-center justify-center`}
+      className="min-h-screen bg-[#F9F7F3] text-neutral-900 px-8 py-12 w-full max-w-[90rem] mx-auto flex items-center justify-center"
     >
       <div className="w-full max-w-2xl rounded-2xl border border-neutral-200 bg-white shadow-sm px-8 py-10">
-        <h1 className={`${robotoSlab.className} text-3xl text-neutral-900 mb-4`}>
+        <h1 className="text-3xl text-neutral-900 mb-4 font-semibold tracking-tight">
           Godkend bestilling
         </h1>
         <p className="text-sm text-neutral-700 mb-6">
@@ -57,7 +53,7 @@ export default function GodkendBestilling({ searchParams }: Props) {
         </p>
 
         <section className="mb-6">
-          <h2 className={`${robotoSlab.className} text-lg text-neutral-900 mb-2`}>Kunde</h2>
+          <h2 className="text-lg text-neutral-900 mb-2 font-semibold tracking-tight">Kunde</h2>
           <dl className="grid grid-cols-[auto,1fr] gap-x-4 gap-y-1 text-sm text-neutral-800">
             <dt className="text-neutral-500">Navn</dt>
             <dd>{form.name}</dd>
@@ -83,7 +79,7 @@ export default function GodkendBestilling({ searchParams }: Props) {
         </section>
 
         <section className="mb-6">
-          <h2 className={`${robotoSlab.className} text-lg text-neutral-900 mb-2`}>Tidspunkter</h2>
+          <h2 className="text-lg text-neutral-900 mb-2 font-semibold tracking-tight">Tidspunkter</h2>
           {form.dropoffAt ? (
             <dl className="grid grid-cols-[auto,1fr] gap-x-4 gap-y-1 text-sm text-neutral-800">
               <dt className="text-neutral-500">Aflevering</dt>
@@ -121,7 +117,7 @@ export default function GodkendBestilling({ searchParams }: Props) {
         </section>
 
         <section className="mb-6">
-          <h2 className={`${robotoSlab.className} text-lg text-neutral-900 mb-2`}>Indhold</h2>
+          <h2 className="text-lg text-neutral-900 mb-2 font-semibold tracking-tight">Indhold</h2>
           {cart.length === 0 ? (
             <p className="text-sm text-neutral-700">Ingen varer registreret i bestillingen.</p>
           ) : (
@@ -157,7 +153,7 @@ export default function GodkendBestilling({ searchParams }: Props) {
         </section>
 
         <section className="mb-6">
-          <h2 className={`${robotoSlab.className} text-lg text-neutral-900 mb-2`}>Næste skridt</h2>
+          <h2 className="text-lg text-neutral-900 mb-2 font-semibold tracking-tight">Næste skridt</h2>
           <p className="text-sm text-neutral-700 mb-3">
             Når du godkender bestillingen, sender vi en bekræftelsesmail til kunden med en kvittering
             for bestillingen og de valgte tidspunkter. Du modtager samtidig en mail med et forslag til

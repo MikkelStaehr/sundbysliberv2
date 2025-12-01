@@ -1,10 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import { Roboto_Slab, Inter } from "next/font/google";
-
-const robotoSlab = Roboto_Slab({ subsets: ["latin"], weight: ["400", "700"] });
-const inter = Inter({ subsets: ["latin"], weight: ["400", "500", "600"] });
 
 export const metadata: Metadata = {
   title: "Sundby Sliberi – Professionel slibning af knive & værktøj i Nykøbing Falster",
@@ -14,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <main className={`${inter.className} min-h-screen bg-[#F9F7F3] px-8 py-10 md:py-16 w-full max-w-[90rem] mx-auto flex flex-col items-center`}>
+    <main className="min-h-screen bg-[#F9F7F3] px-8 py-10 md:py-16 w-full max-w-[90rem] mx-auto flex flex-col items-center">
       <section className="flex flex-col items-center justify-center text-center flex-1 w-full">
         <Image
           src="/images/hero_rooster_icon.png"
@@ -28,7 +24,7 @@ export default function Home() {
         <p className="text-[11px] uppercase tracking-wide text-neutral-500 mb-2">
           Lokal knivslibning på Lolland-Falster
         </p>
-        <h1 className={`${robotoSlab.className} text-4xl md:text-5xl mb-6 text-neutral-800`}>
+        <h1 className="text-4xl md:text-5xl mb-6 text-neutral-800 font-semibold">
           Sundby Sliberi
         </h1>
         <div className="w-full max-w-3xl mx-auto space-y-6 md:space-y-8">
@@ -90,7 +86,9 @@ export default function Home() {
           <p className="text-[11px] uppercase tracking-wide text-neutral-500 mb-1 text-center">
             Sådan foregår en bestilling
           </p>
-          <h2 className={`${robotoSlab.className} text-2xl text-neutral-900 mb-1 text-center`}>Sådan foregår det</h2>
+          <h2 className="text-2xl text-neutral-900 mb-1 text-center font-semibold tracking-tight">
+            Sådan foregår det
+          </h2>
           <p className="text-sm text-neutral-600 mb-5 text-center">
             Tre enkle trin fra sløv til skarp.
           </p>

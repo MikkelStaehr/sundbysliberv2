@@ -5,6 +5,7 @@ import "./globals.css";
 import { Analytics } from "../components/Analytics";
 import { CookieBanner } from "../components/CookieBanner";
 import { Suspense } from "react";
+import { HeaderNav } from "../components/HeaderNav";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -81,35 +82,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <div className="min-h-screen flex flex-col bg-[#F9F7F3]">
-          <header className="border-b border-neutral-200 bg-white/95">
-            <div className="w-full max-w-[90rem] mx-auto px-8 py-3 flex items-center justify-between">
-              <Link
-                href="/"
-                className="text-sm font-semibold text-neutral-900 tracking-tight"
-              >
-                Sundby Sliberi
-              </Link>
-              <nav className="flex items-center gap-4 text-xs text-neutral-700">
-                <Link href="/" className="hover:text-neutral-900 transition-colors">
-                  Forside
-                </Link>
-                <Link href="/bestil" className="hover:text-neutral-900 hover:underline underline-offset-2">
-                  <span className="inline-flex items-center justify-center rounded-2xl bg-neutral-900 text-white px-3 py-1.5 text-[11px] hover:bg-neutral-700 transition-colors">
-                    Bestil slibning
-                  </span>
-                </Link>
-                <Link href="/erhverv" className="hover:text-neutral-900 transition-colors">
-                  Erhverv
-                </Link>
-                <Link
-                  href="/knivslibning-nykoebing-falster"
-                  className="hidden sm:inline hover:text-neutral-900 transition-colors"
-                >
-                  Om os
-                </Link>
-              </nav>
-            </div>
-          </header>
+          <HeaderNav />
           <div className="flex-1">{children}</div>
           <footer className="border-t border-neutral-200 bg-white text-neutral-700 text-sm">
             <div className="w-full max-w-[90rem] mx-auto px-8 py-6 flex flex-col gap-4 md:flex-row md:items-start md:justify-between md:gap-8">

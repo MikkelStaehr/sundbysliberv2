@@ -1,9 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Roboto_Slab, Inter } from "next/font/google";
-
-const robotoSlab = Roboto_Slab({ subsets: ["latin"], weight: ["400", "700"] });
-const inter = Inter({ subsets: ["latin"], weight: ["400", "500", "600"] });
 
 export const metadata: Metadata = {
   title: "Knivslibning i Nykøbing Falster – Sundby Sliberi",
@@ -23,7 +19,7 @@ export const metadata: Metadata = {
 export default function KnivslibningNykoebingFalster() {
   return (
     <main
-      className={`${inter.className} min-h-screen bg-[#F9F7F3] text-neutral-900 px-8 py-12 w-full max-w-[90rem] mx-auto flex flex-col`}
+      className="min-h-screen bg-[#F9F7F3] text-neutral-900 px-8 py-12 w-full max-w-[90rem] mx-auto flex flex-col"
     >
       <div className="w-full max-w-3xl mb-6">
         <Link
@@ -34,11 +30,11 @@ export default function KnivslibningNykoebingFalster() {
         </Link>
       </div>
       <section className="max-w-2xl mx-auto text-center flex-1 flex flex-col justify-center gap-7 md:gap-8">
-        <h1 className={`${robotoSlab.className} text-3xl md:text-4xl text-neutral-900`}>
+        <h1 className="text-3xl md:text-4xl text-neutral-900 font-semibold tracking-tight">
           Knivslibning i Sundby, Nykøbing Falster
         </h1>
         <div className="space-y-5 text-left">
-          <h2 className={`${robotoSlab.className} text-xl md:text-2xl text-neutral-900`}>
+          <h2 className="text-xl md:text-2xl text-neutral-900 font-semibold tracking-tight">
             Lokal knivslibning på Lolland-Falster
           </h2>
           <p className="text-neutral-700 leading-relaxed">
@@ -48,7 +44,7 @@ export default function KnivslibningNykoebingFalster() {
             et resultat, du kan stole på hver gang. Det skal være let og tilgængeligt for alle –
             uanset om du er amatør eller professionel.
           </p>
-          <h2 className={`${robotoSlab.className} text-xl md:text-2xl text-neutral-900`}>
+          <h2 className="text-xl md:text-2xl text-neutral-900 font-semibold tracking-tight">
             Sådan bestiller du knivslibning
           </h2>
           <p className="text-neutral-700 leading-relaxed">

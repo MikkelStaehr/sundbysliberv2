@@ -2,12 +2,8 @@
 
 import React, { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import { Roboto_Slab, Inter } from "next/font/google";
 import Image from "next/image";
 import { computeKnifeDiscount } from "@/lib/pricing";
-
-const robotoSlab = Roboto_Slab({ subsets: ["latin"], weight: ["400", "700"] });
-const inter = Inter({ subsets: ["latin"], weight: ["400", "500", "600"] });
 
 interface Item { id: string; name: string; price: number; category: string; image: string }
 interface CartItem extends Item { qty: number }
@@ -99,7 +95,7 @@ export default function Bestil() {
   }, {} as Record<string, Item[]>);
 
   return (
-    <main className={`${inter.className} min-h-screen bg-[#F9F7F3] text-neutral-900 px-8 py-10 md:py-16 w-full max-w-[90rem] mx-auto grid md:grid-cols-[2fr_1fr] gap-12`}>
+    <main className="min-h-screen bg-[#F9F7F3] text-neutral-900 px-8 py-10 md:py-16 w-full max-w-[90rem] mx-auto grid md:grid-cols-[2fr_1fr] gap-12">
       <div className="md:col-span-2 mb-2">
         <Link
           href="/"
@@ -112,7 +108,7 @@ export default function Bestil() {
         <p className="text-[11px] uppercase tracking-wide text-neutral-500 mb-1">
           Trin 1 · Vælg slibning
         </p>
-        <h1 className={`${robotoSlab.className} text-4xl mb-4 text-neutral-800`}>Vælg dine ydelser</h1>
+        <h1 className="text-4xl mb-4 text-neutral-800 font-semibold tracking-tight">Vælg dine ydelser</h1>
         <div className="max-w-2xl space-y-4">
           <p className="text-sm text-neutral-700 leading-relaxed">
             Knive og værktøj er som udgangspunkt klar til afhentning{" "}
@@ -143,7 +139,7 @@ export default function Bestil() {
         {Object.entries(groupedCatalog).map(([category, items]) => (
           <div key={category} className="mb-6 rounded-2xl border border-neutral-200 bg-white shadow-sm">
             <div className="w-full flex items-center justify-between px-5 py-3">
-              <span className={`${robotoSlab.className} text-xl text-neutral-800`}>{category}</span>
+              <span className="text-xl font-semibold text-neutral-800">{category}</span>
             </div>
             <div className="px-5 pb-5">
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -162,7 +158,7 @@ export default function Bestil() {
                       />
                     </div>
                     <div className="flex-1 flex flex-col">
-                      <div className={`${robotoSlab.className} font-medium text-lg text-neutral-800 min-h-[3rem]`}>
+                      <div className="font-medium text-lg text-neutral-800 min-h-[3rem]">
                         {it.name}
                       </div>
                       <div className="mt-1 text-base font-semibold text-neutral-900">

@@ -1,9 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Roboto_Slab, Inter } from "next/font/google";
-
-const robotoSlab = Roboto_Slab({ subsets: ["latin"], weight: ["400", "700"] });
-const inter = Inter({ subsets: ["latin"], weight: ["400", "500", "600"] });
 
 export const metadata: Metadata = {
   title: "Privatliv & cookies – Sundby Sliberi",
@@ -23,7 +19,7 @@ export const metadata: Metadata = {
 export default function Privatliv() {
   return (
     <main
-      className={`${inter.className} min-h-screen bg-[#F9F7F3] text-neutral-900 px-8 py-12 w-full max-w-[90rem] mx-auto flex flex-col`}
+      className="min-h-screen bg-[#F9F7F3] text-neutral-900 px-8 py-12 w-full max-w-[90rem] mx-auto flex flex-col"
     >
       <div className="w-full max-w-3xl mb-6">
         <Link
@@ -35,7 +31,7 @@ export default function Privatliv() {
       </div>
       <section className="max-w-3xl mx-auto flex-1 flex flex-col gap-6">
         <header className="mb-2">
-          <h1 className={`${robotoSlab.className} text-3xl md:text-4xl text-neutral-900 mb-3`}>
+          <h1 className="text-3xl md:text-4xl text-neutral-900 mb-3 font-semibold tracking-tight">
             Privatliv & cookies
           </h1>
           <p className="text-sm text-neutral-700 max-w-2xl">
@@ -45,7 +41,7 @@ export default function Privatliv() {
         </header>
 
         <section className="space-y-3 text-sm text-neutral-800">
-          <h2 className={`${robotoSlab.className} text-xl text-neutral-900`}>Dataansvarlig</h2>
+          <h2 className="text-xl text-neutral-900 font-semibold tracking-tight">Dataansvarlig</h2>
           <p>
             Sundby Sliberi<br />
             CVR: 46034759<br />
@@ -57,7 +53,7 @@ export default function Privatliv() {
         </section>
 
         <section className="space-y-3 text-sm text-neutral-800">
-          <h2 className={`${robotoSlab.className} text-xl text-neutral-900`}>Hvilke oplysninger vi behandler</h2>
+          <h2 className="text-xl text-neutral-900 font-semibold tracking-tight">Hvilke oplysninger vi behandler</h2>
           <p>
             Når du bestiller slibning eller kontakter os via formularerne på siden, behandler vi de
             oplysninger, du selv indtaster, f.eks. navn, kontaktoplysninger, adresse og besked.
@@ -70,7 +66,7 @@ export default function Privatliv() {
         </section>
 
         <section className="space-y-3 text-sm text-neutral-800">
-          <h2 className={`${robotoSlab.className} text-xl text-neutral-900`}>Cookies og lokal lagring</h2>
+          <h2 className="text-xl text-neutral-900 font-semibold tracking-tight">Cookies og lokal lagring</h2>
           <p>
             På sundby-sliberi.dk bruges teknologier, der minder om cookies – blandt andet lokal
             lagring i din browser – til at få siden til at fungere og gøre oplevelsen bedre.
@@ -86,7 +82,7 @@ export default function Privatliv() {
         </section>
 
         <section className="space-y-3 text-sm text-neutral-800">
-          <h2 className={`${robotoSlab.className} text-xl text-neutral-900`}>Google Analytics</h2>
+          <h2 className="text-xl text-neutral-900 font-semibold tracking-tight">Google Analytics</h2>
           <p>
             Vi bruger kun Google Analytics, hvis du har givet samtykke til statistikcookies i
             cookiebanneret. Data bruges udelukkende i anonymiseret form til at se, hvordan siden
@@ -100,7 +96,7 @@ export default function Privatliv() {
         </section>
 
         <section className="space-y-3 text-sm text-neutral-800">
-          <h2 className={`${robotoSlab.className} text-xl text-neutral-900`}>Dine rettigheder</h2>
+          <h2 className="text-xl text-neutral-900 font-semibold tracking-tight">Dine rettigheder</h2>
           <p>
             Du kan til enhver tid kontakte os, hvis du vil høre, hvilke oplysninger vi har om dig,
             eller hvis du ønsker dem rettet eller slettet – i det omfang vi ikke er forpligtet til
@@ -113,7 +109,7 @@ export default function Privatliv() {
         </section>
 
         <section className="space-y-3 text-sm text-neutral-800 mb-8">
-          <h2 className={`${robotoSlab.className} text-xl text-neutral-900`}>Spørgsmål</h2>
+          <h2 className="text-xl text-neutral-900 font-semibold tracking-tight">Spørgsmål</h2>
           <p>
             Har du spørgsmål til, hvordan vi håndterer personoplysninger eller cookies, er du altid
             velkommen til at kontakte os på{" "}
