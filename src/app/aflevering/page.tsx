@@ -146,6 +146,35 @@ export default function Aflevering() {
 
   const remove = (id: string) => saveCart(cart.filter((c) => c.id !== id));
 
+  const timeOptions = [
+    "08:00","08:30","09:00","09:30","10:00","10:30","11:00","11:30",
+    "12:00","12:30","13:00","13:30","14:00","14:30","15:00","15:30",
+    "16:00","16:30","17:00","17:30","18:00"
+  ];
+
+  const splitDateTime = (value: string) => {
+    const [datePart, timePart] = value.split("T");
+    return {
+      date: datePart || "",
+      time: timePart ? timePart.slice(0, 5) : "",
+    };
+  };
+
+  const combineDateTime = (date: string, time: string) => {
+    if (!date) return "";
+    const t = time || "08:00";
+    return `${date}T${t}`;
+  };
+
+  const minPickupDate = useMemo(() => {
+    if (!form.dropoffAt) return "";
+    const d = new Date(form.dropoffAt);
+    if (!form.express) {
+      d.setDate(d.getDate() + 1);
+    }
+    return d.toISOString().slice(0, 10);
+  }, [form.dropoffAt, form.express]);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setFormError(null);
@@ -183,7 +212,15 @@ export default function Aflevering() {
         setFormError("Afhentningstidspunktet er ugyldigt.");
         return;
       }
-      if (!form.express) {
+      if (form.express) {
+        // Mindst 1 time efter aflevering ved ekspres
+        const minPickupExpress = new Date(dropoffDate.getTime() + 1 * 60 * 60 * 1000);
+        if (pickupDate.getTime() < minPickupExpress.getTime()) {
+          setFormError("Ved ekspres skal afhentningstidspunktet ligge mindst 1 time efter aflevering.");
+          return;
+        }
+      } else {
+        // Mindst 24 timer efter aflevering ved normal slibning
         const minPickup = new Date(dropoffDate.getTime() + 24 * 60 * 60 * 1000);
         if (pickupDate.getTime() < minPickup.getTime()) {
           setFormError("Afhentningstidspunktet skal ligge mindst 24 timer efter aflevering, medmindre du vælger ekspres.");
@@ -376,27 +413,83 @@ export default function Aflevering() {
                   Vælg det tidspunkt, der passer dig bedst til aflevering. Afhentning er valgfri, men skal
                   ligge mindst 24 timer efter aflevering – medmindre du har valgt ekspres.
                 </p>
-                <label className="block text-sm text-neutral-800">
-                  Aflevering (dato og klokkeslæt)*
-                  <input
-                    type="datetime-local"
-                    name="dropoffAt"
-                    value={form.dropoffAt}
-                    onChange={onChange}
-                    className="mt-1 w-full border border-neutral-300 rounded-xl px-3 py-2 bg-white text-sm"
-                    required
-                  />
-                </label>
-                <label className="block text-sm text-neutral-800">
-                  Afhentning (valgfrit)
-                  <input
-                    type="datetime-local"
-                    name="pickupAt"
-                    value={form.pickupAt}
-                    onChange={onChange}
-                    className="mt-1 w-full border border-neutral-300 rounded-xl px-3 py-2 bg-white text-sm"
-                  />
-                </label>
+                <div className="grid sm:grid-cols-2 gap-3">
+                  <label className="block text-sm text-neutral-800">
+                    Aflevering – dato*
+                    <input
+                      type="date"
+                      value={splitDateTime(form.dropoffAt).date}
+                      onChange={(e) =>
+                        setForm((f) => ({
+                          ...f,
+                          dropoffAt: combineDateTime(e.target.value, splitDateTime(f.dropoffAt).time),
+                        }))
+                      }
+                      className="mt-1 w-full border border-neutral-300 rounded-xl px-3 py-2 bg-white text-sm"
+                      required
+                    />
+                  </label>
+                  <label className="block text-sm text-neutral-800">
+                    Aflevering – klokkeslæt*
+                    <select
+                      value={splitDateTime(form.dropoffAt).time || "08:00"}
+                      onChange={(e) =>
+                        setForm((f) => ({
+                          ...f,
+                          dropoffAt: combineDateTime(splitDateTime(f.dropoffAt).date, e.target.value),
+                        }))
+                      }
+                      className="mt-1 w-full border border-neutral-300 rounded-xl px-3 py-2 bg-white text-sm"
+                    >
+                      {timeOptions.map((t) => (
+                        <option key={t} value={t}>
+                          {t}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                </div>
+                <div className="grid sm:grid-cols-2 gap-3">
+                  <label className="block text-sm text-neutral-800">
+                    Afhentning – dato (valgfrit)
+                    <input
+                      type="date"
+                      value={splitDateTime(form.pickupAt).date}
+                      min={minPickupDate || undefined}
+                      onChange={(e) =>
+                        setForm((f) => ({
+                          ...f,
+                          pickupAt: e.target.value
+                            ? combineDateTime(e.target.value, splitDateTime(f.pickupAt).time)
+                            : "",
+                        }))
+                      }
+                      className="mt-1 w-full border border-neutral-300 rounded-xl px-3 py-2 bg-white text-sm"
+                    />
+                  </label>
+                  <label className="block text-sm text-neutral-800">
+                    Afhentning – klokkeslæt
+                    <select
+                      value={splitDateTime(form.pickupAt).time || ""}
+                      onChange={(e) =>
+                        setForm((f) => ({
+                          ...f,
+                          pickupAt: splitDateTime(f.pickupAt).date
+                            ? combineDateTime(splitDateTime(f.pickupAt).date, e.target.value)
+                            : "",
+                        }))
+                      }
+                      className="mt-1 w-full border border-neutral-300 rounded-xl px-3 py-2 bg-white text-sm"
+                    >
+                      <option value="">Vælg tidspunkt</option>
+                      {timeOptions.map((t) => (
+                        <option key={t} value={t}>
+                          {t}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                </div>
               </div>
               <label className="block text-sm text-neutral-800">Noter
                 <textarea name="notes" value={form.notes} onChange={onChange} className="mt-1 w-full border border-neutral-300 rounded-xl px-3 py-2 min-h-[100px] bg-white" />
