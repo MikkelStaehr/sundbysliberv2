@@ -95,15 +95,15 @@ export default function RootLayout({
           </header>
           <div className="flex-1">{children}</div>
           <footer className="border-t border-neutral-200 bg-white text-neutral-700 text-sm">
-            <div className="w-full max-w-[90rem] mx-auto px-8 py-4 flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
-              <div className="flex flex-col text-neutral-700">
+            <div className="w-full max-w-[90rem] mx-auto px-8 py-6 flex flex-col gap-4 md:flex-row md:items-start md:justify-between md:gap-8">
+              <div className="flex flex-col text-neutral-700 md:flex-1">
                 <span className="font-semibold">Sundby Sliberi</span>
                 <span>CVR: 46034759</span>
                 <span>Hamborgskovvej 11</span>
                 <span>4800, Sundby</span>
                 <span>Nykøbing Falster</span>
               </div>
-              <div className="flex flex-col items-start sm:items-end gap-1 text-neutral-700">
+              <div className="flex flex-col items-start sm:items-end gap-1 text-neutral-700 md:flex-1">
                 <span className="uppercase text-xs tracking-wide text-neutral-500">Kontakt</span>
                 <a
                   href="mailto:info@sundby-sliberi.dk"
@@ -117,6 +117,18 @@ export default function RootLayout({
                 >
                   31 38 61 19
                 </a>
+              </div>
+              <div className="w-full md:w-auto md:max-w-xs lg:max-w-sm h-40 md:h-44 rounded-xl border border-neutral-200 overflow-hidden shadow-sm">
+                <iframe
+                  title="Sundby Sliberi på Google Maps"
+                  src="https://www.google.com/maps?q=Hamborgskovvej+11,+4800+Nyk%C3%B8bing+Falster&output=embed"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  allowFullScreen
+                />
               </div>
             </div>
           </footer>
