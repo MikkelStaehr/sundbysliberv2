@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 import { computeKnifeDiscount, CartLikeItem } from "@/lib/pricing";
+import { createOrderToken } from "@/lib/orderToken";
 
 type CartItem = CartLikeItem & {
   name: string;
@@ -60,6 +61,21 @@ export async function POST(req: NextRequest) {
     const cartTotalAfterDiscount = cartTotal - discountAmount;
     const total = cartTotalAfterDiscount + deliveryAmount + expressAmount;
 
+    const orderForToken = {
+      cart,
+      cartTotal,
+      delivery,
+      pickupFee,
+      express,
+      expressFee,
+      form: { name, phone, email, address, postalCode, city, notes },
+      createdAt: new Date().toISOString(),
+    };
+
+    const token = createOrderToken(orderForToken);
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://sundby-sliberi.dk";
+    const approveUrl = `${baseUrl}/godkend?token=${encodeURIComponent(token)}`;
+
     const text = `Hej Sundby Sliberi,
 
 Jeg vil gerne bestille slibning.
@@ -89,6 +105,12 @@ Postnr/By: ${postalCode || ""} ${city || ""}
 
 Noter:
 ${notes || "-"}
+
+---
+
+Godkendelse:
+Du kan godkende bestillingen og sende en bekræftelse til kunden ved at åbne linket her:
+${approveUrl}
 
 Venlig hilsen
 ${name}

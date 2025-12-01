@@ -25,9 +25,10 @@ export default function TakSide() {
             Tak for din bestilling
           </h1>
           <p className="text-[15px] text-neutral-700 max-w-xl mx-auto mb-6">
-            Din bestilling er nu sendt til Sundby Sliberi. Mikkel vender retur
-            indenfor <span className="font-semibold">24 timer</span> med en
-            bekræftelse af aftalen og de praktiske detaljer.
+            Din bestilling er nu sendt til Sundby Sliberi. Indenfor{" "}
+            <span className="font-semibold">24 timer</span> modtager du en
+            bekræftelsesmail med et link, hvor du vælger tidspunkt for aflevering – og
+            eventuelt afhentning.
           </p>
           <p className="text-sm text-neutral-600 max-w-xl mx-auto mb-10">
             Skulle du have yderligere spørgsmål eller ændringer til bestillingen,
@@ -35,7 +36,16 @@ export default function TakSide() {
             modtager den – eller kontakte os direkte på{" "}
             <span className="font-medium">info@sundby-sliberi.dk</span> eller
             telefon <span className="font-medium">31 38 61 19</span>. Tjek også
-            gerne din spam-mappe, hvis du ikke kan se vores bekræftelse.
+            gerne din spam-mappe, hvis du ikke kan se vores bekræftelse. Vi
+            bruger kun dine oplysninger til at håndtere din bestilling – læs
+            mere i vores{" "}
+            <Link
+              href="/privatliv"
+              className="underline-offset-2 hover:underline"
+            >
+              privatlivs- og cookiepolitik
+            </Link>
+            .
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link
