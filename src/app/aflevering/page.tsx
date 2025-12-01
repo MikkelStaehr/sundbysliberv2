@@ -166,18 +166,6 @@ export default function Aflevering() {
     return `${date}T${t}`;
   };
 
-  const minPickupDate = useMemo(() => {
-    if (!form.dropoffAt) return "";
-    const { date } = splitDateTime(form.dropoffAt);
-    if (!date) return "";
-    const [year, month, day] = date.split("-").map(Number);
-    const base = new Date(year || 1970, (month || 1) - 1, (day || 1) + (form.express ? 0 : 1));
-    const y = base.getFullYear();
-    const m = String(base.getMonth() + 1).padStart(2, "0");
-    const d = String(base.getDate()).padStart(2, "0");
-    return `${y}-${m}-${d}`;
-  }, [form.dropoffAt, form.express]);
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setFormError(null);
@@ -214,21 +202,6 @@ export default function Aflevering() {
       if (isNaN(pickupDate.getTime())) {
         setFormError("Afhentningstidspunktet er ugyldigt.");
         return;
-      }
-      if (form.express) {
-        // Mindst 1 time efter aflevering ved ekspres
-        const minPickupExpress = new Date(dropoffDate.getTime() + 1 * 60 * 60 * 1000);
-        if (pickupDate.getTime() < minPickupExpress.getTime()) {
-          setFormError("Ved ekspres skal afhentningstidspunktet ligge mindst 1 time efter aflevering.");
-          return;
-        }
-      } else {
-        // Mindst 24 timer efter aflevering ved normal slibning
-        const minPickup = new Date(dropoffDate.getTime() + 24 * 60 * 60 * 1000);
-        if (pickupDate.getTime() < minPickup.getTime()) {
-          setFormError("Afhentningstidspunktet skal ligge mindst 24 timer efter aflevering, medmindre du vælger ekspres.");
-          return;
-        }
       }
     }
     setIsConfirmOpen(true);
@@ -413,8 +386,8 @@ export default function Aflevering() {
                   Tidspunkt for aflevering og afhentning
                 </h3>
                 <p className="text-xs text-neutral-600">
-                  Vælg det tidspunkt, der passer dig bedst til aflevering. Afhentning er valgfri, men skal
-                  ligge mindst 24 timer efter aflevering – medmindre du har valgt ekspres.
+                  Vælg det tidspunkt, der passer dig bedst til aflevering. Afhentning er valgfri – vælg
+                  et tidspunkt, der passer jer begge.
                 </p>
                 <div className="grid sm:grid-cols-2 gap-3">
                   <label className="block text-sm text-neutral-800">
@@ -458,7 +431,6 @@ export default function Aflevering() {
                     <input
                       type="date"
                       value={splitDateTime(form.pickupAt).date}
-                      min={minPickupDate || undefined}
                       onChange={(e) =>
                         setForm((f) => ({
                           ...f,

@@ -73,15 +73,6 @@ export async function POST(req: NextRequest) {
           { status: 400 }
         );
       }
-      if (!express) {
-        const minPickup = new Date(dropoffDate.getTime() + 24 * 60 * 60 * 1000);
-        if (pickupDate.getTime() < minPickup.getTime()) {
-          return NextResponse.json(
-            { error: "Afhentningstidspunktet skal ligge mindst 24 timer efter aflevering, medmindre ekspres er valgt." },
-            { status: 400 }
-          );
-        }
-      }
     }
 
     const cartLines =
