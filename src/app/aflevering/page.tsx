@@ -377,7 +377,8 @@ export default function Aflevering() {
                 <label htmlFor="express" className="text-sm text-left cursor-pointer select-none">
                   <span className="font-medium text-neutral-900">Ekspres slibning (+{EXPRESS_FEE} kr)</span>
                   <span className="block text-neutral-600">
-                    Vi prioriterer din ordre ekstra højt og aftaler hurtigst mulige aflevering/afhentning.
+                    Vælger du ekspres, prioriterer vi din ordre foran andre og finder sammen det
+                    hurtigst mulige tidspunkt til aflevering og evt. afhentning.
                   </span>
                 </label>
               </div>
