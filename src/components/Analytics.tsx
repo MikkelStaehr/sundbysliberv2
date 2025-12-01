@@ -1,7 +1,7 @@
 "use client";
 
 import Script from "next/script";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 declare global {
@@ -21,7 +21,6 @@ function hasAnalyticsConsent(): boolean {
 
 export function Analytics() {
   const pathname = usePathname();
-  const searchParams = useSearchParams();
   const [hasConsent, setHasConsent] = useState(false);
 
   useEffect(() => {
@@ -41,13 +40,13 @@ export function Analytics() {
     if (!hasConsent || !GA_MEASUREMENT_ID) return;
     if (typeof window === "undefined" || typeof window.gtag !== "function") return;
 
-    const search = searchParams?.toString();
-    const url = search ? `${pathname}?${search}` : pathname;
+    const search = typeof window !== "undefined" ? window.location.search : "";
+    const url = search ? `${pathname}${search}` : pathname;
 
     window.gtag("config", GA_MEASUREMENT_ID, {
       page_path: url,
     });
-  }, [hasConsent, pathname, searchParams]);
+  }, [hasConsent, pathname]);
 
   if (!GA_MEASUREMENT_ID || !hasConsent) {
     return null;
@@ -66,7 +65,7 @@ export function Analytics() {
           window.gtag = window.gtag || gtag;
           gtag('js', new Date());
           gtag('config', '${GA_MEASUREMENT_ID}', {
-            page_path: window.location.pathname
+            page_path: window.location.pathname + window.location.search
           });
         `}
       </Script>
