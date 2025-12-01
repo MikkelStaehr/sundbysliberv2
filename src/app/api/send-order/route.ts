@@ -112,7 +112,7 @@ export async function POST(req: NextRequest) {
 
     const token = createOrderToken(orderForToken);
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://sundby-sliberi.dk";
-    const approveUrl = `${baseUrl}/godkend?token=${encodeURIComponent(token)}`;
+    const approveUrl = `${baseUrl}/api/send-confirmation?token=${encodeURIComponent(token)}`;
 
     const formatDate = (d: Date) =>
       d.toLocaleString("da-DK", {
