@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 import { parseOrderToken } from "@/lib/orderToken";
+import { computeKnifeDiscount, CartLikeItem } from "@/lib/pricing";
 
 export async function POST(req: NextRequest) {
   try {
@@ -58,12 +59,42 @@ export async function POST(req: NextRequest) {
     const dropoffText = formatDate(order.form.dropoffAt);
     const pickupText = formatDate(order.form.pickupAt);
 
+    const cartLines =
+      order.cart.length > 0
+        ? order.cart
+            .map((c) => `${c.name} × ${c.qty} = ${c.price * c.qty} kr`)
+            .join("\n")
+        : "-";
+
+    const cartTotal = order.cartTotal;
+    const { discountAmount, discountRate, knifeCount } = computeKnifeDiscount(order.cart as CartLikeItem[]);
+    const deliveryAmount = order.delivery === "pickup" ? order.pickupFee : 0;
+    const expressAmount = order.express ? order.expressFee : 0;
+    const cartTotalAfterDiscount = cartTotal - discountAmount;
+    const total = cartTotalAfterDiscount + deliveryAmount + expressAmount;
+
     if (order.form.email) {
       const customerText = `Hej ${order.form.name},
 
 Tak for din bestilling hos Sundby Sliberi. Vi har nu gennemgået og godkendt din bestilling.
 
-Oversigt:
+Oversigt over din bestilling:
+
+Varer:
+${cartLines}
+
+Kurv i alt (før rabat): ${cartTotal} kr
+Rabat på knive: ${
+        discountAmount > 0
+          ? `-${discountAmount} kr (${Math.round(discountRate * 100)}% på ${knifeCount >= 6 ? "6+ knive" : "3+ knive"})`
+          : "0 kr"
+      }
+Kurv i alt (efter rabat): ${cartTotalAfterDiscount} kr
+Afhentningsgebyr: ${deliveryAmount ? `${deliveryAmount} kr` : "0 kr"}
+Ekspresgebyr: ${expressAmount ? `${expressAmount} kr` : "0 kr"}
+Total: ${total} kr
+
+Tidspunkter:
 Aflevering: ${dropoffText}
 Afhentning (valgfri): ${pickupText}
 
