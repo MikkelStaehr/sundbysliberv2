@@ -107,7 +107,7 @@ Sundby Sliberi
 
   if (ORDER_TO_EMAIL) {
     const encode = encodeURIComponent;
-    const calendarTitle = encode("Slibning – Sundby Sliberi");
+    const calendarTitle = encode(`${order.form.name} - slibning`);
     const calendarDetails = encode(
       `Kunde: ${order.form.name}\nTelefon: ${order.form.phone}\nEmail: ${order.form.email || "-"}\n\nAflevering: ${dropoffText}\nAfhentning: ${pickupText}`
     );
