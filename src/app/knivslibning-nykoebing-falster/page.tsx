@@ -9,6 +9,15 @@ export const metadata: Metadata = {
   title: "Knivslibning i Nykøbing Falster – Sundby Sliberi",
   description:
     "Knivslibning i Sundby, Nykøbing Falster. Få køkkenknive og værktøj slebet hos Sundby Sliberi – aflever selv eller bestil lokal afhentning.",
+  openGraph: {
+    title: "Knivslibning i Nykøbing Falster – Sundby Sliberi",
+    description:
+      "Lokal knivslibning i Sundby ved Nykøbing Falster. Få køkkenknive, værktøj og maskinklinger slebet nemt og professionelt.",
+    url: "https://sundby-sliberi.dk/knivslibning-nykoebing-falster",
+    siteName: "Sundby Sliberi",
+    locale: "da_DK",
+    type: "article",
+  },
 };
 
 export default function KnivslibningNykoebingFalster() {
@@ -28,18 +37,26 @@ export default function KnivslibningNykoebingFalster() {
         <h1 className={`${robotoSlab.className} text-3xl md:text-4xl text-neutral-900`}>
           Knivslibning i Sundby, Nykøbing Falster
         </h1>
-        <p className="text-neutral-700 leading-relaxed text-left">
-          Hos Sundby Sliberi tilbyder vi skarp og nænsom slibning af køkkenknive, værktøj og
-          maskinklinger – lokalt i Sundby, Nykøbing Falster. Du kan både aflevere selv eller
-          bestille afhentning, så du slipper for besværet. Med mange års erfaring i slibning får du
-          et resultat, du kan stole på hver gang. Det skal være let og tilgængeligt for alle –
-          uanset om du er amatør eller professionel.
-        </p>
-        <p className="text-neutral-700 leading-relaxed text-left">
-          Bestillingen foregår online: vælg hvad du vil have slebet, udfyld dine oplysninger og
-          vælg afleveringsform. Når vi har modtaget din bestilling, vender vi retur indenfor{" "}
-          <span className="font-semibold">24 timer</span> med en bekræftelse og aftale om tid.
-        </p>
+        <div className="space-y-5 text-left">
+          <h2 className={`${robotoSlab.className} text-xl md:text-2xl text-neutral-900`}>
+            Lokal knivslibning på Lolland-Falster
+          </h2>
+          <p className="text-neutral-700 leading-relaxed">
+            Hos Sundby Sliberi tilbyder vi skarp og nænsom slibning af køkkenknive, værktøj og
+            maskinklinger – lokalt i Sundby, Nykøbing Falster. Du kan både aflevere selv eller
+            bestille afhentning, så du slipper for besværet. Med mange års erfaring i slibning får du
+            et resultat, du kan stole på hver gang. Det skal være let og tilgængeligt for alle –
+            uanset om du er amatør eller professionel.
+          </p>
+          <h2 className={`${robotoSlab.className} text-xl md:text-2xl text-neutral-900`}>
+            Sådan bestiller du knivslibning
+          </h2>
+          <p className="text-neutral-700 leading-relaxed">
+            Bestillingen foregår online: vælg hvad du vil have slebet, udfyld dine oplysninger og
+            vælg afleveringsform. Når vi har modtaget din bestilling, vender vi retur indenfor{" "}
+            <span className="font-semibold">24 timer</span> med en bekræftelse og aftale om tid.
+          </p>
+        </div>
         <div className="flex flex-wrap gap-4 justify-center">
           <Link
             href="/bestil"

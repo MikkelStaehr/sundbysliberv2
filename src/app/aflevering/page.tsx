@@ -30,6 +30,7 @@ export default function Aflevering() {
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
   const [isSending, setIsSending] = useState(false);
   const [sendError, setSendError] = useState<string | null>(null);
+  const [formError, setFormError] = useState<string | null>(null);
   const [addressQuery, setAddressQuery] = useState("");
   const [addressSuggestions, setAddressSuggestions] = useState<
     { tekst: string; adresse?: { vejnavn: string; husnr: string; postnr: string; postnrnavn: string } }[]
@@ -125,6 +126,7 @@ export default function Aflevering() {
   const deliveryFee = form.delivery === "pickup" ? PICKUP_FEE : 0;
   const expressFee = form.express ? EXPRESS_FEE : 0;
   const totalWithFees = cartTotalAfterDiscount + deliveryFee + expressFee;
+  const hasItemsInCart = cart.length > 0;
 
   const saveCart = (next: typeof cart) => {
     setCart(next);
@@ -144,10 +146,20 @@ export default function Aflevering() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!form.name || !form.phone) return alert("Udfyld venligst navn og telefon.");
+    setFormError(null);
+
+    if (!hasItemsInCart) {
+      setFormError("Tilføj mindst én ydelse på siden Bestil, før du kan sende en bestilling.");
+      return;
+    }
+
+    if (!form.name || !form.phone) {
+      setFormError("Udfyld venligst navn og telefon.");
+      return;
+    }
     const digits = form.phone.replace(/\D/g, "");
     if (digits.length < 8) {
-      alert("Telefonnummeret ser forkert ud. Indtast venligst mindst 8 cifre.");
+      setFormError("Telefonnummeret ser forkert ud. Indtast venligst mindst 8 cifre.");
       return;
     }
     setIsConfirmOpen(true);
@@ -191,8 +203,6 @@ export default function Aflevering() {
     }
   };
 
-  const hasItemsInCart = cart.length > 0;
-
   return (
     <main className={`${inter.className} min-h-screen bg-[#F9F7F3] text-neutral-900 px-8 py-12 w-full max-w-[90rem] mx-auto`}>
       <div className="max-w-5xl mx-auto mb-4">
@@ -230,190 +240,197 @@ export default function Aflevering() {
         </section>
       )}
 
-      <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10">
-        {/* Kundeoplysninger (centreret) */}
-        <section className="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm w-full max-w-lg">
-          <h2 className={`${robotoSlab.className} text-3xl text-neutral-800 mb-5`}>Dine oplysninger</h2>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="grid sm:grid-cols-2 gap-4">
-              <label className="block text-sm text-neutral-800">Navn*
-                <input name="name" value={form.name} onChange={onChange} className="mt-1 w-full border border-neutral-300 rounded-xl px-3 py-2 bg-white" required />
-              </label>
-              <label className="block text-sm text-neutral-800">Telefon*
-                <input name="phone" value={form.phone} onChange={onChange} className="mt-1 w-full border border-neutral-300 rounded-xl px-3 py-2 bg-white" required />
-              </label>
-              <label className="block text-sm text-neutral-800">Email
-                <input type="email" name="email" value={form.email} onChange={onChange} className="mt-1 w-full border border-neutral-300 rounded-xl px-3 py-2 bg-white" />
-              </label>
-              <label className="block text-sm text-neutral-800 sm:col-span-2 relative">
-                Adresse
-                <input
-                  name="address"
-                  value={form.address}
-                  onChange={onAddressChange}
-                  className="mt-1 w-full border border-neutral-300 rounded-xl px-3 py-2 bg-white"
-                  placeholder="Vej og nr."
-                  autoComplete="street-address"
-                />
-                {(addressSuggestions.length > 0 || isAddressLoading) && form.address && (
-                  <div className="absolute z-20 mt-1 w-full max-h-60 overflow-auto rounded-xl border border-neutral-200 bg-white shadow-lg text-xs">
-                    {isAddressLoading && (
-                      <div className="px-3 py-2 text-neutral-500">Søger adresser…</div>
-                    )}
-                    {!isAddressLoading &&
-                      addressSuggestions.map((s) => (
-                        <button
-                          key={s.tekst}
-                          type="button"
-                          className="w-full text-left px-3 py-2 hover:bg-neutral-100"
-                          onClick={() => {
-                            const addr = s.adresse;
-                            setForm((f) => ({
-                              ...f,
-                              address: addr ? `${addr.vejnavn} ${addr.husnr}` : s.tekst,
-                              postalCode: addr?.postnr ?? f.postalCode,
-                              city: addr?.postnrnavn ?? f.city,
-                            }));
-                            setAddressSuggestions([]);
-                          }}
-                        >
-                          {s.tekst}
-                        </button>
-                      ))}
-                  </div>
-                )}
-              </label>
-              <label className="block text-sm text-neutral-800">Postnr.
-                <input name="postalCode" value={form.postalCode} onChange={onChange} className="mt-1 w-full border border-neutral-300 rounded-xl px-3 py-2 bg-white" placeholder="4800" />
-              </label>
-              <label className="block text-sm text-neutral-800">By
-                <input name="city" value={form.city} onChange={onChange} className="mt-1 w-full border border-neutral-300 rounded-xl px-3 py-2 bg-white" placeholder="Sundby, Nykøbing Falster" />
-              </label>
-            </div>
-            <div className="border-t border-neutral-200 pt-4">
-              <h3 className={`${robotoSlab.className} text-xl text-neutral-800 mb-3`}>Levering</h3>
-              <div className="grid grid-cols-1 gap-3">
-                <label className={`cursor-pointer rounded-xl border ${form.delivery === 'dropoff' ? 'ring-2 ring-neutral-900' : 'border-neutral-300'} p-3 flex gap-2 items-center`}>
-                  <input type="radio" name="delivery" value="dropoff" checked={form.delivery==='dropoff'} onChange={() => setForm((f)=>({...f,delivery:'dropoff'}))} className="sr-only" />
-                  <Image src="/images/icon_dropoff.png" alt="Aflever selv" width={28} height={28} />
-                  <div>
-                    <div className="text-neutral-900 font-medium text-[15px]">Jeg afleverer selv</div>
-                    <div className="text-neutral-600 text-sm">Aftal tid og aflever i butik/ved dør</div>
-                  </div>
+      {hasItemsInCart && (
+        <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10">
+          {/* Kundeoplysninger (centreret) */}
+          <section className="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm w-full max-w-lg">
+            <h2 className={`${robotoSlab.className} text-3xl text-neutral-800 mb-5`}>Dine oplysninger</h2>
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div className="grid sm:grid-cols-2 gap-4">
+                <label className="block text-sm text-neutral-800">Navn*
+                  <input name="name" value={form.name} onChange={onChange} className="mt-1 w-full border border-neutral-300 rounded-xl px-3 py-2 bg-white" required />
                 </label>
-                <label className={`cursor-pointer rounded-xl border ${form.delivery === 'pickup' ? 'ring-2 ring-neutral-900' : 'border-neutral-300'} p-3 flex gap-2 items-center`}>
-                  <input type="radio" name="delivery" value="pickup" checked={form.delivery==='pickup'} onChange={() => setForm((f)=>({...f,delivery:'pickup'}))} className="sr-only" />
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-                    <path d="M3 7h11v7h-1.5a2.5 2.5 0 1 0 0 5H16a2.5 2.5 0 1 0 4.9-.5H22v-6l-3-3h-3V7H3z" stroke="#262626" strokeWidth="1.5" fill="none"/>
-                  </svg>
-                  <div>
-                    <div className="text-neutral-900 font-medium text-[15px]">Jeg ønsker afhentning</div>
-                    <div className="text-neutral-600 text-sm">Vi henter lokalt efter aftale</div>
-                  </div>
+                <label className="block text-sm text-neutral-800">Telefon*
+                  <input name="phone" value={form.phone} onChange={onChange} className="mt-1 w-full border border-neutral-300 rounded-xl px-3 py-2 bg-white" required />
+                </label>
+                <label className="block text-sm text-neutral-800">Email
+                  <input type="email" name="email" value={form.email} onChange={onChange} className="mt-1 w-full border border-neutral-300 rounded-xl px-3 py-2 bg-white" />
+                </label>
+                <label className="block text-sm text-neutral-800 sm:col-span-2 relative">
+                  Adresse
+                  <input
+                    name="address"
+                    value={form.address}
+                    onChange={onAddressChange}
+                    className="mt-1 w-full border border-neutral-300 rounded-xl px-3 py-2 bg-white"
+                    placeholder="Vej og nr."
+                    autoComplete="street-address"
+                  />
+                  {(addressSuggestions.length > 0 || isAddressLoading) && form.address && (
+                    <div className="absolute z-20 mt-1 w-full max-h-60 overflow-auto rounded-xl border border-neutral-200 bg-white shadow-lg text-xs">
+                      {isAddressLoading && (
+                        <div className="px-3 py-2 text-neutral-500">Søger adresser…</div>
+                      )}
+                      {!isAddressLoading &&
+                        addressSuggestions.map((s) => (
+                          <button
+                            key={s.tekst}
+                            type="button"
+                            className="w-full text-left px-3 py-2 hover:bg-neutral-100"
+                            onClick={() => {
+                              const addr = s.adresse;
+                              setForm((f) => ({
+                                ...f,
+                                address: addr ? `${addr.vejnavn} ${addr.husnr}` : s.tekst,
+                                postalCode: addr?.postnr ?? f.postalCode,
+                                city: addr?.postnrnavn ?? f.city,
+                              }));
+                              setAddressSuggestions([]);
+                            }}
+                          >
+                            {s.tekst}
+                          </button>
+                        ))}
+                    </div>
+                  )}
+                </label>
+                <label className="block text-sm text-neutral-800">Postnr.
+                  <input name="postalCode" value={form.postalCode} onChange={onChange} className="mt-1 w-full border border-neutral-300 rounded-xl px-3 py-2 bg-white" placeholder="4800" />
+                </label>
+                <label className="block text-sm text-neutral-800">By
+                  <input name="city" value={form.city} onChange={onChange} className="mt-1 w-full border border-neutral-300 rounded-xl px-3 py-2 bg-white" placeholder="Sundby, Nykøbing Falster" />
                 </label>
               </div>
-            </div>
-            <div className="border border-dashed border-neutral-200 rounded-xl p-3 mt-2 flex items-start gap-3 bg-neutral-50">
-              <input
-                id="express"
-                type="checkbox"
-                checked={form.express}
-                onChange={(e) => setForm((f) => ({ ...f, express: e.target.checked }))}
-                className="mt-1 h-4 w-4 rounded border-neutral-400 text-neutral-900"
-              />
-              <label htmlFor="express" className="text-sm text-left cursor-pointer select-none">
-                <span className="font-medium text-neutral-900">Ekspres slibning (+{EXPRESS_FEE} kr)</span>
-                <span className="block text-neutral-600">
-                  Vi prioriterer din ordre ekstra højt og aftaler hurtigst mulige aflevering/afhentning.
-                </span>
+              <div className="border-t border-neutral-200 pt-4">
+                <h3 className={`${robotoSlab.className} text-xl text-neutral-800 mb-3`}>Levering</h3>
+                <div className="grid grid-cols-1 gap-3">
+                  <label className={`cursor-pointer rounded-xl border ${form.delivery === 'dropoff' ? 'ring-2 ring-neutral-900' : 'border-neutral-300'} p-3 flex gap-2 items-center`}>
+                    <input type="radio" name="delivery" value="dropoff" checked={form.delivery==='dropoff'} onChange={() => setForm((f)=>({...f,delivery:'dropoff'}))} className="sr-only" />
+                    <Image src="/images/icon_dropoff.png" alt="Aflever selv" width={28} height={28} />
+                    <div>
+                      <div className="text-neutral-900 font-medium text-[15px]">Jeg afleverer selv</div>
+                      <div className="text-neutral-600 text-sm">Aftal tid og aflever i butik/ved dør</div>
+                    </div>
+                  </label>
+                  <label className={`cursor-pointer rounded-xl border ${form.delivery === 'pickup' ? 'ring-2 ring-neutral-900' : 'border-neutral-300'} p-3 flex gap-2 items-center`}>
+                    <input type="radio" name="delivery" value="pickup" checked={form.delivery==='pickup'} onChange={() => setForm((f)=>({...f,delivery:'pickup'}))} className="sr-only" />
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                      <path d="M3 7h11v7h-1.5a2.5 2.5 0 1 0 0 5H16a2.5 2.5 0 1 0 4.9-.5H22v-6l-3-3h-3V7H3z" stroke="#262626" strokeWidth="1.5" fill="none"/>
+                    </svg>
+                    <div>
+                      <div className="text-neutral-900 font-medium text-[15px]">Jeg ønsker afhentning</div>
+                      <div className="text-neutral-600 text-sm">Vi henter lokalt efter aftale</div>
+                    </div>
+                  </label>
+                </div>
+              </div>
+              <div className="border border-dashed border-neutral-200 rounded-xl p-3 mt-2 flex items-start gap-3 bg-neutral-50">
+                <input
+                  id="express"
+                  type="checkbox"
+                  checked={form.express}
+                  onChange={(e) => setForm((f) => ({ ...f, express: e.target.checked }))}
+                  className="mt-1 h-4 w-4 rounded border-neutral-400 text-neutral-900"
+                />
+                <label htmlFor="express" className="text-sm text-left cursor-pointer select-none">
+                  <span className="font-medium text-neutral-900">Ekspres slibning (+{EXPRESS_FEE} kr)</span>
+                  <span className="block text-neutral-600">
+                    Vi prioriterer din ordre ekstra højt og aftaler hurtigst mulige aflevering/afhentning.
+                  </span>
+                </label>
+              </div>
+              <label className="block text-sm text-neutral-800">Noter
+                <textarea name="notes" value={form.notes} onChange={onChange} className="mt-1 w-full border border-neutral-300 rounded-xl px-3 py-2 min-h-[100px] bg-white" />
               </label>
+              {formError && (
+                <p className="text-sm text-red-600">
+                  {formError}
+                </p>
+              )}
+              <button type="submit" className="w-full bg-neutral-900 text-white rounded-2xl px-6 py-3 hover:bg-neutral-700 transition-colors">Gennemse og godkend</button>
+              {sendError && (
+                <p className="text-sm text-red-600 mt-1">
+                  {sendError} Du kan også skrive direkte til{" "}
+                  <span className="underline underline-offset-2">info@sundby-sliberi.dk</span> eller ringe på{" "}
+                  <span className="underline underline-offset-2">31 38 61 19</span>.
+                </p>
+              )}
+            </form>
+          </section>
+
+          {/* Opsummering */}
+          <aside className="h-fit rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm sticky top-10">
+            <h2 className={`${robotoSlab.className} text-2xl text-neutral-800 mb-4`}>Opsummering</h2>
+            <ul className="text-sm text-neutral-800 space-y-2">
+              <li>
+                <div className="font-medium mb-1">Kurv</div>
+                {cart.length === 0 ? (
+                  <p className="text-neutral-600 text-xs">Ingen varer (tilføjes på siden Bestil).</p>
+                ) : (
+                  <ul className="space-y-2 text-xs">
+                    {cart.map((c) => (
+                      <li key={c.id}>
+                        <div className="flex items-center justify-between gap-2">
+                          <span>{c.name}</span>
+                          <div className="flex items-center gap-3">
+                            <div className="flex items-center border border-neutral-300 rounded-md overflow-hidden">
+                              <button onClick={() => dec(c.id)} className="px-2 py-0.5 hover:bg-neutral-100" aria-label="Minus">−</button>
+                              <span className="px-2 tabular-nums">{c.qty}</span>
+                              <button onClick={() => inc(c.id)} className="px-2 py-0.5 hover:bg-neutral-100" aria-label="Plus">+</button>
+                            </div>
+                            <span className="w-[60px] text-right tabular-nums">{c.price * c.qty} kr</span>
+                            <button onClick={() => remove(c.id)} aria-label="Fjern" className="text-neutral-500 hover:text-neutral-800">
+                              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                              </svg>
+                            </button>
+                          </div>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+              <li className="flex justify-between"><span>Levering</span><span>{form.delivery === "pickup" ? "Afhentning" : "Afleverer selv"}</span></li>
+              <li className="flex justify-between text-neutral-600"><span>Afhentningsgebyr</span><span>{deliveryFee ? `${deliveryFee} kr` : "0 kr"}</span></li>
+              <li className="flex justify-between text-neutral-600"><span>Ekspres slibning</span><span>{expressFee ? `${expressFee} kr` : "0 kr"}</span></li>
+            </ul>
+            <div className="border-t border-neutral-200 pt-3 mt-3 text-neutral-900 font-medium space-y-1">
+              <div className="flex justify-between text-sm">
+                <span>Subtotal</span>
+                <span>{cartTotal} kr</span>
+              </div>
+              {discountAmount > 0 && (
+                <div className="flex justify-between text-sm text-emerald-700">
+                  <span>
+                    Rabat på knive ({Math.round(discountRate * 100)}%
+                    {knifeCount >= 6 ? ", 6+ knive" : ", 3+ knive"})
+                  </span>
+                  <span>-{discountAmount} kr</span>
+                </div>
+              )}
+              <div className="flex justify-between">
+                <span>Total</span>
+                <span>{totalWithFees} kr</span>
+              </div>
             </div>
-            <label className="block text-sm text-neutral-800">Noter
-              <textarea name="notes" value={form.notes} onChange={onChange} className="mt-1 w-full border border-neutral-300 rounded-xl px-3 py-2 min-h-[100px] bg-white" />
-            </label>
-            <button type="submit" className="w-full bg-neutral-900 text-white rounded-2xl px-6 py-3 hover:bg-neutral-700 transition-colors">Gennemse og godkend</button>
-            {sendError && (
-              <p className="text-sm text-red-600 mt-1">
-                {sendError} Du kan også skrive direkte til{" "}
-                <span className="underline underline-offset-2">info@sundby-sliberi.dk</span> eller ringe på{" "}
-                <span className="underline underline-offset-2">31 38 61 19</span>.
+            {form.delivery === "pickup" && (
+              <p className="text-xs text-neutral-600 mt-3">
+                Gebyret dækker lokal afhentning og aflevering.
               </p>
             )}
-          </form>
-        </section>
-
-        {/* Opsummering */}
-        <aside className="h-fit rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm sticky top-10">
-          <h2 className={`${robotoSlab.className} text-2xl text-neutral-800 mb-4`}>Opsummering</h2>
-          <ul className="text-sm text-neutral-800 space-y-2">
-            <li>
-              <div className="font-medium mb-1">Kurv</div>
-              {cart.length === 0 ? (
-                <p className="text-neutral-600 text-xs">Ingen varer (tilføjes på siden Bestil).</p>
-              ) : (
-                <ul className="space-y-2 text-xs">
-                  {cart.map((c) => (
-                    <li key={c.id}>
-                      <div className="flex items-center justify-between gap-2">
-                        <span>{c.name}</span>
-                        <div className="flex items-center gap-3">
-                          <div className="flex items-center border border-neutral-300 rounded-md overflow-hidden">
-                            <button onClick={() => dec(c.id)} className="px-2 py-0.5 hover:bg-neutral-100" aria-label="Minus">−</button>
-                            <span className="px-2 tabular-nums">{c.qty}</span>
-                            <button onClick={() => inc(c.id)} className="px-2 py-0.5 hover:bg-neutral-100" aria-label="Plus">+</button>
-                          </div>
-                          <span className="w-[60px] text-right tabular-nums">{c.price * c.qty} kr</span>
-                          <button onClick={() => remove(c.id)} aria-label="Fjern" className="text-neutral-500 hover:text-neutral-800">
-                            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                              <path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                            </svg>
-                          </button>
-                        </div>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </li>
-            <li className="flex justify-between"><span>Levering</span><span>{form.delivery === "pickup" ? "Afhentning" : "Afleverer selv"}</span></li>
-            <li className="flex justify-between text-neutral-600"><span>Afhentningsgebyr</span><span>{deliveryFee ? `${deliveryFee} kr` : "0 kr"}</span></li>
-            <li className="flex justify-between text-neutral-600"><span>Ekspres slibning</span><span>{expressFee ? `${expressFee} kr` : "0 kr"}</span></li>
-          </ul>
-          <div className="border-t border-neutral-200 pt-3 mt-3 text-neutral-900 font-medium space-y-1">
-            <div className="flex justify-between text-sm">
-              <span>Subtotal</span>
-              <span>{cartTotal} kr</span>
-            </div>
-            {discountAmount > 0 && (
-              <div className="flex justify-between text-sm text-emerald-700">
-                <span>
-                  Rabat på knive ({Math.round(discountRate * 100)}%
-                  {knifeCount >= 6 ? ", 6+ knive" : ", 3+ knive"})
-                </span>
-                <span>-{discountAmount} kr</span>
-              </div>
+            {hasItemsInCart && (
+              <button
+                type="button"
+                onClick={() => router.push("/bestil")}
+                className="mt-4 w-full inline-flex items-center justify-center rounded-2xl border border-neutral-300 text-neutral-800 px-4 py-2 text-xs hover:bg-neutral-50 transition-colors"
+              >
+                Glemte du noget? Bestil mere
+              </button>
             )}
-            <div className="flex justify-between">
-              <span>Total</span>
-              <span>{totalWithFees} kr</span>
-            </div>
-          </div>
-          {form.delivery === "pickup" && (
-            <p className="text-xs text-neutral-600 mt-3">
-              Gebyret dækker lokal afhentning og aflevering.
-            </p>
-          )}
-          {hasItemsInCart && (
-            <button
-              type="button"
-              onClick={() => router.push("/bestil")}
-              className="mt-4 w-full inline-flex items-center justify-center rounded-2xl border border-neutral-300 text-neutral-800 px-4 py-2 text-xs hover:bg-neutral-50 transition-colors"
-            >
-              Glemte du noget? Bestil mere
-            </button>
-          )}
-        </aside>
-      </div>
+          </aside>
+        </div>
+      )}
 
       {isConfirmOpen && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50" onClick={() => setIsConfirmOpen(false)}>

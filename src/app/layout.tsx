@@ -24,6 +24,23 @@ export const metadata: Metadata = {
   icons: {
     icon: "/images/hero_rooster_icon.png",
   },
+  openGraph: {
+    title: "Sundby Sliberi – Slibning af knive og værktøj i Sundby, Nykøbing Falster",
+    description:
+      "Sundby Sliberi tilbyder professionel slibning af knive, værktøj og maskinklinger til både private og professionelle i Sundby, Nykøbing Falster.",
+    url: "https://sundby-sliberi.dk",
+    siteName: "Sundby Sliberi",
+    locale: "da_DK",
+    type: "website",
+    images: [
+      {
+        url: "/images/hero_rooster_icon.png",
+        width: 320,
+        height: 320,
+        alt: "Sundby Sliberi",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
@@ -117,6 +134,12 @@ export default function RootLayout({
                 >
                   31 38 61 19
                 </a>
+                <Link
+                  href="/privatliv"
+                  className="mt-2 text-xs text-neutral-600 underline-offset-2 hover:underline"
+                >
+                  Privatliv & cookies
+                </Link>
               </div>
               <div className="w-full md:w-auto md:max-w-xs lg:max-w-sm h-40 md:h-44 rounded-xl border border-neutral-200 overflow-hidden shadow-sm">
                 <iframe

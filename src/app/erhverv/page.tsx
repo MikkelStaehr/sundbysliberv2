@@ -11,6 +11,15 @@ export const metadata: Metadata = {
   title: "Erhvervsaftaler – Restauranter, kantiner & virksomheder | Sundby Sliberi",
   description:
     "Samarbejd med Sundby Sliberi om faste slibeaftaler til restauranter, caféer, kantiner og andre professionelle køkkener på Lolland-Falster.",
+  openGraph: {
+    title: "Erhvervsaftaler – Restauranter, kantiner & virksomheder | Sundby Sliberi",
+    description:
+      "Faste slibeaftaler til restauranter, caféer, kantiner og andre professionelle køkkener på Lolland-Falster.",
+    url: "https://sundby-sliberi.dk/erhverv",
+    siteName: "Sundby Sliberi",
+    locale: "da_DK",
+    type: "article",
+  },
 };
 
 export default function Erhverv() {

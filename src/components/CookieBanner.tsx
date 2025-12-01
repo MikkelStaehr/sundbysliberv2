@@ -31,7 +31,11 @@ export function CookieBanner() {
           <p className="leading-relaxed">
             Vi bruger cookies til anonym statistik (Google Analytics), så vi kan forbedre siden.
             Du kan acceptere eller afvise statistikcookies. Nødvendige cookies bruges kun til at få
-            siden til at fungere.
+            siden til at fungere. Læs mere i vores{" "}
+            <a href="/privatliv" className="underline-offset-2 hover:underline">
+              privatlivspolitik
+            </a>
+            .
           </p>
           <div className="flex items-center gap-2 justify-end">
             <button

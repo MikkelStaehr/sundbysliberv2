@@ -99,7 +99,7 @@ export default function Bestil() {
   }, {} as Record<string, Item[]>);
 
   return (
-    <main className={`${inter.className} min-h-screen bg-[#F9F7F3] text-neutral-900 px-8 py-12 w-full max-w-[90rem] mx-auto grid md:grid-cols-[2fr_1fr] gap-12`}>
+    <main className={`${inter.className} min-h-screen bg-[#F9F7F3] text-neutral-900 px-8 py-10 md:py-16 w-full max-w-[90rem] mx-auto grid md:grid-cols-[2fr_1fr] gap-12`}>
       <div className="md:col-span-2 mb-2">
         <Link
           href="/"
@@ -109,6 +109,9 @@ export default function Bestil() {
         </Link>
       </div>
       <section className="w-full">
+        <p className="text-[11px] uppercase tracking-wide text-neutral-500 mb-1">
+          Trin 1 · Vælg slibning
+        </p>
         <h1 className={`${robotoSlab.className} text-4xl mb-4 text-neutral-800`}>Vælg dine ydelser</h1>
         <p className="text-sm text-neutral-700 mb-6 max-w-2xl">
           Knive og værktøj er som udgangspunkt klar til afhentning{" "}
@@ -116,16 +119,24 @@ export default function Bestil() {
           <span className="font-semibold">ekspres slibning</span> er de typisk klar inden for{" "}
           <span className="font-semibold">1–2 timer</span>, efter vi har modtaget dem.
         </p>
-        <p className="text-sm text-neutral-700 mb-8 max-w-2xl">
-          <span className="font-semibold block">+3 knive = 10% rabat</span>
-          <span className="font-semibold block">+6 knive = 20% rabat</span>
-        </p>
+        <div className="mb-6 max-w-2xl rounded-xl border border-emerald-100 bg-emerald-50 px-4 py-3 text-xs sm:text-sm text-emerald-900">
+          <div className="font-semibold mb-1">Rabat på knive</div>
+          <p>
+            <span className="font-semibold">+3 knive = 10% rabat</span>
+            <br />
+            <span className="font-semibold">+6 knive = 20% rabat</span>
+          </p>
+        </div>
         <p className="text-xs text-neutral-600 mb-6 max-w-2xl">
           Søger du en mere fast løsning til restaurant, café, kantine eller anden virksomhed?{" "}
           <Link href="/erhverv" className="underline-offset-2 hover:underline text-neutral-800">
             Læs om erhvervsaftaler hos Sundby Sliberi
           </Link>
           .
+        </p>
+        <p className="text-xs text-neutral-600 mb-6 max-w-2xl">
+          Klik på de knive og det værktøj, du vil have slebet. Prisen er vejledende – den endelige pris
+          bekræftes altid efter aftale, og du betaler først, når aftalen er godkendt.
         </p>
         {Object.entries(groupedCatalog).map(([category, items]) => (
           <div key={category} className="mb-6 rounded-2xl border border-neutral-200 bg-white shadow-sm">
@@ -152,7 +163,10 @@ export default function Bestil() {
                       <div className={`${robotoSlab.className} font-medium text-lg text-neutral-800 min-h-[3rem]`}>
                         {it.name}
                       </div>
-                      <div className="mt-1 text-base font-semibold text-neutral-900">{it.price} kr</div>
+                      <div className="mt-1 text-base font-semibold text-neutral-900">
+                        {it.price} kr{" "}
+                        <span className="font-normal text-[13px] text-neutral-600">pr. stk.</span>
+                      </div>
                       {category === "Knive" && (
                         <div className="mt-1 text-[11px] text-emerald-700">
                           Tæller med til kniv-rabat
