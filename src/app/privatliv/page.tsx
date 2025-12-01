@@ -24,7 +24,7 @@ export default function Privatliv() {
       <div className="w-full max-w-3xl mb-6">
         <Link
           href="/"
-          className="inline-flex items-center text-xs text-neutral-600 hover:text-neutral-900 hover:underline underline-offset-2"
+          className="inline-flex items-center text-sm text-neutral-600 hover:text-neutral-900 hover:underline underline-offset-2"
         >
           ← Til forsiden
         </Link>
@@ -75,7 +75,7 @@ export default function Privatliv() {
             <li><span className="font-semibold">Nødvendige</span>: bruges bl.a. til at huske din kurv og dine kontaktoplysninger på afleverings-siden, så du ikke skal indtaste alt igen hver gang.</li>
             <li><span className="font-semibold">Statistik (valgfrit)</span>: hvis du accepterer cookies til statistik, bruger vi Google Analytics til anonymiseret besøgsstatistik, så vi kan forbedre siden.</li>
           </ul>
-          <p className="text-xs text-neutral-600">
+        <p className="text-sm text-neutral-600">
             Du kan til enhver tid ændre dit samtykke til statistikcookies ved at rydde cookies og
             lokal lagring i din browser eller justere dine browserindstillinger.
           </p>

@@ -173,7 +173,7 @@ export default function GodkendBestilling({ searchParams }: Props) {
           >
             Godkend bestilling og send bekræftelse
           </button>
-          <p className="text-xs text-neutral-500">
+        <p className="text-sm text-neutral-500">
             Sørg for at oplysningerne ser rigtige ud, inden du godkender.
           </p>
         </form>

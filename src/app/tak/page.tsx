@@ -10,7 +10,7 @@ export default function TakSide() {
       <div className="w-full mb-4">
         <Link
           href="/"
-          className="inline-flex items-center text-xs text-neutral-600 hover:text-neutral-900 hover:underline underline-offset-2"
+          className="inline-flex items-center text-sm text-neutral-600 hover:text-neutral-900 hover:underline underline-offset-2"
         >
           ← Til forsiden
         </Link>
@@ -20,7 +20,7 @@ export default function TakSide() {
           <h1 className="text-4xl text-neutral-900 mb-4 font-semibold tracking-tight">
             Tak for din bestilling
           </h1>
-          <p className="text-[15px] text-neutral-700 max-w-xl mx-auto mb-6">
+        <p className="text-base text-neutral-700 max-w-xl mx-auto mb-6">
             Din bestilling er nu sendt til Sundby Sliberi. Indenfor{" "}
             <span className="font-semibold">24 timer</span> modtager du en
             bekræftelsesmail med en endelig kvittering for din ordre – inklusive dine valgte

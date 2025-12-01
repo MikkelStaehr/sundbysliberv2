@@ -41,14 +41,14 @@ export function CookieBanner() {
             <button
               type="button"
               onClick={() => setConsent("denied")}
-              className="rounded-xl border border-neutral-300 px-3 py-1.5 text-[11px] text-neutral-700 hover:bg-neutral-100"
+              className="rounded-xl border border-neutral-300 px-3 py-1.5 text-sm text-neutral-700 hover:bg-neutral-100"
             >
               Afvis
             </button>
             <button
               type="button"
               onClick={() => setConsent("granted")}
-              className="rounded-xl bg-neutral-900 text-white px-3 py-1.5 text-[11px] hover:bg-neutral-700"
+              className="rounded-xl bg-neutral-900 text-white px-3 py-1.5 text-sm hover:bg-neutral-700"
             >
               Accepter
             </button>

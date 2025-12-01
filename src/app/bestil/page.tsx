@@ -99,24 +99,24 @@ export default function Bestil() {
       <div className="md:col-span-2 mb-2">
         <Link
           href="/"
-          className="inline-flex items-center text-xs text-neutral-600 hover:text-neutral-900 hover:underline underline-offset-2"
+          className="inline-flex items-center text-sm text-neutral-600 hover:text-neutral-900 hover:underline underline-offset-2"
         >
           ← Til forsiden
         </Link>
       </div>
       <section className="w-full">
-        <p className="text-[11px] uppercase tracking-wide text-neutral-500 mb-1">
+        <p className="text-xs uppercase tracking-wide text-neutral-500 mb-1">
           Trin 1 · Vælg slibning
         </p>
         <h1 className="text-4xl mb-4 text-neutral-800 font-semibold tracking-tight">Vælg dine ydelser</h1>
         <div className="max-w-2xl space-y-4">
-          <p className="text-sm text-neutral-700 leading-relaxed">
+          <p className="text-base text-neutral-700 leading-relaxed">
             Knive og værktøj er som udgangspunkt klar til afhentning{" "}
             <span className="font-semibold">dagen efter</span> du har afleveret. Ved{" "}
             <span className="font-semibold">ekspres slibning</span> er de typisk klar inden for{" "}
             <span className="font-semibold">1–2 timer</span>, efter vi har modtaget dem.
           </p>
-          <div className="rounded-xl border border-emerald-100 bg-emerald-50 px-4 py-3 text-xs sm:text-sm text-emerald-900">
+          <div className="rounded-xl border border-emerald-100 bg-emerald-50 px-4 py-3 text-sm text-emerald-900">
             <div className="font-semibold mb-1">Rabat på knive</div>
             <p>
               <span className="font-semibold">+3 knive = 10% rabat</span>
@@ -124,14 +124,14 @@ export default function Bestil() {
               <span className="font-semibold">+6 knive = 20% rabat</span>
             </p>
           </div>
-          <p className="text-xs text-neutral-600">
+          <p className="text-sm text-neutral-600">
             Søger du en mere fast løsning til restaurant, café, kantine eller anden virksomhed?{" "}
             <Link href="/erhverv" className="underline-offset-2 hover:underline text-neutral-800">
               Læs om erhvervsaftaler hos Sundby Sliberi
             </Link>
             .
           </p>
-          <p className="text-xs text-neutral-600">
+          <p className="text-sm text-neutral-600">
             Klik på de knive og det værktøj, du vil have slebet. Prisen er vejledende – den endelige pris
             bekræftes altid efter aftale, og du betaler først, når aftalen er godkendt.
           </p>

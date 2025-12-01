@@ -247,7 +247,7 @@ export default function Aflevering() {
         <button
           type="button"
           onClick={() => router.push("/")}
-          className="inline-flex items-center text-xs text-neutral-600 hover:text-neutral-900 hover:underline underline-offset-2"
+          className="inline-flex items-center text-sm text-neutral-600 hover:text-neutral-900 hover:underline underline-offset-2"
         >
           ← Til forsiden
         </button>
@@ -346,7 +346,7 @@ export default function Aflevering() {
                     <input type="radio" name="delivery" value="dropoff" checked={form.delivery==='dropoff'} onChange={() => setForm((f)=>({...f,delivery:'dropoff'}))} className="sr-only" />
                     <Image src="/images/icon_dropoff.png" alt="Aflever selv" width={28} height={28} />
                     <div>
-                      <div className="text-neutral-900 font-medium text-[15px]">Jeg afleverer selv</div>
+                      <div className="text-neutral-900 font-medium text-base">Jeg afleverer selv</div>
                       <div className="text-neutral-600 text-sm">Aftal tid og aflever i butik/ved dør</div>
                     </div>
                   </label>
@@ -356,7 +356,7 @@ export default function Aflevering() {
                       <path d="M3 7h11v7h-1.5a2.5 2.5 0 1 0 0 5H16a2.5 2.5 0 1 0 4.9-.5H22v-6l-3-3h-3V7H3z" stroke="#262626" strokeWidth="1.5" fill="none"/>
                     </svg>
                     <div>
-                      <div className="text-neutral-900 font-medium text-[15px]">Jeg ønsker afhentning</div>
+                      <div className="text-neutral-900 font-medium text-base">Jeg ønsker afhentning</div>
                       <div className="text-neutral-600 text-sm">Vi henter lokalt efter aftale</div>
                     </div>
                   </label>
@@ -382,7 +382,7 @@ export default function Aflevering() {
                 <h3 className="text-sm text-neutral-900 font-semibold tracking-tight">
                   Tidspunkt for aflevering og afhentning
                 </h3>
-                <p className="text-xs text-neutral-600">
+                <p className="text-sm text-neutral-600">
                   Vælg det tidspunkt, der passer dig bedst til aflevering. Afhentning er valgfri – vælg
                   et tidspunkt, der passer jer begge.
                 </p>

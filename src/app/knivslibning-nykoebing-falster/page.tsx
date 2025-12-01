@@ -24,7 +24,7 @@ export default function KnivslibningNykoebingFalster() {
       <div className="w-full max-w-3xl mb-6">
         <Link
           href="/"
-          className="inline-flex items-center text-xs text-neutral-600 hover:text-neutral-900 hover:underline underline-offset-2"
+          className="inline-flex items-center text-sm text-neutral-600 hover:text-neutral-900 hover:underline underline-offset-2"
         >
           ← Til forsiden
         </Link>

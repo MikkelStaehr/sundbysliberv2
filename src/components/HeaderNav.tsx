@@ -89,7 +89,7 @@ export function HeaderNav() {
       {open && (
         <div className="md:hidden absolute inset-x-0 top-full border-t border-neutral-200 bg-white/98 shadow-lg">
           <nav className="w-full max-w-[90rem] mx-auto px-4 sm:px-8 py-4 flex flex-col gap-1.5 text-sm text-neutral-900">
-            <p className="text-[11px] uppercase tracking-wide text-neutral-500 mb-1">
+            <p className="text-xs uppercase tracking-wide text-neutral-500 mb-1">
               Menu
             </p>
             <Link

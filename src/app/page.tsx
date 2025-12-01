@@ -21,20 +21,20 @@ export default function Home() {
           fetchPriority="high"
           className="mb-8 drop-shadow-sm"
         />
-        <p className="text-[11px] uppercase tracking-wide text-neutral-500 mb-2">
+        <p className="text-xs uppercase tracking-wide text-neutral-500 mb-2">
           Lokal knivslibning på Lolland-Falster
         </p>
         <h1 className="text-4xl md:text-5xl mb-6 text-neutral-800 font-semibold">
           Sundby Sliberi
         </h1>
         <div className="w-full max-w-3xl mx-auto space-y-6 md:space-y-8">
-          <p className="text-[15px] leading-relaxed text-neutral-700">
+          <p className="text-base leading-relaxed text-neutral-700">
             Professionel slibning af knive og værktøj til både{" "}
             <span className="font-semibold">private</span> og{" "}
             <span className="font-semibold">professionelle</span>. Aflever selv, eller få afhentet – lokalt i
             Sundby, Nykøbing Falster.
           </p>
-          <div className="space-y-3 text-xs text-neutral-600">
+          <div className="space-y-3 text-sm text-neutral-600">
             <div className="flex items-center justify-center gap-2">
               <span className="inline-flex h-4 w-4 items-center justify-center rounded-full border border-neutral-300 text-[10px] text-neutral-600">
                 ✓
@@ -68,7 +68,7 @@ export default function Home() {
               Erhvervsaftaler
             </Link>
           </div>
-          <div className="space-y-2 text-xs text-neutral-600 text-center">
+          <div className="space-y-2 text-sm text-neutral-600 text-center">
             <p>Du betaler først, når vi har bekræftet aftalen.</p>
             <p>
               Driver du restaurant, café eller kantine?{" "}
@@ -83,7 +83,7 @@ export default function Home() {
 
       <section className="w-full mt-10 md:mt-12 mb-4 max-w-4xl">
         <div className="rounded-2xl border border-neutral-200 bg-white shadow-sm px-6 py-7">
-          <p className="text-[11px] uppercase tracking-wide text-neutral-500 mb-1 text-center">
+          <p className="text-xs uppercase tracking-wide text-neutral-500 mb-1 text-center">
             Sådan foregår en bestilling
           </p>
           <h2 className="text-2xl text-neutral-900 mb-1 text-center font-semibold tracking-tight">

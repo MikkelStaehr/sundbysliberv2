@@ -26,7 +26,7 @@ export default function Erhverv() {
       <div className="w-full max-w-3xl mb-6">
         <Link
           href="/"
-          className="inline-flex items-center text-xs text-neutral-600 hover:text-neutral-900 hover:underline underline-offset-2"
+          className="inline-flex items-center text-sm text-neutral-600 hover:text-neutral-900 hover:underline underline-offset-2"
         >
           ← Til forsiden
         </Link>
@@ -80,7 +80,7 @@ export default function Erhverv() {
           </p>
           <ErhvervForm />
         </div>
-        <p className="text-xs text-neutral-600 leading-relaxed max-w-3xl mx-auto">
+        <p className="text-sm text-neutral-600 leading-relaxed max-w-3xl mx-auto">
           Vi holder til i Sundby ved Nykøbing Falster og kører primært på Lolland-Falster og omegn.
           Har du ønsker uden for området, så skriv – så ser vi på det.
         </p>
