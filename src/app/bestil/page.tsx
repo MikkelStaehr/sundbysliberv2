@@ -186,7 +186,7 @@ export default function Bestil() {
       </section>
 
       <aside className="sticky top-10 self-start h-fit rounded-2xl border border-neutral-200 p-6 bg-white shadow-sm w-full">
-        <h2 className={`${robotoSlab.className} text-2xl mb-4 text-neutral-800 flex items-center gap-3`}>
+        <h2 className="text-2xl mb-4 text-neutral-800 flex items-center gap-3 font-semibold tracking-tight">
           <Image src="/images/icon_cart.png" alt="Kurv" width={32} height={32} />
           Din kurv
         </h2>

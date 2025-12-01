@@ -260,7 +260,7 @@ export default function Aflevering() {
       {!hasItemsInCart && (
         <section className="max-w-3xl mx-auto mb-10">
           <div className="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm text-center">
-            <h2 className={`${robotoSlab.className} text-2xl text-neutral-900 mb-2`}>
+            <h2 className="text-2xl text-neutral-900 mb-2 font-semibold tracking-tight">
               Din kurv er tom
             </h2>
             <p className="text-sm text-neutral-700 mb-4">
