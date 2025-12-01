@@ -83,6 +83,44 @@ export default function GodkendBestilling({ searchParams }: Props) {
         </section>
 
         <section className="mb-6">
+          <h2 className={`${robotoSlab.className} text-lg text-neutral-900 mb-2`}>Tidspunkter</h2>
+          {form.dropoffAt ? (
+            <dl className="grid grid-cols-[auto,1fr] gap-x-4 gap-y-1 text-sm text-neutral-800">
+              <dt className="text-neutral-500">Aflevering</dt>
+              <dd>
+                {new Date(form.dropoffAt).toLocaleString("da-DK", {
+                  timeZone: "Europe/Copenhagen",
+                  weekday: "short",
+                  year: "numeric",
+                  month: "short",
+                  day: "numeric",
+                  hour: "2-digit",
+                  minute: "2-digit",
+                })}
+              </dd>
+              <dt className="text-neutral-500">Afhentning</dt>
+              <dd>
+                {form.pickupAt
+                  ? new Date(form.pickupAt).toLocaleString("da-DK", {
+                      timeZone: "Europe/Copenhagen",
+                      weekday: "short",
+                      year: "numeric",
+                      month: "short",
+                      day: "numeric",
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    })
+                  : "Ingen valgt"}
+              </dd>
+            </dl>
+          ) : (
+            <p className="text-sm text-neutral-700">
+              Der er ikke valgt tidspunkter endnu. Aftal tid direkte med kunden.
+            </p>
+          )}
+        </section>
+
+        <section className="mb-6">
           <h2 className={`${robotoSlab.className} text-lg text-neutral-900 mb-2`}>Indhold</h2>
           {cart.length === 0 ? (
             <p className="text-sm text-neutral-700">Ingen varer registreret i bestillingen.</p>
@@ -121,9 +159,9 @@ export default function GodkendBestilling({ searchParams }: Props) {
         <section className="mb-6">
           <h2 className={`${robotoSlab.className} text-lg text-neutral-900 mb-2`}>Næste skridt</h2>
           <p className="text-sm text-neutral-700 mb-3">
-            Når du godkender bestillingen, sender vi en bekræftelsesmail til kunden med et link, hvor
-            kunden skal vælge tidspunkt for aflevering og evt. afhentning. Du modtager efterfølgende en
-            mail med et forslag til Google Kalender-aftale.
+            Når du godkender bestillingen, sender vi en bekræftelsesmail til kunden med en kvittering
+            for bestillingen og de valgte tidspunkter. Du modtager samtidig en mail med et forslag til
+            en Google Kalender-aftale.
           </p>
         </section>
 

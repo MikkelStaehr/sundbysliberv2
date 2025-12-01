@@ -26,6 +26,8 @@ export default function Aflevering() {
     notes: "",
     delivery: "dropoff" as "dropoff" | "pickup",
     express: false,
+    dropoffAt: "",
+    pickupAt: "",
   });
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
   const [isSending, setIsSending] = useState(false);
@@ -161,6 +163,33 @@ export default function Aflevering() {
     if (digits.length < 8) {
       setFormError("Telefonnummeret ser forkert ud. Indtast venligst mindst 8 cifre.");
       return;
+    }
+
+    // Valider tider
+    if (!form.dropoffAt) {
+      setFormError("Vælg venligst et tidspunkt for aflevering.");
+      return;
+    }
+
+    const dropoffDate = new Date(form.dropoffAt);
+    if (isNaN(dropoffDate.getTime())) {
+      setFormError("Afleveringstidspunktet er ugyldigt.");
+      return;
+    }
+
+    if (form.pickupAt) {
+      const pickupDate = new Date(form.pickupAt);
+      if (isNaN(pickupDate.getTime())) {
+        setFormError("Afhentningstidspunktet er ugyldigt.");
+        return;
+      }
+      if (!form.express) {
+        const minPickup = new Date(dropoffDate.getTime() + 24 * 60 * 60 * 1000);
+        if (pickupDate.getTime() < minPickup.getTime()) {
+          setFormError("Afhentningstidspunktet skal ligge mindst 24 timer efter aflevering, medmindre du vælger ekspres.");
+          return;
+        }
+      }
     }
     setIsConfirmOpen(true);
   };
@@ -339,6 +368,36 @@ export default function Aflevering() {
                   </span>
                 </label>
               </div>
+              <div className="border border-neutral-200 rounded-xl p-3 mt-2 bg-neutral-50 space-y-3">
+                <h3 className={`${robotoSlab.className} text-sm text-neutral-900`}>
+                  Tidspunkt for aflevering og afhentning
+                </h3>
+                <p className="text-xs text-neutral-600">
+                  Vælg det tidspunkt, der passer dig bedst til aflevering. Afhentning er valgfri, men skal
+                  ligge mindst 24 timer efter aflevering – medmindre du har valgt ekspres.
+                </p>
+                <label className="block text-sm text-neutral-800">
+                  Aflevering (dato og klokkeslæt)*
+                  <input
+                    type="datetime-local"
+                    name="dropoffAt"
+                    value={form.dropoffAt}
+                    onChange={onChange}
+                    className="mt-1 w-full border border-neutral-300 rounded-xl px-3 py-2 bg-white text-sm"
+                    required
+                  />
+                </label>
+                <label className="block text-sm text-neutral-800">
+                  Afhentning (valgfrit)
+                  <input
+                    type="datetime-local"
+                    name="pickupAt"
+                    value={form.pickupAt}
+                    onChange={onChange}
+                    className="mt-1 w-full border border-neutral-300 rounded-xl px-3 py-2 bg-white text-sm"
+                  />
+                </label>
+              </div>
               <label className="block text-sm text-neutral-800">Noter
                 <textarea name="notes" value={form.notes} onChange={onChange} className="mt-1 w-full border border-neutral-300 rounded-xl px-3 py-2 min-h-[100px] bg-white" />
               </label>
@@ -446,6 +505,18 @@ export default function Aflevering() {
               <div className="flex justify-between"><span>Levering</span><span>{form.delivery === 'pickup' ? 'Afhentning' : 'Afleverer selv'}</span></div>
               <div className="flex justify-between text-neutral-600"><span>Afhentningsgebyr</span><span>{deliveryFee ? `${deliveryFee} kr` : '0 kr'}</span></div>
               <div className="flex justify-between text-neutral-600"><span>Ekspres slibning</span><span>{expressFee ? `${expressFee} kr` : '0 kr'}</span></div>
+              {form.dropoffAt && (
+                <div className="flex justify-between">
+                  <span>Aflevering</span>
+                  <span>{new Date(form.dropoffAt).toLocaleString("da-DK", { timeZone: "Europe/Copenhagen" })}</span>
+                </div>
+              )}
+              {form.pickupAt && (
+                <div className="flex justify-between">
+                  <span>Afhentning</span>
+                  <span>{new Date(form.pickupAt).toLocaleString("da-DK", { timeZone: "Europe/Copenhagen" })}</span>
+                </div>
+              )}
               {form.notes && <div><span className="block text-neutral-600">Noter</span><p className="text-neutral-800 mt-1 whitespace-pre-wrap">{form.notes}</p></div>}
               <div className="border-t border-neutral-200 pt-3 mt-2 text-neutral-900 font-medium space-y-1">
                 <div className="flex justify-between text-sm">

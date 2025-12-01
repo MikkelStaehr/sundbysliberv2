@@ -22,6 +22,8 @@ type OrderPayload = {
     postalCode: string;
     city: string;
     notes: string;
+    dropoffAt?: string;
+    pickupAt?: string | null;
   };
 };
 
@@ -36,7 +38,7 @@ export async function POST(req: NextRequest) {
       pickupFee,
       express,
       expressFee,
-      form: { name, phone, email, address, postalCode, city, notes },
+      form: { name, phone, email, address, postalCode, city, notes, dropoffAt, pickupAt },
     } = body;
 
     if (!name || !phone) {
@@ -44,6 +46,42 @@ export async function POST(req: NextRequest) {
         { error: "Navn og telefon er påkrævet." },
         { status: 400 }
       );
+    }
+
+    // Valider tider her også
+    if (!dropoffAt) {
+      return NextResponse.json(
+        { error: "Vælg venligst et tidspunkt for aflevering." },
+        { status: 400 }
+      );
+    }
+
+    const dropoffDate = new Date(dropoffAt);
+    if (isNaN(dropoffDate.getTime())) {
+      return NextResponse.json(
+        { error: "Afleveringstidspunktet er ugyldigt." },
+        { status: 400 }
+      );
+    }
+
+    let pickupDate: Date | null = null;
+    if (pickupAt) {
+      pickupDate = new Date(pickupAt);
+      if (isNaN(pickupDate.getTime())) {
+        return NextResponse.json(
+          { error: "Afhentningstidspunktet er ugyldigt." },
+          { status: 400 }
+        );
+      }
+      if (!express) {
+        const minPickup = new Date(dropoffDate.getTime() + 24 * 60 * 60 * 1000);
+        if (pickupDate.getTime() < minPickup.getTime()) {
+          return NextResponse.json(
+            { error: "Afhentningstidspunktet skal ligge mindst 24 timer efter aflevering, medmindre ekspres er valgt." },
+            { status: 400 }
+          );
+        }
+      }
     }
 
     const cartLines =
@@ -68,13 +106,27 @@ export async function POST(req: NextRequest) {
       pickupFee,
       express,
       expressFee,
-      form: { name, phone, email, address, postalCode, city, notes },
+      form: { name, phone, email, address, postalCode, city, notes, dropoffAt: dropoffAt || "", pickupAt: pickupAt || "" },
       createdAt: new Date().toISOString(),
     };
 
     const token = createOrderToken(orderForToken);
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://sundby-sliberi.dk";
     const approveUrl = `${baseUrl}/godkend?token=${encodeURIComponent(token)}`;
+
+    const formatDate = (d: Date) =>
+      d.toLocaleString("da-DK", {
+        timeZone: "Europe/Copenhagen",
+        weekday: "short",
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+      });
+
+    const dropoffText = formatDate(dropoffDate);
+    const pickupText = pickupDate ? formatDate(pickupDate) : "-";
 
     const text = `Hej Sundby Sliberi,
 
@@ -89,6 +141,12 @@ Kurv i alt (efter rabat): ${cartTotalAfterDiscount} kr
 Afhentningsgebyr: ${deliveryAmount ? deliveryAmount + " kr" : "0 kr"}
 Ekspresgebyr: ${expressAmount ? expressAmount + " kr" : "0 kr"}
 Total: ${total} kr
+
+Afleveringstidspunkt:
+${dropoffText}
+
+Afhentningstidspunkt (valgfri):
+${pickupText}
 
 Aflevering: ${
       delivery === "dropoff"
