@@ -27,8 +27,8 @@ export default function TakSide() {
           <p className="text-[15px] text-neutral-700 max-w-xl mx-auto mb-6">
             Din bestilling er nu sendt til Sundby Sliberi. Indenfor{" "}
             <span className="font-semibold">24 timer</span> modtager du en
-            bekræftelsesmail med et link, hvor du vælger tidspunkt for aflevering – og
-            eventuelt afhentning.
+            bekræftelsesmail med en endelig kvittering for din ordre – inklusive dine valgte
+            tidspunkter for aflevering og eventuel afhentning.
           </p>
           <p className="text-sm text-neutral-600 max-w-xl mx-auto mb-10">
             Skulle du have yderligere spørgsmål eller ændringer til bestillingen,

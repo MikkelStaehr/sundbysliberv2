@@ -168,11 +168,11 @@ export default function Aflevering() {
 
   const minPickupDate = useMemo(() => {
     if (!form.dropoffAt) return "";
-    const d = new Date(form.dropoffAt);
-    if (!form.express) {
-      d.setDate(d.getDate() + 1);
-    }
-    return d.toISOString().slice(0, 10);
+    const { date } = splitDateTime(form.dropoffAt);
+    if (!date) return "";
+    const [year, month, day] = date.split("-").map(Number);
+    const base = new Date(year || 1970, (month || 1) - 1, (day || 1) + (form.express ? 0 : 1));
+    return base.toISOString().slice(0, 10);
   }, [form.dropoffAt, form.express]);
 
   const handleSubmit = (e: React.FormEvent) => {
