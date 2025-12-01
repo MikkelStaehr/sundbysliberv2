@@ -8,6 +8,8 @@ type OrderForm = {
   postalCode: string;
   city: string;
   notes: string;
+  dropoffAt: string;
+  pickupAt: string;
 };
 
 type OrderForToken = {
