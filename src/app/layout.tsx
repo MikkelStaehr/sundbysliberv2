@@ -6,6 +6,7 @@ import { Analytics } from "../components/Analytics";
 import { CookieBanner } from "../components/CookieBanner";
 import { Suspense } from "react";
 import { HeaderNav } from "../components/HeaderNav";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -132,6 +133,7 @@ export default function RootLayout({
         <Suspense fallback={null}>
           <Analytics />
         </Suspense>
+        <SpeedInsights />
         <CookieBanner />
         <script
           type="application/ld+json"
