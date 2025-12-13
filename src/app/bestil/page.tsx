@@ -30,6 +30,7 @@ const CATALOG: Item[] = [
 
 export default function Bestil() {
   const [cart, setCart] = useState<CartItem[]>([]);
+  const [toast, setToast] = useState<{ show: boolean; message: string }>({ show: false, message: "" });
   const total = useMemo(() => cart.reduce((s, it) => s + it.price * it.qty, 0), [cart]);
   const { knifeCount, discountAmount, discountRate } = useMemo(
     () => computeKnifeDiscount(cart),
@@ -61,11 +62,23 @@ export default function Bestil() {
       if (idx >= 0) {
         const copy = [...prev];
         copy[idx] = { ...copy[idx], qty: copy[idx].qty + 1 };
+        setToast({ show: true, message: `${item.name} tilføjet til kurv` });
         return copy;
       }
+      setToast({ show: true, message: `${item.name} tilføjet til kurv` });
       return [...prev, { ...item, qty: 1 }];
     });
   };
+
+  // Auto-hide toast efter 3 sekunder
+  useEffect(() => {
+    if (toast.show) {
+      const timer = setTimeout(() => {
+        setToast({ show: false, message: "" });
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [toast.show]);
 
   // Juster mængder i kurven
   const inc = (id: string) => {
@@ -95,7 +108,31 @@ export default function Bestil() {
   }, {} as Record<string, Item[]>);
 
   return (
-    <main className="min-h-screen bg-[#F9F7F3] text-neutral-900 px-8 py-10 md:py-16 w-full max-w-[90rem] mx-auto grid md:grid-cols-[2fr_1fr] gap-12">
+    <main className="min-h-screen bg-[#F9F7F3] text-neutral-900 px-4 sm:px-6 md:px-8 py-6 md:py-10 lg:py-16 w-full max-w-[90rem] mx-auto grid md:grid-cols-[2fr_1fr] gap-6 md:gap-12 relative">
+      {/* Toast Notification */}
+      {toast.show && (
+        <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 animate-[fadeInUp_0.3s_ease-out]">
+          <div className="bg-neutral-900 text-white px-4 py-3 rounded-xl shadow-lg flex items-center gap-3 min-w-[200px] max-w-[90vw] sm:max-w-md">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="shrink-0"
+            >
+              <path
+                d="M5 13l4 4L19 7"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            <span className="text-sm font-medium">{toast.message}</span>
+          </div>
+        </div>
+      )}
       <div className="md:col-span-2 mb-2">
         <Link
           href="/"
@@ -108,15 +145,15 @@ export default function Bestil() {
         <p className="text-xs uppercase tracking-wide text-neutral-500 mb-1">
           Trin 1 · Vælg slibning
         </p>
-        <h1 className="text-4xl mb-4 text-neutral-800 font-semibold tracking-tight">Vælg dine ydelser</h1>
-        <div className="max-w-2xl space-y-4">
-          <p className="text-base text-neutral-700 leading-relaxed">
+        <h1 className="text-3xl sm:text-4xl mb-3 md:mb-4 text-neutral-800 font-semibold tracking-tight">Vælg dine ydelser</h1>
+        <div className="max-w-2xl space-y-3 md:space-y-4 mb-6 md:mb-8">
+          <p className="text-sm sm:text-base text-neutral-700 leading-relaxed">
             Knive og værktøj er som udgangspunkt klar til afhentning{" "}
             <span className="font-semibold">dagen efter</span> du har afleveret. Ved{" "}
             <span className="font-semibold">ekspres slibning</span> er de typisk klar inden for{" "}
             <span className="font-semibold">1–2 timer</span>, efter vi har modtaget dem.
           </p>
-          <div className="rounded-xl border border-emerald-100 bg-emerald-50 px-4 py-3 text-sm text-emerald-900">
+          <div className="rounded-xl border border-emerald-100 bg-emerald-50 px-3 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm text-emerald-900">
             <div className="font-semibold mb-1">Rabat på knive</div>
             <p>
               <span className="font-semibold">+3 knive = 10% rabat</span>
@@ -124,31 +161,31 @@ export default function Bestil() {
               <span className="font-semibold">+6 knive = 20% rabat</span>
             </p>
           </div>
-          <p className="text-sm text-neutral-600">
+          <p className="text-xs sm:text-sm text-neutral-600">
             Søger du en mere fast løsning til restaurant, café, kantine eller anden virksomhed?{" "}
             <Link href="/erhverv" className="underline-offset-2 hover:underline text-neutral-800">
               Læs om erhvervsaftaler hos Sundby Sliberi
             </Link>
             .
           </p>
-          <p className="text-sm text-neutral-600">
+          <p className="text-xs sm:text-sm text-neutral-600">
             Klik på de knive og det værktøj, du vil have slebet. Prisen er vejledende – den endelige pris
             bekræftes altid efter aftale, og du betaler først, når aftalen er godkendt.
           </p>
         </div>
         {Object.entries(groupedCatalog).map(([category, items]) => (
-          <div key={category} className="mb-6 rounded-2xl border border-neutral-200 bg-white shadow-sm">
-            <div className="w-full flex items-center justify-between px-5 py-3">
-              <span className="text-xl font-semibold text-neutral-800">{category}</span>
+          <div key={category} className="mb-4 md:mb-6 rounded-xl md:rounded-2xl border border-neutral-200 bg-white shadow-sm">
+            <div className="w-full flex items-center justify-between px-4 sm:px-5 py-2.5 sm:py-3">
+              <span className="text-lg sm:text-xl font-semibold text-neutral-800">{category}</span>
             </div>
-            <div className="px-5 pb-5">
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="px-4 sm:px-5 pb-4 sm:pb-5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6">
                 {items.map((it) => (
                   <div
                     key={it.id}
-                    className="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm hover:shadow-md transition-all flex flex-col"
+                    className="rounded-xl md:rounded-2xl border border-neutral-200 bg-white p-4 sm:p-5 md:p-6 shadow-sm hover:shadow-md transition-all flex flex-col"
                   >
-                    <div className="mb-3 mx-auto h-[140px] flex items-center justify-center">
+                    <div className="mb-2 sm:mb-3 mx-auto h-[100px] sm:h-[120px] md:h-[140px] flex items-center justify-center">
                       <Image
                         src={it.image}
                         alt={it.name}
@@ -158,22 +195,22 @@ export default function Bestil() {
                       />
                     </div>
                     <div className="flex-1 flex flex-col">
-                      <div className="font-medium text-lg text-neutral-800 min-h-[3rem]">
+                      <div className="font-medium text-base sm:text-lg text-neutral-800 min-h-[2.5rem] sm:min-h-[3rem]">
                         {it.name}
                       </div>
-                      <div className="mt-1 text-base font-semibold text-neutral-900">
+                      <div className="mt-1 text-sm sm:text-base font-semibold text-neutral-900">
                         {it.price} kr{" "}
-                        <span className="font-normal text-[13px] text-neutral-600">pr. stk.</span>
+                        <span className="font-normal text-xs sm:text-[13px] text-neutral-600">pr. stk.</span>
                       </div>
                       {category === "Knive" && (
-                        <div className="mt-1 text-[11px] text-emerald-700">
+                        <div className="mt-1 text-[10px] sm:text-[11px] text-emerald-700">
                           Tæller med til kniv-rabat
                         </div>
                       )}
                     </div>
                     <button
                       onClick={() => add(it)}
-                      className="mt-4 bg-neutral-800 text-white px-4 py-2 rounded-xl text-sm hover:bg-neutral-700 transition-colors w-full"
+                      className="mt-3 sm:mt-4 bg-neutral-800 text-white px-3 sm:px-4 py-2 rounded-lg sm:rounded-xl text-xs sm:text-sm hover:bg-neutral-700 transition-colors w-full active:scale-[0.98]"
                     >
                       + Læg i kurv
                     </button>
@@ -185,44 +222,44 @@ export default function Bestil() {
         ))}
       </section>
 
-      <aside className="sticky top-10 self-start h-fit rounded-2xl border border-neutral-200 p-6 bg-white shadow-sm w-full">
-        <h2 className="text-2xl mb-4 text-neutral-800 flex items-center gap-3 font-semibold tracking-tight">
-          <Image src="/images/icon_cart.png" alt="Kurv" width={32} height={32} />
+      <aside className="md:sticky md:top-10 md:self-start h-fit rounded-xl md:rounded-2xl border border-neutral-200 p-4 sm:p-5 md:p-6 bg-white shadow-sm w-full">
+        <h2 className="text-xl sm:text-2xl mb-3 sm:mb-4 text-neutral-800 flex items-center gap-2 sm:gap-3 font-semibold tracking-tight">
+          <Image src="/images/icon_cart.png" alt="Kurv" width={28} height={28} className="sm:w-8 sm:h-8" />
           Din kurv
         </h2>
         {cart.length === 0 ? (
-          <p className="text-neutral-600 text-sm mb-8">Ingen varer endnu.</p>
+          <p className="text-neutral-600 text-xs sm:text-sm mb-6 sm:mb-8">Ingen varer endnu.</p>
         ) : (
           <div>
-            <ul className="space-y-2 mb-4">
+            <ul className="space-y-2.5 sm:space-y-3 mb-3 sm:mb-4 max-h-[60vh] sm:max-h-none overflow-y-auto">
               {cart.map((c) => (
-                <li key={c.id} className="text-sm text-neutral-800">
-                  <div className="flex items-center justify-between gap-2">
-                    <span>{c.name}</span>
-                    <div className="flex items-center gap-3">
+                <li key={c.id} className="text-xs sm:text-sm text-neutral-800">
+                  <div className="flex items-start sm:items-center justify-between gap-2">
+                    <span className="flex-1 min-w-0 pr-2">{c.name}</span>
+                    <div className="flex items-center gap-2 sm:gap-3 shrink-0">
                       <div className="flex items-center border border-neutral-300 rounded-md overflow-hidden">
-                        <button onClick={() => dec(c.id)} className="px-2 py-0.5 hover:bg-neutral-100" aria-label="Minus">−</button>
-                        <span className="px-2 tabular-nums">{c.qty}</span>
-                        <button onClick={() => inc(c.id)} className="px-2 py-0.5 hover:bg-neutral-100" aria-label="Plus">+</button>
+                        <button onClick={() => dec(c.id)} className="px-1.5 sm:px-2 py-0.5 hover:bg-neutral-100 active:bg-neutral-200" aria-label="Minus">−</button>
+                        <span className="px-1.5 sm:px-2 tabular-nums text-xs sm:text-sm">{c.qty}</span>
+                        <button onClick={() => inc(c.id)} className="px-1.5 sm:px-2 py-0.5 hover:bg-neutral-100 active:bg-neutral-200" aria-label="Plus">+</button>
                       </div>
-                      <span className="w-[60px] text-right tabular-nums">{c.price * c.qty} kr</span>
-                      <button onClick={() => removeFromCart(c.id)} aria-label="Fjern" className="text-neutral-500 hover:text-neutral-800">
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <span className="w-[50px] sm:w-[60px] text-right tabular-nums text-xs sm:text-sm">{c.price * c.qty} kr</span>
+                      <button onClick={() => removeFromCart(c.id)} aria-label="Fjern" className="text-neutral-500 hover:text-neutral-800 active:scale-90 transition-transform">
+                        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="sm:w-4 sm:h-4">
                           <path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                         </svg>
                       </button>
                     </div>
                   </div>
                   {c.id === "bread" && (
-                    <div className="mt-1 flex items-start gap-2 text-xs text-neutral-600">
+                    <div className="mt-1 flex items-start gap-1.5 sm:gap-2 text-[10px] sm:text-xs text-neutral-600">
                       <svg
-                        width="14"
-                        height="14"
+                        width="12"
+                        height="12"
                         viewBox="0 0 24 24"
                         fill="none"
                         xmlns="http://www.w3.org/2000/svg"
                         aria-hidden
-                        className="mt-[1px] text-neutral-500 shrink-0"
+                        className="mt-[1px] text-neutral-500 shrink-0 sm:w-[14px] sm:h-[14px]"
                       >
                         <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" />
                         <line x1="12" y1="8" x2="12" y2="12" stroke="currentColor" strokeWidth="2" />
@@ -237,25 +274,25 @@ export default function Bestil() {
               ))}
             </ul>
             <div className="flex items-center justify-between mt-2 mb-2">
-              <button onClick={clearCart} className="text-sm text-neutral-600 hover:text-neutral-800 hover:underline">Ryd kurv</button>
+              <button onClick={clearCart} className="text-xs sm:text-sm text-neutral-600 hover:text-neutral-800 hover:underline active:scale-95">Ryd kurv</button>
             </div>
-            <div className="border-t pt-3 font-medium mb-2 text-neutral-800 space-y-1">
-              <div className="flex justify-between text-sm">
+            <div className="border-t pt-2.5 sm:pt-3 font-medium mb-2 text-neutral-800 space-y-1">
+              <div className="flex justify-between text-xs sm:text-sm">
                 <span>Subtotal</span>
-                <span>{total} kr</span>
+                <span className="tabular-nums">{total} kr</span>
               </div>
               {discountAmount > 0 && (
-                <div className="flex justify-between text-sm text-emerald-700">
-                  <span>
+                <div className="flex justify-between text-xs sm:text-sm text-emerald-700">
+                  <span className="break-words">
                     Rabat på knive ({Math.round(discountRate * 100)}%
                     {knifeCount >= 6 ? ", 6+ knive" : ", 3+ knive"})
                   </span>
-                  <span>-{discountAmount} kr</span>
+                  <span className="tabular-nums shrink-0 ml-2">-{discountAmount} kr</span>
                 </div>
               )}
-              <div className="flex justify-between text-base">
+              <div className="flex justify-between text-sm sm:text-base">
                 <span>I alt</span>
-                <span>{totalAfterDiscount} kr</span>
+                <span className="tabular-nums font-semibold">{totalAfterDiscount} kr</span>
               </div>
             </div>
           </div>
@@ -263,13 +300,13 @@ export default function Bestil() {
         {cart.length === 0 ? (
           <button
             disabled
-            className="block w-full text-center rounded-2xl bg-neutral-300 text-neutral-600 px-6 py-3 cursor-not-allowed"
+            className="block w-full text-center rounded-xl sm:rounded-2xl bg-neutral-300 text-neutral-600 px-4 sm:px-6 py-2.5 sm:py-3 text-xs sm:text-sm cursor-not-allowed"
             title="Vælg mindst én ydelse først"
           >
             Gå til aflevering
           </button>
         ) : (
-          <Link href="/aflevering" className="block text-center rounded-2xl bg-neutral-900 text-white px-6 py-3 hover:bg-neutral-700 transition-colors">
+          <Link href="/aflevering" className="block text-center rounded-xl sm:rounded-2xl bg-neutral-900 text-white px-4 sm:px-6 py-2.5 sm:py-3 text-xs sm:text-sm hover:bg-neutral-700 active:bg-neutral-800 transition-colors active:scale-[0.98]">
             Gå til aflevering
           </Link>
         )}
