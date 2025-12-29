@@ -153,6 +153,17 @@ export default function Bestil() {
             <span className="font-semibold">ekspres slibning</span> er de typisk klar inden for{" "}
             <span className="font-semibold">1–2 timer</span>, efter vi har modtaget dem.
           </p>
+          <div className="rounded-xl border border-sky-100 bg-sky-50 px-3 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm text-sky-900">
+            <div className="font-semibold mb-1 flex items-center gap-2">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="shrink-0">
+                <path d="M3 7h11v7h-1.5a2.5 2.5 0 1 0 0 5H16a2.5 2.5 0 1 0 4.9-.5H22v-6l-3-3h-3V7H3z" stroke="currentColor" strokeWidth="1.5" fill="none"/>
+              </svg>
+              Gratis afhentning i Nykøbing og omegn
+            </div>
+            <p>
+              Bor du i eller omkring Nykøbing Falster, henter og bringer vi dine knive og værktøj <span className="font-semibold">helt gratis</span>.
+            </p>
+          </div>
           <div className="rounded-xl border border-emerald-100 bg-emerald-50 px-3 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm text-emerald-900">
             <div className="font-semibold mb-1">Rabat på knive</div>
             <p>

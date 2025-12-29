@@ -4,14 +4,17 @@ import React, { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { computeKnifeDiscount } from "@/lib/pricing";
+import { isWithinFreeDeliveryZone, distanceToSundbySliberi } from "@/lib/distance";
 
 export default function Aflevering() {
   const router = useRouter();
-  const PICKUP_FEE = 299;
+  const BASE_PICKUP_FEE = 299;
   const EXPRESS_FEE = 300;
   const CART_KEY = "sliberi_cart_v1";
   const FORM_KEY = "sliberi_form_v1";
   const [cart, setCart] = useState<{ id: string; name: string; price: number; qty: number; category?: string }[]>([]);
+  const [customerCoords, setCustomerCoords] = useState<{ lat: number; lng: number } | null>(null);
+  const [distanceKm, setDistanceKm] = useState<number | null>(null);
   const [form, setForm] = useState({
     name: "",
     phone: "",
@@ -31,9 +34,10 @@ export default function Aflevering() {
   const [formError, setFormError] = useState<string | null>(null);
   const [addressQuery, setAddressQuery] = useState("");
   const [addressSuggestions, setAddressSuggestions] = useState<
-    { tekst: string; adresse?: { vejnavn: string; husnr: string; postnr: string; postnrnavn: string } }[]
+    { tekst: string; adresse?: { id: string; vejnavn: string; husnr: string; postnr: string; postnrnavn: string } }[]
   >([]);
   const [isAddressLoading, setIsAddressLoading] = useState(false);
+  const [isFetchingCoords, setIsFetchingCoords] = useState(false);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -96,7 +100,7 @@ export default function Aflevering() {
         if (!res.ok) throw new Error("Kunne ikke hente adresseforslag.");
         const data = (await res.json()) as {
           tekst: string;
-          adresse?: { vejnavn: string; husnr: string; postnr: string; postnrnavn: string };
+          adresse?: { id: string; vejnavn: string; husnr: string; postnr: string; postnrnavn: string };
         }[];
         setAddressSuggestions(data);
       } catch (err) {
@@ -121,6 +125,10 @@ export default function Aflevering() {
     [cart]
   );
   const cartTotalAfterDiscount = cartTotal - discountAmount;
+  
+  // Beregn om kunden er inden for gratis leveringszone
+  const isFreeDelivery = customerCoords ? isWithinFreeDeliveryZone(customerCoords.lat, customerCoords.lng) : false;
+  const PICKUP_FEE = isFreeDelivery ? 0 : BASE_PICKUP_FEE;
   const deliveryFee = form.delivery === "pickup" ? PICKUP_FEE : 0;
   const expressFee = form.express ? EXPRESS_FEE : 0;
   const totalWithFees = cartTotalAfterDiscount + deliveryFee + expressFee;
@@ -299,7 +307,14 @@ export default function Aflevering() {
                   <input
                     name="address"
                     value={form.address}
-                    onChange={onAddressChange}
+                    onChange={(e) => {
+                      onAddressChange(e);
+                      // Nulstil koordinater når brugeren skriver manuelt
+                      if (customerCoords) {
+                        setCustomerCoords(null);
+                        setDistanceKm(null);
+                      }
+                    }}
                     className="mt-1 w-full border border-neutral-300 rounded-xl px-3 py-2 bg-white"
                     placeholder="Vej og nr."
                     autoComplete="street-address"
@@ -315,7 +330,7 @@ export default function Aflevering() {
                             key={s.tekst}
                             type="button"
                             className="w-full text-left px-3 py-2 hover:bg-neutral-100"
-                            onClick={() => {
+                            onClick={async () => {
                               const addr = s.adresse;
                               setForm((f) => ({
                                 ...f,
@@ -324,11 +339,51 @@ export default function Aflevering() {
                                 city: addr?.postnrnavn ?? f.city,
                               }));
                               setAddressSuggestions([]);
+                              
+                              // Hent koordinater for den valgte adresse
+                              if (addr?.id) {
+                                setIsFetchingCoords(true);
+                                try {
+                                  const coordsRes = await fetch(
+                                    `https://api.dataforsyningen.dk/adresser/${addr.id}`
+                                  );
+                                  if (coordsRes.ok) {
+                                    const coordsData = await coordsRes.json();
+                                    if (coordsData.adgangsadresse?.adgangspunkt?.koordinater) {
+                                      const [lng, lat] = coordsData.adgangsadresse.adgangspunkt.koordinater;
+                                      setCustomerCoords({ lat, lng });
+                                      setDistanceKm(distanceToSundbySliberi(lat, lng));
+                                    }
+                                  }
+                                } catch {
+                                  // Fejl ved hentning af koordinater - ignorer og brug standard gebyr
+                                  setCustomerCoords(null);
+                                  setDistanceKm(null);
+                                } finally {
+                                  setIsFetchingCoords(false);
+                                }
+                              }
                             }}
                           >
                             {s.tekst}
                           </button>
                         ))}
+                    </div>
+                  )}
+                  {/* Afstandsindikator */}
+                  {isFetchingCoords && (
+                    <div className="mt-2 text-xs text-neutral-500">Beregner afstand…</div>
+                  )}
+                  {!isFetchingCoords && distanceKm !== null && (
+                    <div className={`mt-2 text-xs flex items-center gap-1.5 ${isFreeDelivery ? 'text-emerald-700' : 'text-neutral-600'}`}>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="shrink-0">
+                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" stroke="currentColor" strokeWidth="2" fill="none"/>
+                        <circle cx="12" cy="9" r="2.5" stroke="currentColor" strokeWidth="2" fill="none"/>
+                      </svg>
+                      <span>
+                        {distanceKm.toFixed(1)} km fra os
+                        {isFreeDelivery && ' – gratis afhentning og levering!'}
+                      </span>
                     </div>
                   )}
                 </label>
@@ -355,9 +410,20 @@ export default function Aflevering() {
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
                       <path d="M3 7h11v7h-1.5a2.5 2.5 0 1 0 0 5H16a2.5 2.5 0 1 0 4.9-.5H22v-6l-3-3h-3V7H3z" stroke="#262626" strokeWidth="1.5" fill="none"/>
                     </svg>
-                    <div>
-                      <div className="text-neutral-900 font-medium text-base">Jeg ønsker afhentning</div>
-                      <div className="text-neutral-600 text-sm">Vi henter lokalt efter aftale</div>
+                    <div className="flex-1">
+                      <div className="text-neutral-900 font-medium text-base flex items-center gap-2">
+                        Jeg ønsker afhentning
+                        {isFreeDelivery && (
+                          <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800">
+                            Gratis
+                          </span>
+                        )}
+                      </div>
+                      <div className="text-neutral-600 text-sm">
+                        {isFreeDelivery 
+                          ? `Gratis – vi henter og bringer i Nykøbing og omegn` 
+                          : `Vi henter lokalt efter aftale (+${BASE_PICKUP_FEE} kr)`}
+                      </div>
                     </div>
                   </label>
                 </div>
@@ -516,7 +582,12 @@ export default function Aflevering() {
                 )}
               </li>
               <li className="flex justify-between"><span>Levering</span><span>{form.delivery === "pickup" ? "Afhentning" : "Afleverer selv"}</span></li>
-              <li className="flex justify-between text-neutral-600"><span>Afhentningsgebyr</span><span>{deliveryFee ? `${deliveryFee} kr` : "0 kr"}</span></li>
+              <li className="flex justify-between text-neutral-600">
+                <span>Afhentningsgebyr</span>
+                <span className={isFreeDelivery && form.delivery === 'pickup' ? 'text-emerald-700' : ''}>
+                  {form.delivery === 'pickup' && isFreeDelivery ? 'Gratis' : deliveryFee ? `${deliveryFee} kr` : "0 kr"}
+                </span>
+              </li>
               <li className="flex justify-between text-neutral-600"><span>Ekspres slibning</span><span>{expressFee ? `${expressFee} kr` : "0 kr"}</span></li>
             </ul>
             <div className="border-t border-neutral-200 pt-3 mt-3 text-neutral-900 font-medium space-y-1">
@@ -539,8 +610,10 @@ export default function Aflevering() {
               </div>
             </div>
             {form.delivery === "pickup" && (
-              <p className="text-xs text-neutral-600 mt-3">
-                Gebyret dækker lokal afhentning og aflevering.
+              <p className={`text-xs mt-3 ${isFreeDelivery ? 'text-emerald-700' : 'text-neutral-600'}`}>
+                {isFreeDelivery 
+                  ? `Du bor i Nykøbing-området – vi henter og bringer gratis!`
+                  : "Gebyret dækker lokal afhentning og aflevering."}
               </p>
             )}
             {hasItemsInCart && (
@@ -568,7 +641,12 @@ export default function Aflevering() {
                 <div className="flex justify-between"><span>Adresse</span><span>{`${form.address}${form.address ? ', ' : ''}${form.postalCode} ${form.city}`}</span></div>
               )}
               <div className="flex justify-between"><span>Levering</span><span>{form.delivery === 'pickup' ? 'Afhentning' : 'Afleverer selv'}</span></div>
-              <div className="flex justify-between text-neutral-600"><span>Afhentningsgebyr</span><span>{deliveryFee ? `${deliveryFee} kr` : '0 kr'}</span></div>
+              <div className="flex justify-between text-neutral-600">
+                <span>Afhentningsgebyr</span>
+                <span className={isFreeDelivery && form.delivery === 'pickup' ? 'text-emerald-700' : ''}>
+                  {form.delivery === 'pickup' && isFreeDelivery ? 'Gratis' : deliveryFee ? `${deliveryFee} kr` : '0 kr'}
+                </span>
+              </div>
               <div className="flex justify-between text-neutral-600"><span>Ekspres slibning</span><span>{expressFee ? `${expressFee} kr` : '0 kr'}</span></div>
               {form.dropoffAt && (
                 <div className="flex justify-between">
