@@ -3,6 +3,7 @@ import type { StaticImageData } from "next/image";
 import { SITE } from "@/lib/site";
 import { ImagePanel } from "./ImagePanel";
 import japKnives from "@/img/hero/JapKnifes.jpg";
+import workshop from "@/img/hero/Workshop.jpg";
 
 /*
   Bento-hero. Venstre: stor overskriftspanel + to kategori-tiles.
@@ -11,17 +12,21 @@ import japKnives from "@/img/hero/JapKnifes.jpg";
   fotos er klar.
 */
 
-type Tile = { label: string; tag: string; href: string; image?: StaticImageData; alt?: string };
+type Tile = { label: string; href: string; image?: StaticImageData; alt?: string };
 
 const TILES: Tile[] = [
   {
     label: "Knive",
-    tag: "#KØKKEN",
     href: "/bestil",
     image: japKnives,
     alt: "Japanske knive slebet hos Sundby Sliberi",
   },
-  { label: "Værktøj", tag: "#VÆRKSTED", href: "/bestil" },
+  {
+    label: "Værktøj",
+    href: "/bestil",
+    image: workshop,
+    alt: "Værktøj på værkstedet hos Sundby Sliberi",
+  },
 ];
 
 export function Hero() {
@@ -66,7 +71,6 @@ export function Hero() {
                       />
                     )}
                     <div className="absolute inset-0 flex flex-col justify-end p-[20px]">
-                      <span className={`product-name ${hasImg ? "text-white/80" : "text-muted"}`}>{tile.tag}</span>
                       <span
                         className={`font-display text-[28px] uppercase transition-colors group-hover:text-accent md:text-[34px] ${
                           hasImg ? "text-white" : "text-ink"
