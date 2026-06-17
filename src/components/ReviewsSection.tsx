@@ -29,7 +29,7 @@ export function ReviewsSection() {
   return (
     <section className="bg-bg px-[20px] py-[48px] md:px-[32px] md:py-[72px]">
       <div className="mx-auto w-full max-w-[1200px]">
-        <p className="kicker text-clay">Anmeldelser</p>
+        <p className="kicker text-accent">Anmeldelser</p>
         <h2 className="mt-[10px] font-display text-[36px] text-ink md:text-[52px]">Hvad kunderne siger</h2>
 
         <div className="mt-[32px] grid gap-[28px] md:grid-cols-3">
@@ -42,7 +42,7 @@ export function ReviewsSection() {
           href={GOOGLE_REVIEW_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-[28px] inline-flex items-center gap-[8px] text-[14px] font-medium text-clay transition-colors hover:text-[#946449]"
+          className="mt-[28px] inline-flex items-center gap-[8px] text-[14px] font-medium text-accent transition-colors hover:text-accent-dark"
         >
           Se alle anmeldelser på Google →
         </a>

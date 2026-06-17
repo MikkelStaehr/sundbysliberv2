@@ -7,7 +7,7 @@ import { sendOrder } from "@/app/aflevering/order-action";
 import { SITE } from "@/lib/site";
 
 const inputClass =
-  "mt-[6px] w-full rounded-[6px] border border-line bg-surface px-[12px] py-[10px] text-[15px] text-ink placeholder:text-muted";
+  "mt-[6px] w-full rounded-[16px] border border-line bg-surface px-[12px] py-[10px] text-[15px] text-ink placeholder:text-muted";
 
 export function OrderForm() {
   const { items, total, clear } = useCart();
@@ -59,7 +59,7 @@ export function OrderForm() {
 
   if (done) {
     return (
-      <div className="rounded-[6px] border border-line bg-surface p-[28px]">
+      <div className="rounded-[16px] border border-line bg-surface p-[28px]">
         <h2 className="font-display text-[28px] text-ink">Tak for din bestilling</h2>
         <p className="mt-[12px] text-[15px] leading-relaxed text-ink">
           Tak — jeg ringer dig op hurtigst muligt for at aftale nærmere.
@@ -67,13 +67,13 @@ export function OrderForm() {
         <div className="mt-[24px] flex flex-wrap gap-[12px]">
           <Link
             href="/"
-            className="rounded-full bg-clay px-[20px] py-[11px] text-[14px] font-medium text-white transition-colors hover:bg-[#946449]"
+            className="rounded-full bg-accent px-[20px] py-[11px] text-[14px] font-medium text-white transition-colors hover:bg-accent-dark"
           >
             Til forsiden
           </Link>
           <a
             href={SITE.phoneHref}
-            className="rounded-full border border-line px-[20px] py-[11px] text-[14px] font-medium text-ink transition-colors hover:border-clay hover:text-clay"
+            className="rounded-full border border-line px-[20px] py-[11px] text-[14px] font-medium text-ink transition-colors hover:border-accent hover:text-accent"
           >
             Ring {SITE.phoneDisplay}
           </a>
@@ -83,7 +83,7 @@ export function OrderForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="rounded-[6px] border border-line bg-surface p-[28px]">
+    <form onSubmit={handleSubmit} className="rounded-[16px] border border-line bg-surface p-[28px]">
       <h1 className="font-display text-[36px] text-ink md:text-[44px]">Dine oplysninger</h1>
       <p className="mt-[10px] text-[15px] leading-relaxed text-muted">
         Udfyld dine oplysninger, så ringer jeg dig op og aftaler pris og dag.
@@ -128,12 +128,12 @@ export function OrderForm() {
         </div>
       </div>
 
-      {error && <p className="mt-[16px] text-[14px] text-clay">{error}</p>}
+      {error && <p className="mt-[16px] text-[14px] text-accent">{error}</p>}
 
       <button
         type="submit"
         disabled={sending}
-        className="mt-[24px] w-full rounded-full bg-clay px-[20px] py-[13px] text-[15px] font-medium text-white transition-colors hover:bg-[#946449] disabled:opacity-60"
+        className="mt-[24px] w-full rounded-full bg-accent px-[20px] py-[13px] text-[15px] font-medium text-white transition-colors hover:bg-accent-dark disabled:opacity-60"
       >
         {sending ? "Sender…" : "Send bestilling"}
       </button>

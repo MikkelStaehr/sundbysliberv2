@@ -21,7 +21,7 @@ export function CartSummary({
   const editable = variant === "cart";
 
   return (
-    <div className="rounded-[6px] border border-line bg-surface p-[24px]">
+    <div className="rounded-[16px] border border-line bg-surface p-[24px]">
       <h2 className="font-display text-[24px] text-ink">Din kurv</h2>
 
       {items.length === 0 ? (
@@ -34,7 +34,7 @@ export function CartSummary({
                 <span className="min-w-0 flex-1 text-ink">{it.navn}</span>
                 {editable ? (
                   <span className="flex items-center gap-[10px]">
-                    <span className="flex items-center rounded-[6px] border border-line">
+                    <span className="flex items-center rounded-[16px] border border-line">
                       <button onClick={() => dec(it.id)} aria-label="Færre" className="px-[8px] py-[2px] text-muted hover:text-ink">
                         −
                       </button>
@@ -47,7 +47,7 @@ export function CartSummary({
                     <button
                       onClick={() => remove(it.id)}
                       aria-label={`Fjern ${it.navn}`}
-                      className="text-muted hover:text-clay"
+                      className="text-muted hover:text-accent"
                     >
                       <svg viewBox="0 0 16 16" className="h-4 w-4" aria-hidden="true">
                         <path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
@@ -88,7 +88,7 @@ export function CartSummary({
       {editable &&
         (items.length === 0 ? (
           <span
-            className="mt-[20px] block cursor-not-allowed rounded-full border border-line bg-surface-alt px-[20px] py-[12px] text-center text-[14px] text-muted"
+            className="mt-[20px] block cursor-not-allowed rounded-full border border-line bg-panel px-[20px] py-[12px] text-center text-[14px] text-muted"
             aria-disabled="true"
           >
             {ctaLabel ?? "Videre til bestilling"}
@@ -96,7 +96,7 @@ export function CartSummary({
         ) : (
           <Link
             href={ctaHref ?? "/aflevering"}
-            className="mt-[20px] block rounded-full bg-clay px-[20px] py-[12px] text-center text-[14px] font-medium text-white transition-colors hover:bg-[#946449]"
+            className="mt-[20px] block rounded-full bg-accent px-[20px] py-[12px] text-center text-[14px] font-medium text-white transition-colors hover:bg-accent-dark"
           >
             {ctaLabel ?? "Videre til bestilling"}
           </Link>

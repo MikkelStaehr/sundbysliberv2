@@ -50,7 +50,7 @@ export function CatalogGrid() {
               aria-pressed={filter === f.key}
               className={`kicker pb-[4px] text-[12px] transition-colors ${
                 filter === f.key
-                  ? "border-b-2 border-clay text-ink"
+                  ? "border-b-2 border-accent text-ink"
                   : "border-b-2 border-transparent text-muted hover:text-ink"
               }`}
             >
@@ -64,7 +64,7 @@ export function CatalogGrid() {
           <select
             value={sort}
             onChange={(e) => setSort(e.target.value as Sort)}
-            className="rounded-[6px] border border-line bg-surface px-[10px] py-[6px] text-[14px] text-ink"
+            className="rounded-[16px] border border-line bg-surface px-[10px] py-[6px] text-[14px] text-ink"
           >
             <option value="lav">Pris lav → høj</option>
             <option value="hoej">Pris høj → lav</option>
@@ -82,7 +82,7 @@ export function CatalogGrid() {
       {/* Toast */}
       {toast && (
         <div className="fixed bottom-[20px] left-1/2 z-50 -translate-x-1/2 animate-[fadeInUp_0.3s_ease-out]">
-          <div className="flex items-center gap-[10px] rounded-[6px] border border-line bg-ink px-[16px] py-[12px] text-[14px] text-white">
+          <div className="flex items-center gap-[10px] rounded-[16px] border border-line bg-ink px-[16px] py-[12px] text-[14px] text-white">
             <svg viewBox="0 0 24 24" className="h-4 w-4 shrink-0" aria-hidden="true">
               <path d="M5 13l4 4L19 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>

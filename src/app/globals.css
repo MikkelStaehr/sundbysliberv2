@@ -1,31 +1,33 @@
 @import "tailwindcss";
 
 /*
-  Sundby Sliberi v2 — bento-designsystem.
-  Lyst, klassisk. Cremebaggrund, hvide fliser, hårfine kanter.
-  Eneste accent: clay (sparsomt). Ingen gradients, ingen skygger.
-  Radius: 6px på fliser/kort, 999px på piller/runde knapper.
+  Sundby Sliberi — relaunch 2026.
+  Moderne, seriøs, bento. Rent hvid baggrund, køligt lysegrå paneler,
+  stålblå accent (sparsomt). Ingen gradients, ingen tunge skygger.
+  Afrundede bento-paneler; piller på knapper.
 */
 
 @theme {
-  /* Farver */
-  --color-bg: #faf8f2; /* sidens cremebaggrund */
-  --color-surface: #ffffff; /* hvide fliser/kort */
-  --color-surface-alt: #f4f1e9; /* footer, bløde sektioner */
-  --color-frame: #e8e6de; /* yderramme/afgrænsning */
-  --color-ink: #232320; /* primær tekst */
-  --color-muted: #8e8a80; /* sekundær tekst, priser */
-  --color-line: rgba(35, 35, 32, 0.08); /* hårfine kanter */
-  --color-clay: #a8775a; /* eneste accent — sparsomt */
-  --color-placeholder: #cbc7bb; /* produkt-silhuet indtil rigtige fotos */
+  /* Farver — steel blue */
+  --color-bg: #ffffff; /* sidens rene hvide baggrund */
+  --color-surface: #ffffff; /* hvide kort */
+  --color-panel: #f1f3f5; /* køligt lysegrå bento-paneler / bløde sektioner */
+  --color-panel-2: #e7eaee; /* lidt dybere — tiles, placeholder-flader */
+  --color-ink: #15171a; /* næsten-sort tekst */
+  --color-muted: #6b7280; /* sekundær tekst */
+  --color-line: rgba(21, 23, 26, 0.1); /* hårfine kanter */
+  --color-accent: #2e5bff; /* stålblå — eneste farveaccent */
+  --color-accent-dark: #1e47d6; /* hover */
+  --color-placeholder: #c9ced6; /* produkt-silhuet indtil rigtige fotos */
 
   /* Radius */
-  --radius-tile: 6px;
+  --radius-bento: 24px;
+  --radius-card: 16px;
   --radius-pill: 999px;
 
   /* Fonte */
-  --font-display: var(--font-bebas), "Arial Narrow", sans-serif;
-  --font-sans: var(--font-montserrat), system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: var(--font-archivo), "Arial Narrow", system-ui, sans-serif;
+  --font-sans: var(--font-inter), system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 
 :root {
@@ -44,7 +46,6 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* Behold lys baggrund også i dark mode — undgår sorte kanter på simple hosts */
 @media (prefers-color-scheme: dark) {
   :root {
     --background: var(--color-bg);
@@ -52,36 +53,35 @@ body {
   }
 }
 
-/* Bebas — kun display: wordmark, store overskrifter, footer-headline */
+/* Archivo — display: store overskrifter, wordmark. Stram og fed. */
 .font-display {
   font-family: var(--font-display);
-  font-weight: 400;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  font-weight: 800;
+  letter-spacing: -0.02em;
   line-height: 0.95;
 }
 
-/* Tekniske labels/kicker (Montserrat, små versaler, spærret) */
+/* Tekniske labels/kicker (Inter, små versaler, spærret) */
 .kicker {
   font-family: var(--font-sans);
   font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.16em;
+  font-weight: 600;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 
-/* Produktnavne: 11–12px versaler med 1px letter-spacing */
+/* Produktnavne / tile-labels: små versaler med spacing */
 .product-name {
   font-family: var(--font-sans);
   font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 1px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
 }
 
 /* Synligt fokus for tilgængelighed (WCAG) */
 :where(a, button, input, select, textarea, [tabindex]):focus-visible {
-  outline: 2px solid var(--color-clay);
+  outline: 2px solid var(--color-accent);
   outline-offset: 2px;
 }
 

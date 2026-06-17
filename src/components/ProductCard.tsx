@@ -22,7 +22,7 @@ export function ProductCard({ service, onAdd }: { service: Service; onAdd: (s: S
 
   return (
     <div className="flex flex-col">
-      <div className="relative flex aspect-square items-center justify-center rounded-[6px] border border-line bg-surface p-[24px]">
+      <div className="relative flex aspect-square items-center justify-center rounded-[16px] border border-line bg-surface p-[24px]">
         {showImage ? (
           <Image
             src={service.image as string}
@@ -40,7 +40,7 @@ export function ProductCard({ service, onAdd }: { service: Service; onAdd: (s: S
           type="button"
           onClick={() => onAdd(service)}
           aria-label={`Læg ${service.navn} i kurv`}
-          className="absolute bottom-[12px] right-[12px] inline-flex h-[36px] w-[36px] items-center justify-center rounded-full border border-line bg-surface text-ink transition-colors hover:bg-clay hover:text-white hover:border-clay active:scale-95"
+          className="absolute bottom-[12px] right-[12px] inline-flex h-[36px] w-[36px] items-center justify-center rounded-full border border-line bg-surface text-ink transition-colors hover:bg-accent hover:text-white hover:border-accent active:scale-95"
         >
           <svg viewBox="0 0 24 24" className="h-5 w-5" aria-hidden="true">
             <path d="M12 5v14M5 12h14" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />

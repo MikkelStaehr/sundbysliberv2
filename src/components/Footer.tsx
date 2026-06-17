@@ -3,7 +3,7 @@ import { SITE } from "@/lib/site";
 
 export function Footer() {
   return (
-    <footer className="border-t border-line bg-surface-alt text-ink">
+    <footer className="border-t border-line bg-panel text-ink">
       <div className="mx-auto w-full max-w-[1200px] px-[20px] py-[48px] md:px-[32px] md:py-[72px]">
         <p className="font-display text-[44px] leading-none text-ink md:text-[72px]">
           Få dem skarpe igen.
@@ -23,12 +23,12 @@ export function Footer() {
             <p className="kicker text-muted">Kontakt</p>
             <ul className="mt-[12px] flex flex-col gap-[6px] text-[15px]">
               <li>
-                <a href={SITE.phoneHref} className="text-ink transition-colors hover:text-clay">
+                <a href={SITE.phoneHref} className="text-ink transition-colors hover:text-accent">
                   {SITE.phoneDisplay}
                 </a>
               </li>
               <li>
-                <a href={`mailto:${SITE.email}`} className="text-ink transition-colors hover:text-clay">
+                <a href={`mailto:${SITE.email}`} className="text-ink transition-colors hover:text-accent">
                   {SITE.email}
                 </a>
               </li>
@@ -39,19 +39,19 @@ export function Footer() {
             <p className="kicker text-muted">Sider</p>
             <ul className="mt-[12px] flex flex-col gap-[6px] text-[15px]">
               <li>
-                <Link href="/bestil" className="text-ink transition-colors hover:text-clay">
+                <Link href="/bestil" className="text-ink transition-colors hover:text-accent">
                   Slibning
                 </Link>
               </li>
               <li>
-                <Link href="/erhverv" className="text-ink transition-colors hover:text-clay">
+                <Link href="/erhverv" className="text-ink transition-colors hover:text-accent">
                   Erhverv
                 </Link>
               </li>
               <li>
                 <Link
                   href="/knivslibning-nykoebing-falster"
-                  className="text-ink transition-colors hover:text-clay"
+                  className="text-ink transition-colors hover:text-accent"
                 >
                   Om
                 </Link>
@@ -64,7 +64,7 @@ export function Footer() {
           <span>
             © 2026 {SITE.name} · CVR {SITE.cvr}
           </span>
-          <Link href="/privatliv" className="transition-colors hover:text-clay">
+          <Link href="/privatliv" className="transition-colors hover:text-accent">
             Privatliv &amp; cookies
           </Link>
         </div>

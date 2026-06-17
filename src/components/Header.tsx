@@ -15,7 +15,7 @@ function PhoneLink({ className = "" }: { className?: string }) {
   return (
     <a
       href={SITE.phoneHref}
-      className={`inline-flex items-center gap-[8px] text-ink transition-colors hover:text-clay ${className}`}
+      className={`inline-flex items-center gap-[8px] text-ink transition-colors hover:text-accent ${className}`}
     >
       <svg viewBox="0 0 24 24" fill="none" className="h-[18px] w-[18px]" aria-hidden="true">
         <path
@@ -53,7 +53,7 @@ export function Header() {
             <Link
               key={item.href}
               href={item.href}
-              className="kicker text-[12px] text-ink/80 transition-colors hover:text-clay"
+              className="kicker text-[12px] text-ink/80 transition-colors hover:text-accent"
             >
               {item.label}
             </Link>

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Bebas_Neue, Montserrat } from "next/font/google";
+import { Inter, Archivo } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "../components/Analytics";
 import { CookieBanner } from "../components/CookieBanner";
@@ -9,18 +9,18 @@ import { Footer } from "../components/Footer";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { SITE } from "../lib/site";
 
-// Bebas Neue — kun display (wordmark, store overskrifter, footer-headline)
-const bebas = Bebas_Neue({
-  weight: "400",
-  variable: "--font-bebas",
+// Archivo — display (store overskrifter, wordmark). Fed grotesk.
+const archivo = Archivo({
+  weight: ["700", "800"],
+  variable: "--font-archivo",
   subsets: ["latin"],
   display: "swap",
 });
 
-// Montserrat — al brødtekst, nav, labels, priser, produktnavne
-const montserrat = Montserrat({
-  weight: ["400", "500"],
-  variable: "--font-montserrat",
+// Inter — al brødtekst, nav, labels, priser
+const inter = Inter({
+  weight: ["400", "500", "600"],
+  variable: "--font-inter",
   subsets: ["latin"],
   display: "swap",
 });
@@ -95,7 +95,7 @@ export default function RootLayout({
   return (
     <html lang="da">
       <body
-        className={`${bebas.variable} ${montserrat.variable} antialiased`}
+        className={`${archivo.variable} ${inter.variable} antialiased`}
       >
         <div className="flex min-h-screen flex-col bg-bg">
           <Header />

@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function TakSide() {
   return (
     <main className="mx-auto w-full max-w-[760px] px-[20px] py-[64px] md:px-[32px] md:py-[96px]">
-      <div className="rounded-[6px] border border-line bg-surface p-[32px] md:p-[48px]">
+      <div className="rounded-[16px] border border-line bg-surface p-[32px] md:p-[48px]">
         <h1 className="font-display text-[44px] text-ink md:text-[56px]">Tak for din bestilling</h1>
         <p className="mt-[16px] text-[16px] leading-relaxed text-ink">
           Tak — jeg ringer dig op hurtigst muligt for at aftale pris og leveringsdag. Du betaler
@@ -18,11 +18,11 @@ export default function TakSide() {
         </p>
         <p className="mt-[12px] text-[15px] leading-relaxed text-muted">
           Har du spørgsmål i mellemtiden, er du velkommen til at ringe på{" "}
-          <a href={SITE.phoneHref} className="text-clay hover:underline">
+          <a href={SITE.phoneHref} className="text-accent hover:underline">
             {SITE.phoneDisplay}
           </a>{" "}
           eller skrive til{" "}
-          <a href={`mailto:${SITE.email}`} className="text-clay hover:underline">
+          <a href={`mailto:${SITE.email}`} className="text-accent hover:underline">
             {SITE.email}
           </a>
           .
@@ -30,13 +30,13 @@ export default function TakSide() {
         <div className="mt-[28px] flex flex-wrap gap-[12px]">
           <Link
             href="/"
-            className="rounded-full bg-clay px-[20px] py-[11px] text-[14px] font-medium text-white transition-colors hover:bg-[#946449]"
+            className="rounded-full bg-accent px-[20px] py-[11px] text-[14px] font-medium text-white transition-colors hover:bg-accent-dark"
           >
             Til forsiden
           </Link>
           <Link
             href="/bestil"
-            className="rounded-full border border-line px-[20px] py-[11px] text-[14px] font-medium text-ink transition-colors hover:border-clay hover:text-clay"
+            className="rounded-full border border-line px-[20px] py-[11px] text-[14px] font-medium text-ink transition-colors hover:border-accent hover:text-accent"
           >
             Ny bestilling
           </Link>

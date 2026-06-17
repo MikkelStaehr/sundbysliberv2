@@ -55,13 +55,13 @@ export default function KnivslibningNykoebingFalster() {
         <div className="flex flex-wrap gap-4 justify-center">
           <Link
             href="/bestil"
-            className="inline-flex items-center justify-center rounded-full bg-clay text-white px-6 py-3 text-sm transition-colors hover:bg-[#946449]"
+            className="inline-flex items-center justify-center rounded-full bg-accent text-white px-6 py-3 text-sm transition-colors hover:bg-accent-dark"
           >
             Bestil slibning
           </Link>
           <Link
             href="/priser"
-            className="inline-flex items-center justify-center rounded-full border border-line text-ink px-6 py-3 text-sm transition-colors hover:border-clay hover:text-clay"
+            className="inline-flex items-center justify-center rounded-full border border-line text-ink px-6 py-3 text-sm transition-colors hover:border-accent hover:text-accent"
           >
             Se priser
           </Link>

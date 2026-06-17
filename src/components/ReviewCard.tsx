@@ -8,8 +8,8 @@ function Stars({ value }: { value: number }) {
           key={i}
           viewBox="0 0 24 24"
           className="h-[16px] w-[16px]"
-          fill={i < value ? "var(--color-clay)" : "none"}
-          stroke="var(--color-clay)"
+          fill={i < value ? "var(--color-accent)" : "none"}
+          stroke="var(--color-accent)"
           strokeWidth="1.4"
           aria-hidden="true"
         >
@@ -22,7 +22,7 @@ function Stars({ value }: { value: number }) {
 
 export function ReviewCard({ review }: { review: Review }) {
   return (
-    <figure className="flex h-full flex-col rounded-[6px] border border-line bg-surface p-[28px]">
+    <figure className="flex h-full flex-col rounded-[16px] border border-line bg-surface p-[28px]">
       <Stars value={review.stjerner} />
       <blockquote className="mt-[16px] flex-1 text-[16px] leading-relaxed text-ink">
         “{review.citat}”
