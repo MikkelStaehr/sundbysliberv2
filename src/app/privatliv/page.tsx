@@ -16,10 +16,11 @@ export const metadata: Metadata = {
   },
 };
 
+// INTERIM: indhold bevaret, wrappet i nyt bento-system. Detaljeret bento-redesign følger senere.
 export default function Privatliv() {
   return (
     <main
-      className="min-h-screen bg-[#F9F7F3] text-neutral-900 px-8 py-12 w-full max-w-[90rem] mx-auto flex flex-col"
+      className="min-h-screen bg-bg text-neutral-900 px-8 py-12 w-full max-w-[90rem] mx-auto flex flex-col"
     >
       <div className="w-full max-w-3xl mb-6">
         <Link
@@ -59,7 +60,7 @@ export default function Privatliv() {
             oplysninger, du selv indtaster, f.eks. navn, kontaktoplysninger, adresse og besked.
           </p>
           <p>
-            Oplysningerne bruges til at kunne kontakte dig, aftale aflevering/afhentning og
+            Oplysningerne bruges til at kunne kontakte dig, aftale aflevering og
             gennemføre den aftale, du indgår med os. Vi gemmer primært oplysningerne i vores
             e-mailsystem og internt til opfølgning på din ordre eller henvendelse.
           </p>

@@ -1,62 +1,44 @@
 @import "tailwindcss";
 
 /*
-  Sundby Sliberi — designsystem
-  Aesthetic: editorial magasin × industrielt værksted.
-  Varme papirtoner, flade flader. Ingen gradients, ingen shadows (kun hover/focus).
+  Sundby Sliberi v2 — bento-designsystem.
+  Lyst, klassisk. Cremebaggrund, hvide fliser, hårfine kanter.
+  Eneste accent: clay (sparsomt). Ingen gradients, ingen skygger.
+  Radius: 6px på fliser/kort, 999px på piller/runde knapper.
 */
 
 @theme {
-  /* Farver — mørke */
-  --color-ink: #211e1a; /* mørkeste — hero, citat-sektion */
-  --color-ink-soft: #2a2723; /* tekst, mørke bjælker */
-  --color-ink-footer: #1a1714; /* footer */
+  /* Farver */
+  --color-bg: #faf8f2; /* sidens cremebaggrund */
+  --color-surface: #ffffff; /* hvide fliser/kort */
+  --color-surface-alt: #f4f1e9; /* footer, bløde sektioner */
+  --color-frame: #e8e6de; /* yderramme/afgrænsning */
+  --color-ink: #232320; /* primær tekst */
+  --color-muted: #8e8a80; /* sekundær tekst, priser */
+  --color-line: rgba(35, 35, 32, 0.08); /* hårfine kanter */
+  --color-clay: #a8775a; /* eneste accent — sparsomt */
+  --color-placeholder: #cbc7bb; /* produkt-silhuet indtil rigtige fotos */
 
-  /* Farver — papir */
-  --color-paper: #f2ece0; /* primær baggrund */
-  --color-paper-alt: #e9e1d2; /* priser-sektion */
-  --color-paper-form: #fbf7ef; /* formular-kort */
-  --color-paper-frame: #ded5c5; /* yderkant */
-
-  /* Accenter */
-  --color-rust: #a8461f; /* primær accent, knapper */
-  --color-rust-light: #c9602b;
-  --color-gold: #d9a441; /* gnist-accent, tal, labels */
-
-  /* Tekst */
-  --color-text-muted: #6b6457;
-  --color-text-muted-dark: #9c9384; /* på mørk bg */
-  --color-cream: #f4efe6; /* lys tekst på mørk bg */
-  --color-cream-soft: #c9c0b0;
+  /* Radius */
+  --radius-tile: 6px;
+  --radius-pill: 999px;
 
   /* Fonte */
-  --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
-  --font-mono: var(--font-jetbrains), ui-monospace, "SFMono-Regular", monospace;
-  --font-sans: var(--font-inter), system-ui, -apple-system, "Segoe UI", sans-serif;
-
-  /*
-    Type-skala — gylden ratio: 10 · 13 · 16 · 21 · 34 · 55 · 89 px.
-    Skrives eksplicit som arbitrary-værdier i komponenterne (fx text-[55px]),
-    så Tailwinds default text-* skala IKKE overskrives (ville ellers ødelægge
-    sider der bruger text-2xl m.fl.).
-
-    Spacing — Fibonacci: 8 · 13 · 21 · 34 · 55 · 89 · 144 px.
-    Skrives ligeledes eksplicit, fx p-[34px], gap-[21px].
-  */
+  --font-display: var(--font-bebas), "Arial Narrow", sans-serif;
+  --font-sans: var(--font-montserrat), system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 
 :root {
-  --background: var(--color-paper);
-  --foreground: var(--color-ink-soft);
+  --background: var(--color-bg);
+  --foreground: var(--color-ink);
 }
 
 html,
 body {
-  background: var(--color-paper);
-  color: var(--color-ink-soft);
+  background: var(--color-bg);
+  color: var(--color-ink);
   font-family: var(--font-sans);
-  /* Mindst 16px brødtekst pga. ældre målgruppe */
-  font-size: 16px;
+  font-size: 16px; /* brødtekst ≥ 15px pga. ældre målgruppe */
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
@@ -65,30 +47,41 @@ body {
 /* Behold lys baggrund også i dark mode — undgår sorte kanter på simple hosts */
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: var(--color-paper);
-    --foreground: var(--color-ink-soft);
+    --background: var(--color-bg);
+    --foreground: var(--color-ink);
   }
 }
 
-/* Display-overskrifter får Fraunces med let optisk indstilling */
+/* Bebas — kun display: wordmark, store overskrifter, footer-headline */
 .font-display {
   font-family: var(--font-display);
-  font-optical-sizing: auto;
-  letter-spacing: -0.01em;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: 0.95;
 }
 
-/* Tekniske labels/kicker i mono */
+/* Tekniske labels/kicker (Montserrat, små versaler, spærret) */
 .kicker {
-  font-family: var(--font-mono);
-  font-size: 13px;
+  font-family: var(--font-sans);
+  font-size: 12px;
   font-weight: 500;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+/* Produktnavne: 11–12px versaler med 1px letter-spacing */
+.product-name {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 1px;
   text-transform: uppercase;
 }
 
 /* Synligt fokus for tilgængelighed (WCAG) */
 :where(a, button, input, select, textarea, [tabindex]):focus-visible {
-  outline: 2px solid var(--color-rust);
+  outline: 2px solid var(--color-clay);
   outline-offset: 2px;
 }
 

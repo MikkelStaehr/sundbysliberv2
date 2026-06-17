@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Fraunces, JetBrains_Mono, Inter } from "next/font/google";
+import { Bebas_Neue, Montserrat } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "../components/Analytics";
 import { CookieBanner } from "../components/CookieBanner";
@@ -9,20 +9,18 @@ import { Footer } from "../components/Footer";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { SITE } from "../lib/site";
 
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
+// Bebas Neue — kun display (wordmark, store overskrifter, footer-headline)
+const bebas = Bebas_Neue({
+  weight: "400",
+  variable: "--font-bebas",
   subsets: ["latin"],
   display: "swap",
 });
 
-const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-jetbrains",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const inter = Inter({
-  variable: "--font-inter",
+// Montserrat — al brødtekst, nav, labels, priser, produktnavne
+const montserrat = Montserrat({
+  weight: ["400", "500"],
+  variable: "--font-montserrat",
   subsets: ["latin"],
   display: "swap",
 });
@@ -30,7 +28,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Sundby Sliberi – Slibning af knive og værktøj i Sundby, Nykøbing Falster",
   description:
-    "Sundby Sliberi tilbyder professionel slibning af knive, værktøj og maskinklinger til både private og professionelle i Sundby, Nykøbing Falster. Aflever selv eller få afhentet lokalt – nem online bestilling.",
+    "Sundby Sliberi tilbyder professionel slibning af knive, værktøj og maskinklinger til både private og professionelle i Sundby, Nykøbing Falster. Aflever lokalt – nem online bestilling.",
   metadataBase: new URL("https://sundby-sliberi.dk"),
   icons: {
     icon: "/images/hero_rooster_icon.png",
@@ -97,9 +95,9 @@ export default function RootLayout({
   return (
     <html lang="da">
       <body
-        className={`${fraunces.variable} ${jetbrainsMono.variable} ${inter.variable} antialiased`}
+        className={`${bebas.variable} ${montserrat.variable} antialiased`}
       >
-        <div className="flex min-h-screen flex-col bg-paper">
+        <div className="flex min-h-screen flex-col bg-bg">
           <Header />
           <div className="flex-1">{children}</div>
           <Footer />

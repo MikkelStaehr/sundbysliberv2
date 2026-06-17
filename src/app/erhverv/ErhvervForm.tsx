@@ -137,7 +137,7 @@ export function ErhvervForm() {
       <button
         type="submit"
         disabled={isSending}
-        className="inline-flex items-center justify-center rounded-2xl bg-neutral-900 text-white px-6 py-3 text-sm hover:bg-neutral-700 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+        className="inline-flex items-center justify-center rounded-full bg-clay text-white px-6 py-3 text-sm transition-colors hover:bg-[#946449] disabled:opacity-60 disabled:cursor-not-allowed"
       >
         {isSending ? "Sender..." : "Send henvendelse"}
       </button>

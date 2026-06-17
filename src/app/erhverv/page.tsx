@@ -18,10 +18,11 @@ export const metadata: Metadata = {
   },
 };
 
+// INTERIM: indhold bevaret, wrappet i nyt bento-system. Detaljeret bento-redesign følger senere.
 export default function Erhverv() {
   return (
     <main
-      className="min-h-screen bg-[#F9F7F3] text-neutral-900 px-8 py-12 w-full max-w-[90rem] mx-auto flex flex-col"
+      className="min-h-screen bg-bg text-neutral-900 px-8 py-12 w-full max-w-[90rem] mx-auto flex flex-col"
     >
       <div className="w-full max-w-3xl mb-6">
         <Link
@@ -47,7 +48,7 @@ export default function Erhverv() {
           vi lave en fast aftale om slibning af dine knive, køkkenredskaber og håndværktøj.
         </p>
         <p className="text-neutral-700 leading-relaxed max-w-3xl mx-auto text-left">
-          Vi tilbyder fleksible løsninger med faste afhentningsdage eller slibning efter behov, så
+          Vi tilbyder fleksible løsninger med faste slibedage eller slibning efter behov, så
           både køkken og værksted altid har skarpe redskaber – uden at du skal holde styr på det i
           hverdagen.
         </p>
@@ -56,7 +57,7 @@ export default function Erhverv() {
             <span className="mt-1 inline-flex h-5 w-5 items-center justify-center rounded-full border border-neutral-300 text-[10px] text-neutral-600">
               ✓
             </span>
-            <span>Faste afhentningsdage eller slibning efter behov</span>
+            <span>Faste slibedage eller slibning efter behov</span>
           </li>
           <li className="flex items-start gap-3">
             <span className="mt-1 inline-flex h-5 w-5 items-center justify-center rounded-full border border-neutral-300 text-[10px] text-neutral-600">

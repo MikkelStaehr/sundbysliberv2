@@ -4,7 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Knivslibning i Nykøbing Falster – Sundby Sliberi",
   description:
-    "Knivslibning i Sundby, Nykøbing Falster. Få køkkenknive og værktøj slebet hos Sundby Sliberi – aflever selv eller bestil lokal afhentning.",
+    "Knivslibning i Sundby, Nykøbing Falster. Få køkkenknive og værktøj slebet hos Sundby Sliberi – aflever lokalt og få dem skarpe igen.",
   openGraph: {
     title: "Knivslibning i Nykøbing Falster – Sundby Sliberi",
     description:
@@ -16,10 +16,11 @@ export const metadata: Metadata = {
   },
 };
 
+// INTERIM: indhold bevaret, wrappet i nyt bento-system. Detaljeret bento-redesign følger senere.
 export default function KnivslibningNykoebingFalster() {
   return (
     <main
-      className="min-h-screen bg-[#F9F7F3] text-neutral-900 px-8 py-12 w-full max-w-[90rem] mx-auto flex flex-col"
+      className="min-h-screen bg-bg text-neutral-900 px-8 py-12 w-full max-w-[90rem] mx-auto flex flex-col"
     >
       <div className="w-full max-w-3xl mb-6">
         <Link
@@ -39,32 +40,30 @@ export default function KnivslibningNykoebingFalster() {
           </h2>
           <p className="text-neutral-700 leading-relaxed">
             Hos Sundby Sliberi tilbyder vi skarp og nænsom slibning af køkkenknive, værktøj og
-            maskinklinger – lokalt i Sundby, Nykøbing Falster. Du kan både aflevere selv eller
-            bestille afhentning, så du slipper for besværet. Med mange års erfaring i slibning får du
-            et resultat, du kan stole på hver gang. Det skal være let og tilgængeligt for alle –
-            uanset om du er amatør eller professionel.
+            maskinklinger – lokalt i Sundby, Nykøbing Falster. Du afleverer dine ting hos os, og med
+            mange års erfaring i slibning får du et resultat, du kan stole på hver gang. Det skal være
+            let og tilgængeligt for alle – uanset om du er amatør eller professionel.
           </p>
           <h2 className="text-xl md:text-2xl text-neutral-900 font-semibold tracking-tight">
             Sådan bestiller du knivslibning
           </h2>
           <p className="text-neutral-700 leading-relaxed">
-            Bestillingen foregår online: vælg hvad du vil have slebet, udfyld dine oplysninger og
-            vælg afleveringsform. Når vi har modtaget din bestilling, vender vi retur indenfor{" "}
-            <span className="font-semibold">24 timer</span> med en bekræftelse og aftale om tid.
+            Bestillingen foregår online: vælg hvad du vil have slebet, og udfyld dine oplysninger. Når
+            vi har modtaget din bestilling, ringer vi dig op og aftaler pris og leveringsdag.
           </p>
         </div>
         <div className="flex flex-wrap gap-4 justify-center">
           <Link
             href="/bestil"
-            className="inline-flex items-center justify-center rounded-2xl bg-neutral-900 text-white px-6 py-3 text-sm hover:bg-neutral-700 transition-colors"
+            className="inline-flex items-center justify-center rounded-full bg-clay text-white px-6 py-3 text-sm transition-colors hover:bg-[#946449]"
           >
-            Se priser og bestil slibning
+            Bestil slibning
           </Link>
           <Link
-            href="/aflevering"
-            className="inline-flex items-center justify-center rounded-2xl border border-neutral-300 text-neutral-800 px-6 py-3 text-sm hover:bg-neutral-100 transition-colors"
+            href="/priser"
+            className="inline-flex items-center justify-center rounded-full border border-line text-ink px-6 py-3 text-sm transition-colors hover:border-clay hover:text-clay"
           >
-            Læs om aflevering og afhentning
+            Se priser
           </Link>
         </div>
         <p className="text-sm text-neutral-600 leading-relaxed text-left">

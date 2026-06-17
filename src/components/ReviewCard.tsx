@@ -7,9 +7,9 @@ function Stars({ value }: { value: number }) {
         <svg
           key={i}
           viewBox="0 0 24 24"
-          className="h-[18px] w-[18px]"
-          fill={i < value ? "var(--color-gold)" : "none"}
-          stroke="var(--color-gold)"
+          className="h-[16px] w-[16px]"
+          fill={i < value ? "var(--color-clay)" : "none"}
+          stroke="var(--color-clay)"
           strokeWidth="1.4"
           aria-hidden="true"
         >
@@ -22,12 +22,12 @@ function Stars({ value }: { value: number }) {
 
 export function ReviewCard({ review }: { review: Review }) {
   return (
-    <figure className="flex h-full flex-col border border-paper-frame bg-paper-form p-[34px]">
+    <figure className="flex h-full flex-col rounded-[6px] border border-line bg-surface p-[28px]">
       <Stars value={review.stjerner} />
-      <blockquote className="mt-[21px] flex-1 font-display text-[21px] leading-snug text-ink">
+      <blockquote className="mt-[16px] flex-1 text-[16px] leading-relaxed text-ink">
         “{review.citat}”
       </blockquote>
-      <figcaption className="mt-[21px] font-mono text-[13px] uppercase tracking-[0.1em] text-text-muted">
+      <figcaption className="mt-[20px] text-[13px] text-muted">
         {review.navn} · {review.dato}
       </figcaption>
     </figure>
