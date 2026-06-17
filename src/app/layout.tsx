@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Archivo } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { Analytics } from "../components/Analytics";
 import { CookieBanner } from "../components/CookieBanner";
@@ -22,6 +23,14 @@ const inter = Inter({
   weight: ["400", "500", "600"],
   variable: "--font-inter",
   subsets: ["latin"],
+  display: "swap",
+});
+
+// Ciguatera — wordmark/logo. OBS: ingen licensfil fulgte med — bekræft licens
+// til kommerciel brug før produktion. Indlæst lokalt til preview.
+const ciguatera = localFont({
+  src: "../fonts/ciguatera.otf",
+  variable: "--font-logo",
   display: "swap",
 });
 
@@ -95,7 +104,7 @@ export default function RootLayout({
   return (
     <html lang="da">
       <body
-        className={`${archivo.variable} ${inter.variable} antialiased`}
+        className={`${archivo.variable} ${inter.variable} ${ciguatera.variable} antialiased`}
       >
         <div className="flex min-h-screen flex-col bg-bg">
           <Header />

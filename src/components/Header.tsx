@@ -43,7 +43,7 @@ export function Header() {
   return (
     <header className="sticky top-0 z-30 border-b border-line bg-bg/95 backdrop-blur-sm">
       <div className="mx-auto flex w-full max-w-none items-center justify-between px-[20px] py-[16px] md:px-[32px] lg:px-[48px] xl:px-[72px]">
-        <Link href="/" className="font-display text-[26px] text-ink md:text-[30px]">
+        <Link href="/" className="font-logo text-[32px] text-ink md:text-[38px]">
           {SITE.name}
         </Link>
 

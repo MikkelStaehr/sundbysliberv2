@@ -61,6 +61,13 @@ body {
   }
 }
 
+/* Wordmark/logo — ciguatera (falder tilbage til display-fonten hvis den ikke loader) */
+.font-logo {
+  font-family: var(--font-logo), var(--font-display);
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
 /* Archivo — display: store overskrifter, wordmark. Stram og fed. */
 .font-display {
   font-family: var(--font-display);
@@ -106,4 +113,15 @@ body {
 
 .animate-\[fadeInUp_0\.3s_ease-out\] {
   animation: fadeInUp 0.3s ease-out;
+}
+
+/* Uendelig anmeldelses-karrusel: sporet indeholder to identiske sæt kort,
+   og translateX(-50%) flytter præcis ét sæt — så løkken er sømløs. */
+@keyframes review-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }

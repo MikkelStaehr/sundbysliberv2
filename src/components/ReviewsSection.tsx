@@ -1,6 +1,6 @@
-import { REVIEWS, GOOGLE_REVIEW_URL, reviewStats } from "@/data/reviews";
+import { REVIEWS, REVIEWS_WITH_TEXT, GOOGLE_REVIEW_URL, reviewStats } from "@/data/reviews";
 import { SITE } from "@/lib/site";
-import { ReviewCard } from "./ReviewCard";
+import { ReviewsCarousel } from "./ReviewsCarousel";
 
 export function ReviewsSection() {
   const { count, average } = reviewStats();
@@ -18,7 +18,7 @@ export function ReviewsSection() {
       bestRating: 5,
       worstRating: 1,
     },
-    review: REVIEWS.map((r) => ({
+    review: REVIEWS_WITH_TEXT.map((r) => ({
       "@type": "Review",
       author: { "@type": "Person", name: r.navn },
       reviewRating: { "@type": "Rating", ratingValue: r.stjerner, bestRating: 5, worstRating: 1 },
@@ -32,11 +32,7 @@ export function ReviewsSection() {
         <p className="kicker text-accent">Anmeldelser</p>
         <h2 className="mt-[10px] font-display text-[36px] text-ink md:text-[52px]">Hvad kunderne siger</h2>
 
-        <div className="mt-[32px] grid gap-[28px] md:grid-cols-3">
-          {REVIEWS.map((review, i) => (
-            <ReviewCard key={i} review={review} />
-          ))}
-        </div>
+        <ReviewsCarousel reviews={REVIEWS_WITH_TEXT} />
 
         <a
           href={GOOGLE_REVIEW_URL}
