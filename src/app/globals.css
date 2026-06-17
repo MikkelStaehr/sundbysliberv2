@@ -1,31 +1,95 @@
 @import "tailwindcss";
 
+/*
+  Sundby Sliberi — designsystem
+  Aesthetic: editorial magasin × industrielt værksted.
+  Varme papirtoner, flade flader. Ingen gradients, ingen shadows (kun hover/focus).
+*/
+
+@theme {
+  /* Farver — mørke */
+  --color-ink: #211e1a; /* mørkeste — hero, citat-sektion */
+  --color-ink-soft: #2a2723; /* tekst, mørke bjælker */
+  --color-ink-footer: #1a1714; /* footer */
+
+  /* Farver — papir */
+  --color-paper: #f2ece0; /* primær baggrund */
+  --color-paper-alt: #e9e1d2; /* priser-sektion */
+  --color-paper-form: #fbf7ef; /* formular-kort */
+  --color-paper-frame: #ded5c5; /* yderkant */
+
+  /* Accenter */
+  --color-rust: #a8461f; /* primær accent, knapper */
+  --color-rust-light: #c9602b;
+  --color-gold: #d9a441; /* gnist-accent, tal, labels */
+
+  /* Tekst */
+  --color-text-muted: #6b6457;
+  --color-text-muted-dark: #9c9384; /* på mørk bg */
+  --color-cream: #f4efe6; /* lys tekst på mørk bg */
+  --color-cream-soft: #c9c0b0;
+
+  /* Fonte */
+  --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, "SFMono-Regular", monospace;
+  --font-sans: var(--font-inter), system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /*
+    Type-skala — gylden ratio: 10 · 13 · 16 · 21 · 34 · 55 · 89 px.
+    Skrives eksplicit som arbitrary-værdier i komponenterne (fx text-[55px]),
+    så Tailwinds default text-* skala IKKE overskrives (ville ellers ødelægge
+    sider der bruger text-2xl m.fl.).
+
+    Spacing — Fibonacci: 8 · 13 · 21 · 34 · 55 · 89 · 144 px.
+    Skrives ligeledes eksplicit, fx p-[34px], gap-[21px].
+  */
+}
+
 :root {
-  --background: #F9F7F3;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    /* Bevar samme lyse baggrund i dark mode for at undgå sorte kanter på simple hosts */
-    --background: #F9F7F3;
-    --foreground: #171717;
-  }
+  --background: var(--color-paper);
+  --foreground: var(--color-ink-soft);
 }
 
 html,
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-geist-sans), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    sans-serif;
+  background: var(--color-paper);
+  color: var(--color-ink-soft);
+  font-family: var(--font-sans);
+  /* Mindst 16px brødtekst pga. ældre målgruppe */
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Behold lys baggrund også i dark mode — undgår sorte kanter på simple hosts */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: var(--color-paper);
+    --foreground: var(--color-ink-soft);
+  }
+}
+
+/* Display-overskrifter får Fraunces med let optisk indstilling */
+.font-display {
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+  letter-spacing: -0.01em;
+}
+
+/* Tekniske labels/kicker i mono */
+.kicker {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+/* Synligt fokus for tilgængelighed (WCAG) */
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--color-rust);
+  outline-offset: 2px;
 }
 
 @keyframes fadeInUp {

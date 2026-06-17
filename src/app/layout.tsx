@@ -1,21 +1,30 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Fraunces, JetBrains_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "../components/Analytics";
 import { CookieBanner } from "../components/CookieBanner";
 import { Suspense } from "react";
-import { HeaderNav } from "../components/HeaderNav";
+import { Header } from "../components/Header";
+import { Footer } from "../components/Footer";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { SITE } from "../lib/site";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
   subsets: ["latin"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains",
   subsets: ["latin"],
+  display: "swap",
+});
+
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -53,82 +62,47 @@ export default function RootLayout({
   const localBusinessJsonLd = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "name": "Sundby Sliberi",
-    "image": "https://sundby-sliberi.dk/images/hero_rooster_icon.png",
-    "@id": "https://sundby-sliberi.dk/",
-    "url": "https://sundby-sliberi.dk/",
-    "telephone": "+45 31386119",
-    "address": {
+    name: SITE.name,
+    image: `${SITE.url}/images/hero_rooster_icon.png`,
+    "@id": `${SITE.url}/`,
+    url: `${SITE.url}/`,
+    telephone: "+4531386119",
+    priceRange: "$$",
+    vatID: `DK${SITE.cvr}`,
+    address: {
       "@type": "PostalAddress",
-      "streetAddress": "Hamborgskovvej 11",
-      "addressLocality": "Sundby",
-      "postalCode": "4800",
-      "addressRegion": "Region Sjælland",
-      "addressCountry": "DK"
+      streetAddress: "Hamborgskovvej 11",
+      addressLocality: "Sundby",
+      postalCode: "4800",
+      addressRegion: "Region Sjælland",
+      addressCountry: "DK",
     },
-    "geo": {
+    geo: {
       "@type": "GeoCoordinates",
-      "latitude": 54.764,
-      "longitude": 11.866
+      latitude: 54.764,
+      longitude: 11.866,
     },
-    "areaServed": {
+    openingHoursSpecification: {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      opens: "09:00",
+      closes: "17:00",
+    },
+    areaServed: {
       "@type": "AdministrativeArea",
-      "name": "Nykøbing Falster og omegn"
-    }
+      name: "Nykøbing Falster og omegn",
+    },
   };
 
   return (
     <html lang="da">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${fraunces.variable} ${jetbrainsMono.variable} ${inter.variable} antialiased`}
       >
-        <div className="min-h-screen flex flex-col bg-[#F9F7F3]">
-          <HeaderNav />
+        <div className="flex min-h-screen flex-col bg-paper">
+          <Header />
           <div className="flex-1">{children}</div>
-          <footer className="border-t border-neutral-200 bg-white text-neutral-700 text-sm">
-            <div className="w-full max-w-[90rem] mx-auto px-8 py-6 flex flex-col gap-4 md:flex-row md:items-start md:justify-between md:gap-8">
-              <div className="flex flex-col text-neutral-700 md:flex-1">
-                <span className="font-semibold">Sundby Sliberi</span>
-                <span>CVR: 46034759</span>
-                <span>Hamborgskovvej 11</span>
-                <span>4800, Sundby</span>
-                <span>Nykøbing Falster</span>
-              </div>
-              <div className="flex flex-col items-start sm:items-end gap-1 text-neutral-700 md:flex-1">
-                <span className="uppercase text-xs tracking-wide text-neutral-500">Kontakt</span>
-                <a
-                  href="mailto:info@sundby-sliberi.dk"
-                  className="underline-offset-2 hover:underline"
-                >
-                  info@sundby-sliberi.dk
-                </a>
-                <a
-                  href="tel:+4531386119"
-                  className="underline-offset-2 hover:underline"
-                >
-                  31 38 61 19
-                </a>
-                <Link
-                  href="/privatliv"
-                  className="mt-2 text-xs text-neutral-600 underline-offset-2 hover:underline"
-                >
-                  Privatliv & cookies
-                </Link>
-              </div>
-              <div className="w-full md:w-auto md:max-w-xs lg:max-w-sm h-40 md:h-44 rounded-xl border border-neutral-200 overflow-hidden shadow-sm">
-                <iframe
-                  title="Sundby Sliberi på Google Maps"
-                  src="https://www.google.com/maps?q=Hamborgskovvej+11,+4800+Nyk%C3%B8bing+Falster&output=embed"
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  allowFullScreen
-                />
-              </div>
-            </div>
-          </footer>
+          <Footer />
         </div>
         <Suspense fallback={null}>
           <Analytics />
