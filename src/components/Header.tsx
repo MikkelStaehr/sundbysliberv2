@@ -42,7 +42,7 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-30 border-b border-line bg-bg/95 backdrop-blur-sm">
-      <div className="mx-auto flex w-full max-w-[1200px] items-center justify-between px-[20px] py-[16px] md:px-[32px]">
+      <div className="mx-auto flex w-full max-w-none items-center justify-between px-[20px] py-[16px] md:px-[32px] lg:px-[48px] xl:px-[72px]">
         <Link href="/" className="font-display text-[26px] text-ink md:text-[30px]">
           {SITE.name}
         </Link>
@@ -84,7 +84,7 @@ export function Header() {
       {/* Mobile panel */}
       {open && (
         <div className="border-t border-line bg-bg md:hidden">
-          <nav className="mx-auto flex w-full max-w-[1200px] flex-col gap-[4px] px-[20px] py-[16px]">
+          <nav className="mx-auto flex w-full max-w-none flex-col gap-[4px] px-[20px] py-[16px]">
             {NAV.map((item) => (
               <Link
                 key={item.href}

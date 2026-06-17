@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function Bestil() {
   return (
-    <main className="mx-auto w-full max-w-[1200px] px-[20px] py-[48px] md:px-[32px] md:py-[64px]">
+    <main className="mx-auto w-full max-w-none px-[20px] py-[48px] md:px-[32px] lg:px-[48px] xl:px-[72px] md:py-[64px]">
       <p className="kicker text-accent">Webshop</p>
       <h1 className="mt-[10px] font-display text-[44px] text-ink md:text-[64px]">Vælg dine ydelser</h1>
       <p className="mt-[12px] max-w-[60ch] text-[15px] leading-relaxed text-muted">

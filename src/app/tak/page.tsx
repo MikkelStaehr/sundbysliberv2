@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function TakSide() {
   return (
-    <main className="mx-auto w-full max-w-[760px] px-[20px] py-[64px] md:px-[32px] md:py-[96px]">
+    <main className="mx-auto w-full max-w-[760px] px-[20px] py-[64px] md:px-[32px] lg:px-[48px] xl:px-[72px] md:py-[96px]">
       <div className="rounded-[16px] border border-line bg-surface p-[32px] md:p-[48px]">
         <h1 className="font-display text-[44px] text-ink md:text-[56px]">Tak for din bestilling</h1>
         <p className="mt-[16px] text-[16px] leading-relaxed text-ink">

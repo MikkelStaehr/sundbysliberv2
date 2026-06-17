@@ -4,7 +4,7 @@ import { SITE } from "@/lib/site";
 export function Footer() {
   return (
     <footer className="border-t border-line bg-panel text-ink">
-      <div className="mx-auto w-full max-w-[1200px] px-[20px] py-[48px] md:px-[32px] md:py-[72px]">
+      <div className="mx-auto w-full max-w-none px-[20px] py-[48px] md:px-[32px] lg:px-[48px] xl:px-[72px] md:py-[72px]">
         <p className="font-display text-[44px] leading-none text-ink md:text-[72px]">
           Få dem skarpe igen.
         </p>

@@ -21,7 +21,7 @@ export default function Home() {
       <Hero />
 
       {/* Sådan foregår det */}
-      <section className="mx-auto w-full max-w-[1200px] px-[16px] py-[64px] md:px-[24px] md:py-[96px]">
+      <section className="mx-auto w-full max-w-none px-[16px] py-[64px] md:px-[24px] lg:px-[44px] xl:px-[72px] md:py-[96px]">
         <p className="kicker text-accent">Sådan foregår det</p>
         <h2 className="mt-[12px] max-w-[16ch] font-display text-[36px] uppercase text-ink md:text-[56px]">
           Tre skridt fra sløv til skarp
@@ -40,7 +40,7 @@ export default function Home() {
       <ReviewsSection />
 
       {/* Erhverv-teaser — mørkt bento-panel for kontrast */}
-      <section className="mx-auto w-full max-w-[1200px] px-[16px] py-[16px] md:px-[24px]">
+      <section className="mx-auto w-full max-w-none px-[16px] py-[16px] md:px-[24px] lg:px-[44px] xl:px-[72px]">
         <div className="rounded-[24px] bg-ink px-[28px] py-[48px] md:px-[56px] md:py-[72px]">
           <h2 className="max-w-[22ch] font-display text-[32px] uppercase text-white md:text-[48px]">
             Dine kokke skal ikke bruge tid på sløve knive

@@ -15,7 +15,7 @@ const TILES = [
 
 export function Hero() {
   return (
-    <section className="mx-auto w-full max-w-[1200px] px-[16px] pt-[16px] md:px-[24px] md:pt-[24px]">
+    <section className="mx-auto w-full max-w-none px-[16px] pt-[16px] md:px-[24px] lg:px-[44px] xl:px-[72px] md:pt-[24px]">
       <div className="grid gap-[16px] lg:grid-cols-2">
         {/* Venstre kolonne */}
         <div className="flex flex-col gap-[16px]">
@@ -24,7 +24,7 @@ export function Hero() {
               <p className="kicker text-accent">Knivslibning · Nykøbing F.</p>
               <span aria-hidden="true" className="h-[1px] flex-1 bg-line" />
             </div>
-            <h1 className="mt-[20px] font-display text-[56px] uppercase text-ink md:text-[88px]">
+            <h1 className="mt-[20px] font-display text-[56px] uppercase text-ink md:text-[88px] xl:text-[104px]">
               Fra sløv
               <br />
               til skarp

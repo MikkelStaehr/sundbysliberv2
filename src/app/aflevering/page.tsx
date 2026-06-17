@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function Aflevering() {
   return (
-    <main className="mx-auto w-full max-w-[1200px] px-[20px] py-[48px] md:px-[32px] md:py-[64px]">
+    <main className="mx-auto w-full max-w-none px-[20px] py-[48px] md:px-[32px] lg:px-[48px] xl:px-[72px] md:py-[64px]">
       <Link
         href="/bestil"
         className="kicker text-[12px] text-muted transition-colors hover:text-ink"

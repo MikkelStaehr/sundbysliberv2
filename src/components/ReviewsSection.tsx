@@ -27,8 +27,8 @@ export function ReviewsSection() {
   };
 
   return (
-    <section className="bg-bg px-[20px] py-[48px] md:px-[32px] md:py-[72px]">
-      <div className="mx-auto w-full max-w-[1200px]">
+    <section className="bg-bg px-[20px] py-[48px] md:px-[32px] lg:px-[48px] xl:px-[72px] md:py-[72px]">
+      <div className="mx-auto w-full max-w-none">
         <p className="kicker text-accent">Anmeldelser</p>
         <h2 className="mt-[10px] font-display text-[36px] text-ink md:text-[52px]">Hvad kunderne siger</h2>
 

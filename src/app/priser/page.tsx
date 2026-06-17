@@ -20,7 +20,7 @@ const ORDER: ServiceCategory[] = ["knive", "vaerktoej", "have"];
 
 export default function Priser() {
   return (
-    <main className="mx-auto w-full max-w-[1200px] px-[20px] py-[48px] md:px-[32px] md:py-[64px]">
+    <main className="mx-auto w-full max-w-none px-[20px] py-[48px] md:px-[32px] lg:px-[48px] xl:px-[72px] md:py-[64px]">
       <p className="kicker text-accent">Priser</p>
       <h1 className="mt-[10px] font-display text-[44px] text-ink md:text-[64px]">Hvad koster det</h1>
       <p className="mt-[12px] max-w-[60ch] text-[15px] leading-relaxed text-muted">
