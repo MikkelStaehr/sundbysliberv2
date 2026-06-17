@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image, { type StaticImageData } from "next/image";
 
 /*
   Foto-panel til bento-heroen. Uden `src` vises en ren stålgrå flade med en
@@ -13,7 +13,7 @@ export function ImagePanel({
   children,
   priority,
 }: {
-  src?: string;
+  src?: string | StaticImageData;
   alt?: string;
   className?: string;
   rounded?: string;

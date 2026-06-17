@@ -1,15 +1,26 @@
 import Link from "next/link";
+import type { StaticImageData } from "next/image";
 import { SITE } from "@/lib/site";
 import { ImagePanel } from "./ImagePanel";
+import japKnives from "@/img/hero/JapKnifes.jpg";
 
 /*
   Bento-hero. Venstre: stor overskriftspanel + to kategori-tiles.
   Højre: foto-panel med rund "BESTIL NU"-knap og pille-genveje.
-  Foto-paneler er pladsholdere nu — giv ImagePanel en `src` når fotos er klar.
+  Tiles/paneler uden foto viser en ren pladsholder — giv `image`/`src` når
+  fotos er klar.
 */
 
-const TILES = [
-  { label: "Knive", tag: "#KØKKEN", href: "/bestil" },
+type Tile = { label: string; tag: string; href: string; image?: StaticImageData; alt?: string };
+
+const TILES: Tile[] = [
+  {
+    label: "Knive",
+    tag: "#KØKKEN",
+    href: "/bestil",
+    image: japKnives,
+    alt: "Japanske knive slebet hos Sundby Sliberi",
+  },
   { label: "Værktøj", tag: "#VÆRKSTED", href: "/bestil" },
 ];
 
@@ -37,18 +48,37 @@ export function Hero() {
 
           {/* To kategori-tiles */}
           <div className="grid grid-cols-2 gap-[16px]">
-            {TILES.map((tile) => (
-              <Link key={tile.label} href={tile.href} className="group relative">
-                <ImagePanel rounded="rounded-[16px]" className="aspect-[4/5] sm:aspect-square lg:aspect-[4/3]">
-                  <div className="absolute inset-0 flex flex-col justify-end p-[20px]">
-                    <span className="product-name text-muted">{tile.tag}</span>
-                    <span className="font-display text-[28px] uppercase text-ink transition-colors group-hover:text-accent md:text-[34px]">
-                      {tile.label}
-                    </span>
-                  </div>
-                </ImagePanel>
-              </Link>
-            ))}
+            {TILES.map((tile) => {
+              const hasImg = Boolean(tile.image);
+              return (
+                <Link key={tile.label} href={tile.href} className="group relative">
+                  <ImagePanel
+                    src={tile.image}
+                    alt={tile.alt ?? ""}
+                    rounded="rounded-[16px]"
+                    className="aspect-[4/5] sm:aspect-square lg:aspect-[4/3]"
+                  >
+                    {/* Læsbarheds-scrim når der er foto */}
+                    {hasImg && (
+                      <div
+                        aria-hidden="true"
+                        className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/65 to-transparent"
+                      />
+                    )}
+                    <div className="absolute inset-0 flex flex-col justify-end p-[20px]">
+                      <span className={`product-name ${hasImg ? "text-white/80" : "text-muted"}`}>{tile.tag}</span>
+                      <span
+                        className={`font-display text-[28px] uppercase transition-colors group-hover:text-accent md:text-[34px] ${
+                          hasImg ? "text-white" : "text-ink"
+                        }`}
+                      >
+                        {tile.label}
+                      </span>
+                    </div>
+                  </ImagePanel>
+                </Link>
+              );
+            })}
           </div>
         </div>
 
