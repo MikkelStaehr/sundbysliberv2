@@ -1,9 +1,10 @@
 import Link from "next/link";
-import type { StaticImageData } from "next/image";
+import Image, { type StaticImageData } from "next/image";
 import { SITE } from "@/lib/site";
 import { ImagePanel } from "./ImagePanel";
 import japKnives from "@/img/hero/JapKnifes.jpg";
-import workshop from "@/img/hero/Workshop.jpg";
+import vaerktoejPhoto from "@/img/hero/elizabeth-french-wmObLzO2g-s-unsplash.jpg";
+import ctaShop from "@/img/hero/CTAShop.jpg";
 
 /*
   Bento-hero — bløde, afrundede paneler der nester ind i hinanden.
@@ -25,7 +26,7 @@ const TILES: Tile[] = [
   {
     label: "Værktøj",
     href: "/bestil",
-    image: workshop,
+    image: vaerktoejPhoto,
     alt: "Værktøj på værkstedet hos Sundby Sliberi",
   },
 ];
@@ -82,18 +83,21 @@ export function Hero() {
         {/* Højre: oliven CTA-panel. Container er IKKE klippet, så den runde
             CTA kan stikke ud i sømmen og carve et konkavt hak i begge paneler. */}
         <div className="relative min-h-[460px] lg:min-h-full">
-          {/* Selve panelet (klippet, så silhuetten holdes inde) */}
-          <div className="absolute inset-0 overflow-hidden rounded-[32px] bg-olive">
-            <svg
-              viewBox="0 0 200 200"
-              className="pointer-events-none absolute -bottom-[10px] -left-[16px] h-3/4 w-auto opacity-15"
+          {/* Selve panelet — foto (klippet til afrundet form) */}
+          <div className="absolute inset-0 overflow-hidden rounded-[32px] bg-panel-2">
+            <Image
+              src={ctaShop}
+              alt="Slibning hos Sundby Sliberi"
+              fill
+              priority
+              className="object-cover"
+              sizes="(max-width: 1024px) 100vw, 45vw"
+            />
+            {/* Let scrim så badge/piller er læsbare oven på fotoet */}
+            <div
               aria-hidden="true"
-            >
-              <path
-                d="M30 160c40-12 70-34 104-78 12-15 26-30 46-38l10 11c-12 18-26 34-50 60C190 100 80 150 40 168l-10-8Z"
-                fill="#3f4a32"
-              />
-            </svg>
+              className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-black/20"
+            />
           </div>
 
           {/* Anmeldelses-badge nestet i et hjørne (halo carver hakket) */}
