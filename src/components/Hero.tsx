@@ -12,7 +12,7 @@ import workshop from "@/img/hero/Workshop.jpg";
   fotos er klar.
 */
 
-type Tile = { label: string; href: string; image?: StaticImageData; alt?: string };
+type Tile = { label: string; href: string; image?: StaticImageData; alt?: string; grain?: boolean };
 
 const TILES: Tile[] = [
   {
@@ -20,6 +20,7 @@ const TILES: Tile[] = [
     href: "/bestil",
     image: japKnives,
     alt: "Japanske knive slebet hos Sundby Sliberi",
+    grain: true, // JapKnifes er et rent foto — læg film-grain på så den matcher Workshop
   },
   {
     label: "Værktøj",
@@ -60,6 +61,7 @@ export function Hero() {
                   <ImagePanel
                     src={tile.image}
                     alt={tile.alt ?? ""}
+                    grain={tile.grain}
                     rounded="rounded-[16px]"
                     className="aspect-[4/5] sm:aspect-square lg:aspect-[4/3]"
                   >

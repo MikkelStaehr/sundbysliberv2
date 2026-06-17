@@ -5,6 +5,10 @@ import Image, { type StaticImageData } from "next/image";
   diskret kniv-silhuet — designet så et rigtigt foto bare kan droppes ind:
   giv `src` (fx "/images/hero-slibning.jpg") senere, så overtager fotoet fladen.
 */
+// Fin film-grain som SVG-støj (feTurbulence) — ingen ekstra asset.
+const GRAIN_URL =
+  "url(\"data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='120'%20height='120'%3E%3Cfilter%20id='n'%3E%3CfeTurbulence%20type='fractalNoise'%20baseFrequency='0.9'%20numOctaves='2'%20stitchTiles='stitch'/%3E%3C/filter%3E%3Crect%20width='100%25'%20height='100%25'%20filter='url(%23n)'/%3E%3C/svg%3E\")";
+
 export function ImagePanel({
   src,
   alt = "",
@@ -12,6 +16,7 @@ export function ImagePanel({
   rounded = "rounded-[24px]",
   children,
   priority,
+  grain = false,
 }: {
   src?: string | StaticImageData;
   alt?: string;
@@ -19,6 +24,7 @@ export function ImagePanel({
   rounded?: string;
   children?: React.ReactNode;
   priority?: boolean;
+  grain?: boolean;
 }) {
   return (
     <div className={`relative overflow-hidden bg-panel-2 ${rounded} ${className}`}>
@@ -34,6 +40,13 @@ export function ImagePanel({
             <rect x="112" y="20" width="30" height="12" rx="3" transform="rotate(40 112 20)" fill="var(--color-placeholder)" />
           </svg>
         </div>
+      )}
+      {src && grain && (
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 opacity-[0.22] mix-blend-overlay"
+          style={{ backgroundImage: GRAIN_URL, backgroundSize: "140px 140px" }}
+        />
       )}
       {children}
     </div>
