@@ -33,6 +33,7 @@ export function ImagePanel({
   children,
   priority,
   grain = false,
+  style,
 }: {
   src?: string | StaticImageData;
   alt?: string;
@@ -41,9 +42,10 @@ export function ImagePanel({
   children?: React.ReactNode;
   priority?: boolean;
   grain?: boolean;
+  style?: React.CSSProperties;
 }) {
   return (
-    <div className={`relative overflow-hidden bg-panel-2 ${rounded} ${className}`}>
+    <div className={`relative overflow-hidden bg-panel-2 ${rounded} ${className}`} style={style}>
       {src ? (
         <Image src={src} alt={alt} fill priority={priority} className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
       ) : (

@@ -8,17 +8,25 @@
 */
 
 @theme {
-  /* Farver — steel blue */
-  --color-bg: #ffffff; /* sidens rene hvide baggrund */
-  --color-surface: #ffffff; /* hvide kort */
-  --color-panel: #f1f3f5; /* køligt lysegrå bento-paneler / bløde sektioner */
-  --color-panel-2: #e7eaee; /* lidt dybere — tiles, placeholder-flader */
-  --color-ink: #15171a; /* næsten-sort tekst */
-  --color-muted: #6b7280; /* sekundær tekst */
-  --color-line: rgba(21, 23, 26, 0.1); /* hårfine kanter */
-  --color-accent: #2e5bff; /* stålblå — eneste farveaccent */
-  --color-accent-dark: #1e47d6; /* hover */
-  --color-placeholder: #c9ced6; /* produkt-silhuet indtil rigtige fotos */
+  /* Farver — støvet pastel: oliven & abrikos */
+  --color-bg: #f4f2ec; /* varm creme-grå baggrund */
+  --color-surface: #ffffff; /* hvide kort/piller */
+  --color-panel: #e7e5dd; /* lys grå bento-panel / bløde sektioner */
+  --color-panel-2: #dcdad0; /* lidt dybere — tiles, placeholder-flader */
+  --color-ink: #33352f; /* oliven næsten-sort tekst */
+  --color-muted: #6b6960; /* sekundær tekst (AA på creme) */
+  --color-line: rgba(51, 53, 47, 0.12); /* hårfine kanter */
+
+  /* Accent: dyb oliven til knapper/links (WCAG-kontrast med hvid tekst) */
+  --color-accent: #5e6a4c;
+  --color-accent-dark: #4b5540; /* hover */
+
+  /* Pastel-flader (lyse — bruges som fyld, ikke til hvid tekst) */
+  --color-olive: #8b9576; /* oliven-grøn flade */
+  --color-apricot: #e0a982; /* abrikos-orange flade (dark tekst ovenpå) */
+  --color-apricot-deep: #c2794a; /* dyb abrikos til evt. tekst/ikon */
+
+  --color-placeholder: #c9c6ba; /* produkt-silhuet indtil rigtige fotos */
 
   /* Radius */
   --radius-bento: 24px;
