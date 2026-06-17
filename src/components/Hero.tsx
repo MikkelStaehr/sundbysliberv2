@@ -6,25 +6,13 @@ import japKnives from "@/img/hero/JapKnifes.jpg";
 import workshop from "@/img/hero/Workshop.jpg";
 
 /*
-  Bento-hero — asymmetrisk med diagonale (vinklede) kanter via clip-path.
-  Tre flader: grå overskriftspanel, oliven CTA-panel, og to foto-tiles.
-  Abrikos bruges som pop-accent på den runde knap.
+  Bento-hero — bløde, afrundede paneler der nester ind i hinanden.
+  "Ind og ud af hinanden" laves med cirkulære elementer, der lægger sig i
+  kanten af et panel omgivet af en baggrundsfarvet "halo" (ringen carver et
+  konkavt hak, så panelet ser ud til at bue rundt om cirklen).
 */
 
-// Diagonale clip-paths (skæve former i stedet for ens afrundede firkanter)
-const CLIP_HEADLINE = "polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - 44px))";
-const CLIP_OLIVE = "polygon(0 44px, 100% 0, 100% 100%, 0 100%)";
-const CLIP_TILE_L = "polygon(0 0, 100% 28px, 100% 100%, 0 100%)";
-const CLIP_TILE_R = "polygon(0 28px, 100% 0, 100% 100%, 0 100%)";
-
-type Tile = {
-  label: string;
-  href: string;
-  image?: StaticImageData;
-  alt?: string;
-  grain?: boolean;
-  clip: string;
-};
+type Tile = { label: string; href: string; image?: StaticImageData; alt?: string; grain?: boolean };
 
 const TILES: Tile[] = [
   {
@@ -32,29 +20,24 @@ const TILES: Tile[] = [
     href: "/bestil",
     image: japKnives,
     alt: "Japanske knive slebet hos Sundby Sliberi",
-    grain: true, // rent foto — film-grain så den matcher Workshop
-    clip: CLIP_TILE_L,
+    grain: true,
   },
   {
     label: "Værktøj",
     href: "/bestil",
     image: workshop,
     alt: "Værktøj på værkstedet hos Sundby Sliberi",
-    clip: CLIP_TILE_R,
   },
 ];
 
 export function Hero() {
   return (
     <section className="mx-auto w-full max-w-none px-[16px] pt-[16px] md:px-[24px] lg:px-[44px] xl:px-[72px] md:pt-[24px]">
-      <div className="grid gap-[16px] lg:grid-cols-[1.12fr_0.88fr]">
+      <div className="relative grid gap-[16px] lg:grid-cols-[1.1fr_0.9fr]">
         {/* Venstre kolonne */}
         <div className="flex flex-col gap-[16px]">
-          {/* Overskriftspanel — grå, diagonal bund */}
-          <div
-            className="bg-panel px-[28px] py-[40px] pb-[64px] md:px-[44px] md:py-[56px] md:pb-[80px]"
-            style={{ clipPath: CLIP_HEADLINE }}
-          >
+          {/* Overskriftspanel */}
+          <div className="rounded-[32px] bg-panel px-[28px] py-[40px] md:px-[48px] md:py-[60px]">
             <div className="flex items-center gap-[12px]">
               <p className="kicker text-accent">Knivslibning · Nykøbing F.</p>
               <span aria-hidden="true" className="h-[1px] flex-1 bg-line" />
@@ -70,7 +53,7 @@ export function Hero() {
             </p>
           </div>
 
-          {/* To kategori-tiles med modsatrettede diagonaler */}
+          {/* To foto-tiles */}
           <div className="grid grid-cols-2 gap-[16px]">
             {TILES.map((tile) => (
               <Link key={tile.label} href={tile.href} className="group relative">
@@ -78,8 +61,7 @@ export function Hero() {
                   src={tile.image}
                   alt={tile.alt ?? ""}
                   grain={tile.grain}
-                  rounded="rounded-none"
-                  style={{ clipPath: tile.clip }}
+                  rounded="rounded-[24px]"
                   className="aspect-[4/5] sm:aspect-square lg:aspect-[4/3]"
                 >
                   <div
@@ -97,31 +79,30 @@ export function Hero() {
           </div>
         </div>
 
-        {/* Højre: oliven CTA-panel, diagonal top */}
-        <div
-          className="relative min-h-[440px] overflow-hidden bg-olive lg:min-h-full"
-          style={{ clipPath: CLIP_OLIVE }}
-        >
-          {/* Stor, tonal kniv-silhuet for tekstur */}
-          <svg
-            viewBox="0 0 200 200"
-            className="pointer-events-none absolute -bottom-[10px] -left-[20px] h-3/4 w-auto opacity-15"
-            aria-hidden="true"
-          >
-            <path
-              d="M30 160c40-12 70-34 104-78 12-15 26-30 46-38l10 11c-12 18-26 34-50 60C190 100 80 150 40 168l-10-8Z"
-              fill="#3f4a32"
-            />
-          </svg>
+        {/* Højre: oliven CTA-panel. Container er IKKE klippet, så den runde
+            CTA kan stikke ud i sømmen og carve et konkavt hak i begge paneler. */}
+        <div className="relative min-h-[460px] lg:min-h-full">
+          {/* Selve panelet (klippet, så silhuetten holdes inde) */}
+          <div className="absolute inset-0 overflow-hidden rounded-[32px] bg-olive">
+            <svg
+              viewBox="0 0 200 200"
+              className="pointer-events-none absolute -bottom-[10px] -left-[16px] h-3/4 w-auto opacity-15"
+              aria-hidden="true"
+            >
+              <path
+                d="M30 160c40-12 70-34 104-78 12-15 26-30 46-38l10 11c-12 18-26 34-50 60C190 100 80 150 40 168l-10-8Z"
+                fill="#3f4a32"
+              />
+            </svg>
+          </div>
 
-          {/* Rund primær-CTA — abrikos pop */}
-          <Link
-            href="/bestil"
-            className="absolute right-[20px] top-[64px] inline-flex h-[108px] w-[108px] flex-col items-center justify-center rounded-full bg-apricot text-center text-ink transition-colors hover:bg-apricot-deep hover:text-white md:h-[128px] md:w-[128px]"
-          >
-            <span className="product-name text-[11px] leading-tight">Bestil</span>
-            <span className="product-name text-[11px] leading-tight">nu →</span>
-          </Link>
+          {/* Anmeldelses-badge nestet i et hjørne (halo carver hakket) */}
+          <div className="absolute left-[16px] top-[16px] rounded-full bg-bg p-[6px] lg:left-auto lg:right-[20px]">
+            <div className="flex h-[72px] w-[72px] flex-col items-center justify-center rounded-full bg-surface text-center md:h-[84px] md:w-[84px]">
+              <span className="font-display text-[20px] text-ink md:text-[24px]">5,0</span>
+              <span className="product-name text-[9px] text-muted">★ Google</span>
+            </div>
+          </div>
 
           {/* Pille-genveje nederst */}
           <div className="absolute inset-x-[20px] bottom-[20px] flex flex-wrap gap-[10px]">
@@ -137,6 +118,18 @@ export function Hero() {
             >
               Ring {SITE.phoneDisplay}
             </a>
+          </div>
+
+          {/* Rund "Bestil nu"-CTA: nester i sømmen mellem panelerne på desktop
+              (stikker ud til venstre), pænt i hjørnet på mobil. */}
+          <div className="absolute right-[16px] top-[16px] rounded-full bg-bg p-[8px] lg:right-auto lg:left-[-58px] lg:top-1/2 lg:-translate-y-1/2">
+            <Link
+              href="/bestil"
+              className="flex h-[104px] w-[104px] flex-col items-center justify-center rounded-full bg-apricot text-center text-ink transition-colors hover:bg-apricot-deep hover:text-white md:h-[124px] md:w-[124px]"
+            >
+              <span className="product-name text-[11px] leading-tight">Bestil</span>
+              <span className="product-name text-[11px] leading-tight">nu →</span>
+            </Link>
           </div>
         </div>
       </div>
