@@ -5,9 +5,25 @@ import Image, { type StaticImageData } from "next/image";
   diskret kniv-silhuet — designet så et rigtigt foto bare kan droppes ind:
   giv `src` (fx "/images/hero-slibning.jpg") senere, så overtager fotoet fladen.
 */
-// Fin film-grain som SVG-støj (feTurbulence) — ingen ekstra asset.
-const GRAIN_URL =
-  "url(\"data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='120'%20height='120'%3E%3Cfilter%20id='n'%3E%3CfeTurbulence%20type='fractalNoise'%20baseFrequency='0.9'%20numOctaves='2'%20stitchTiles='stitch'/%3E%3C/filter%3E%3Crect%20width='100%25'%20height='100%25'%20filter='url(%23n)'/%3E%3C/svg%3E\")";
+/*
+  Film-grain uden ekstra billedfil.
+
+  Vi bygger en lille SVG, der GENERERER støj med feTurbulence-filteret, og
+  bruger den som CSS-baggrund (data-URI). Det er altså ikke en fil der hentes —
+  browseren tegner støjen selv. Læsbar udgave af SVG'en:
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="160" height="160">
+      <filter id="n">
+        <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="2" stitchTiles="stitch"/>
+        <feColorMatrix type="saturate" values="0"/>   // gør støjen gråtonet
+      </filter>
+      <rect width="100%" height="100%" filter="url(#n)"/>
+    </svg>
+
+  encodeURIComponent gør den klar til en data-URI (ingen ulæselig håndkodning).
+*/
+const GRAIN_SVG = `<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="100%" height="100%" filter="url(#n)"/></svg>`;
+const GRAIN_URL = `url("data:image/svg+xml,${encodeURIComponent(GRAIN_SVG)}")`;
 
 export function ImagePanel({
   src,
@@ -44,8 +60,8 @@ export function ImagePanel({
       {src && grain && (
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 opacity-[0.22] mix-blend-overlay"
-          style={{ backgroundImage: GRAIN_URL, backgroundSize: "140px 140px" }}
+          className="pointer-events-none absolute inset-0 opacity-[0.55] mix-blend-soft-light"
+          style={{ backgroundImage: GRAIN_URL, backgroundSize: "160px 160px" }}
         />
       )}
       {children}
