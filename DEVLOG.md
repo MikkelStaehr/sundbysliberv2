@@ -33,3 +33,14 @@
   skal udskiftes med det rene Google Business-profil-link.
 - **Font-testsiden** (`/fonts/`) er en intern test og bør fjernes igen når en font er valgt.
 - Anmeldelsernes datoer er omregnet fra Googles relative tider ("6 months ago" osv.).
+
+## 2026-06-18 — Indhold/tekst der mangler (kom tilbage til)
+
+> Designet/rammerne står — der mangler "kød på" i form af rigtig tekst. Masser at skrive.
+
+- **Personlig historie om ejeren.** Siderne er pt. upersonlige. Skriv om hvem der står bag,
+  hvorfor han sliber, og hans tilgang/håndværk — det skaber tillid. Oplagt på
+  [Om-siden](src/app/knivslibning-nykoebing-falster/page.tsx) og evt. en sektion på forsiden.
+- **Erhverv ([/erhverv](src/app/erhverv/page.tsx)):** mere uddybende tekst — fordele, proces,
+  hvordan en fast aftale fungerer i praksis, evt. kundetyper/eksempler.
+- **Generelt:** flere sider/sektioner har tynd/kort tekst og føles tomme. Skal fyldes ud.

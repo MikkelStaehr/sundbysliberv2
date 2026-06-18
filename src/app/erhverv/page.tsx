@@ -28,7 +28,7 @@ const BENEFITS = [
 export default function Erhverv() {
   return (
     <main className="mx-auto w-full max-w-none px-[20px] py-[48px] md:px-[32px] lg:px-[48px] xl:px-[72px] md:py-[64px]">
-      <div className="mx-auto w-full max-w-[1100px]">
+      <div className="w-full max-w-none">
         {/* Bento-hero */}
         <div className="grid gap-[16px] lg:grid-cols-2">
           <div className="flex flex-col justify-center rounded-[24px] bg-panel p-[28px] md:p-[44px]">
