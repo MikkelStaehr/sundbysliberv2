@@ -125,14 +125,24 @@ export function Hero() {
           </div>
 
           {/* Rund "Bestil nu"-CTA: nester i sømmen mellem panelerne på desktop
-              (stikker ud til venstre), pænt i hjørnet på mobil. */}
-          <div className="absolute right-[16px] top-[16px] rounded-full bg-bg p-[8px] lg:right-auto lg:left-[-58px] lg:top-1/2 lg:-translate-y-1/2">
+              (stikker ud til venstre), pænt i hjørnet på mobil. Indkøbspose-ikon
+              + fed tekst, så den tydeligt læser som "gå til webshop". */}
+          <div className="absolute right-[16px] top-[16px] rounded-full bg-bg p-[8px] lg:right-auto lg:left-[-62px] lg:top-1/2 lg:-translate-y-1/2">
             <Link
               href="/bestil"
-              className="flex h-[104px] w-[104px] flex-col items-center justify-center rounded-full bg-apricot text-center text-ink transition-colors hover:bg-apricot-deep hover:text-white md:h-[124px] md:w-[124px]"
+              aria-label="Bestil slibning online nu"
+              className="flex h-[116px] w-[116px] flex-col items-center justify-center gap-[5px] rounded-full bg-apricot text-center text-ink transition-colors hover:bg-apricot-deep hover:text-white md:h-[136px] md:w-[136px]"
             >
-              <span className="product-name text-[11px] leading-tight">Bestil</span>
-              <span className="product-name text-[11px] leading-tight">nu →</span>
+              <svg viewBox="0 0 24 24" className="h-[24px] w-[24px] md:h-[26px] md:w-[26px]" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true">
+                <path d="M6 8h12l-1 11a2 2 0 0 1-2 1.8H9a2 2 0 0 1-2-1.8L6 8Z" strokeLinejoin="round" />
+                <path d="M9 8a3 3 0 0 1 6 0" strokeLinecap="round" />
+              </svg>
+              <span className="font-display text-[19px] uppercase leading-none md:text-[22px]">
+                Bestil nu
+              </span>
+              <span className="product-name text-[9px] leading-none opacity-80">
+                Online →
+              </span>
             </Link>
           </div>
         </div>

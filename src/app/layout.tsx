@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Archivo } from "next/font/google";
+import { Merriweather, Hanken_Grotesk } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 import { Analytics } from "../components/Analytics";
@@ -10,26 +10,27 @@ import { Footer } from "../components/Footer";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { SITE } from "../lib/site";
 
-// Archivo — display (store overskrifter, wordmark). Fed grotesk.
-const archivo = Archivo({
-  weight: ["700", "800"],
+// Merriweather — display/overskrifter + wordmark (parring-test). Serif.
+// Bevarer variabelnavnet --font-archivo, så resten af CSS'en er uændret.
+const merriweather = Merriweather({
+  weight: ["400", "700", "800", "900"],
   variable: "--font-archivo",
   subsets: ["latin"],
   display: "swap",
 });
 
-// Inter — al brødtekst, nav, labels, priser
-const inter = Inter({
-  weight: ["400", "500", "600"],
+// Hanken Grotesk — al brødtekst, nav, labels, priser (parring-test).
+// Bevarer variabelnavnet --font-inter.
+const hanken = Hanken_Grotesk({
+  weight: ["400", "500", "600", "700"],
   variable: "--font-inter",
   subsets: ["latin"],
   display: "swap",
 });
 
-// Ciguatera — wordmark/logo. OBS: ingen licensfil fulgte med — bekræft licens
-// til kommerciel brug før produktion. Indlæst lokalt til preview.
-const ciguatera = localFont({
-  src: "../fonts/ciguatera.otf",
+// Outfit (Fontshare, gratis kommerciel) — wordmark/logo. Variabel font.
+const outfit = localFont({
+  src: "../fonts/Outfit_Complete/Fonts/TTF/Outfit-Variable.ttf",
   variable: "--font-logo",
   display: "swap",
 });
@@ -104,7 +105,7 @@ export default function RootLayout({
   return (
     <html lang="da">
       <body
-        className={`${archivo.variable} ${inter.variable} ${ciguatera.variable} antialiased`}
+        className={`${merriweather.variable} ${hanken.variable} ${outfit.variable} antialiased`}
       >
         <div className="flex min-h-screen flex-col bg-bg">
           <Header />

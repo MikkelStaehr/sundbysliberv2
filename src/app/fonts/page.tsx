@@ -1,19 +1,12 @@
 import type { Metadata } from "next";
+import type { CSSProperties } from "react";
 import localFont from "next/font/local";
-import {
-  Bebas_Neue,
-  Anton,
-  Oswald,
-  Fraunces,
-  Instrument_Serif,
-  Space_Grotesk,
-} from "next/font/google";
-import { SITE } from "@/lib/site";
+import { Fraunces } from "next/font/google";
 
 /*
-  Intern font-testside (/fonts). Øverst: forslag der er GRATIS til kommerciel
-  brug (Google Fonts) — dem kan vi faktisk bruge. Nederst: de lokale demo-fonte
-  fra src/fonts (kun personligt brug, kan ikke deployes). noindex.
+  Intern font-testside (/fonts). noindex.
+  Sammenligner kandidater (Fraunces, Outfit, …) i logo-varianter, ægte vægte
+  og en "cut-out i sort kasse"-behandling. Tilføj nye fonte i CANDIDATES.
 */
 
 export const metadata: Metadata = {
@@ -21,54 +14,124 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-// ── Forslag: gratis til kommerciel brug (Google Fonts) ──────────────────────
-const bebas = Bebas_Neue({ weight: "400", subsets: ["latin"], display: "swap" });
-const anton = Anton({ weight: "400", subsets: ["latin"], display: "swap" });
-const oswald = Oswald({ weight: ["500", "700"], subsets: ["latin"], display: "swap" });
-const fraunces = Fraunces({ weight: ["600", "700"], subsets: ["latin"], display: "swap" });
-const instrument = Instrument_Serif({ weight: "400", subsets: ["latin"], display: "swap" });
-const spaceGrotesk = Space_Grotesk({ weight: ["500", "700"], subsets: ["latin"], display: "swap" });
+const fraunces = Fraunces({
+  weight: ["400", "500", "600", "700", "900"],
+  subsets: ["latin"],
+  display: "swap",
+});
 
-// ── Lokale fonte fra src/fonts ──────────────────────────────────────────────
-const ciguatera = localFont({ src: "../../fonts/ciguatera.otf", display: "swap" });
-const qugan = localFont({ src: "../../fonts/qugan/Qugan-Regular.otf", display: "swap" });
+// Outfit (Fontshare) — variabel font med ægte vægte; gratis til kommerciel brug.
+const outfit = localFont({ src: "../../fonts/Outfit_Complete/Fonts/TTF/Outfit-Variable.ttf", display: "swap" });
 
-type FontSample = { navn: string; stil: string; className: string; licens: string };
-
-const FORSLAG: FontSample[] = [
-  { navn: "Bebas Neue", stil: "Høj, kondenseret, industriel", className: bebas.className, licens: "Gratis – kommerciel OK" },
-  { navn: "Anton", stil: "Tung kondenseret, slagkraftig", className: anton.className, licens: "Gratis – kommerciel OK" },
-  { navn: "Oswald", stil: "Kondenseret grotesk, robust", className: oswald.className, licens: "Gratis – kommerciel OK" },
-  { navn: "Fraunces", stil: "Varm håndværks-serif", className: fraunces.className, licens: "Gratis – kommerciel OK" },
-  { navn: "Instrument Serif", stil: "Elegant redaktionel serif", className: instrument.className, licens: "Gratis – kommerciel OK" },
-  { navn: "Space Grotesk", stil: "Moderne teknisk grotesk", className: spaceGrotesk.className, licens: "Gratis – kommerciel OK" },
+// Logo-varianter: størrelse, bogstavafstand, caps/ikke-caps.
+const LOGO_VARIANTS: { label: string; text: string; style: CSSProperties }[] = [
+  { label: "Mixed case · normal · 64px", text: "Sundby Sliberi", style: { fontSize: 64 } },
+  { label: "Versaler · normal · 52px", text: "SUNDBY SLIBERI", style: { fontSize: 52 } },
+  { label: "Versaler · spærret 0.18em · 40px", text: "SUNDBY SLIBERI", style: { fontSize: 40, letterSpacing: "0.18em" } },
+  { label: "Versaler · tæt −0.03em · 56px", text: "SUNDBY SLIBERI", style: { fontSize: 56, letterSpacing: "-0.03em" } },
+  { label: "Små bogstaver · 60px", text: "sundby sliberi", style: { fontSize: 60 } },
+  { label: "Header-størrelse · 36px", text: "Sundby Sliberi", style: { fontSize: 36 } },
+  { label: "Stort + let spærret 0.01em · 80px", text: "Sundby Sliberi", style: { fontSize: 80, letterSpacing: "0.01em" } },
 ];
 
-const DEMO: FontSample[] = [
-  { navn: "Ciguatera", stil: "src/fonts/ciguatera.otf · bruges på logoet nu", className: ciguatera.className, licens: "Ingen licensfil – tjek før brug" },
-  { navn: "Qugan", stil: "src/fonts/qugan/", className: qugan.className, licens: "Demo – kun personligt brug" },
+// Cut-out (sort kasse, bogstaver i baggrundsfarven = "skåret ud").
+const CUTOUTS: { text: string; style: CSSProperties }[] = [
+  { text: "Sundby Sliberi", style: { fontSize: 48, fontWeight: 700 } },
+  { text: "SUNDBY SLIBERI", style: { fontSize: 40, fontWeight: 700, letterSpacing: "0.04em" } },
+  { text: "Sundby Sliberi", style: { fontSize: 30, fontWeight: 600 } },
 ];
 
-function FontRow({ f }: { f: FontSample }) {
+type Candidate = {
+  navn: string;
+  className: string;
+  licens: string;
+  weights: { label: string; weight: number }[];
+};
+
+const CANDIDATES: Candidate[] = [
+  {
+    navn: "Fraunces",
+    className: fraunces.className,
+    licens: "Gratis – kommerciel OK",
+    weights: [
+      { label: "Regular · 400", weight: 400 },
+      { label: "Medium · 500", weight: 500 },
+      { label: "Semibold · 600", weight: 600 },
+      { label: "Bold · 700", weight: 700 },
+      { label: "Black · 900", weight: 900 },
+    ],
+  },
+  {
+    navn: "Outfit",
+    className: outfit.className,
+    licens: "Gratis – kommerciel OK (Fontshare)",
+    weights: [
+      { label: "Light · 300", weight: 300 },
+      { label: "Regular · 400", weight: 400 },
+      { label: "Medium · 500", weight: 500 },
+      { label: "Semibold · 600", weight: 600 },
+      { label: "Bold · 700", weight: 700 },
+      { label: "Extrabold · 800", weight: 800 },
+    ],
+  },
+];
+
+function CutoutRow({ className }: { className: string }) {
   return (
-    <section className="rounded-[24px] bg-panel p-[28px] md:p-[40px]">
-      <div className="flex flex-wrap items-baseline justify-between gap-[8px] border-b border-line pb-[16px]">
-        <h3 className="text-[15px] font-semibold text-ink">{f.navn}</h3>
-        <span className="product-name text-[11px] text-apricot-deep">{f.licens}</span>
-      </div>
-      <p className="mt-[6px] text-[12px] text-muted">{f.stil}</p>
+    <div className="mt-[20px] flex flex-wrap items-center gap-[16px]">
+      {CUTOUTS.map((c, i) => (
+        <div key={i} className="inline-flex bg-ink px-[28px] py-[18px]">
+          <span className={`${className} leading-none text-bg`} style={c.style}>
+            {c.text}
+          </span>
+        </div>
+      ))}
+    </div>
+  );
+}
 
-      <div className={f.className}>
-        <p className="mt-[24px] text-[48px] leading-tight text-ink md:text-[72px]">{SITE.name}</p>
-        <p className="mt-[16px] text-[28px] uppercase leading-tight text-ink md:text-[40px]">
-          Fra sløv til skarp
-        </p>
-        <p className="mt-[16px] text-[20px] leading-relaxed text-ink/80">
-          Quizdeltagerne spiste jordbær med fløde. — æøå ÆØÅ
-        </p>
-        <p className="mt-[12px] text-[22px] text-ink/80">0123456789 · {SITE.phoneDisplay}</p>
-      </div>
-    </section>
+function CandidateBlock({ c }: { c: Candidate }) {
+  return (
+    <div className="grid gap-[16px]">
+      {/* Cut-out på sidens baggrund */}
+      <CutoutRow className={c.className} />
+
+      {/* Størrelse / afstand / caps */}
+      <section className="rounded-[24px] bg-panel p-[28px] md:p-[40px]">
+        <div className="flex flex-wrap items-baseline justify-between gap-[8px] border-b border-line pb-[16px]">
+          <h3 className="text-[15px] font-semibold text-ink">{c.navn} · størrelse · afstand · caps</h3>
+          <span className="product-name text-[11px] text-apricot-deep">{c.licens}</span>
+        </div>
+        <div className="mt-[24px] grid gap-[20px]">
+          {LOGO_VARIANTS.map((v, i) => (
+            <div key={i} className="overflow-hidden border-b border-line/60 pb-[16px] last:border-0">
+              <p className="product-name text-[10px] text-muted">{v.label}</p>
+              <p className={`${c.className} mt-[8px] leading-tight text-ink`} style={v.style}>
+                {v.text}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Ægte vægte */}
+      <section className="rounded-[24px] bg-panel p-[28px] md:p-[40px]">
+        <div className="flex flex-wrap items-baseline justify-between gap-[8px] border-b border-line pb-[16px]">
+          <h3 className="text-[15px] font-semibold text-ink">{c.navn} · ægte vægte</h3>
+          <span className="product-name text-[11px] text-apricot-deep">Variabel font</span>
+        </div>
+        <div className="mt-[24px] grid gap-[16px]">
+          {c.weights.map((w) => (
+            <div key={w.weight} className="overflow-hidden border-b border-line/60 pb-[14px] last:border-0">
+              <p className="product-name text-[10px] text-muted">{w.label}</p>
+              <p className={`${c.className} mt-[6px] text-ink`} style={{ fontSize: 52, fontWeight: w.weight }}>
+                Sundby Sliberi
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+    </div>
   );
 }
 
@@ -78,23 +141,18 @@ export default function FontTestPage() {
       <p className="kicker text-accent">Intern test</p>
       <h1 className="mt-[12px] font-display text-[40px] uppercase text-ink md:text-[56px]">Font-test</h1>
       <p className="mt-[16px] max-w-[60ch] text-[16px] leading-relaxed text-muted">
-        Øverst: forslag der er gratis til kommerciel brug, så de faktisk kan bruges på siden.
-        Nederst: de lokale demo-fonte (kun personligt brug). Siden er <code className="text-ink">noindex</code>.
+        Kandidater (alle gratis til kommerciel brug) i logo-varianter, ægte vægte og cut-out.
+        Siden er <code className="text-ink">noindex</code>.
       </p>
 
-      <h2 className="mt-[48px] font-display text-[24px] uppercase text-ink">Forslag · gratis til kommerciel brug</h2>
-      <div className="mt-[20px] grid gap-[16px]">
-        {FORSLAG.map((f) => (
-          <FontRow key={f.navn} f={f} />
-        ))}
-      </div>
-
-      <h2 className="mt-[56px] font-display text-[24px] uppercase text-ink">Lokale fonte i src/fonts</h2>
-      <div className="mt-[20px] grid gap-[16px]">
-        {DEMO.map((f) => (
-          <FontRow key={f.navn} f={f} />
-        ))}
-      </div>
+      {CANDIDATES.map((c) => (
+        <div key={c.navn}>
+          <h2 className="mt-[48px] font-display text-[28px] uppercase text-ink">{c.navn}</h2>
+          <div className="mt-[20px]">
+            <CandidateBlock c={c} />
+          </div>
+        </div>
+      ))}
     </main>
   );
 }
