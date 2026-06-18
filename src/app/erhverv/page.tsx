@@ -72,7 +72,7 @@ export default function Erhverv() {
             <span>Lokalt samarbejde på Lolland-Falster</span>
           </li>
         </ul>
-        <div className="border border-neutral-200 bg-white rounded-2xl p-7 md:p-8 shadow-sm text-left max-w-3xl mx-auto">
+        <div id="kontakt" className="scroll-mt-[100px] border border-neutral-200 bg-white rounded-2xl p-7 md:p-8 shadow-sm text-left max-w-3xl mx-auto">
           <h2 className="text-xl text-neutral-900 mb-3 font-semibold tracking-tight">
             Lad os tage en uforpligtende snak
           </h2>

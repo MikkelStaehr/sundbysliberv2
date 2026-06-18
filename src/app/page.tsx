@@ -104,10 +104,10 @@ export default function Home() {
             skarpe knive — uden at du skal holde styr på det.
           </p>
           <Link
-            href="/erhverv"
+            href="/erhverv/#kontakt"
             className="mt-[32px] inline-flex rounded-full bg-accent px-[24px] py-[13px] text-[15px] font-medium text-white transition-colors hover:bg-accent-dark"
           >
-            Få et tilbud →
+            Lad os tage en snak →
           </Link>
         </div>
       </section>
