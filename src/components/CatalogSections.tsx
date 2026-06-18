@@ -30,11 +30,10 @@ export function CatalogSections() {
               </span>
             </div>
 
-            <div className="mt-[8px] md:columns-2 md:gap-x-[32px]">
+            {/* Ren vertikal liste — én vare pr. linje, stablet ovenfra og ned */}
+            <div className="mt-[8px] flex flex-col">
               {items.map((s) => (
-                <div key={s.id} className="break-inside-avoid">
-                  <ProductRow service={s} />
-                </div>
+                <ProductRow key={s.id} service={s} />
               ))}
             </div>
           </section>
