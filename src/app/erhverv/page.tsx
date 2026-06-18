@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ErhvervForm } from "./ErhvervForm";
 import { ImagePanel } from "@/components/ImagePanel";
+import { SITE } from "@/lib/site";
 import erhvervPhoto from "@/img/prokitchenerhverv/istockphoto-2150321519-1024x1024.jpg";
 
 export const metadata: Metadata = {
@@ -79,6 +80,21 @@ export default function Erhverv() {
                 ))}
               </ul>
             </div>
+
+            {/* Ring direkte — mørkt kort, balancerer formularens højde */}
+            <div className="rounded-[20px] bg-ink p-[24px] text-white md:p-[32px]">
+              <p className="kicker text-white/55">Eller ring direkte</p>
+              <a href={SITE.phoneHref} className="mt-[12px] block font-display text-[34px] text-white transition-colors hover:text-apricot md:text-[40px]">
+                {SITE.phoneDisplay}
+              </a>
+              <p className="mt-[10px] text-[15px] leading-relaxed text-white/70">
+                {SITE.openingHours} · Skriv også til{" "}
+                <a href={`mailto:${SITE.email}`} className="text-white underline-offset-2 hover:underline">
+                  {SITE.email}
+                </a>
+              </p>
+            </div>
+
             <p className="px-[4px] text-[14px] leading-relaxed text-muted">
               Vi holder til i Sundby ved Nykøbing Falster og kører primært på Lolland-Falster og
               omegn. Har du ønsker uden for området, så skriv — så ser vi på det.
