@@ -60,38 +60,42 @@ export default function Erhverv() {
           />
         </div>
 
-        {/* Fordele — ren liste */}
-        <div className="mt-[16px] rounded-[20px] border border-line bg-surface p-[24px] md:p-[32px]">
-          <p className="kicker text-muted">Sådan hjælper vi jer</p>
-          <ul className="mt-[12px] flex flex-col">
-            {BENEFITS.map((b) => (
-              <li key={b} className="flex items-center gap-[14px] border-t border-line py-[16px] first:border-t-0">
-                <span aria-hidden="true" className="inline-flex h-[28px] w-[28px] shrink-0 items-center justify-center rounded-full bg-accent text-white">
-                  <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.4" aria-hidden="true">
-                    <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </span>
-                <span className="text-[16px] text-ink">{b}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
+        {/* Fordele + kontakt side om side — udfylder bredden uden at strække */}
+        <div className="mt-[16px] grid gap-[16px] lg:grid-cols-[1fr_1.25fr] lg:items-start">
+          {/* Venstre: fordele + note */}
+          <div className="flex flex-col gap-[16px]">
+            <div className="rounded-[20px] border border-line bg-surface p-[24px] md:p-[32px]">
+              <p className="kicker text-muted">Sådan hjælper vi jer</p>
+              <ul className="mt-[12px] flex flex-col">
+                {BENEFITS.map((b) => (
+                  <li key={b} className="flex items-center gap-[14px] border-t border-line py-[16px] first:border-t-0">
+                    <span aria-hidden="true" className="inline-flex h-[28px] w-[28px] shrink-0 items-center justify-center rounded-full bg-accent text-white">
+                      <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.4" aria-hidden="true">
+                        <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    </span>
+                    <span className="text-[16px] text-ink">{b}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <p className="px-[4px] text-[14px] leading-relaxed text-muted">
+              Vi holder til i Sundby ved Nykøbing Falster og kører primært på Lolland-Falster og
+              omegn. Har du ønsker uden for området, så skriv — så ser vi på det.
+            </p>
+          </div>
 
-        {/* Kontakt */}
-        <div id="kontakt" className="mt-[16px] scroll-mt-[100px] rounded-[20px] border border-line bg-surface p-[24px] md:p-[32px]">
-          <h2 className="font-display text-[26px] uppercase text-ink md:text-[32px]">
-            Lad os tage en uforpligtende snak
-          </h2>
-          <p className="mt-[10px] text-[15px] leading-relaxed text-muted">
-            Udfyld formularen, så vender vi retur og foreslår en løsning, der passer til jer.
-          </p>
-          <ErhvervForm />
+          {/* Højre: kontaktformular */}
+          <div id="kontakt" className="scroll-mt-[100px] rounded-[20px] border border-line bg-surface p-[24px] md:p-[32px]">
+            <h2 className="font-display text-[26px] uppercase text-ink md:text-[32px]">
+              Lad os tage en uforpligtende snak
+            </h2>
+            <p className="mt-[10px] text-[15px] leading-relaxed text-muted">
+              Udfyld formularen, så vender vi retur og foreslår en løsning, der passer til jer.
+            </p>
+            <ErhvervForm />
+          </div>
         </div>
-
-        <p className="mt-[20px] text-[14px] leading-relaxed text-muted">
-          Vi holder til i Sundby ved Nykøbing Falster og kører primært på Lolland-Falster og omegn.
-          Har du ønsker uden for området, så skriv — så ser vi på det.
-        </p>
       </div>
     </main>
   );
