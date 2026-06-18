@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import { CatalogGrid } from "@/components/CatalogGrid";
+import { CatalogSections } from "@/components/CatalogSections";
 import { CartSummary } from "@/components/CartSummary";
+import { MobileCartBar } from "@/components/MobileCartBar";
 
 export const metadata: Metadata = {
   title: "Bestil slibning – Knive & værktøj | Sundby Sliberi",
@@ -10,20 +11,35 @@ export const metadata: Metadata = {
 
 export default function Bestil() {
   return (
-    <main className="mx-auto w-full max-w-none px-[20px] py-[48px] md:px-[32px] lg:px-[48px] xl:px-[72px] md:py-[64px]">
-      <p className="kicker text-accent">Webshop</p>
-      <h1 className="mt-[10px] font-display text-[44px] text-ink md:text-[64px]">Vælg dine ydelser</h1>
-      <p className="mt-[12px] max-w-[60ch] text-[15px] leading-relaxed text-muted">
-        Læg de knive og det værktøj, du vil have slebet, i kurven. Prisen er vejledende — vi aftaler
-        det endelige, før du betaler noget.
+    <main className="mx-auto w-full max-w-none px-[20px] pt-[40px] pb-[112px] md:px-[32px] lg:px-[48px] xl:px-[72px] md:pt-[56px] lg:pb-[64px]">
+      {/* Trin-indikator — kunden ved hvor i forløbet de er */}
+      <div className="flex items-center gap-[10px]">
+        <span className="kicker text-accent">1 · Vælg ydelser</span>
+        <span aria-hidden="true" className="h-[1px] w-[28px] bg-line" />
+        <span className="kicker text-muted">2 · Dine oplysninger</span>
+      </div>
+
+      <h1 className="mt-[14px] font-display text-[40px] uppercase text-ink md:text-[60px]">
+        Vælg dine ydelser
+      </h1>
+      <p className="mt-[12px] max-w-[60ch] text-[16px] leading-relaxed text-muted">
+        Læg det du vil have slebet i kurven — alt er samlet efter type herunder. Prisen er
+        vejledende; vi aftaler det endelige, før du betaler noget.
       </p>
 
-      <div className="mt-[40px] grid gap-[40px] lg:grid-cols-[1fr_340px]">
-        <CatalogGrid />
-        <aside className="lg:sticky lg:top-[96px] lg:self-start">
-          <CartSummary variant="cart" ctaHref="/aflevering" ctaLabel="Videre til bestilling" />
+      <div className="mt-[32px] grid gap-[24px] lg:grid-cols-[1fr_360px]">
+        <CatalogSections />
+
+        {/* Desktop: fast kurv-panel i siden */}
+        <aside className="hidden lg:block">
+          <div className="lg:sticky lg:top-[96px]">
+            <CartSummary variant="cart" ctaHref="/aflevering" ctaLabel="Videre til bestilling" />
+          </div>
         </aside>
       </div>
+
+      {/* Mobil: fast kurv-bar nederst */}
+      <MobileCartBar />
     </main>
   );
 }
