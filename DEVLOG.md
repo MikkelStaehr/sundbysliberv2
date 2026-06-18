@@ -44,3 +44,35 @@
 - **Erhverv ([/erhverv](src/app/erhverv/page.tsx)):** mere uddybende tekst — fordele, proces,
   hvordan en fast aftale fungerer i praksis, evt. kundetyper/eksempler.
 - **Generelt:** flere sider/sektioner har tynd/kort tekst og føles tomme. Skal fyldes ud.
+
+## 2026-06-18 — Designsystem rullet ud på resten af sitet
+
+Designretningen er låst: **støvet pastel (oliven + abrikos + grå), bento, runde/
+nestende former, rolig liste-æstetik.** Fonte: Archivo (display) + Inter (brød).
+
+### Webshop (`/bestil`)
+
+- Gentænkt et par gange (fliser → store fliser m. cirkler → endelig **vertikale
+  liste-rækker**, som er den valgte retning). Hver vare = én række: farvet
+  thumbnail + navn + pris + Tilføj/stepper, i hvide kategori-kort (Knive/Værktøj/
+  Have) med farvet kategori-prik.
+- Altid-synlig kurv: desktop = panel i siden ([CartSummary.tsx](src/components/CartSummary.tsx)),
+  mobil = fast [MobileCartBar.tsx](src/components/MobileCartBar.tsx) (antal+total+Videre, foldbar).
+- Trin-indikator (1 Vælg ydelser · 2 Dine oplysninger) på både `/bestil` og `/aflevering`.
+- Slettet ubrugte `CatalogGrid`, `ProductCard`, `ProductTile`. Aktive:
+  [CatalogSections.tsx](src/components/CatalogSections.tsx) + [ProductRow.tsx](src/components/ProductRow.tsx).
+
+### Interim-sider redesignet til nyt system
+
+- `/erhverv`, `/knivslibning-nykoebing-falster` (Om), `/privatliv` ud af gammel
+  neutral palette → tokens/bento. ErhvervForm fik designsystem-inputs.
+- **Fuld bredde, ikke smal midterkolonne** (Om + erhverv). Erhverv-layout:
+  hero (tekst+foto) + nederste række **50/50** = fordele + "ring direkte"-kort
+  (venstre) | kontaktformular (højre). 50/50 i begge rækker, så den lodrette søm
+  flugter. `/privatliv` beholder bevidst smallere læsekolonne (lang legal-tekst).
+
+### OBS / udestående
+
+- `/priser` mangler stadig at få liste-rækker + fuld bredde som webshoppen.
+- OneDrive låser `.next` under `next dev`/`build` (EINVAL/EBUSY). Løsning:
+  `Remove-Item -Recurse -Force .next` før build, eller flyt repo ud af OneDrive.
