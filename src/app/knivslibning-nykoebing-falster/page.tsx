@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 export default function KnivslibningNykoebingFalster() {
   return (
     <main
-      className="min-h-screen bg-bg text-neutral-900 px-8 py-12 w-full max-w-[90rem] mx-auto flex flex-col"
+      className="min-h-screen bg-bg text-neutral-900 px-[20px] py-[48px] md:px-[32px] lg:px-[48px] xl:px-[72px] md:py-[64px] w-full max-w-none mx-auto flex flex-col"
     >
       <div className="w-full max-w-3xl mb-6">
         <Link

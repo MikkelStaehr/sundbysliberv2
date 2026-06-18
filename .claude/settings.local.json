@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git --version)",
+      "Bash(git clone *)",
+      "Bash(cd \"c:/Users/staehr.mikkel/OneDrive - GroupeFD/Documents/port/sundsliv2\" && rm -rf temp_clone && echo \"ryddet op\")",
+      "Bash(curl -s \"https://api.github.com/users/MikkelStaehr/repos?per_page=100&sort=updated\")",
+      "Bash(curl -s \"https://api.github.com/repos/MikkelStaehr/SundbySliberi\")",
+      "Bash(npm install *)",
+      "PowerShell($f = Get-Item \"C:\\\\Users\\\\staehr.mikkel\\\\OneDrive - GroupeFD\\\\Documents\\\\port\\\\sundsliv2\\\\.env.local\" -Force; \"Attributes: $\\($f.Attributes\\)\"; \"Length: $\\($f.Length\\)\")"
+    ],
+    "additionalDirectories": [
+      "c:\\Users\\staehr.mikkel\\OneDrive - GroupeFD\\Documents\\port\\sundsliv2\\temp_clone"
+    ]
+  }
+}
