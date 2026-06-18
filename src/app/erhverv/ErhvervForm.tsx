@@ -11,6 +11,9 @@ interface FormState {
   message: string;
 }
 
+const inputClass =
+  "mt-[6px] w-full rounded-[12px] border border-line bg-surface px-[12px] py-[10px] text-[16px] text-ink outline-none transition-colors focus:border-accent";
+
 export function ErhvervForm() {
   const [form, setForm] = useState<FormState>({
     name: "",
@@ -48,101 +51,61 @@ export function ErhvervForm() {
         throw new Error(data?.error || "Der opstod en fejl.");
       }
       setSuccess(true);
-      setForm({
-        name: "",
-        company: "",
-        cvr: "",
-        email: "",
-        phone: "",
-        message: "",
-      });
+      setForm({ name: "", company: "", cvr: "", email: "", phone: "", message: "" });
     } catch (err: unknown) {
-      if (err instanceof Error) {
-        setError(err.message || "Der opstod en fejl.");
-      } else {
-        setError("Der opstod en fejl.");
-      }
+      setError(err instanceof Error ? err.message || "Der opstod en fejl." : "Der opstod en fejl.");
     } finally {
       setIsSending(false);
     }
   };
 
+  if (success) {
+    return (
+      <div className="mt-[16px] rounded-[12px] bg-panel px-[20px] py-[24px] text-center">
+        <p className="font-display text-[22px] uppercase text-ink">Tak!</p>
+        <p className="mt-[6px] text-[15px] leading-relaxed text-muted">
+          Tak for din henvendelse — vi vender retur hurtigst muligt.
+        </p>
+      </div>
+    );
+  }
+
   return (
-    <form onSubmit={handleSubmit} className="space-y-3 mt-4">
-      <div className="grid sm:grid-cols-2 gap-3">
-        <label className="block text-xs text-neutral-800 text-left">
+    <form onSubmit={handleSubmit} className="mt-[16px] flex flex-col gap-[14px] text-left">
+      <div className="grid gap-[14px] sm:grid-cols-2">
+        <label className="block text-[14px] text-ink">
           Navn*
-          <input
-            name="name"
-            value={form.name}
-            onChange={onChange}
-            required
-            className="mt-1 w-full border border-neutral-300 rounded-xl px-3 py-2 bg-white text-sm"
-          />
+          <input name="name" value={form.name} onChange={onChange} required autoComplete="name" className={inputClass} />
         </label>
-        <label className="block text-xs text-neutral-800 text-left">
+        <label className="block text-[14px] text-ink">
           Virksomhedsnavn
-          <input
-            name="company"
-            value={form.company}
-            onChange={onChange}
-            className="mt-1 w-full border border-neutral-300 rounded-xl px-3 py-2 bg-white text-sm"
-          />
+          <input name="company" value={form.company} onChange={onChange} autoComplete="organization" className={inputClass} />
         </label>
-        <label className="block text-xs text-neutral-800 text-left">
+        <label className="block text-[14px] text-ink">
           CVR-nummer
-          <input
-            name="cvr"
-            value={form.cvr}
-            onChange={onChange}
-            className="mt-1 w-full border border-neutral-300 rounded-xl px-3 py-2 bg-white text-sm"
-          />
+          <input name="cvr" value={form.cvr} onChange={onChange} inputMode="numeric" className={inputClass} />
         </label>
-        <label className="block text-xs text-neutral-800 text-left">
+        <label className="block text-[14px] text-ink">
           E-mail*
-          <input
-            type="email"
-            name="email"
-            value={form.email}
-            onChange={onChange}
-            required
-            className="mt-1 w-full border border-neutral-300 rounded-xl px-3 py-2 bg-white text-sm"
-          />
+          <input type="email" name="email" value={form.email} onChange={onChange} required autoComplete="email" className={inputClass} />
         </label>
-        <label className="block text-xs text-neutral-800 text-left">
+        <label className="block text-[14px] text-ink sm:col-span-2">
           Telefon
-          <input
-            name="phone"
-            value={form.phone}
-            onChange={onChange}
-            className="mt-1 w-full border border-neutral-300 rounded-xl px-3 py-2 bg-white text-sm"
-          />
+          <input name="phone" value={form.phone} onChange={onChange} inputMode="tel" autoComplete="tel" className={inputClass} />
         </label>
       </div>
-      <label className="block text-xs text-neutral-800 text-left">
+      <label className="block text-[14px] text-ink">
         Beskriv kort jeres behov
-        <textarea
-          name="message"
-          value={form.message}
-          onChange={onChange}
-          className="mt-1 w-full border border-neutral-300 rounded-xl px-3 py-2 min-h-[100px] bg-white text-sm"
-        />
+        <textarea name="message" value={form.message} onChange={onChange} rows={4} className={inputClass} />
       </label>
-      {error && <p className="text-xs text-red-600">{error}</p>}
-      {success && (
-        <p className="text-xs text-emerald-700">
-          Tak for din henvendelse. Vi vender retur hurtigst muligt.
-        </p>
-      )}
+      {error && <p className="text-[14px] text-apricot-deep">{error}</p>}
       <button
         type="submit"
         disabled={isSending}
-        className="inline-flex items-center justify-center rounded-full bg-accent text-white px-6 py-3 text-sm transition-colors hover:bg-accent-dark disabled:opacity-60 disabled:cursor-not-allowed"
+        className="inline-flex items-center justify-center self-start rounded-full bg-accent px-[24px] py-[13px] text-[15px] font-medium text-white transition-colors hover:bg-accent-dark disabled:cursor-not-allowed disabled:opacity-60"
       >
-        {isSending ? "Sender..." : "Send henvendelse"}
+        {isSending ? "Sender…" : "Send henvendelse"}
       </button>
     </form>
   );
 }
-
-
