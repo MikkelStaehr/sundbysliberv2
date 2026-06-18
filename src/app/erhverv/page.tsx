@@ -61,8 +61,9 @@ export default function Erhverv() {
           />
         </div>
 
-        {/* Fordele + kontakt side om side — udfylder bredden uden at strække */}
-        <div className="mt-[16px] grid gap-[16px] lg:grid-cols-[1fr_1.25fr] lg:items-start">
+        {/* Fordele + kontakt side om side — samme 50/50-deling som hero, så
+            den lodrette søm flugter mellem rækkerne */}
+        <div className="mt-[16px] grid gap-[16px] lg:grid-cols-2 lg:items-start">
           {/* Venstre: fordele + note */}
           <div className="flex flex-col gap-[16px]">
             <div className="rounded-[20px] border border-line bg-surface p-[24px] md:p-[32px]">
