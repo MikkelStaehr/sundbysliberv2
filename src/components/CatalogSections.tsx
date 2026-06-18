@@ -3,21 +3,22 @@
 import { CATEGORY_LABELS, SERVICES, type ServiceCategory } from "@/data/services";
 import { ProductTile } from "./ProductTile";
 
-// Rækkefølge + farvet kategori-prik (visuel nøgle, gør det nemt at scanne)
-const SECTIONS: { key: ServiceCategory; dot: string }[] = [
-  { key: "knive", dot: "bg-accent" },
-  { key: "vaerktoej", dot: "bg-apricot" },
-  { key: "have", dot: "bg-ink" },
+// Rækkefølge + farvet kategori-prik + blød farve-wash pr. sektion (gør siden
+// farverig og kategorierne nemme at skanne)
+const SECTIONS: { key: ServiceCategory; dot: string; bg: string }[] = [
+  { key: "knive", dot: "bg-accent", bg: "bg-olive/10" },
+  { key: "vaerktoej", dot: "bg-apricot", bg: "bg-apricot/12" },
+  { key: "have", dot: "bg-ink", bg: "bg-panel" },
 ];
 
 export function CatalogSections() {
   return (
     <div className="flex flex-col gap-[16px]">
-      {SECTIONS.map(({ key, dot }) => {
+      {SECTIONS.map(({ key, dot, bg }) => {
         const items = SERVICES.filter((s) => s.kategori === key);
         if (items.length === 0) return null;
         return (
-          <section key={key} className="rounded-[24px] bg-panel p-[16px] md:p-[24px]">
+          <section key={key} className={`rounded-[24px] ${bg} p-[16px] md:p-[24px]`}>
             <div className="flex items-center justify-between px-[4px]">
               <div className="flex items-center gap-[10px]">
                 <span aria-hidden="true" className={`h-[12px] w-[12px] rounded-full ${dot}`} />
