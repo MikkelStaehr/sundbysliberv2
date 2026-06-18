@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
+import proKitchen from "@/img/prokitchenerhverv/istockphoto-2150321519-1024x1024.jpg";
 import { Hero } from "@/components/Hero";
 import { ReviewsSection } from "@/components/ReviewsSection";
 import { CallbackForm } from "@/components/CallbackForm";
@@ -95,20 +97,35 @@ export default function Home() {
 
       {/* Erhverv-teaser — mørkt bento-panel for kontrast */}
       <section className="mx-auto w-full max-w-none px-[16px] py-[16px] md:px-[24px] lg:px-[44px] xl:px-[72px]">
-        <div className="rounded-[24px] bg-ink px-[28px] py-[48px] md:px-[56px] md:py-[72px]">
-          <h2 className="max-w-[22ch] font-display text-[32px] uppercase text-white md:text-[48px]">
-            Dine kokke skal ikke bruge tid på sløve knive
-          </h2>
-          <p className="mt-[20px] max-w-[56ch] text-[16px] leading-relaxed text-white/70">
-            Restaurant, café eller kantine? Vi laver faste aftaler om slibning, så køkkenet altid har
-            skarpe knive — uden at du skal holde styr på det.
-          </p>
-          <Link
-            href="/erhverv/#kontakt"
-            className="mt-[32px] inline-flex rounded-full bg-accent px-[24px] py-[13px] text-[15px] font-medium text-white transition-colors hover:bg-accent-dark"
-          >
-            Lad os tage en snak →
-          </Link>
+        <div className="relative overflow-hidden rounded-[24px] bg-ink px-[28px] py-[48px] md:px-[56px] md:py-[72px]">
+          {/* Foto til højre — fader ud mod teksten via gradient. Kun fra md+. */}
+          <div aria-hidden="true" className="pointer-events-none absolute inset-y-0 right-0 hidden w-[62%] md:block">
+            <Image
+              src={proKitchen}
+              alt=""
+              fill
+              className="object-cover object-center"
+              sizes="(max-width: 1024px) 62vw, 45vw"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/80 to-ink/5" />
+            <div className="absolute inset-0 bg-gradient-to-b from-ink/30 via-transparent to-ink/30" />
+          </div>
+
+          <div className="relative z-10">
+            <h2 className="max-w-[22ch] font-display text-[32px] uppercase text-white md:text-[48px]">
+              Dine kokke skal ikke bruge tid på sløve knive
+            </h2>
+            <p className="mt-[20px] max-w-[56ch] text-[16px] leading-relaxed text-white/70">
+              Restaurant, café eller kantine? Vi laver faste aftaler om slibning, så køkkenet altid har
+              skarpe knive — uden at du skal holde styr på det.
+            </p>
+            <Link
+              href="/erhverv/#kontakt"
+              className="mt-[32px] inline-flex rounded-full bg-accent px-[24px] py-[13px] text-[15px] font-medium text-white transition-colors hover:bg-accent-dark"
+            >
+              Lad os tage en snak →
+            </Link>
+          </div>
         </div>
       </section>
     </main>
