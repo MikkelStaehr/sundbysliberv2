@@ -12,12 +12,14 @@ export const metadata: Metadata = {
 export default function Aflevering() {
   return (
     <main className="mx-auto w-full max-w-none px-[20px] py-[48px] md:px-[32px] lg:px-[48px] xl:px-[72px] md:py-[64px]">
-      <Link
-        href="/bestil"
-        className="kicker text-[12px] text-muted transition-colors hover:text-ink"
-      >
-        ← Tilbage til webshop
-      </Link>
+      {/* Trin-indikator — nu på trin 2 (trin 1 er klikbar tilbage til webshop) */}
+      <div className="flex items-center gap-[10px]">
+        <Link href="/bestil" className="kicker text-muted transition-colors hover:text-ink">
+          1 · Vælg ydelser
+        </Link>
+        <span aria-hidden="true" className="h-[1px] w-[28px] bg-line" />
+        <span className="kicker text-accent">2 · Dine oplysninger</span>
+      </div>
 
       <div className="mt-[24px] grid gap-[40px] lg:grid-cols-[1fr_340px]">
         <OrderForm />
