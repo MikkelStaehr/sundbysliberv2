@@ -32,7 +32,7 @@ export function ProductRow({ service }: { service: Service }) {
   return (
     <div className="flex items-center gap-[12px] border-t border-line py-[12px] first:border-t-0 sm:gap-[16px]">
       {/* Thumbnail */}
-      <div className={`flex h-[52px] w-[52px] shrink-0 items-center justify-center rounded-[12px] ${TINT[service.kategori]} p-[8px] sm:h-[60px] sm:w-[60px]`}>
+      <div className={`flex h-[68px] w-[68px] shrink-0 items-center justify-center rounded-[14px] ${TINT[service.kategori]} p-[6px] sm:h-[84px] sm:w-[84px]`}>
         {showImg ? (
           <Image
             src={service.image as string}
