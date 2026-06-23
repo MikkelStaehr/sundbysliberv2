@@ -4,7 +4,7 @@ import { Check } from "lucide-react";
 import { ErhvervForm } from "./ErhvervForm";
 import { ImagePanel } from "@/components/ImagePanel";
 import { SITE } from "@/lib/site";
-import erhvervPhoto from "@/img/prokitchenerhverv/istockphoto-2150321519-1024x1024.jpg";
+import erhvervPhoto from "@/img/prokitchenerhverv/prokitchen2.jpg";
 
 export const metadata: Metadata = {
   title: "Erhvervsaftaler – Restauranter, kantiner & virksomheder | Sundby Sliberi",
