@@ -25,7 +25,7 @@ export function CookieBanner() {
   if (!visible) return null;
 
   return (
-    <div className="fixed inset-x-0 bottom-0 z-40 print-hide">
+    <div className="fixed inset-x-0 bottom-0 z-50 print-hide">
       <div className="mx-auto mb-[16px] w-full max-w-[1200px] px-[16px] sm:px-[24px]">
         <div className="flex flex-col gap-[12px] rounded-[16px] border border-line bg-surface p-[16px] text-[13px] leading-relaxed text-muted sm:flex-row sm:items-center sm:justify-between sm:p-[20px]">
           <p>

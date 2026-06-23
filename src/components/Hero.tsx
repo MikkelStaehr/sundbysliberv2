@@ -88,8 +88,8 @@ export function Hero() {
                       aria-hidden="true"
                       className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/65 to-transparent"
                     />
-                    <div className="absolute inset-0 flex flex-col justify-end p-[14px] md:p-[18px]">
-                      <span className="font-display text-[18px] uppercase text-white transition-colors group-hover:text-apricot sm:text-[22px] lg:text-[26px]">
+                    <div className="absolute inset-0 flex flex-col justify-end p-[10px] sm:p-[14px] md:p-[18px]">
+                      <span className="font-display text-[14px] uppercase text-white transition-colors group-hover:text-apricot sm:text-[20px] lg:text-[26px]">
                         {tile.label}
                       </span>
                     </div>
@@ -103,8 +103,8 @@ export function Hero() {
                         aria-hidden="true"
                       />
                     )}
-                    <div className="absolute inset-0 flex flex-col justify-end p-[14px] md:p-[18px]">
-                      <span className="font-display text-[18px] uppercase text-white sm:text-[22px] lg:text-[26px]">
+                    <div className="absolute inset-0 flex flex-col justify-end p-[10px] sm:p-[14px] md:p-[18px]">
+                      <span className="font-display text-[14px] uppercase text-white sm:text-[20px] lg:text-[26px]">
                         {tile.label}
                       </span>
                     </div>

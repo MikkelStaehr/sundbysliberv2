@@ -63,7 +63,7 @@ export function ProductRow({ service }: { service: Service }) {
             type="button"
             onClick={() => dec(service.id)}
             aria-label={`Færre ${service.navn}`}
-            className="inline-flex h-[34px] w-[34px] items-center justify-center rounded-full bg-surface text-[18px] text-ink transition-colors hover:text-accent"
+            className="inline-flex h-[40px] w-[40px] items-center justify-center rounded-full bg-surface text-[18px] text-ink transition-colors hover:text-accent"
           >
             −
           </button>
@@ -72,7 +72,7 @@ export function ProductRow({ service }: { service: Service }) {
             type="button"
             onClick={() => inc(service.id)}
             aria-label={`Flere ${service.navn}`}
-            className="inline-flex h-[34px] w-[34px] items-center justify-center rounded-full bg-surface text-[18px] text-ink transition-colors hover:text-accent"
+            className="inline-flex h-[40px] w-[40px] items-center justify-center rounded-full bg-surface text-[18px] text-ink transition-colors hover:text-accent"
           >
             +
           </button>
