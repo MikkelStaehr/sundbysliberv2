@@ -24,13 +24,13 @@ export default function KnivslibningNykoebingFalster() {
       {/* Bento-hero — fylder bredden */}
       <div className="grid gap-[16px] lg:grid-cols-[1.1fr_0.9fr]">
         <div className="flex flex-col justify-center rounded-[24px] bg-panel p-[28px] md:p-[48px]">
-          <p className="kicker text-accent">Om Sundby Sliberi</p>
+          <p className="kicker text-accent">Om mig</p>
           <h1 className="mt-[14px] font-display text-[36px] uppercase leading-[1.05] text-ink md:text-[56px]">
             Knivslibning i Sundby, Nykøbing Falster
           </h1>
           <p className="mt-[20px] max-w-[52ch] text-[16px] leading-relaxed text-muted md:text-[18px]">
-            Skarp, nænsom slibning af knive, værktøj og maskinklinger — lokalt på Lolland-Falster. Du
-            afleverer dine ting hos os, så ringer vi dig op og aftaler pris og leveringsdag.
+            Jeg hedder Mikkel Stæhr, bor på Lolland og sliber knive, værktøj, haveredskaber og alt
+            andet der skal gøres skarpt, ud af mit værksted i Sundby.
           </p>
           <div className="mt-[28px] flex flex-wrap gap-[12px]">
             <Link
@@ -60,12 +60,15 @@ export default function KnivslibningNykoebingFalster() {
       {/* Indhold — to brede kort */}
       <div className="mt-[16px] grid gap-[16px] md:grid-cols-2">
         <section className="rounded-[20px] border border-line bg-surface p-[24px] md:p-[36px]">
-          <h2 className="text-[22px] font-semibold text-ink">Lokal knivslibning på Lolland-Falster</h2>
+          <h2 className="text-[22px] font-semibold text-ink">Med samme respekt, hver gang</h2>
           <p className="mt-[14px] text-[16px] leading-relaxed text-muted">
-            Hos Sundby Sliberi tilbyder vi skarp og nænsom slibning af køkkenknive, værktøj og
-            maskinklinger – lokalt i Sundby, Nykøbing Falster. Du afleverer dine ting hos os, og med
-            mange års erfaring i slibning får du et resultat, du kan stole på hver gang. Det skal være
-            let og tilgængeligt for alle – uanset om du er amatør eller professionel.
+            Alt bliver håndslebet og renoveret i hånden. Intet er overladt til tilfældighederne. Med
+            rigelig erfaring og en stadig sult efter ny viden bliver hver opgave taget ordentligt hånd
+            om.
+          </p>
+          <p className="mt-[14px] text-[16px] leading-relaxed text-muted">
+            Det er lige meget, om kniven er fundet i en container eller har kostet flere tusinde
+            kroner. Alt bliver renoveret, slebet og poleret op med samme respekt for materialet.
           </p>
         </section>
 
@@ -73,12 +76,12 @@ export default function KnivslibningNykoebingFalster() {
           <h2 className="text-[22px] font-semibold text-ink">Sådan bestiller du knivslibning</h2>
           <p className="mt-[14px] text-[16px] leading-relaxed text-muted">
             Bestillingen foregår online: vælg hvad du vil have slebet, og udfyld dine oplysninger. Når
-            vi har modtaget din bestilling, ringer vi dig op og aftaler pris og leveringsdag.
+            jeg har modtaget din bestilling, ringer jeg dig op og aftaler pris og leveringsdag.
           </p>
           <p className="mt-[14px] text-[16px] leading-relaxed text-muted">
-            Vi sliber blandt andet kokkeknive, urteknive, brødknive, økser, stemmejern,
-            plæneklipperklinger og meget mere. Er du i tvivl, om vi kan hjælpe med din skærekant, er du
-            altid velkommen til at kontakte os.
+            Jeg sliber blandt andet kokkeknive, urteknive, brødknive, økser, stemmejern,
+            plæneklipperklinger og meget mere. Er du i tvivl, om jeg kan hjælpe med din skærekant, er
+            du altid velkommen til at kontakte mig.
           </p>
         </section>
       </div>

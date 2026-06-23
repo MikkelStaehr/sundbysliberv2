@@ -8,7 +8,7 @@ import { CartIcon } from "./CartIcon";
 
 const NAV = [
   { href: "/bestil", label: "Webshop" },
-  { href: "/priser", label: "Prisblad" },
+  { href: "/knivslibning-nykoebing-falster", label: "Om" },
   { href: "/erhverv", label: "Erhverv" },
 ];
 
@@ -89,13 +89,6 @@ export function Header() {
                 {item.label}
               </Link>
             ))}
-            <Link
-              href="/knivslibning-nykoebing-falster"
-              onClick={() => setOpen(false)}
-              className="kicker py-[10px] text-[13px] text-muted"
-            >
-              Om
-            </Link>
             <PhoneLink className="pt-[12px]" />
           </nav>
         </div>

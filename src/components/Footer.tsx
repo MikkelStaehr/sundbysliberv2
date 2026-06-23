@@ -44,6 +44,11 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/priser" className="text-ink transition-colors hover:text-accent">
+                  Prisblad
+                </Link>
+              </li>
+              <li>
                 <Link href="/erhverv" className="text-ink transition-colors hover:text-accent">
                   Erhverv
                 </Link>
