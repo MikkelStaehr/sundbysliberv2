@@ -50,8 +50,12 @@ export const SERVICES: Service[] = [
   { id: "planeiron", navn: "Fladt høvlblad", kategori: "vaerktoej", pris: 80, image: "/images/planeiron.png" },
   { id: "axe", navn: "Økse", kategori: "vaerktoej", pris: 120, image: "/images/axe.png" },
 
-  // Have — uændrede priser
+  // Have
   { id: "mower", navn: "Plæneklipperklinge", kategori: "have", pris: 100, image: "/images/icon_mowerblade.png" },
+  { id: "hedgeshears", navn: "Hækkesaks", kategori: "have", pris: 75, image: "/images/hedgeshears.png" },
+  { id: "pruningshears", navn: "Grensaks / rosensaks", kategori: "have", pris: 75, image: "/images/pruningshears.png" },
+  { id: "drainspade", navn: "Drænspade", kategori: "have", pris: 100, image: "/images/drainspade.png" },
+  { id: "spade", navn: "Spade", kategori: "have", pris: 100, image: "/images/spade.png" },
 ];
 
 export function getService(id: string): Service | undefined {
