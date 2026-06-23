@@ -1,6 +1,6 @@
 "use server";
 
-import { Resend } from "resend";
+import { sendNotification } from "@/lib/email";
 
 export type OrderLine = { navn: string; pris: number; qty: number };
 
@@ -45,15 +45,6 @@ export async function sendOrder(input: OrderInput): Promise<OrderResult> {
     return { ok: false, error: "Telefonnummeret ser forkert ud — indtast mindst 8 cifre." };
   }
 
-  const apiKey = process.env.RESEND_API_KEY;
-  const to = process.env.CONTACT_EMAIL;
-  const from = process.env.RESEND_FROM_EMAIL || "Sundby Sliberi <onboarding@resend.dev>";
-
-  if (!apiKey || !to) {
-    console.error("Resend ikke konfigureret: RESEND_API_KEY eller CONTACT_EMAIL mangler.");
-    return { ok: false, error: "Serveren er ikke sat op til at sende mail endnu." };
-  }
-
   const deadline = formatDeadline(input.deadline);
   const cartLines =
     input.items.length > 0
@@ -76,22 +67,9 @@ E-mail:  ${input.email?.trim() || "-"}
 ${input.message?.trim() || "-"}
 `;
 
-  try {
-    const resend = new Resend(apiKey);
-    const { error } = await resend.emails.send({
-      from,
-      to,
-      replyTo: input.email?.trim() || undefined,
-      subject: `Ny bestilling fra ${name}`,
-      text,
-    });
-    if (error) {
-      console.error("Resend-fejl:", error);
-      return { ok: false, error: "Bestillingen kunne ikke sendes. Prøv igen eller ring til os." };
-    }
-    return { ok: true };
-  } catch (err) {
-    console.error("Uventet fejl i sendOrder:", err);
-    return { ok: false, error: "Der opstod en fejl. Prøv igen eller ring til os." };
-  }
+  return sendNotification({
+    subject: `Ny bestilling fra ${name}`,
+    text,
+    replyTo: input.email,
+  });
 }
