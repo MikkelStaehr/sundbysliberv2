@@ -8,7 +8,7 @@ export type OrderInput = {
   name: string;
   phone: string;
   email?: string;
-  deadline?: string; // ISO-dato fra <input type="date">
+  dropoff?: string; // ISO-dato fra <input type="date"> — ønsket afleveringsdag
   message?: string;
   company?: string; // honeypot — skal være tom
   items: OrderLine[];
@@ -17,7 +17,7 @@ export type OrderInput = {
 
 export type OrderResult = { ok: true } | { ok: false; error: string };
 
-function formatDeadline(value?: string): string {
+function formatDate(value?: string): string {
   if (!value) return "ikke angivet";
   const d = new Date(value);
   if (isNaN(d.getTime())) return "ikke angivet";
@@ -45,13 +45,13 @@ export async function sendOrder(input: OrderInput): Promise<OrderResult> {
     return { ok: false, error: "Telefonnummeret ser forkert ud — indtast mindst 8 cifre." };
   }
 
-  const deadline = formatDeadline(input.deadline);
+  const dropoff = formatDate(input.dropoff);
   const cartLines =
     input.items.length > 0
       ? input.items.map((it) => `  • ${it.navn} × ${it.qty} = ${it.pris * it.qty} kr`).join("\n")
       : "  (ingen varer valgt)";
 
-  const text = `Skal bruges senest: ${deadline}
+  const text = `Ønsket afleveringsdag: ${dropoff}
 
 ── Bestilling ──
 ${cartLines}

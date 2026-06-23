@@ -18,7 +18,7 @@ export function OrderForm() {
     name: "",
     phone: "",
     email: "",
-    deadline: "",
+    dropoff: "",
     message: "",
     company: "", // honeypot
   });
@@ -41,7 +41,7 @@ export function OrderForm() {
       name: form.name,
       phone: form.phone,
       email: form.email,
-      deadline: form.deadline,
+      dropoff: form.dropoff,
       message: form.message,
       company: form.company,
       items: items.map((it) => ({ navn: it.navn, pris: it.pris, qty: it.qty })),
@@ -111,8 +111,8 @@ export function OrderForm() {
           <input type="email" name="email" value={form.email} onChange={onChange} autoComplete="email" className={inputClass} />
         </label>
         <label className="block text-[14px] text-ink">
-          Hvornår skal du bruge dem? (valgfri)
-          <input type="date" name="deadline" value={form.deadline} onChange={onChange} className={inputClass} />
+          Hvornår vil du aflevere dem? (valgfri)
+          <input type="date" name="dropoff" value={form.dropoff} onChange={onChange} className={inputClass} />
         </label>
         <label className="block text-[14px] text-ink">
           Besked (valgfri)
