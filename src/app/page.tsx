@@ -34,7 +34,7 @@ export default function Home() {
               Du behøver ikke bestille online
             </h2>
             <p className="mt-[16px] max-w-[48ch] text-[16px] leading-relaxed text-muted">
-              Vil du hellere bare snakke med mig? Skriv dit nummer her, så ringer jeg dig op — så
+              Ønsker du at bestille via telefon? Skriv dit nummer her, så ringer jeg dig op, og så
               klarer vi det hele over telefonen: hvad du har, hvad det koster, og hvornår du får det
               igen.
             </p>
