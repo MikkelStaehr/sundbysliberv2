@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image, { type StaticImageData } from "next/image";
 import { SITE } from "@/lib/site";
 import { ImagePanel } from "./ImagePanel";
+import { RotatingHeadline } from "./RotatingHeadline";
 import japKnives from "@/img/hero/JapKnifes.jpg";
 import vaerktoejPhoto from "@/img/hero/elizabeth-french-wmObLzO2g-s-unsplash.jpg";
 import ctaShop from "@/img/hero/CTAShop.jpg";
@@ -43,14 +44,12 @@ export function Hero() {
               <p className="kicker text-accent">Knivslibning · Nykøbing F.</p>
               <span aria-hidden="true" className="h-[1px] flex-1 bg-line" />
             </div>
-            <h1 className="mt-[20px] font-display text-[56px] uppercase text-ink md:text-[88px] xl:text-[104px]">
-              Fra sløv
-              <br />
-              til skarp
+            <h1 className="mt-[20px] font-display text-[34px] uppercase leading-[1.04] text-ink md:text-[52px] xl:text-[60px]">
+              <RotatingHeadline />
             </h1>
-            <p className="mt-[24px] max-w-[46ch] text-[16px] leading-relaxed text-muted md:text-[18px]">
-              Professionel slibning af knive og værktøj i Nykøbing Falster. Aflever lokalt — så gør vi
-              dem skarpe igen, til den dag vi aftaler.
+            <p className="mt-[24px] max-w-[48ch] text-[16px] leading-relaxed text-muted md:text-[18px]">
+              Vi er din lokale sliber i Sundby — knive, værktøj og haveredskaber slebet i hånden.
+              Aflever hos os, så ringer vi og aftaler en dag. Du betaler først, når vi er enige.
             </p>
           </div>
 
