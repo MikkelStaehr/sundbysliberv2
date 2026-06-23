@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { CatalogSections } from "@/components/CatalogSections";
 import { CartSummary } from "@/components/CartSummary";
 import { MobileCartBar } from "@/components/MobileCartBar";
+import { StepIndicator } from "@/components/StepIndicator";
 
 export const metadata: Metadata = {
   title: "Bestil slibning – Knive & værktøj | Sundby Sliberi",
@@ -13,11 +14,7 @@ export default function Bestil() {
   return (
     <main className="mx-auto w-full max-w-none px-[20px] pt-[40px] pb-[112px] md:px-[32px] lg:px-[48px] xl:px-[72px] md:pt-[56px] lg:pb-[64px]">
       {/* Trin-indikator — kunden ved hvor i forløbet de er */}
-      <div className="flex items-center gap-[10px]">
-        <span className="kicker text-accent">1 · Vælg ydelser</span>
-        <span aria-hidden="true" className="h-[1px] w-[28px] bg-line" />
-        <span className="kicker text-muted">2 · Dine oplysninger</span>
-      </div>
+      <StepIndicator step={1} />
 
       <h1 className="mt-[14px] font-display text-[40px] uppercase text-ink md:text-[60px]">
         Vælg dine ydelser

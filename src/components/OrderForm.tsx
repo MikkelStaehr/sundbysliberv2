@@ -9,7 +9,7 @@ import { SITE } from "@/lib/site";
 const inputClass =
   "mt-[6px] w-full rounded-[16px] border border-line bg-surface px-[12px] py-[10px] text-[15px] text-ink placeholder:text-muted";
 
-export function OrderForm() {
+export function OrderForm({ onDone }: { onDone?: () => void }) {
   const { items, total, clear } = useCart();
   const [sending, setSending] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -52,6 +52,7 @@ export function OrderForm() {
     if (res.ok) {
       clear();
       setDone(true);
+      onDone?.();
     } else {
       setError(res.error);
     }
@@ -62,7 +63,7 @@ export function OrderForm() {
       <div className="rounded-[16px] border border-line bg-surface p-[28px]">
         <h2 className="font-display text-[28px] text-ink">Tak for din bestilling</h2>
         <p className="mt-[12px] text-[15px] leading-relaxed text-ink">
-          Tak — jeg ringer dig op hurtigst muligt for at aftale nærmere.
+          Jeg ringer dig op hurtigst muligt, så vi kan aftale nærmere.
         </p>
         <div className="mt-[24px] flex flex-wrap gap-[12px]">
           <Link
