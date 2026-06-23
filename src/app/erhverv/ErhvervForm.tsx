@@ -64,7 +64,7 @@ export function ErhvervForm() {
       <div className="mt-[16px] rounded-[12px] bg-panel px-[20px] py-[24px] text-center">
         <p className="font-display text-[22px] uppercase text-ink">Tak!</p>
         <p className="mt-[6px] text-[15px] leading-relaxed text-muted">
-          Tak for din henvendelse — vi vender retur hurtigst muligt.
+          Tak for din henvendelse. Jeg vender retur hurtigst muligt.
         </p>
       </div>
     );

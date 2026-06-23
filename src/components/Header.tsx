@@ -8,7 +8,7 @@ import { CartIcon } from "./CartIcon";
 
 const NAV = [
   { href: "/bestil", label: "Webshop" },
-  { href: "/knivslibning-nykoebing-falster", label: "Om" },
+  { href: "/knivslibning-nykoebing-falster", label: "Om Sundby Sliberi" },
   { href: "/erhverv", label: "Erhverv" },
 ];
 

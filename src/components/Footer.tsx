@@ -58,7 +58,7 @@ export function Footer() {
                   href="/knivslibning-nykoebing-falster"
                   className="text-ink transition-colors hover:text-accent"
                 >
-                  Om
+                  Om Sundby Sliberi
                 </Link>
               </li>
             </ul>
