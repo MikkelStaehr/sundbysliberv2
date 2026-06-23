@@ -26,29 +26,28 @@ export function CookieBanner() {
 
   return (
     <div className="fixed inset-x-0 bottom-0 z-40 print-hide">
-      <div className="mx-auto mb-4 w-full max-w-[90rem] px-4 sm:px-8">
-        <div className="rounded-2xl border border-neutral-200 bg-white/95 shadow-lg p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-xs text-neutral-800">
-          <p className="leading-relaxed">
-            Vi bruger cookies til anonym statistik (Google Analytics), så vi kan forbedre siden.
-            Du kan acceptere eller afvise statistikcookies. Nødvendige cookies bruges kun til at få
-            siden til at fungere. Læs mere i vores{" "}
-            <a href="/privatliv" className="underline-offset-2 hover:underline">
-              privatlivspolitik
+      <div className="mx-auto mb-[16px] w-full max-w-[1200px] px-[16px] sm:px-[24px]">
+        <div className="flex flex-col gap-[12px] rounded-[16px] border border-line bg-surface p-[16px] text-[13px] leading-relaxed text-muted sm:flex-row sm:items-center sm:justify-between sm:p-[20px]">
+          <p>
+            Jeg bruger cookies til anonym statistik (Google Analytics), så jeg kan forbedre siden.
+            Nødvendige cookies bruges kun til at få siden til at fungere. Læs mere i{" "}
+            <a href="/privatliv" className="text-accent underline-offset-2 hover:underline">
+              privatlivspolitikken
             </a>
             .
           </p>
-          <div className="flex items-center gap-2 justify-end">
+          <div className="flex items-center justify-end gap-[8px]">
             <button
               type="button"
               onClick={() => setConsent("denied")}
-              className="rounded-xl border border-neutral-300 px-3 py-1.5 text-sm text-neutral-700 hover:bg-neutral-100"
+              className="rounded-full border border-line px-[18px] py-[9px] text-[14px] font-medium text-ink transition-colors hover:border-accent hover:text-accent"
             >
               Afvis
             </button>
             <button
               type="button"
               onClick={() => setConsent("granted")}
-              className="rounded-xl bg-neutral-900 text-white px-3 py-1.5 text-sm hover:bg-neutral-700"
+              className="rounded-full bg-accent px-[18px] py-[9px] text-[14px] font-medium text-white transition-colors hover:bg-accent-dark"
             >
               Accepter
             </button>
