@@ -47,9 +47,13 @@ export function Hero() {
             <h1 className="mt-[20px] font-display text-[34px] uppercase leading-[1.04] text-ink md:text-[52px] xl:text-[60px]">
               <RotatingHeadline />
             </h1>
-            <p className="mt-[24px] max-w-[48ch] text-[16px] leading-relaxed text-muted md:text-[18px]">
-              Vi er din lokale sliber i Sundby — knive, værktøj og haveredskaber slebet i hånden.
-              Aflever hos os, så ringer vi og aftaler en dag. Du betaler først, når vi er enige.
+            <p className="mt-[24px] max-w-[52ch] text-[16px] leading-relaxed text-muted md:text-[18px]">
+              Jeg er en lokal sliber i Sundby på Lolland. Jeg sliber alt fra knive, værktøj og
+              haveredskaber. Alt bliver slebet i hånden og poleret op. Ring eller bestil direkte i{" "}
+              <Link href="/bestil" className="font-medium text-accent underline-offset-2 hover:underline">
+                webshoppen
+              </Link>
+              , så aftaler vi nærmere.
             </p>
           </div>
 

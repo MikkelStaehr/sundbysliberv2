@@ -23,7 +23,7 @@ export function RotatingHeadline() {
 
   useEffect(() => {
     if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) return;
-    const t = setInterval(() => setActive((p) => (p + 1) % PHRASES.length), 4200);
+    const t = setInterval(() => setActive((p) => (p + 1) % PHRASES.length), 5000);
     return () => clearInterval(t);
   }, []);
 
@@ -33,8 +33,8 @@ export function RotatingHeadline() {
         <span
           key={phrase}
           aria-hidden={i !== active}
-          className={`absolute inset-x-0 bottom-0 transition-opacity duration-700 ease-out ${
-            i === active ? "opacity-100" : "opacity-0"
+          className={`absolute inset-x-0 bottom-0 transition-[opacity,transform] duration-[1100ms] [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] ${
+            i === active ? "opacity-100 blur-0 translate-y-0" : "opacity-0 blur-[2px] translate-y-[18px]"
           }`}
         >
           {phrase}
