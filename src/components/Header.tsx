@@ -6,8 +6,8 @@ import { Phone, Menu, X } from "lucide-react";
 import { SITE } from "@/lib/site";
 import { CartIcon } from "./CartIcon";
 
-const NAV = [
-  { href: "/bestil", label: "Webshop" },
+const NAV: { href: string; label: string; primary?: boolean }[] = [
+  { href: "/bestil", label: "Webshop", primary: true },
   { href: "/knivslibning-nykoebing-falster", label: "Om Sundby Sliberi" },
   { href: "/erhverv", label: "Erhverv" },
 ];
@@ -49,7 +49,9 @@ export function Header() {
             <Link
               key={item.href}
               href={item.href}
-              className="kicker text-[12px] text-ink/80 transition-colors hover:text-accent"
+              className={`kicker text-[12px] transition-colors hover:text-accent ${
+                item.primary ? "font-bold text-ink" : "text-ink/80"
+              }`}
             >
               {item.label}
             </Link>
@@ -84,7 +86,7 @@ export function Header() {
                 key={item.href}
                 href={item.href}
                 onClick={() => setOpen(false)}
-                className="kicker py-[10px] text-[13px] text-ink"
+                className={`kicker py-[10px] text-[13px] text-ink ${item.primary ? "font-bold" : ""}`}
               >
                 {item.label}
               </Link>
