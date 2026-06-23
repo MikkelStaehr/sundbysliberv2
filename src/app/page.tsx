@@ -15,8 +15,8 @@ export const metadata: Metadata = {
 
 const STEPS = [
   { n: "01", title: "Ring eller skriv", body: "Fortæl mig hvad du har, og hvornår du skal bruge det." },
-  { n: "02", title: "Vi aftaler det", body: "Jeg melder tilbage med pris og en dag. Du betaler først, når vi er enige." },
-  { n: "03", title: "Skarpt til tiden", body: "Du får dine ting tilbage skarpe, til den dag vi har aftalt." },
+  { n: "02", title: "Vi aftaler det", body: "Jeg kontakter dig straks efter din bestilling, og vi aftaler nærmere." },
+  { n: "03", title: "Skarpt til tiden", body: "Du afhenter dine knive og betaler." },
 ] as const;
 
 export default function Home() {

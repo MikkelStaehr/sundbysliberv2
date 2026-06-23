@@ -10,13 +10,32 @@ export function Footer() {
         </p>
 
         <div className="mt-[40px] grid gap-[32px] border-t border-line pt-[32px] md:grid-cols-3">
-          <div>
-            <p className="kicker text-muted">Sundby Sliberi</p>
-            <p className="mt-[12px] text-[15px] leading-relaxed text-ink">
-              {SITE.address.street}
-              <br />
-              {SITE.address.postalCode} {SITE.address.city}
-            </p>
+          <div className="flex items-start gap-[16px]">
+            <div>
+              <p className="kicker text-muted">Sundby Sliberi</p>
+              <p className="mt-[12px] text-[15px] leading-relaxed text-ink">
+                {SITE.address.street}
+                <br />
+                {SITE.address.postalCode} {SITE.address.city}
+              </p>
+              <p className="mt-[10px] text-[13px] text-muted">CVR {SITE.cvr}</p>
+            </div>
+
+            {/* Lille kort ved siden af adressen — ingen API-nøgle, lazy-loadet */}
+            <a
+              href="https://maps.app.goo.gl/oVe1hXYYYvapZYEHA"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block h-[110px] w-[140px] shrink-0 overflow-hidden rounded-[12px] border border-line transition-opacity hover:opacity-90"
+            >
+              <iframe
+                title={`${SITE.name} på kort – ${SITE.address.street}`}
+                src="https://www.google.com/maps?q=Hamborgskovvej+11,+4800+Nyk%C3%B8bing+Falster&z=13&output=embed"
+                className="pointer-events-none block h-full w-full border-0"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            </a>
           </div>
 
           <div>
@@ -66,9 +85,7 @@ export function Footer() {
         </div>
 
         <div className="mt-[40px] flex flex-col gap-[8px] border-t border-line pt-[24px] text-[13px] text-muted md:flex-row md:items-center md:justify-between">
-          <span>
-            © 2026 {SITE.name} · CVR {SITE.cvr}
-          </span>
+          <span>© 2026 {SITE.name}</span>
           <Link href="/privatliv" className="transition-colors hover:text-accent">
             Privatliv &amp; cookies
           </Link>

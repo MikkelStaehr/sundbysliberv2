@@ -9,7 +9,7 @@
  * pr. juni 2026 — ret dem hvis du vil have eksakte måneder.
  */
 
-export const GOOGLE_REVIEW_URL = "https://www.google.com/maps"; // ← INDSÆT din Google Business-profil-URL her
+export const GOOGLE_REVIEW_URL = "https://maps.app.goo.gl/oVe1hXYYYvapZYEHA"; // Sundby Sliberi på Google Maps
 
 export type Review = {
   navn: string;
