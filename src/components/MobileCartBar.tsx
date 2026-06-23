@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { ChevronUp, X } from "lucide-react";
 import { useCart } from "@/lib/cart";
 
 /*
@@ -37,9 +38,7 @@ export function MobileCartBar() {
                 </span>
                 <span className="w-[56px] shrink-0 text-right tabular-nums text-muted">{it.pris * it.qty} kr</span>
                 <button onClick={() => remove(it.id)} aria-label={`Fjern ${it.navn}`} className="text-muted hover:text-accent">
-                  <svg viewBox="0 0 16 16" className="h-4 w-4" aria-hidden="true">
-                    <path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                  </svg>
+                  <X className="h-4 w-4" strokeWidth={2} aria-hidden="true" />
                 </button>
               </li>
             ))}
@@ -59,9 +58,11 @@ export function MobileCartBar() {
             {count}
           </span>
           <span className="text-[15px] font-medium text-ink">{total} kr</span>
-          <svg viewBox="0 0 24 24" className={`h-[16px] w-[16px] text-muted transition-transform ${open ? "rotate-180" : ""}`} fill="none" aria-hidden="true">
-            <path d="M6 15l6-6 6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
+          <ChevronUp
+            className={`h-[16px] w-[16px] text-muted transition-transform ${open ? "rotate-180" : ""}`}
+            strokeWidth={2}
+            aria-hidden="true"
+          />
         </button>
         <Link
           href="/aflevering"

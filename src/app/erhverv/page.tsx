@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Check } from "lucide-react";
 import { ErhvervForm } from "./ErhvervForm";
 import { ImagePanel } from "@/components/ImagePanel";
 import { SITE } from "@/lib/site";
@@ -72,9 +73,7 @@ export default function Erhverv() {
                 {BENEFITS.map((b) => (
                   <li key={b} className="flex items-center gap-[14px] border-t border-line py-[16px] first:border-t-0">
                     <span aria-hidden="true" className="inline-flex h-[28px] w-[28px] shrink-0 items-center justify-center rounded-full bg-accent text-white">
-                      <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.4" aria-hidden="true">
-                        <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
+                      <Check className="h-4 w-4" strokeWidth={2.4} aria-hidden="true" />
                     </span>
                     <span className="text-[16px] text-ink">{b}</span>
                   </li>

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image, { type StaticImageData } from "next/image";
+import { ShoppingBag, Star } from "lucide-react";
 import { SITE } from "@/lib/site";
 import { ImagePanel } from "./ImagePanel";
 import { RotatingHeadline } from "./RotatingHeadline";
@@ -107,7 +108,9 @@ export function Hero() {
           <div className="absolute left-[16px] top-[16px] rounded-full bg-bg p-[6px] lg:left-auto lg:right-[20px]">
             <div className="flex h-[72px] w-[72px] flex-col items-center justify-center rounded-full bg-surface text-center md:h-[84px] md:w-[84px]">
               <span className="font-display text-[20px] text-ink md:text-[24px]">5,0</span>
-              <span className="product-name text-[9px] text-muted">★ Google</span>
+              <span className="product-name inline-flex items-center gap-[3px] text-[9px] text-muted">
+                <Star className="h-[10px] w-[10px] text-accent" fill="currentColor" strokeWidth={0} aria-hidden="true" /> Google
+              </span>
             </div>
           </div>
 
@@ -136,10 +139,7 @@ export function Hero() {
               aria-label="Bestil slibning online nu"
               className="flex h-[116px] w-[116px] flex-col items-center justify-center gap-[5px] rounded-full bg-apricot text-center text-ink transition-colors hover:bg-apricot-deep hover:text-white md:h-[136px] md:w-[136px]"
             >
-              <svg viewBox="0 0 24 24" className="h-[24px] w-[24px] md:h-[26px] md:w-[26px]" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true">
-                <path d="M6 8h12l-1 11a2 2 0 0 1-2 1.8H9a2 2 0 0 1-2-1.8L6 8Z" strokeLinejoin="round" />
-                <path d="M9 8a3 3 0 0 1 6 0" strokeLinecap="round" />
-              </svg>
+              <ShoppingBag className="h-[24px] w-[24px] md:h-[26px] md:w-[26px]" strokeWidth={1.7} aria-hidden="true" />
               <span className="font-display text-[19px] uppercase leading-none md:text-[22px]">
                 Bestil nu
               </span>

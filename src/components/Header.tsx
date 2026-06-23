@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { Phone, Menu, X } from "lucide-react";
 import { SITE } from "@/lib/site";
 import { CartIcon } from "./CartIcon";
 
@@ -17,14 +18,7 @@ function PhoneLink({ className = "" }: { className?: string }) {
       href={SITE.phoneHref}
       className={`inline-flex items-center gap-[8px] text-ink transition-colors hover:text-accent ${className}`}
     >
-      <svg viewBox="0 0 24 24" fill="none" className="h-[18px] w-[18px]" aria-hidden="true">
-        <path
-          d="M6.5 3.5h3l1.5 4-2 1.5a12 12 0 0 0 6 6l1.5-2 4 1.5v3a2 2 0 0 1-2 2A16.5 16.5 0 0 1 4.5 5.5a2 2 0 0 1 2-2Z"
-          stroke="currentColor"
-          strokeWidth="1.6"
-          strokeLinejoin="round"
-        />
-      </svg>
+      <Phone className="h-[18px] w-[18px]" strokeWidth={1.6} aria-hidden="true" />
       <span className="text-[15px] font-medium tabular-nums">{SITE.phoneDisplay}</span>
     </a>
   );
@@ -72,13 +66,11 @@ export function Header() {
             onClick={() => setOpen((v) => !v)}
             className="inline-flex h-[40px] w-[40px] items-center justify-center text-ink md:hidden"
           >
-            <svg className="h-5 w-5" viewBox="0 0 24 24" aria-hidden="true">
-              {open ? (
-                <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
-              ) : (
-                <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
-              )}
-            </svg>
+            {open ? (
+              <X className="h-5 w-5" strokeWidth={1.7} aria-hidden="true" />
+            ) : (
+              <Menu className="h-5 w-5" strokeWidth={1.7} aria-hidden="true" />
+            )}
           </button>
         </div>
       </div>
