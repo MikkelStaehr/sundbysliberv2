@@ -1,12 +1,13 @@
 import Link from "next/link";
 import Image, { type StaticImageData } from "next/image";
-import { ShoppingBag, Star, Shovel, type LucideIcon } from "lucide-react";
+import { ShoppingBag, Star, type LucideIcon } from "lucide-react";
 import { SITE } from "@/lib/site";
 import { ImagePanel } from "./ImagePanel";
 import { RotatingHeadline } from "./RotatingHeadline";
 import japKnives from "@/img/hero/JapKnifes.jpg";
 import vaerktoejPhoto from "@/img/hero/elizabeth-french-wmObLzO2g-s-unsplash.jpg";
 import ctaShop from "@/img/hero/CTAShop.jpg";
+import havePhoto from "@/img/hero/have.jpg";
 
 /*
   Bento-hero — bløde, afrundede paneler der nester ind i hinanden.
@@ -38,8 +39,12 @@ const TILES: Tile[] = [
     image: vaerktoejPhoto,
     alt: "Værktøj på værkstedet hos Sundby Sliberi",
   },
-  // Have: ingen foto endnu → olivengrøn tile med have-ikon (byt til foto senere)
-  { label: "Have", href: "/bestil", icon: Shovel },
+  {
+    label: "Have",
+    href: "/bestil",
+    image: havePhoto,
+    alt: "Haveredskaber slebet hos Sundby Sliberi",
+  },
 ];
 
 export function Hero() {
