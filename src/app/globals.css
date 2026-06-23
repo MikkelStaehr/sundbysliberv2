@@ -115,6 +115,20 @@ body {
   animation: fadeInUp 0.3s ease-out;
 }
 
+/* Print: ryd alt undtagen selve indholdet (bruges bl.a. til prisbladet) */
+@media print {
+  header,
+  footer,
+  .print-hide {
+    display: none !important;
+  }
+  html,
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+}
+
 /* Uendelig anmeldelses-karrusel: sporet indeholder to identiske sæt kort,
    og translateX(-50%) flytter præcis ét sæt — så løkken er sømløs. */
 @keyframes review-marquee {

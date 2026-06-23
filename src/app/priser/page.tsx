@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { SERVICES, CATEGORY_LABELS, type ServiceCategory } from "@/data/services";
+import { PrintButton } from "@/components/PrintButton";
+import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Priser på slibning af knive & værktøj | Sundby Sliberi",
@@ -27,11 +29,14 @@ const SECTIONS: { key: ServiceCategory; dot: string; tint: string }[] = [
 export default function Priser() {
   return (
     <main className="mx-auto w-full max-w-none px-[20px] py-[48px] md:px-[32px] lg:px-[48px] xl:px-[72px] md:py-[64px]">
-      <p className="kicker text-accent">Priser</p>
+      <p className="kicker text-accent">Prisblad</p>
       <h1 className="mt-[10px] font-display text-[40px] uppercase text-ink md:text-[60px]">Hvad koster det</h1>
       <p className="mt-[12px] max-w-[60ch] text-[16px] leading-relaxed text-muted">
         Alle priser er inkl. moms. Den endelige pris bekræftes altid, før du betaler noget.
       </p>
+      <div className="mt-[20px]">
+        <PrintButton />
+      </div>
 
       <div className="mt-[32px] grid gap-[16px] sm:grid-cols-2 lg:grid-cols-3">
         {SECTIONS.map(({ key, dot, tint }) => {
@@ -72,13 +77,19 @@ export default function Priser() {
         })}
       </div>
 
-      <div className="mt-[32px]">
+      <div className="mt-[32px] print:hidden">
         <Link
           href="/bestil"
           className="inline-flex rounded-full bg-accent px-[24px] py-[13px] text-[15px] font-medium text-white transition-colors hover:bg-accent-dark"
         >
           Bestil slibning
         </Link>
+      </div>
+
+      {/* Kun ved print: kontakt + moms, så et udprintet/PDF-prisblad kan stå alene */}
+      <div className="mt-[24px] hidden border-t border-line pt-[16px] text-[13px] text-ink print:block">
+        Sundby Sliberi · {SITE.address.street}, {SITE.address.postalCode} {SITE.address.city} ·{" "}
+        {SITE.phoneDisplay} · {SITE.email} · Alle priser inkl. moms.
       </div>
     </main>
   );
