@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 const STEPS = [
   { n: "01", title: "Ring eller skriv", body: "Fortæl mig hvad du har, og hvornår du skal bruge det." },
-  { n: "02", title: "Vi aftaler det", body: "Jeg melder tilbage med pris og en dag — du betaler først, når vi er enige." },
+  { n: "02", title: "Vi aftaler det", body: "Jeg melder tilbage med pris og en dag. Du betaler først, når vi er enige." },
   { n: "03", title: "Skarpt til tiden", body: "Du får dine ting tilbage skarpe, til den dag vi har aftalt." },
 ] as const;
 
@@ -62,7 +62,7 @@ export default function Home() {
       <section className="mx-auto w-full max-w-none px-[16px] py-[64px] md:px-[24px] lg:px-[44px] xl:px-[72px] md:py-[96px]">
         <p className="kicker text-accent">Sådan foregår det</p>
         <h2 className="mt-[12px] max-w-[18ch] font-display text-[36px] uppercase text-ink md:text-[56px]">
-          Tre skridt — resten klarer jeg
+          Tre skridt, resten klarer jeg
         </h2>
 
         {/* Lige store kort. På hover løftes og skaleres det enkelte kort op
@@ -117,7 +117,7 @@ export default function Home() {
             </h2>
             <p className="mt-[20px] max-w-[56ch] text-[16px] leading-relaxed text-white/70">
               Restaurant, café eller kantine? Vi laver faste aftaler om slibning, så køkkenet altid har
-              skarpe knive — uden at du skal holde styr på det.
+              skarpe knive, uden at du skal holde styr på det.
             </p>
             <Link
               href="/erhverv/#kontakt"

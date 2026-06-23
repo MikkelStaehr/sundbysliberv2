@@ -10,7 +10,7 @@ export const SITE = {
   phoneHref: "tel:+4531386119",
   email: "info@sundby-sliberi.dk",
   cvr: "46034759",
-  openingHours: "Hverdage 9–17",
+  openingHours: "Hverdage 9 til 17",
   address: {
     street: "Hamborgskovvej 11",
     postalCode: "4800",
