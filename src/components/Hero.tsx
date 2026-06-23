@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image, { type StaticImageData } from "next/image";
-import { ShoppingBag, Star } from "lucide-react";
+import { ShoppingBag, Star, Shovel, type LucideIcon } from "lucide-react";
 import { SITE } from "@/lib/site";
 import { ImagePanel } from "./ImagePanel";
 import { RotatingHeadline } from "./RotatingHeadline";
@@ -15,7 +15,14 @@ import ctaShop from "@/img/hero/CTAShop.jpg";
   konkavt hak, så panelet ser ud til at bue rundt om cirklen).
 */
 
-type Tile = { label: string; href: string; image?: StaticImageData; alt?: string; grain?: boolean };
+type Tile = {
+  label: string;
+  href: string;
+  image?: StaticImageData;
+  alt?: string;
+  grain?: boolean;
+  icon?: LucideIcon; // bruges når der ikke er et foto (farvet tile)
+};
 
 const TILES: Tile[] = [
   {
@@ -31,6 +38,8 @@ const TILES: Tile[] = [
     image: vaerktoejPhoto,
     alt: "Værktøj på værkstedet hos Sundby Sliberi",
   },
+  // Have: ingen foto endnu → olivengrøn tile med have-ikon (byt til foto senere)
+  { label: "Have", href: "/bestil", icon: Shovel },
 ];
 
 export function Hero() {
@@ -58,27 +67,44 @@ export function Hero() {
             </p>
           </div>
 
-          {/* To foto-tiles */}
-          <div className="grid grid-cols-2 gap-[16px]">
+          {/* Tre kategori-tiles: Knive · Værktøj · Have */}
+          <div className="grid grid-cols-3 gap-[12px]">
             {TILES.map((tile) => (
               <Link key={tile.label} href={tile.href} className="group relative">
-                <ImagePanel
-                  src={tile.image}
-                  alt={tile.alt ?? ""}
-                  grain={tile.grain}
-                  rounded="rounded-[24px]"
-                  className="aspect-[4/5] sm:aspect-square lg:aspect-[4/3]"
-                >
-                  <div
-                    aria-hidden="true"
-                    className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/65 to-transparent"
-                  />
-                  <div className="absolute inset-0 flex flex-col justify-end p-[20px]">
-                    <span className="font-display text-[28px] uppercase text-white transition-colors group-hover:text-apricot md:text-[34px]">
-                      {tile.label}
-                    </span>
+                {tile.image ? (
+                  <ImagePanel
+                    src={tile.image}
+                    alt={tile.alt ?? ""}
+                    grain={tile.grain}
+                    rounded="rounded-[20px]"
+                    className="aspect-square"
+                  >
+                    <div
+                      aria-hidden="true"
+                      className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/65 to-transparent"
+                    />
+                    <div className="absolute inset-0 flex flex-col justify-end p-[14px] md:p-[18px]">
+                      <span className="font-display text-[18px] uppercase text-white transition-colors group-hover:text-apricot sm:text-[22px] lg:text-[26px]">
+                        {tile.label}
+                      </span>
+                    </div>
+                  </ImagePanel>
+                ) : (
+                  <div className="relative aspect-square overflow-hidden rounded-[20px] bg-olive transition-colors group-hover:bg-accent">
+                    {tile.icon && (
+                      <tile.icon
+                        className="absolute right-[12px] top-[12px] h-[26px] w-[26px] text-white/35"
+                        strokeWidth={1.6}
+                        aria-hidden="true"
+                      />
+                    )}
+                    <div className="absolute inset-0 flex flex-col justify-end p-[14px] md:p-[18px]">
+                      <span className="font-display text-[18px] uppercase text-white sm:text-[22px] lg:text-[26px]">
+                        {tile.label}
+                      </span>
+                    </div>
                   </div>
-                </ImagePanel>
+                )}
               </Link>
             ))}
           </div>
