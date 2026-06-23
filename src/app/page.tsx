@@ -14,9 +14,9 @@ export const metadata: Metadata = {
 };
 
 const STEPS = [
-  { n: "01", title: "Ring eller skriv", body: "Fortæl hvad du har, og hvornår du skal bruge det." },
-  { n: "02", title: "Vi aftaler nærmere", body: "Pris og leveringsdag aftales, før du betaler noget." },
-  { n: "03", title: "Skarpt til tiden", body: "Du får dine ting tilbage til den dag, vi har aftalt." },
+  { n: "01", title: "Ring eller skriv", body: "Fortæl mig hvad du har, og hvornår du skal bruge det." },
+  { n: "02", title: "Vi aftaler det", body: "Jeg melder tilbage med pris og en dag — du betaler først, når vi er enige." },
+  { n: "03", title: "Skarpt til tiden", body: "Du får dine ting tilbage skarpe, til den dag vi har aftalt." },
 ] as const;
 
 export default function Home() {
@@ -61,8 +61,8 @@ export default function Home() {
           to mindre tiles (trin 2-3), med farvevariation for fremdrift. */}
       <section className="mx-auto w-full max-w-none px-[16px] py-[64px] md:px-[24px] lg:px-[44px] xl:px-[72px] md:py-[96px]">
         <p className="kicker text-accent">Sådan foregår det</p>
-        <h2 className="mt-[12px] max-w-[16ch] font-display text-[36px] uppercase text-ink md:text-[56px]">
-          Tre skridt fra sløv til skarp
+        <h2 className="mt-[12px] max-w-[18ch] font-display text-[36px] uppercase text-ink md:text-[56px]">
+          Tre skridt — resten klarer jeg
         </h2>
 
         {/* Lige store kort. På hover løftes og skaleres det enkelte kort op
