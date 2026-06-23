@@ -64,7 +64,7 @@ export function CallbackForm() {
       <div className="rounded-[16px] bg-surface px-[24px] py-[32px] text-center">
         <p className="font-display text-[24px] uppercase text-ink">Tak!</p>
         <p className="mt-[8px] text-[15px] leading-relaxed text-muted">
-          Vi ringer dig op hurtigst muligt — som regel samme dag.
+          Jeg ringer dig op hurtigst muligt — som regel samme dag.
         </p>
       </div>
     );

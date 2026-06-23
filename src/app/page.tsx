@@ -29,17 +29,17 @@ export default function Home() {
         <div className="grid items-stretch gap-[16px] rounded-[24px] bg-panel p-[24px] md:p-[40px] lg:grid-cols-[1.1fr_0.9fr] lg:gap-[40px]">
           {/* Venstre: invitation + ring-selv */}
           <div className="flex flex-col justify-center">
-            <p className="kicker text-accent">Skal vi ringe dig op?</p>
-            <h2 className="mt-[12px] max-w-[18ch] font-display text-[32px] uppercase text-ink md:text-[44px]">
-              Vi ringer dig op — gratis og uforpligtende
+            <p className="kicker text-accent">Skal jeg ringe dig op?</p>
+            <h2 className="mt-[12px] max-w-[20ch] font-display text-[32px] uppercase text-ink md:text-[44px]">
+              Du behøver ikke bestille online
             </h2>
             <p className="mt-[16px] max-w-[48ch] text-[16px] leading-relaxed text-muted">
-              Skriv dit nummer, så ringer vi dig op og finder ud af det hele over
-              telefonen — hvad du har, hvad det koster, og hvornår du kan få det
-              tilbage.
+              Vil du hellere bare snakke med mig? Skriv dit nummer her, så ringer jeg dig op — så
+              klarer vi det hele over telefonen: hvad du har, hvad det koster, og hvornår du får det
+              igen.
             </p>
             <p className="mt-[24px] text-[15px] text-muted">
-              Vil du hellere ringe selv?{" "}
+              Eller tag bare telefonen og ring til mig på{" "}
               <a
                 href={SITE.phoneHref}
                 className="font-medium text-accent underline-offset-2 hover:underline"
