@@ -40,7 +40,7 @@ export function Footer() {
             <ul className="mt-[12px] flex flex-col gap-[6px] text-[15px]">
               <li>
                 <Link href="/bestil" className="text-ink transition-colors hover:text-accent">
-                  Slibning
+                  Webshop
                 </Link>
               </li>
               <li>

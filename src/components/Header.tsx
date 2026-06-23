@@ -7,8 +7,8 @@ import { SITE } from "@/lib/site";
 import { CartIcon } from "./CartIcon";
 
 const NAV = [
-  { href: "/bestil", label: "Slibning" },
-  { href: "/priser", label: "Priser" },
+  { href: "/bestil", label: "Webshop" },
+  { href: "/priser", label: "Prisblad" },
   { href: "/erhverv", label: "Erhverv" },
 ];
 
