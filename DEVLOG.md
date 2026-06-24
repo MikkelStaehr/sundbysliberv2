@@ -1,5 +1,22 @@
 # Devlog
 
+## 2026-06-24 — Mobil hero-rækkefølge + kurv-bug (NaN)
+
+### Hero ([Hero.tsx](src/components/Hero.tsx))
+- **Mobil-rækkefølge ændret:** tekstboksen med de skiftende overskrifter ligger nu
+  *under* hero-billederne på mobil (rækkefølge: kategori-tiles → stort billede →
+  overskriftspanel). Desktop-bento'en er uændret. Løst med `display:contents` på
+  venstre kolonne + `order`-utilities, så de tre blokke kan ordnes på mobil uden at
+  røre grid-layoutet på `lg`.
+
+### Kurv ([cart.ts](src/lib/cart.ts))
+- **Bugfix: kurven "huskede" spøgelses-varer med tomt navn og "NaN"-pris.** Årsag:
+  localStorage-nøglen `sliberi_cart_v1` blev genbrugt fra en ældre datamodel med andre
+  feltnavne → `pris` blev `undefined` → `NaN`.
+- **Fix:** nøglen bumpet til `sliberi_cart_v2` (gamle ugyldige kurve forsvinder), og
+  `readCart()` validerer nu hver vare (`isValidItem`) og frasorterer poster der mangler
+  gyldigt id/navn/pris/qty. NaN/tomme navne kan ikke længere rendere.
+
 ## 2026-06-24 — Footer-kort, proces-tekst og mobil-finpudsning før go-live
 
 ### Footer ([Footer.tsx](src/components/Footer.tsx))

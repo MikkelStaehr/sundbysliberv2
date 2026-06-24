@@ -50,11 +50,12 @@ const TILES: Tile[] = [
 export function Hero() {
   return (
     <section className="mx-auto w-full max-w-none px-[16px] pt-[16px] md:px-[24px] lg:px-[44px] xl:px-[72px] md:pt-[24px]">
-      <div className="relative grid gap-[16px] lg:grid-cols-[1.1fr_0.9fr]">
-        {/* Venstre kolonne */}
-        <div className="flex flex-col gap-[16px]">
-          {/* Overskriftspanel */}
-          <div className="rounded-[32px] bg-panel px-[28px] py-[40px] md:px-[48px] md:py-[60px]">
+      <div className="relative flex flex-col gap-[16px] lg:grid lg:grid-cols-[1.1fr_0.9fr]">
+        {/* Venstre kolonne — display:contents på mobil, så overskrift + tiles kan
+            ordnes sammen med billedet. På desktop bliver den til en flex-kolonne. */}
+        <div className="contents lg:flex lg:flex-col lg:gap-[16px]">
+          {/* Overskriftspanel — på mobil sidst (under billederne), øverst på desktop */}
+          <div className="order-3 rounded-[32px] bg-panel px-[28px] py-[40px] md:px-[48px] md:py-[60px] lg:order-none">
             <div className="flex items-center gap-[12px]">
               <p className="kicker text-accent">Knivslibning · Nykøbing F.</p>
               <span aria-hidden="true" className="h-[1px] flex-1 bg-line" />
@@ -72,8 +73,8 @@ export function Hero() {
             </p>
           </div>
 
-          {/* Tre kategori-tiles: Knive · Værktøj · Have */}
-          <div className="grid grid-cols-3 gap-[12px]">
+          {/* Tre kategori-tiles: Knive · Værktøj · Have — først på mobil */}
+          <div className="order-1 grid grid-cols-3 gap-[12px] lg:order-none">
             {TILES.map((tile) => (
               <Link key={tile.label} href={tile.href} className="group relative">
                 {tile.image ? (
@@ -116,8 +117,9 @@ export function Hero() {
         </div>
 
         {/* Højre: oliven CTA-panel. Container er IKKE klippet, så den runde
-            CTA kan stikke ud i sømmen og carve et konkavt hak i begge paneler. */}
-        <div className="relative min-h-[460px] lg:min-h-full">
+            CTA kan stikke ud i sømmen og carve et konkavt hak i begge paneler.
+            På mobil ligger billedet mellem tiles og overskriftspanelet (order-2). */}
+        <div className="order-2 relative min-h-[460px] lg:order-none lg:min-h-full">
           {/* Selve panelet — foto (klippet til afrundet form) */}
           <div className="absolute inset-0 overflow-hidden rounded-[32px] bg-panel-2">
             <Image

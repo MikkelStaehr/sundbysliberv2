@@ -4,12 +4,16 @@ import { useCallback, useEffect, useState } from "react";
 import type { Service } from "@/data/services";
 
 /*
-  Kurv-mekanik samlet ét sted. Bevarer den eksisterende localStorage-tilgang
-  (nøgle sliberi_cart_v1) og udsender et event ved hver ændring, så fx
-  header-badgen kan opdatere live. Ingen rabatlogik.
+  Kurv-mekanik samlet ét sted. Gemmer i localStorage (nøgle sliberi_cart_v2)
+  og udsender et event ved hver ændring, så fx header-badgen kan opdatere live.
+  Ingen rabatlogik.
+
+  Nøglen er v2: en tidligere datamodel brugte v1 med andre feltnavne, så gamle
+  kurve gav varer uden navn og "NaN"-pris. readCart() validerer desuden hver
+  vare, så ugyldige/ufuldstændige poster aldrig kan rendere.
 */
 
-export const CART_KEY = "sliberi_cart_v1";
+export const CART_KEY = "sliberi_cart_v2";
 export const CART_EVENT = "sliberi-cart-changed";
 
 export type CartItem = {
@@ -19,13 +23,36 @@ export type CartItem = {
   qty: number;
 };
 
+function isValidItem(it: unknown): it is CartItem {
+  if (it === null || typeof it !== "object") return false;
+  const o = it as Record<string, unknown>;
+  return (
+    typeof o.id === "string" &&
+    o.id.length > 0 &&
+    typeof o.navn === "string" &&
+    o.navn.length > 0 &&
+    typeof o.pris === "number" &&
+    Number.isFinite(o.pris) &&
+    typeof o.qty === "number" &&
+    Number.isFinite(o.qty) &&
+    o.qty > 0
+  );
+}
+
 export function readCart(): CartItem[] {
   if (typeof window === "undefined") return [];
   try {
     const raw = window.localStorage.getItem(CART_KEY);
     if (!raw) return [];
     const parsed = JSON.parse(raw);
-    return Array.isArray(parsed) ? (parsed as CartItem[]) : [];
+    if (!Array.isArray(parsed)) return [];
+    // Frasortér ugyldige poster, så en korrupt kurv aldrig viser tomme navne/NaN.
+    return parsed.filter(isValidItem).map((it) => ({
+      id: it.id,
+      navn: it.navn,
+      pris: it.pris,
+      qty: it.qty,
+    }));
   } catch {
     return [];
   }
