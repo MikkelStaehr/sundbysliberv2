@@ -1,5 +1,14 @@
 # Devlog
 
+## 2026-06-24 — Display-font: Hanken Grotesk 800 i stedet for Fraunces
+
+- Brugeren foretrak den fede grotesk (sans) som dukkede op som fallback på en telefon
+  hvor Fraunces ikke var loadet, frem for serif'en.
+- Display-font skiftet fra Fraunces (serif) til **Hanken Grotesk vægt 800** — samme familie
+  som brødteksten, nu også til overskrifter. Fraunces fjernet helt ([layout.tsx](src/app/layout.tsx),
+  [globals.css](src/app/globals.css)). Garanteret ens på alle enheder (ikke afhængig af fallback).
+- `.font-display` beholder vægt 800 + stram tracking; Hanken loader nu også 800.
+
 ## 2026-06-24 — Hero-overskrift: animeret højde (fix af overlap)
 
 - [RotatingHeadline](src/components/RotatingHeadline.tsx): den faste `min-h-[3.4em]`

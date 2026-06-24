@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Fraunces, Hanken_Grotesk } from "next/font/google";
+import { Hanken_Grotesk } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 import { Analytics } from "../components/Analytics";
@@ -10,19 +10,11 @@ import { Footer } from "../components/Footer";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { SITE } from "../lib/site";
 
-// Fraunces — display-serif til overskrifter/hero. Født til store grader
-// (optisk størrelse). Kun vægt 800, som .font-display bruger.
-const fraunces = Fraunces({
-  weight: ["800"],
-  variable: "--font-fraunces",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-// Hanken Grotesk — al brødtekst, nav, labels, priser (parring-test).
+// Hanken Grotesk — både brødtekst OG overskrifter. Vægt 800 bruges af
+// .font-display (fede grotesk-overskrifter); 400-700 til brødtekst/nav/labels.
 // Bevarer variabelnavnet --font-inter.
 const hanken = Hanken_Grotesk({
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700", "800"],
   variable: "--font-inter",
   subsets: ["latin"],
   display: "swap",
@@ -105,7 +97,7 @@ export default function RootLayout({
   return (
     <html lang="da">
       <body
-        className={`${fraunces.variable} ${hanken.variable} ${outfit.variable} antialiased`}
+        className={`${hanken.variable} ${outfit.variable} antialiased`}
       >
         <div className="flex min-h-screen flex-col bg-bg">
           <Header />

@@ -36,8 +36,8 @@
   --radius-card: 16px; /* kort, opsummeringer, formular-wrappere */
   --radius-input: 12px; /* input-felter, små thumbnails */
 
-  /* Fonte */
-  --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
+  /* Fonte — Hanken Grotesk til både display (vægt 800) og brødtekst. */
+  --font-display: var(--font-inter), system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-sans: var(--font-inter), system-ui, -apple-system, "Segoe UI", sans-serif;
 
   /* Type-skala — LÅST. Brug altid disse trin (text-xs … text-5xl),
