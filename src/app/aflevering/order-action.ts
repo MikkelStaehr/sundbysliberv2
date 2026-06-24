@@ -9,6 +9,7 @@ export type OrderInput = {
   phone: string;
   email?: string;
   dropoff?: string; // ISO-dato fra <input type="date"> — ønsket afleveringsdag
+  tidsrum?: string; // valgt tidsrum: personlig aflevering (16-22) el. dropoff (08-16)
   message?: string;
   company?: string; // honeypot — skal være tom
   items: OrderLine[];
@@ -52,6 +53,7 @@ export async function sendOrder(input: OrderInput): Promise<OrderResult> {
       : "  (ingen varer valgt)";
 
   const text = `Ønsket afleveringsdag: ${dropoff}
+Tidsrum: ${input.tidsrum?.trim() || "ikke angivet"}
 
 ── Bestilling ──
 ${cartLines}

@@ -19,12 +19,13 @@ export function OrderForm({ onDone }: { onDone?: () => void }) {
     phone: "",
     email: "",
     dropoff: "",
+    tidsrum: "",
     message: "",
     company: "", // honeypot
   });
 
   const onChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -42,6 +43,7 @@ export function OrderForm({ onDone }: { onDone?: () => void }) {
       phone: form.phone,
       email: form.email,
       dropoff: form.dropoff,
+      tidsrum: form.tidsrum,
       message: form.message,
       company: form.company,
       items: items.map((it) => ({ navn: it.navn, pris: it.pris, qty: it.qty })),
@@ -111,19 +113,29 @@ export function OrderForm({ onDone }: { onDone?: () => void }) {
           E-mail (valgfri)
           <input type="email" name="email" value={form.email} onChange={onChange} autoComplete="email" className={inputClass} />
         </label>
-        <label className="block text-sm text-ink">
-          Hvornår vil du aflevere dem? (valgfri)
-          <input
-            type="date"
-            name="dropoff"
-            value={form.dropoff}
-            onChange={onChange}
-            // Åbn kalenderen ved klik/fokus hvor som helst i feltet, ikke kun på ikonet
-            onClick={(e) => e.currentTarget.showPicker?.()}
-            onFocus={(e) => e.currentTarget.showPicker?.()}
-            className={inputClass}
-          />
-        </label>
+        <div className="grid gap-[16px] sm:grid-cols-2">
+          <label className="block text-sm text-ink">
+            Hvornår vil du aflevere dem? (valgfri)
+            <input
+              type="date"
+              name="dropoff"
+              value={form.dropoff}
+              onChange={onChange}
+              // Åbn kalenderen ved klik/fokus hvor som helst i feltet, ikke kun på ikonet
+              onClick={(e) => e.currentTarget.showPicker?.()}
+              onFocus={(e) => e.currentTarget.showPicker?.()}
+              className={inputClass}
+            />
+          </label>
+          <label className="block text-sm text-ink">
+            Tidsrum (valgfri)
+            <select name="tidsrum" value={form.tidsrum} onChange={onChange} className={inputClass}>
+              <option value="">Vælg tidsrum</option>
+              <option value="Personlig aflevering (kl. 16-22)">Personligt · kl. 16-22</option>
+              <option value="Dropoff-kasse (kl. 08-16)">Dropoff-kasse · kl. 08-16</option>
+            </select>
+          </label>
+        </div>
         <label className="block text-sm text-ink">
           Besked (valgfri)
           <textarea name="message" value={form.message} onChange={onChange} rows={4} className={inputClass} />

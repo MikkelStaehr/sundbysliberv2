@@ -1,5 +1,12 @@
 # Devlog
 
+## 2026-06-24 — Tidsrum-felt ved siden af afleveringsdato
+
+- [OrderForm](src/components/OrderForm.tsx): nyt "Tidsrum"-select ved siden af datofeltet
+  (2-kolonne grid). To vinduer: **Personlig aflevering kl. 16-22** og **Dropoff-kasse kl. 08-16**.
+- Valget sendes med i bestillingen ([order-action.ts](src/app/aflevering/order-action.ts)):
+  ny "Tidsrum"-linje i notifikationsmailen. `onChange` udvidet til `HTMLSelectElement`.
+
 ## 2026-06-24 — Datovælger åbner ved klik i hele feltet
 
 - [OrderForm](src/components/OrderForm.tsx): "Hvornår vil du aflevere dem?" (`type="date"`)
