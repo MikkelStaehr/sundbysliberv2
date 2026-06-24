@@ -1,5 +1,13 @@
 # Devlog
 
+## 2026-06-24 — Telefon i topnav: kun ikon på mobil
+
+### Header ([Header.tsx](src/components/Header.tsx))
+- **Mobil:** telefonnummeret var cramped/brækkede i topnav. Viser nu kun telefon-ikonet
+  på mobil; tryk åbner opkald (`tel:`-linket). Nummeret vises igen fra `md` og op.
+- Tilføjet `aria-label` (tilgængelighed for ikon-only) og `whitespace-nowrap` så nummeret
+  aldrig brækker når det vises.
+
 ## 2026-06-24 — Mobil hero-rækkefølge + kurv-bug (NaN)
 
 ### Hero ([Hero.tsx](src/components/Hero.tsx))

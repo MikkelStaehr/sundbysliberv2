@@ -12,14 +12,23 @@ const NAV: { href: string; label: string; primary?: boolean }[] = [
   { href: "/erhverv", label: "Erhverv" },
 ];
 
-function PhoneLink({ className = "" }: { className?: string }) {
+function PhoneLink({
+  className = "",
+  numberClassName = "",
+}: {
+  className?: string;
+  numberClassName?: string;
+}) {
   return (
     <a
       href={SITE.phoneHref}
+      aria-label={`Ring til ${SITE.name} på ${SITE.phoneDisplay}`}
       className={`inline-flex items-center gap-[8px] text-ink transition-colors hover:text-accent ${className}`}
     >
       <Phone className="h-[18px] w-[18px]" strokeWidth={1.6} aria-hidden="true" />
-      <span className="text-[15px] font-medium tabular-nums">{SITE.phoneDisplay}</span>
+      <span className={`whitespace-nowrap text-[15px] font-medium tabular-nums ${numberClassName}`}>
+        {SITE.phoneDisplay}
+      </span>
     </a>
   );
 }
@@ -59,7 +68,8 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-[16px]">
-          <PhoneLink className="hidden sm:inline-flex" />
+          {/* Mobil: kun ikon (tryk = ring op). Nummer vises fra md og op. */}
+          <PhoneLink numberClassName="hidden md:inline" />
           <CartIcon />
           <button
             type="button"
