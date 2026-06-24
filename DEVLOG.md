@@ -1,5 +1,11 @@
 # Devlog
 
+## 2026-06-24 — "Kontakter" i stedet for "ringer dig op" i bestillingsflow
+
+- [OrderForm](src/components/OrderForm.tsx): webshop-bestillinger besvares altid via SMS,
+  ikke opkald. Kvittering: "Jeg kontakter dig hurtigst muligt …", og formular-intro:
+  "… så kontakter jeg dig og aftaler pris og dag." (Ring-op-funktionen på forsiden er uændret.)
+
 ## 2026-06-24 — Forklarende tekst til tidsrum-feltet
 
 - [OrderForm](src/components/OrderForm.tsx): tilføjet hjælpetekst under Tidsrum-select:

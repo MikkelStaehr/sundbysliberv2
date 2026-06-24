@@ -65,7 +65,7 @@ export function OrderForm({ onDone }: { onDone?: () => void }) {
       <div className="rounded-card border border-line bg-surface p-[28px]">
         <h2 className="font-display text-2xl text-ink">Tak for din bestilling</h2>
         <p className="mt-[12px] text-sm leading-relaxed text-ink">
-          Jeg ringer dig op hurtigst muligt, så vi kan aftale nærmere.
+          Jeg kontakter dig hurtigst muligt, så vi kan aftale nærmere.
         </p>
         <div className="mt-[24px] flex flex-wrap gap-[12px]">
           <Link
@@ -89,7 +89,7 @@ export function OrderForm({ onDone }: { onDone?: () => void }) {
     <form onSubmit={handleSubmit} className="rounded-card border border-line bg-surface p-[28px]">
       <h1 className="font-display text-3xl text-ink md:text-4xl">Dine oplysninger</h1>
       <p className="mt-[10px] text-sm leading-relaxed text-muted">
-        Udfyld dine oplysninger, så ringer jeg dig op og aftaler pris og dag.
+        Udfyld dine oplysninger, så kontakter jeg dig og aftaler pris og dag.
       </p>
 
       <div className="mt-[24px] flex flex-col gap-[16px]">
