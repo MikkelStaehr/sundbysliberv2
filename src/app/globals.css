@@ -2,9 +2,12 @@
 
 /*
   Sundby Sliberi — relaunch 2026.
-  Moderne, seriøs, bento. Rent hvid baggrund, køligt lysegrå paneler,
-  stålblå accent (sparsomt). Ingen gradients, ingen tunge skygger.
-  Afrundede bento-paneler; piller på knapper.
+  Støvet pastel: cremet baggrund, oliven accent, abrikos som varm pop.
+  Bento-paneler med bløde hjørner; piller (rounded-full) på knapper.
+  Gradient-scrims bruges kun til tekstlæsbarhed oven på fotos.
+
+  Radius: brug altid tokens — rounded-bento (paneler), rounded-card (kort),
+  rounded-input (felter/små thumbnails), rounded-full (piller).
 */
 
 @theme {
@@ -28,10 +31,10 @@
 
   --color-placeholder: #c9c6ba; /* produkt-silhuet indtil rigtige fotos */
 
-  /* Radius */
-  --radius-bento: 24px;
-  --radius-card: 16px;
-  --radius-pill: 999px;
+  /* Radius — 3 trin + pille (rounded-full) */
+  --radius-bento: 24px; /* store paneler, sektioner, billed-containere */
+  --radius-card: 16px; /* kort, opsummeringer, formular-wrappere */
+  --radius-input: 12px; /* input-felter, små thumbnails */
 
   /* Fonte */
   --font-display: var(--font-archivo), "Arial Narrow", system-ui, sans-serif;

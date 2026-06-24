@@ -17,7 +17,7 @@ export function CatalogSections() {
         const items = SERVICES.filter((s) => s.kategori === key);
         if (items.length === 0) return null;
         return (
-          <section key={key} className="rounded-[20px] border border-line bg-surface p-[16px] md:p-[24px]">
+          <section key={key} className="rounded-bento border border-line bg-surface p-[16px] md:p-[24px]">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-[10px]">
                 <span aria-hidden="true" className={`h-[12px] w-[12px] rounded-full ${dot}`} />

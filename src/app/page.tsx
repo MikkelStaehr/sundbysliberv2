@@ -25,8 +25,8 @@ export default function Home() {
       <Hero />
 
       {/* Ring mig op — mange kunder vil hellere ringes op end at udfylde en bestilling */}
-      <section className="mx-auto w-full max-w-none px-[16px] pt-[16px] md:px-[24px] lg:px-[44px] xl:px-[72px]">
-        <div className="grid items-stretch gap-[16px] rounded-[24px] bg-panel p-[24px] md:p-[40px] lg:grid-cols-[1.1fr_0.9fr] lg:gap-[40px]">
+      <section className="mx-auto w-full max-w-none px-[20px] pt-[16px] md:px-[32px] lg:px-[48px] xl:px-[72px]">
+        <div className="grid items-stretch gap-[16px] rounded-bento bg-panel p-[24px] md:p-[40px] lg:grid-cols-[1.1fr_0.9fr] lg:gap-[40px]">
           {/* Venstre: invitation + ring-selv */}
           <div className="flex flex-col justify-center">
             <p className="kicker text-accent">Skal jeg ringe dig op?</p>
@@ -51,7 +51,7 @@ export default function Home() {
           </div>
 
           {/* Højre: formularkort */}
-          <div className="rounded-[16px] bg-bg p-[24px] md:p-[32px]">
+          <div className="rounded-card bg-bg p-[24px] md:p-[32px]">
             <CallbackForm />
           </div>
         </div>
@@ -59,7 +59,7 @@ export default function Home() {
 
       {/* Sådan foregår det — asymmetrisk bento: ét stort panel (trin 1) +
           to mindre tiles (trin 2-3), med farvevariation for fremdrift. */}
-      <section className="mx-auto w-full max-w-none px-[16px] py-[64px] md:px-[24px] lg:px-[44px] xl:px-[72px] md:py-[96px]">
+      <section className="mx-auto w-full max-w-none px-[20px] py-[64px] md:px-[32px] lg:px-[48px] xl:px-[72px] md:py-[96px]">
         <p className="kicker text-accent">Sådan foregår det</p>
         <h2 className="mt-[12px] max-w-[18ch] font-display text-[36px] uppercase text-ink md:text-[56px]">
           Tre skridt, resten klarer jeg
@@ -71,7 +71,7 @@ export default function Home() {
         <ol className="mt-[40px] grid gap-[16px] md:grid-cols-3">
           {STEPS.map((s) => (
             <li key={s.n} className="relative">
-              <div className="group relative h-full overflow-hidden rounded-[24px] bg-panel p-[32px] transition-all duration-300 ease-out hover:z-10 hover:-translate-y-[6px] hover:scale-[1.03] hover:bg-accent hover:shadow-[0_24px_48px_-20px_rgba(51,53,47,0.4)] md:p-[40px]">
+              <div className="group relative h-full overflow-hidden rounded-bento bg-panel p-[32px] transition-all duration-300 ease-out hover:z-10 hover:-translate-y-[6px] hover:scale-[1.03] hover:bg-accent hover:shadow-[0_24px_48px_-20px_rgba(51,53,47,0.4)] md:p-[40px]">
                 <span
                   aria-hidden="true"
                   className="pointer-events-none absolute -right-[8px] -top-[20px] font-display text-[140px] leading-none text-ink/[0.14] transition-colors duration-300 group-hover:text-white/[0.16]"
@@ -96,8 +96,8 @@ export default function Home() {
       <ReviewsSection />
 
       {/* Erhverv-teaser — mørkt bento-panel for kontrast */}
-      <section className="mx-auto w-full max-w-none px-[16px] py-[16px] md:px-[24px] lg:px-[44px] xl:px-[72px]">
-        <div className="relative overflow-hidden rounded-[24px] bg-ink px-[28px] py-[48px] md:px-[56px] md:py-[72px]">
+      <section className="mx-auto w-full max-w-none px-[20px] py-[16px] md:px-[32px] lg:px-[48px] xl:px-[72px]">
+        <div className="relative overflow-hidden rounded-bento bg-ink px-[28px] py-[48px] md:px-[56px] md:py-[72px]">
           {/* Foto til højre — fader ud mod teksten via gradient. Kun fra md+. */}
           <div aria-hidden="true" className="pointer-events-none absolute inset-y-0 right-0 hidden w-[62%] md:block">
             <Image

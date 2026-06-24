@@ -43,7 +43,7 @@ export default function Priser() {
           const items = SERVICES.filter((s) => s.kategori === key);
           if (items.length === 0) return null;
           return (
-            <section key={key} className="rounded-[20px] border border-line bg-surface p-[16px] md:p-[24px]">
+            <section key={key} className="rounded-bento border border-line bg-surface p-[16px] md:p-[24px]">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-[10px]">
                   <span aria-hidden="true" className={`h-[12px] w-[12px] rounded-full ${dot}`} />
@@ -59,7 +59,7 @@ export default function Priser() {
               <div className="mt-[8px] flex flex-col">
                 {items.map((s) => (
                   <div key={s.id} className="flex items-center gap-[14px] border-t border-line py-[12px] first:border-t-0">
-                    <div className={`flex h-[52px] w-[52px] shrink-0 items-center justify-center rounded-[12px] ${tint} p-[7px]`}>
+                    <div className={`flex h-[52px] w-[52px] shrink-0 items-center justify-center rounded-input ${tint} p-[7px]`}>
                       {s.image ? (
                         <Image src={s.image} alt={s.navn} width={72} height={72} className="max-h-full w-auto object-contain" />
                       ) : null}

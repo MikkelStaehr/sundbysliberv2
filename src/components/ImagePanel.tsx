@@ -29,7 +29,7 @@ export function ImagePanel({
   src,
   alt = "",
   className = "",
-  rounded = "rounded-[24px]",
+  rounded = "rounded-bento",
   children,
   priority,
   grain = false,

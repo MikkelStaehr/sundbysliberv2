@@ -7,7 +7,7 @@ import { sendOrder } from "@/app/aflevering/order-action";
 import { SITE } from "@/lib/site";
 
 const inputClass =
-  "mt-[6px] w-full rounded-[16px] border border-line bg-surface px-[12px] py-[10px] text-[15px] text-ink placeholder:text-muted";
+  "mt-[6px] w-full rounded-input border border-line bg-surface px-[12px] py-[10px] text-[15px] text-ink placeholder:text-muted";
 
 export function OrderForm({ onDone }: { onDone?: () => void }) {
   const { items, total, clear } = useCart();
@@ -60,7 +60,7 @@ export function OrderForm({ onDone }: { onDone?: () => void }) {
 
   if (done) {
     return (
-      <div className="rounded-[16px] border border-line bg-surface p-[28px]">
+      <div className="rounded-card border border-line bg-surface p-[28px]">
         <h2 className="font-display text-[28px] text-ink">Tak for din bestilling</h2>
         <p className="mt-[12px] text-[15px] leading-relaxed text-ink">
           Jeg ringer dig op hurtigst muligt, så vi kan aftale nærmere.
@@ -84,7 +84,7 @@ export function OrderForm({ onDone }: { onDone?: () => void }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="rounded-[16px] border border-line bg-surface p-[28px]">
+    <form onSubmit={handleSubmit} className="rounded-card border border-line bg-surface p-[28px]">
       <h1 className="font-display text-[36px] text-ink md:text-[44px]">Dine oplysninger</h1>
       <p className="mt-[10px] text-[15px] leading-relaxed text-muted">
         Udfyld dine oplysninger, så ringer jeg dig op og aftaler pris og dag.

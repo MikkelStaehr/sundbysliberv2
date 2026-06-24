@@ -67,7 +67,7 @@ export default function Erhverv() {
             src={erhvervPhoto}
             alt="Professionelt køkken på Lolland-Falster"
             priority
-            rounded="rounded-[20px]"
+            rounded="rounded-bento"
             className="aspect-[4/5]"
           />
         </div>

@@ -1,5 +1,36 @@
 # Devlog
 
+## 2026-06-24 — Designsystem strammet (radier, gutters, font-vægte)
+
+Efter en kritisk design-gennemgang. Fokus på systemiske, lav-risiko-fixes;
+typeskala (#1) og valg af display-font tages som separat diskussion bagefter.
+Verificeret med fuld `next build` (radius-utilities bekræftet i bygget CSS).
+
+### Radius-system (#2)
+- Strammet til **3 tokens**: `rounded-bento` (24px), `rounded-card` (16px),
+  `rounded-input` (12px) + `rounded-full` (piller). Defineret i [globals.css](src/app/globals.css).
+- Migreret **alle ~6 forskellige hårdkodede radier** (12/14/16/20/24/32px) til tokens
+  på tværs af 17 filer. De gamle `--radius-*`-tokens var defineret men ubrugte.
+- Hero-panelerne gik fra 32px → 24px, så de nu **matcher** forsidens øvrige bento-sektioner.
+- Input-felter ensrettet til `rounded-input` (var 16px i OrderForm, 12px i ErhvervForm).
+
+### Gutters (#3)
+- Hero + forsidens tre sektioner gik fra `px-16/24/44` til `px-20/32/48` ([Hero](src/components/Hero.tsx),
+  [page](src/app/page.tsx)), så indholdskanten nu **flugter** med header, footer og de øvrige sider.
+
+### Fonte (#4)
+- Merriweather trimmet fra 4 vægte (400/700/800/900) til kun **800**, som er den eneste
+  `.font-display` bruger. Sparer 3 ubrugte serif-vægte i download ([layout.tsx](src/app/layout.tsx)).
+
+### Dokumentation (#6)
+- Rettet den vildledende header-kommentar i [globals.css](src/app/globals.css) (beskrev
+  "hvid baggrund / stålblå accent / ingen gradients" — alt forkert) + tilføjet radius-token-guide.
+
+### Udestående (separat diskussion)
+- #1 Typeskala: ~27 forskellige px-størrelser, H1 varierer pr. side, footer-slogan (72px)
+  større end hero, 9px-tekst, inputs <16px (iOS-zoom).
+- Valg af display-font: Merriweather er en bog-serif brugt som versal display.
+
 ## 2026-06-24 — Stor oprydning før go-live (ubrugt kode, billeder, deps)
 
 Gennemgang af hele projektet for død/ubrugt kode, spredte billeder og skrald.

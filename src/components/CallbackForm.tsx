@@ -61,7 +61,7 @@ export function CallbackForm() {
 
   if (success) {
     return (
-      <div className="rounded-[16px] bg-surface px-[24px] py-[32px] text-center">
+      <div className="rounded-card bg-surface px-[24px] py-[32px] text-center">
         <p className="font-display text-[24px] uppercase text-ink">Tak!</p>
         <p className="mt-[8px] text-[15px] leading-relaxed text-muted">
           Jeg ringer dig op hurtigst muligt, som regel samme dag.
@@ -80,7 +80,7 @@ export function CallbackForm() {
           onChange={onChange}
           required
           autoComplete="name"
-          className="mt-[6px] w-full rounded-[12px] border border-line bg-surface px-[16px] py-[12px] text-[16px] text-ink outline-none transition-colors focus:border-accent"
+          className="mt-[6px] w-full rounded-input border border-line bg-surface px-[16px] py-[12px] text-[16px] text-ink outline-none transition-colors focus:border-accent"
         />
       </label>
       <label className="block text-[13px] font-medium text-ink">
@@ -93,7 +93,7 @@ export function CallbackForm() {
           onChange={onChange}
           required
           autoComplete="tel"
-          className="mt-[6px] w-full rounded-[12px] border border-line bg-surface px-[16px] py-[12px] text-[16px] text-ink outline-none transition-colors focus:border-accent"
+          className="mt-[6px] w-full rounded-input border border-line bg-surface px-[16px] py-[12px] text-[16px] text-ink outline-none transition-colors focus:border-accent"
         />
       </label>
       <label className="block text-[13px] font-medium text-ink">
@@ -102,7 +102,7 @@ export function CallbackForm() {
           name="time"
           value={form.time}
           onChange={onChange}
-          className="mt-[6px] w-full rounded-[12px] border border-line bg-surface px-[16px] py-[12px] text-[16px] text-ink outline-none transition-colors focus:border-accent"
+          className="mt-[6px] w-full rounded-input border border-line bg-surface px-[16px] py-[12px] text-[16px] text-ink outline-none transition-colors focus:border-accent"
         >
           {TIME_OPTIONS.map((t) => (
             <option key={t} value={t}>

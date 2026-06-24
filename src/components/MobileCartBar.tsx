@@ -20,7 +20,7 @@ export function MobileCartBar() {
     <div className="fixed inset-x-0 bottom-0 z-40 lg:hidden">
       {/* Udfoldet varekurv */}
       {open && (
-        <div className="mx-[12px] mb-[8px] max-h-[55vh] overflow-y-auto rounded-[20px] border border-line bg-surface p-[16px]">
+        <div className="mx-[12px] mb-[8px] max-h-[55vh] overflow-y-auto rounded-bento border border-line bg-surface p-[16px]">
           <div className="flex items-center justify-between">
             <span className="font-display text-[20px] uppercase text-ink">Din kurv</span>
             <button onClick={clear} className="text-[13px] text-muted underline-offset-2 hover:text-ink hover:underline">

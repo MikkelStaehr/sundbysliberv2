@@ -27,7 +27,7 @@ export function Footer() {
               href="https://maps.app.goo.gl/oVe1hXYYYvapZYEHA"
               target="_blank"
               rel="noopener noreferrer"
-              className="block h-[160px] w-full shrink-0 overflow-hidden rounded-[14px] border border-line transition-opacity hover:opacity-90 sm:h-[120px] sm:w-[150px]"
+              className="block h-[160px] w-full shrink-0 overflow-hidden rounded-input border border-line transition-opacity hover:opacity-90 sm:h-[120px] sm:w-[150px]"
             >
               <iframe
                 title={`${SITE.name} på kort – ${SITE.address.street}`}

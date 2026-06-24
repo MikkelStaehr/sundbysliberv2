@@ -12,7 +12,7 @@ interface FormState {
 }
 
 const inputClass =
-  "mt-[6px] w-full rounded-[12px] border border-line bg-surface px-[12px] py-[10px] text-[16px] text-ink outline-none transition-colors focus:border-accent";
+  "mt-[6px] w-full rounded-input border border-line bg-surface px-[12px] py-[10px] text-[16px] text-ink outline-none transition-colors focus:border-accent";
 
 export function ErhvervForm() {
   const [form, setForm] = useState<FormState>({
@@ -61,7 +61,7 @@ export function ErhvervForm() {
 
   if (success) {
     return (
-      <div className="mt-[16px] rounded-[12px] bg-panel px-[20px] py-[24px] text-center">
+      <div className="mt-[16px] rounded-card bg-panel px-[20px] py-[24px] text-center">
         <p className="font-display text-[22px] uppercase text-ink">Tak!</p>
         <p className="mt-[6px] text-[15px] leading-relaxed text-muted">
           Tak for din henvendelse. Jeg vender retur hurtigst muligt.

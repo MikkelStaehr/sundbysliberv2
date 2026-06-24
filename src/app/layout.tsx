@@ -10,10 +10,11 @@ import { Footer } from "../components/Footer";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { SITE } from "../lib/site";
 
-// Merriweather — display/overskrifter + wordmark (parring-test). Serif.
+// Merriweather — display/overskrifter. Serif. Kun vægt 800, som .font-display
+// bruger (de øvrige vægte blev downloadet uden at blive brugt).
 // Bevarer variabelnavnet --font-archivo, så resten af CSS'en er uændret.
 const merriweather = Merriweather({
-  weight: ["400", "700", "800", "900"],
+  weight: ["800"],
   variable: "--font-archivo",
   subsets: ["latin"],
   display: "swap",

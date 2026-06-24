@@ -19,7 +19,7 @@ function Stars({ value }: { value: number }) {
 
 export function ReviewCard({ review }: { review: Review }) {
   return (
-    <figure className="flex h-full flex-col rounded-[16px] border border-line bg-surface p-[28px]">
+    <figure className="flex h-full flex-col rounded-card border border-line bg-surface p-[28px]">
       <Stars value={review.stjerner} />
       <blockquote className="mt-[16px] flex-1 text-[16px] leading-relaxed text-ink">
         “{review.citat}”

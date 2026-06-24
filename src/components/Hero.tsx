@@ -49,13 +49,13 @@ const TILES: Tile[] = [
 
 export function Hero() {
   return (
-    <section className="mx-auto w-full max-w-none px-[16px] pt-[16px] md:px-[24px] lg:px-[44px] xl:px-[72px] md:pt-[24px]">
+    <section className="mx-auto w-full max-w-none px-[20px] pt-[16px] md:px-[32px] lg:px-[48px] xl:px-[72px] md:pt-[24px]">
       <div className="relative flex flex-col gap-[16px] lg:grid lg:grid-cols-[1.1fr_0.9fr]">
         {/* Venstre kolonne — display:contents på mobil, så overskrift + tiles kan
             ordnes sammen med billedet. På desktop bliver den til en flex-kolonne. */}
         <div className="contents lg:flex lg:flex-col lg:gap-[16px]">
           {/* Overskriftspanel — på mobil sidst (under billederne), øverst på desktop */}
-          <div className="order-3 rounded-[32px] bg-panel px-[28px] py-[40px] md:px-[48px] md:py-[60px] lg:order-none">
+          <div className="order-3 rounded-bento bg-panel px-[28px] py-[40px] md:px-[48px] md:py-[60px] lg:order-none">
             <div className="flex items-center gap-[12px]">
               <p className="kicker text-accent">Knivslibning · Nykøbing F.</p>
               <span aria-hidden="true" className="h-[1px] flex-1 bg-line" />
@@ -82,7 +82,7 @@ export function Hero() {
                     src={tile.image}
                     alt={tile.alt ?? ""}
                     grain={tile.grain}
-                    rounded="rounded-[20px]"
+                    rounded="rounded-bento"
                     className="aspect-square"
                   >
                     <div
@@ -96,7 +96,7 @@ export function Hero() {
                     </div>
                   </ImagePanel>
                 ) : (
-                  <div className="relative aspect-square overflow-hidden rounded-[20px] bg-olive transition-colors group-hover:bg-accent">
+                  <div className="relative aspect-square overflow-hidden rounded-bento bg-olive transition-colors group-hover:bg-accent">
                     {tile.icon && (
                       <tile.icon
                         className="absolute right-[12px] top-[12px] h-[26px] w-[26px] text-white/35"
@@ -121,7 +121,7 @@ export function Hero() {
             På mobil ligger billedet mellem tiles og overskriftspanelet (order-2). */}
         <div className="order-2 relative min-h-[460px] lg:order-none lg:min-h-full">
           {/* Selve panelet — foto (klippet til afrundet form) */}
-          <div className="absolute inset-0 overflow-hidden rounded-[32px] bg-panel-2">
+          <div className="absolute inset-0 overflow-hidden rounded-bento bg-panel-2">
             <Image
               src={ctaShop}
               alt="Slibning hos Sundby Sliberi"

@@ -77,7 +77,7 @@ export default function KnivslibningNykoebingFalster() {
             src={ctaShop}
             alt="Mikkel Stæhr i værkstedet hos Sundby Sliberi"
             priority
-            rounded="rounded-[20px]"
+            rounded="rounded-bento"
             className="aspect-[4/5]"
           />
         </div>

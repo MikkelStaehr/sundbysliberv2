@@ -31,7 +31,7 @@ export default function Privatliv() {
           hjemmesiden, bestiller slibning eller kontakter os.
         </p>
 
-        <div className="mt-[28px] flex flex-col gap-[28px] rounded-[20px] border border-line bg-surface p-[24px] text-[15px] leading-relaxed text-muted md:p-[36px]">
+        <div className="mt-[28px] flex flex-col gap-[28px] rounded-bento border border-line bg-surface p-[24px] text-[15px] leading-relaxed text-muted md:p-[36px]">
           <section>
             <h2 className="text-[19px] font-semibold text-ink">Dataansvarlig</h2>
             <p className="mt-[10px]">
