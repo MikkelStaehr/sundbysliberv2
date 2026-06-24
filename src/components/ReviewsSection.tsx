@@ -1,4 +1,4 @@
-import { REVIEWS, REVIEWS_WITH_TEXT, GOOGLE_REVIEW_URL, reviewStats } from "@/data/reviews";
+import { REVIEWS_WITH_TEXT, GOOGLE_REVIEW_URL, reviewStats } from "@/data/reviews";
 import { SITE } from "@/lib/site";
 import { ReviewsCarousel } from "./ReviewsCarousel";
 

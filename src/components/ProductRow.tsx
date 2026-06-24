@@ -27,15 +27,14 @@ export function ProductRow({ service }: { service: Service }) {
   const { items, add, inc, dec } = useCart();
   const [imgError, setImgError] = useState(false);
   const inCart = items.find((it) => it.id === service.id);
-  const showImg = service.image && !imgError;
 
   return (
     <div className="flex items-center gap-[12px] border-t border-line py-[12px] first:border-t-0 sm:gap-[16px]">
       {/* Thumbnail */}
       <div className={`flex h-[68px] w-[68px] shrink-0 items-center justify-center rounded-[14px] ${TINT[service.kategori]} p-[6px] sm:h-[84px] sm:w-[84px]`}>
-        {showImg ? (
+        {service.image && !imgError ? (
           <Image
-            src={service.image as string}
+            src={service.image}
             alt={service.navn}
             width={80}
             height={80}

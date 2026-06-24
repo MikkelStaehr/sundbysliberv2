@@ -3,7 +3,7 @@ import type { MetadataRoute } from "next";
 const BASE_URL = "https://sundby-sliberi.dk";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const routes = ["", "/bestil", "/priser", "/aflevering", "/tak", "/knivslibning-nykoebing-falster", "/erhverv"].map(
+  const routes = ["", "/bestil", "/priser", "/aflevering", "/knivslibning-nykoebing-falster", "/erhverv"].map(
     (path) => ({
       url: `${BASE_URL}${path}`,
       lastModified: new Date(),

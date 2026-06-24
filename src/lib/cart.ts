@@ -68,11 +68,11 @@ function persist(items: CartItem[]) {
   window.dispatchEvent(new Event(CART_EVENT));
 }
 
-export function cartCount(items: CartItem[]): number {
+function cartCount(items: CartItem[]): number {
   return items.reduce((sum, it) => sum + it.qty, 0);
 }
 
-export function cartTotal(items: CartItem[]): number {
+function cartTotal(items: CartItem[]): number {
   return items.reduce((sum, it) => sum + it.pris * it.qty, 0);
 }
 

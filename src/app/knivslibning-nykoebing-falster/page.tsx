@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ImagePanel } from "@/components/ImagePanel";
-import ctaShop from "@/img/hero/CTAShop.jpg";
+import ctaShop from "@/img/hero/cta-shop.jpg";
 
 export const metadata: Metadata = {
   title: "Knivslibning i Nykøbing Falster – Sundby Sliberi",

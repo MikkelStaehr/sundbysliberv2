@@ -1,5 +1,40 @@
 # Devlog
 
+## 2026-06-24 — Stor oprydning før go-live (ubrugt kode, billeder, deps)
+
+Gennemgang af hele projektet for død/ubrugt kode, spredte billeder og skrald.
+Verificeret med `tsc --noEmit`, `eslint` og fuld `next build` (alle grønne).
+
+### Slettet (ubrugt/skrald)
+- npm: `nodemailer` + `@types/nodemailer` + `src/types/nodemailer.d.ts` (vi bruger Resend).
+- `getService()` / `servicesByCategory()` i [services.ts](src/data/services.ts) (aldrig kaldt).
+- ~48 ubrugte Outfit-font-varianter (OTF/WEB/eot/woff) — kun `Outfit-Variable.ttf`
+  (+ `License/OFL.txt`) beholdt.
+- 13 orphan-billeder: `icon_cart/dropoff/knives/sharpening/sms/tools.png`,
+  `paper_texture.jpg`, `chainsaw_chain.png`, og Next-standard `*.svg`.
+- Skrald i roden: `dummy`, `dummy2`, `.htaccess` (Apache, ignoreres på Vercel),
+  `package-lock-gfd-…json` (677 KB backup).
+- Intern font-testside `/app/fonts` (noindex, ikke linket; fonte er for længst valgt).
+- Forældreløs `/tak`-side + fjernet fra [sitemap.ts](src/app/sitemap.ts) (kvittering
+  vises inline i bestillingsflowet, så siden var død).
+
+### Billeder samlet i src/img
+- Alle produkt-thumbnails flyttet fra `public/images/` til `src/img/products/` og
+  loades nu via **statiske imports** i [services.ts](src/data/services.ts)
+  (Next-optimering på alle billeder, ét sted). `Service.image` er nu `StaticImageData`.
+- Kun `hero_rooster_icon.png` bliver i `public/images/` (favicon/OG/JSON-LD kræver
+  en stabil offentlig URL).
+
+### Bugfix
+- **Case-mismatch på CTA-billede:** importerne brugte `CTAShop.jpg`, filen på disk var
+  `CTAshop.jpg`. Virkede på Windows (case-insensitiv) men er skrøbeligt på Linux.
+  Omdøbt til entydigt `cta-shop.jpg` og imports rettet ([Hero.tsx](src/components/Hero.tsx),
+  [Om-siden](src/app/knivslibning-nykoebing-falster/page.tsx)).
+
+### Småt
+- Un-eksporteret interne `cartCount`/`cartTotal` i [cart.ts](src/lib/cart.ts).
+- Fjernet ubrugt `REVIEWS`-import i [ReviewsSection.tsx](src/components/ReviewsSection.tsx).
+
 ## 2026-06-24 — Fjernet em-dashes i synlig tekst
 
 - `/bestil` intro ([bestil/page.tsx](src/app/bestil/page.tsx)): "kurven — alt" → to sætninger.

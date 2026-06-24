@@ -10,6 +10,24 @@
   viser kortet en grå silhuet, så et rigtigt foto bare kan droppes ind senere.
 */
 
+import type { StaticImageData } from "next/image";
+import herbknife from "@/img/products/herbknife.png";
+import utilityknife from "@/img/products/utilityknife.png";
+import chefsknife from "@/img/products/chefsknife.png";
+import santokuknife from "@/img/products/santokuknife.png";
+import nakiriknife from "@/img/products/nakiriknife.png";
+import breadknife from "@/img/products/breadknife.png";
+import scissors from "@/img/products/scissors.png";
+import woodChisel from "@/img/products/wood_chisel.png";
+import woodturningTool from "@/img/products/woodturning_tool.png";
+import planeiron from "@/img/products/planeiron.png";
+import axe from "@/img/products/axe.png";
+import mowerblade from "@/img/products/icon_mowerblade.png";
+import hedgeshears from "@/img/products/hedgeshears.png";
+import pruningshears from "@/img/products/pruningshears.png";
+import drainspade from "@/img/products/drainspade.png";
+import spade from "@/img/products/spade.png";
+
 export type ServiceCategory = "knive" | "vaerktoej" | "have";
 
 export type Service = {
@@ -17,7 +35,7 @@ export type Service = {
   navn: string;
   kategori: ServiceCategory;
   pris: number; // kr, inkl. moms
-  image?: string;
+  image?: StaticImageData;
   note?: string;
 };
 
@@ -29,39 +47,31 @@ export const CATEGORY_LABELS: Record<ServiceCategory, string> = {
 
 export const SERVICES: Service[] = [
   // Knive — alle 50, undtagen brødkniv 100
-  { id: "herbknife", navn: "Urtekniv", kategori: "knive", pris: 50, image: "/images/herbknife.png" },
-  { id: "midknife", navn: "Universalkniv", kategori: "knive", pris: 50, image: "/images/utilityknife.png" },
-  { id: "chefsknife", navn: "Kokkekniv", kategori: "knive", pris: 50, image: "/images/chefsknife.png" },
-  { id: "santoku", navn: "Santokukniv", kategori: "knive", pris: 50, image: "/images/santokuknife.png" },
-  { id: "nakiri", navn: "Nakirikniv", kategori: "knive", pris: 50, image: "/images/nakiriknife.png" },
+  { id: "herbknife", navn: "Urtekniv", kategori: "knive", pris: 50, image: herbknife },
+  { id: "midknife", navn: "Universalkniv", kategori: "knive", pris: 50, image: utilityknife },
+  { id: "chefsknife", navn: "Kokkekniv", kategori: "knive", pris: 50, image: chefsknife },
+  { id: "santoku", navn: "Santokukniv", kategori: "knive", pris: 50, image: santokuknife },
+  { id: "nakiri", navn: "Nakirikniv", kategori: "knive", pris: 50, image: nakiriknife },
   {
     id: "bread",
     navn: "Brødkniv (tandskær)",
     kategori: "knive",
     pris: 100,
-    image: "/images/breadknife.png",
+    image: breadknife,
     note: "Tænder rettes op. Bladet slibes ikke.",
   },
 
   // Værktøj — uændrede priser
-  { id: "scissors", navn: "Saks", kategori: "vaerktoej", pris: 90, image: "/images/scissors.png" },
-  { id: "chisel", navn: "Mejsel / stemmejern", kategori: "vaerktoej", pris: 50, image: "/images/wood_chisel.png" },
-  { id: "woodchisel", navn: "Træmejsel", kategori: "vaerktoej", pris: 50, image: "/images/woodturning_tool.png" },
-  { id: "planeiron", navn: "Fladt høvlblad", kategori: "vaerktoej", pris: 80, image: "/images/planeiron.png" },
-  { id: "axe", navn: "Økse", kategori: "vaerktoej", pris: 120, image: "/images/axe.png" },
+  { id: "scissors", navn: "Saks", kategori: "vaerktoej", pris: 90, image: scissors },
+  { id: "chisel", navn: "Mejsel / stemmejern", kategori: "vaerktoej", pris: 50, image: woodChisel },
+  { id: "woodchisel", navn: "Træmejsel", kategori: "vaerktoej", pris: 50, image: woodturningTool },
+  { id: "planeiron", navn: "Fladt høvlblad", kategori: "vaerktoej", pris: 80, image: planeiron },
+  { id: "axe", navn: "Økse", kategori: "vaerktoej", pris: 120, image: axe },
 
   // Have
-  { id: "mower", navn: "Plæneklipperklinge", kategori: "have", pris: 100, image: "/images/icon_mowerblade.png" },
-  { id: "hedgeshears", navn: "Hækkesaks", kategori: "have", pris: 75, image: "/images/hedgeshears.png" },
-  { id: "pruningshears", navn: "Grensaks / rosensaks", kategori: "have", pris: 75, image: "/images/pruningshears.png" },
-  { id: "drainspade", navn: "Drænspade", kategori: "have", pris: 100, image: "/images/drainspade.png" },
-  { id: "spade", navn: "Spade", kategori: "have", pris: 100, image: "/images/spade.png" },
+  { id: "mower", navn: "Plæneklipperklinge", kategori: "have", pris: 100, image: mowerblade },
+  { id: "hedgeshears", navn: "Hækkesaks", kategori: "have", pris: 75, image: hedgeshears },
+  { id: "pruningshears", navn: "Grensaks / rosensaks", kategori: "have", pris: 75, image: pruningshears },
+  { id: "drainspade", navn: "Drænspade", kategori: "have", pris: 100, image: drainspade },
+  { id: "spade", navn: "Spade", kategori: "have", pris: 100, image: spade },
 ];
-
-export function getService(id: string): Service | undefined {
-  return SERVICES.find((s) => s.id === id);
-}
-
-export function servicesByCategory(kategori: ServiceCategory): Service[] {
-  return SERVICES.filter((s) => s.kategori === kategori);
-}

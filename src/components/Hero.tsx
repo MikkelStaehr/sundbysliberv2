@@ -6,7 +6,7 @@ import { ImagePanel } from "./ImagePanel";
 import { RotatingHeadline } from "./RotatingHeadline";
 import japKnives from "@/img/hero/JapKnifes.jpg";
 import vaerktoejPhoto from "@/img/hero/elizabeth-french-wmObLzO2g-s-unsplash.jpg";
-import ctaShop from "@/img/hero/CTAShop.jpg";
+import ctaShop from "@/img/hero/cta-shop.jpg";
 import havePhoto from "@/img/hero/have.jpg";
 
 /*
