@@ -1,5 +1,11 @@
 # Devlog
 
+## 2026-06-24 — Tidsrum-kort side om side
+
+- [OrderForm](src/components/OrderForm.tsx): de to tidsrum-kort står nu side om side
+  (2-kolonne grid) i stedet for stacked. Tid + forklaring stablet i hvert kort, så de
+  ikke klemmes i de smallere kort.
+
 ## 2026-06-24 — Tidsrum som pæne radio-kort
 
 - [OrderForm](src/components/OrderForm.tsx): erstattet den native select med to valgkort

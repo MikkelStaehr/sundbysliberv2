@@ -135,7 +135,7 @@ export function OrderForm({ onDone }: { onDone?: () => void }) {
           </label>
           <fieldset className="min-w-0">
             <legend className="text-sm text-ink">Tidsrum (valgfri)</legend>
-            <div className="mt-[6px] flex flex-col gap-[8px]">
+            <div className="mt-[6px] grid grid-cols-2 gap-[8px]">
               {TIDSRUM.map((o) => {
                 const selected = form.tidsrum === o.value;
                 return (
@@ -162,10 +162,8 @@ export function OrderForm({ onDone }: { onDone?: () => void }) {
                       {selected && <span className="h-[9px] w-[9px] rounded-full bg-accent" />}
                     </span>
                     <span className="min-w-0 flex-1">
-                      <span className="flex items-baseline justify-between gap-[8px]">
-                        <span className="text-sm font-medium text-ink">{o.title}</span>
-                        <span className="text-xs tabular-nums text-muted">{o.time}</span>
-                      </span>
+                      <span className="block text-sm font-medium text-ink">{o.title}</span>
+                      <span className="block text-xs tabular-nums text-muted">{o.time}</span>
                       <span className="block text-xs text-muted">{o.desc}</span>
                     </span>
                   </label>
