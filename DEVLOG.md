@@ -1,5 +1,11 @@
 # Devlog
 
+## 2026-06-24 — Datovælger åbner ved klik i hele feltet
+
+- [OrderForm](src/components/OrderForm.tsx): "Hvornår vil du aflevere dem?" (`type="date"`)
+  åbner nu kalenderen ved klik/fokus hvor som helst i feltet via `showPicker()`, ikke kun
+  når man rammer kalender-ikonet.
+
 ## 2026-06-24 — Låst typeskala + Fraunces som display-font (#1)
 
 Verificeret med fuld `next build` (skala-tokens + Fraunces bekræftet i bygget CSS).

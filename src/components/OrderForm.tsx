@@ -113,7 +113,16 @@ export function OrderForm({ onDone }: { onDone?: () => void }) {
         </label>
         <label className="block text-sm text-ink">
           Hvornår vil du aflevere dem? (valgfri)
-          <input type="date" name="dropoff" value={form.dropoff} onChange={onChange} className={inputClass} />
+          <input
+            type="date"
+            name="dropoff"
+            value={form.dropoff}
+            onChange={onChange}
+            // Åbn kalenderen ved klik/fokus hvor som helst i feltet, ikke kun på ikonet
+            onClick={(e) => e.currentTarget.showPicker?.()}
+            onFocus={(e) => e.currentTarget.showPicker?.()}
+            className={inputClass}
+          />
         </label>
         <label className="block text-sm text-ink">
           Besked (valgfri)
