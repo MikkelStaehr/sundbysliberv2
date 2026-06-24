@@ -135,7 +135,7 @@ export function OrderForm({ onDone }: { onDone?: () => void }) {
           </label>
           <fieldset className="min-w-0">
             <legend className="text-sm text-ink">Tidsrum (valgfri)</legend>
-            <div className="mt-[6px] grid grid-cols-2 gap-[8px]">
+            <div className="mt-[6px] grid grid-cols-1 gap-[8px] sm:grid-cols-2">
               {TIDSRUM.map((o) => {
                 const selected = form.tidsrum === o.value;
                 return (

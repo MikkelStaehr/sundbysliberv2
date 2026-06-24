@@ -1,5 +1,10 @@
 # Devlog
 
+## 2026-06-24 — Tidsrum-kort: stacked på mobil, side om side fra sm
+
+- [OrderForm](src/components/OrderForm.tsx): tidsrum-kortene er nu `grid-cols-1` på mobil
+  (stacked) og `sm:grid-cols-2` (side om side) fra tablet/desktop.
+
 ## 2026-06-24 — Tidsrum-kort side om side
 
 - [OrderForm](src/components/OrderForm.tsx): de to tidsrum-kort står nu side om side
