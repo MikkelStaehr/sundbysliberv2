@@ -21,11 +21,11 @@ export function CatalogSections() {
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-[10px]">
                 <span aria-hidden="true" className={`h-[12px] w-[12px] rounded-full ${dot}`} />
-                <h2 className="font-display text-[26px] uppercase text-ink md:text-[30px]">
+                <h2 className="font-display text-xl uppercase text-ink md:text-2xl">
                   {CATEGORY_LABELS[key]}
                 </h2>
               </div>
-              <span className="text-[13px] text-muted">
+              <span className="text-xs text-muted">
                 {items.length} {items.length === 1 ? "ydelse" : "ydelser"}
               </span>
             </div>

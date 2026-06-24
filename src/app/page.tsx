@@ -30,15 +30,15 @@ export default function Home() {
           {/* Venstre: invitation + ring-selv */}
           <div className="flex flex-col justify-center">
             <p className="kicker text-accent">Skal jeg ringe dig op?</p>
-            <h2 className="mt-[12px] max-w-[20ch] font-display text-[32px] uppercase text-ink md:text-[44px]">
+            <h2 className="mt-[12px] max-w-[20ch] font-display text-2xl uppercase text-ink md:text-4xl">
               Du behøver ikke bestille online
             </h2>
-            <p className="mt-[16px] max-w-[48ch] text-[16px] leading-relaxed text-muted">
+            <p className="mt-[16px] max-w-[48ch] text-base leading-relaxed text-muted">
               Ønsker du at bestille via telefon? Skriv dit nummer her, så ringer jeg dig op, og så
               klarer vi det hele over telefonen: hvad du har, hvad det koster, og hvornår du får det
               igen.
             </p>
-            <p className="mt-[24px] text-[15px] text-muted">
+            <p className="mt-[24px] text-sm text-muted">
               Eller tag bare telefonen og ring til mig på{" "}
               <a
                 href={SITE.phoneHref}
@@ -61,7 +61,7 @@ export default function Home() {
           to mindre tiles (trin 2-3), med farvevariation for fremdrift. */}
       <section className="mx-auto w-full max-w-none px-[20px] py-[64px] md:px-[32px] lg:px-[48px] xl:px-[72px] md:py-[96px]">
         <p className="kicker text-accent">Sådan foregår det</p>
-        <h2 className="mt-[12px] max-w-[18ch] font-display text-[36px] uppercase text-ink md:text-[56px]">
+        <h2 className="mt-[12px] max-w-[18ch] font-display text-2xl uppercase text-ink md:text-4xl">
           Tre skridt, resten klarer jeg
         </h2>
 
@@ -78,13 +78,13 @@ export default function Home() {
                 >
                   {s.n}
                 </span>
-                <span className="relative product-name text-[12px] text-accent transition-colors duration-300 group-hover:text-apricot">
+                <span className="relative product-name text-xs text-accent transition-colors duration-300 group-hover:text-apricot">
                   Trin {s.n}
                 </span>
-                <h3 className="relative mt-[14px] font-display text-[26px] uppercase text-ink transition-colors duration-300 group-hover:text-white">
+                <h3 className="relative mt-[14px] font-display text-xl uppercase text-ink transition-colors duration-300 group-hover:text-white">
                   {s.title}
                 </h3>
-                <p className="relative mt-[10px] text-[15px] leading-relaxed text-muted transition-colors duration-300 group-hover:text-white/85">
+                <p className="relative mt-[10px] text-sm leading-relaxed text-muted transition-colors duration-300 group-hover:text-white/85">
                   {s.body}
                 </p>
               </div>
@@ -112,16 +112,16 @@ export default function Home() {
           </div>
 
           <div className="relative z-10">
-            <h2 className="max-w-[22ch] font-display text-[32px] uppercase text-white md:text-[48px]">
+            <h2 className="max-w-[22ch] font-display text-2xl uppercase text-white md:text-4xl">
               Dine kokke skal ikke bruge tid på sløve knive
             </h2>
-            <p className="mt-[20px] max-w-[56ch] text-[16px] leading-relaxed text-white/70">
+            <p className="mt-[20px] max-w-[56ch] text-base leading-relaxed text-white/70">
               Restaurant, café eller kantine? Vi laver faste aftaler om slibning, så køkkenet altid har
               skarpe knive, uden at du skal holde styr på det.
             </p>
             <Link
               href="/erhverv/#kontakt"
-              className="mt-[32px] inline-flex rounded-full bg-accent px-[24px] py-[13px] text-[15px] font-medium text-white transition-colors hover:bg-accent-dark"
+              className="mt-[32px] inline-flex rounded-full bg-accent px-[24px] py-[13px] text-sm font-medium text-white transition-colors hover:bg-accent-dark"
             >
               Lad os tage en snak →
             </Link>

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Merriweather, Hanken_Grotesk } from "next/font/google";
+import { Fraunces, Hanken_Grotesk } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 import { Analytics } from "../components/Analytics";
@@ -10,12 +10,11 @@ import { Footer } from "../components/Footer";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { SITE } from "../lib/site";
 
-// Merriweather — display/overskrifter. Serif. Kun vægt 800, som .font-display
-// bruger (de øvrige vægte blev downloadet uden at blive brugt).
-// Bevarer variabelnavnet --font-archivo, så resten af CSS'en er uændret.
-const merriweather = Merriweather({
+// Fraunces — display-serif til overskrifter/hero. Født til store grader
+// (optisk størrelse). Kun vægt 800, som .font-display bruger.
+const fraunces = Fraunces({
   weight: ["800"],
-  variable: "--font-archivo",
+  variable: "--font-fraunces",
   subsets: ["latin"],
   display: "swap",
 });
@@ -106,7 +105,7 @@ export default function RootLayout({
   return (
     <html lang="da">
       <body
-        className={`${merriweather.variable} ${hanken.variable} ${outfit.variable} antialiased`}
+        className={`${fraunces.variable} ${hanken.variable} ${outfit.variable} antialiased`}
       >
         <div className="flex min-h-screen flex-col bg-bg">
           <Header />

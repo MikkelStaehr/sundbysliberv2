@@ -12,7 +12,7 @@ interface FormState {
 }
 
 const inputClass =
-  "mt-[6px] w-full rounded-input border border-line bg-surface px-[12px] py-[10px] text-[16px] text-ink outline-none transition-colors focus:border-accent";
+  "mt-[6px] w-full rounded-input border border-line bg-surface px-[12px] py-[10px] text-base text-ink outline-none transition-colors focus:border-accent";
 
 export function ErhvervForm() {
   const [form, setForm] = useState<FormState>({
@@ -62,8 +62,8 @@ export function ErhvervForm() {
   if (success) {
     return (
       <div className="mt-[16px] rounded-card bg-panel px-[20px] py-[24px] text-center">
-        <p className="font-display text-[22px] uppercase text-ink">Tak!</p>
-        <p className="mt-[6px] text-[15px] leading-relaxed text-muted">
+        <p className="font-display text-xl uppercase text-ink">Tak!</p>
+        <p className="mt-[6px] text-sm leading-relaxed text-muted">
           Tak for din henvendelse. Jeg vender retur hurtigst muligt.
         </p>
       </div>
@@ -73,36 +73,36 @@ export function ErhvervForm() {
   return (
     <form onSubmit={handleSubmit} className="mt-[16px] flex flex-col gap-[14px] text-left">
       <div className="grid gap-[14px] sm:grid-cols-2">
-        <label className="block text-[14px] text-ink">
+        <label className="block text-sm text-ink">
           Navn*
           <input name="name" value={form.name} onChange={onChange} required autoComplete="name" className={inputClass} />
         </label>
-        <label className="block text-[14px] text-ink">
+        <label className="block text-sm text-ink">
           Virksomhedsnavn
           <input name="company" value={form.company} onChange={onChange} autoComplete="organization" className={inputClass} />
         </label>
-        <label className="block text-[14px] text-ink">
+        <label className="block text-sm text-ink">
           CVR-nummer
           <input name="cvr" value={form.cvr} onChange={onChange} inputMode="numeric" className={inputClass} />
         </label>
-        <label className="block text-[14px] text-ink">
+        <label className="block text-sm text-ink">
           E-mail*
           <input type="email" name="email" value={form.email} onChange={onChange} required autoComplete="email" className={inputClass} />
         </label>
-        <label className="block text-[14px] text-ink sm:col-span-2">
+        <label className="block text-sm text-ink sm:col-span-2">
           Telefon
           <input name="phone" value={form.phone} onChange={onChange} inputMode="tel" autoComplete="tel" className={inputClass} />
         </label>
       </div>
-      <label className="block text-[14px] text-ink">
+      <label className="block text-sm text-ink">
         Beskriv kort jeres behov
         <textarea name="message" value={form.message} onChange={onChange} rows={4} className={inputClass} />
       </label>
-      {error && <p className="text-[14px] text-apricot-deep">{error}</p>}
+      {error && <p className="text-sm text-apricot-deep">{error}</p>}
       <button
         type="submit"
         disabled={isSending}
-        className="inline-flex items-center justify-center self-start rounded-full bg-accent px-[24px] py-[13px] text-[15px] font-medium text-white transition-colors hover:bg-accent-dark disabled:cursor-not-allowed disabled:opacity-60"
+        className="inline-flex items-center justify-center self-start rounded-full bg-accent px-[24px] py-[13px] text-sm font-medium text-white transition-colors hover:bg-accent-dark disabled:cursor-not-allowed disabled:opacity-60"
       >
         {isSending ? "Sender…" : "Send henvendelse"}
       </button>

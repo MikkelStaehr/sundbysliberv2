@@ -34,10 +34,10 @@ export default function Erhverv() {
       <div className="grid gap-[32px] lg:grid-cols-2 lg:gap-[56px]">
         <div>
           <p className="kicker text-accent">Erhverv</p>
-          <h1 className="mt-[14px] font-display text-[34px] uppercase leading-[1.05] text-ink md:text-[52px]">
+          <h1 className="mt-[14px] font-display text-3xl uppercase leading-[1.05] text-ink md:text-5xl">
             Skarpe knive, uden besvær
           </h1>
-          <p className="mt-[20px] text-[16px] leading-relaxed text-muted md:text-[18px]">
+          <p className="mt-[20px] text-base leading-relaxed text-muted md:text-lg">
             Har du restaurant, café, kantine eller andet professionelt køkken på Lolland-Falster,
             laver jeg en fast aftale om slibning af dine knive, køkkenredskaber og håndværktøj, så
             både køkken og værksted altid har skarpe redskaber.
@@ -49,14 +49,14 @@ export default function Erhverv() {
                 <span aria-hidden="true" className="inline-flex h-[28px] w-[28px] shrink-0 items-center justify-center rounded-full bg-accent text-white">
                   <Check className="h-4 w-4" strokeWidth={2.4} aria-hidden="true" />
                 </span>
-                <span className="text-[16px] text-ink">{b}</span>
+                <span className="text-base text-ink">{b}</span>
               </li>
             ))}
           </ul>
 
           <Link
             href="#kontakt"
-            className="mt-[28px] inline-flex self-start rounded-full bg-accent px-[24px] py-[13px] text-[15px] font-medium text-white transition-colors hover:bg-accent-dark"
+            className="mt-[28px] inline-flex self-start rounded-full bg-accent px-[24px] py-[13px] text-sm font-medium text-white transition-colors hover:bg-accent-dark"
           >
             Få et tilbud
           </Link>
@@ -75,10 +75,10 @@ export default function Erhverv() {
 
       {/* Kontakt */}
       <section id="kontakt" className="mt-[56px] scroll-mt-[100px] md:mt-[80px]">
-        <h2 className="font-display text-[28px] uppercase text-ink md:text-[40px]">
+        <h2 className="font-display text-2xl uppercase text-ink md:text-3xl">
           Lad os tage en snak
         </h2>
-        <p className="mt-[12px] max-w-[60ch] text-[16px] leading-relaxed text-muted">
+        <p className="mt-[12px] max-w-[60ch] text-base leading-relaxed text-muted">
           Udfyld formularen, så vender jeg retur og foreslår en løsning, der passer til jer. Eller
           ring direkte på{" "}
           <a href={SITE.phoneHref} className="font-medium text-accent underline-offset-2 hover:underline">
@@ -91,7 +91,7 @@ export default function Erhverv() {
           <ErhvervForm />
         </div>
 
-        <p className="mt-[24px] max-w-[60ch] text-[14px] leading-relaxed text-muted">
+        <p className="mt-[24px] max-w-[60ch] text-sm leading-relaxed text-muted">
           Jeg holder til i Sundby ved Nykøbing Falster og kører primært på Lolland-Falster og omegn.
           Har du ønsker uden for området, så skriv, så ser vi på det.
         </p>

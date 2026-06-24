@@ -30,8 +30,8 @@ export default function Priser() {
   return (
     <main className="mx-auto w-full max-w-none px-[20px] py-[48px] md:px-[32px] lg:px-[48px] xl:px-[72px] md:py-[64px]">
       <p className="kicker text-accent">Prisblad</p>
-      <h1 className="mt-[10px] font-display text-[40px] uppercase text-ink md:text-[60px]">Hvad koster det</h1>
-      <p className="mt-[12px] max-w-[60ch] text-[16px] leading-relaxed text-muted">
+      <h1 className="mt-[10px] font-display text-3xl uppercase text-ink md:text-5xl">Hvad koster det</h1>
+      <p className="mt-[12px] max-w-[60ch] text-base leading-relaxed text-muted">
         Alle priser er inkl. moms. Den endelige pris bekræftes altid, før du betaler noget.
       </p>
       <div className="mt-[20px]">
@@ -47,11 +47,11 @@ export default function Priser() {
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-[10px]">
                   <span aria-hidden="true" className={`h-[12px] w-[12px] rounded-full ${dot}`} />
-                  <h2 className="font-display text-[26px] uppercase text-ink md:text-[30px]">
+                  <h2 className="font-display text-xl uppercase text-ink md:text-2xl">
                     {CATEGORY_LABELS[key]}
                   </h2>
                 </div>
-                <span className="text-[13px] text-muted">
+                <span className="text-xs text-muted">
                   {items.length} {items.length === 1 ? "ydelse" : "ydelser"}
                 </span>
               </div>
@@ -65,10 +65,10 @@ export default function Priser() {
                       ) : null}
                     </div>
                     <div className="min-w-0 flex-1">
-                      <p className="text-[16px] font-medium leading-tight text-ink">{s.navn}</p>
-                      {s.note && <p className="mt-[2px] text-[12px] leading-snug text-muted">{s.note}</p>}
+                      <p className="text-base font-medium leading-tight text-ink">{s.navn}</p>
+                      {s.note && <p className="mt-[2px] text-xs leading-snug text-muted">{s.note}</p>}
                     </div>
-                    <span className="shrink-0 text-[16px] font-semibold tabular-nums text-ink">{s.pris} kr</span>
+                    <span className="shrink-0 text-base font-semibold tabular-nums text-ink">{s.pris} kr</span>
                   </div>
                 ))}
               </div>
@@ -80,14 +80,14 @@ export default function Priser() {
       <div className="mt-[32px] print:hidden">
         <Link
           href="/bestil"
-          className="inline-flex rounded-full bg-accent px-[24px] py-[13px] text-[15px] font-medium text-white transition-colors hover:bg-accent-dark"
+          className="inline-flex rounded-full bg-accent px-[24px] py-[13px] text-sm font-medium text-white transition-colors hover:bg-accent-dark"
         >
           Bestil slibning
         </Link>
       </div>
 
       {/* Kun ved print: kontakt + moms, så et udprintet/PDF-prisblad kan stå alene */}
-      <div className="mt-[24px] hidden border-t border-line pt-[16px] text-[13px] text-ink print:block">
+      <div className="mt-[24px] hidden border-t border-line pt-[16px] text-xs text-ink print:block">
         Sundby Sliberi · {SITE.address.street}, {SITE.address.postalCode} {SITE.address.city} ·{" "}
         {SITE.phoneDisplay} · {SITE.email} · Alle priser inkl. moms.
       </div>

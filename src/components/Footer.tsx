@@ -5,7 +5,7 @@ export function Footer() {
   return (
     <footer className="border-t border-line bg-panel text-ink">
       <div className="mx-auto w-full max-w-none px-[20px] py-[48px] md:px-[32px] lg:px-[48px] xl:px-[72px] md:py-[72px]">
-        <p className="font-display text-[44px] leading-none text-ink md:text-[72px]">
+        <p className="font-display text-4xl leading-none text-ink md:text-5xl">
           Få dem skarpe igen.
         </p>
 
@@ -13,12 +13,12 @@ export function Footer() {
           <div className="flex flex-col gap-[16px] sm:flex-row sm:items-start">
             <div>
               <p className="kicker text-muted">Sundby Sliberi</p>
-              <p className="mt-[12px] text-[15px] leading-relaxed text-ink">
+              <p className="mt-[12px] text-sm leading-relaxed text-ink">
                 {SITE.address.street}
                 <br />
                 {SITE.address.postalCode} {SITE.address.city}
               </p>
-              <p className="mt-[10px] text-[13px] text-muted">CVR {SITE.cvr}</p>
+              <p className="mt-[10px] text-xs text-muted">CVR {SITE.cvr}</p>
             </div>
 
             {/* Kort — fuld bredde på mobil, kompakt ved siden af på desktop.
@@ -41,7 +41,7 @@ export function Footer() {
 
           <div>
             <p className="kicker text-muted">Kontakt</p>
-            <ul className="mt-[12px] flex flex-col gap-[6px] text-[15px]">
+            <ul className="mt-[12px] flex flex-col gap-[6px] text-sm">
               <li>
                 <a href={SITE.phoneHref} className="text-ink transition-colors hover:text-accent">
                   {SITE.phoneDisplay}
@@ -57,7 +57,7 @@ export function Footer() {
 
           <div>
             <p className="kicker text-muted">Sider</p>
-            <ul className="mt-[12px] flex flex-col gap-[6px] text-[15px]">
+            <ul className="mt-[12px] flex flex-col gap-[6px] text-sm">
               <li>
                 <Link href="/bestil" className="text-ink transition-colors hover:text-accent">
                   Webshop
@@ -85,7 +85,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-[40px] flex flex-col gap-[8px] border-t border-line pt-[24px] text-[13px] text-muted md:flex-row md:items-center md:justify-between">
+        <div className="mt-[40px] flex flex-col gap-[8px] border-t border-line pt-[24px] text-xs text-muted md:flex-row md:items-center md:justify-between">
           <span>© 2026 {SITE.name}</span>
           <Link href="/privatliv" className="transition-colors hover:text-accent">
             Privatliv &amp; cookies

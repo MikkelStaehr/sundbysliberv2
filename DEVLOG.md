@@ -1,5 +1,25 @@
 # Devlog
 
+## 2026-06-24 — Låst typeskala + Fraunces som display-font (#1)
+
+Verificeret med fuld `next build` (skala-tokens + Fraunces bekræftet i bygget CSS).
+
+### Display-font
+- Skiftet fra Merriweather (bog-serif) til **Fraunces** — en display-serif født til
+  store grader. Variabel omdøbt `--font-archivo` → `--font-fraunces`, serif-fallback
+  rettet (var "Arial Narrow"). [layout.tsx](src/app/layout.tsx), [globals.css](src/app/globals.css).
+
+### Låst typeskala (#1)
+- Defineret **9 skala-tokens** i [globals.css](src/app/globals.css):
+  text-xs 13 / sm 15 / base 16 / lg 19 / xl 24 / 2xl 30 / 3xl 38 / 4xl 52 / 5xl 64.
+- Migreret **alle ~27 arbitrære `text-[NNpx]`** til skala-utilities (kun det dekorative
+  140px-tal beholdt). 9px-tekst er væk (min. er nu 13px).
+- **Ensartet hierarki:** alle side-H1 → `text-3xl md:text-5xl` (38/64); alle sektions-H2
+  → `text-2xl md:text-4xl` (30/52). Footer-sloganet bragt ned under hero (var sitets
+  største typografi).
+- **iOS-zoom fjernet:** OrderForm-inputs hævet 15→16px (matcher nu de øvrige formularer).
+- Ryddet redundant breakpoint på header-logoet.
+
 ## 2026-06-24 — Designsystem strammet (radier, gutters, font-vægte)
 
 Efter en kritisk design-gennemgang. Fokus på systemiske, lav-risiko-fixes;

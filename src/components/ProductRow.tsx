@@ -48,12 +48,12 @@ export function ProductRow({ service }: { service: Service }) {
 
       {/* Navn + note */}
       <div className="min-w-0 flex-1">
-        <p className="text-[16px] font-medium leading-tight text-ink">{service.navn}</p>
-        {service.note && <p className="mt-[2px] text-[12px] leading-snug text-muted">{service.note}</p>}
+        <p className="text-base font-medium leading-tight text-ink">{service.navn}</p>
+        {service.note && <p className="mt-[2px] text-xs leading-snug text-muted">{service.note}</p>}
       </div>
 
       {/* Pris */}
-      <span className="shrink-0 text-[16px] font-semibold tabular-nums text-ink">{service.pris} kr</span>
+      <span className="shrink-0 text-base font-semibold tabular-nums text-ink">{service.pris} kr</span>
 
       {/* Tilføj / stepper */}
       {inCart ? (
@@ -62,16 +62,16 @@ export function ProductRow({ service }: { service: Service }) {
             type="button"
             onClick={() => dec(service.id)}
             aria-label={`Færre ${service.navn}`}
-            className="inline-flex h-[40px] w-[40px] items-center justify-center rounded-full bg-surface text-[18px] text-ink transition-colors hover:text-accent"
+            className="inline-flex h-[40px] w-[40px] items-center justify-center rounded-full bg-surface text-lg text-ink transition-colors hover:text-accent"
           >
             −
           </button>
-          <span className="w-[22px] text-center text-[15px] font-medium tabular-nums text-ink">{inCart.qty}</span>
+          <span className="w-[22px] text-center text-sm font-medium tabular-nums text-ink">{inCart.qty}</span>
           <button
             type="button"
             onClick={() => inc(service.id)}
             aria-label={`Flere ${service.navn}`}
-            className="inline-flex h-[40px] w-[40px] items-center justify-center rounded-full bg-surface text-[18px] text-ink transition-colors hover:text-accent"
+            className="inline-flex h-[40px] w-[40px] items-center justify-center rounded-full bg-surface text-lg text-ink transition-colors hover:text-accent"
           >
             +
           </button>
@@ -81,9 +81,9 @@ export function ProductRow({ service }: { service: Service }) {
           type="button"
           onClick={() => add(service)}
           aria-label={`Tilføj ${service.navn} til kurv`}
-          className="inline-flex shrink-0 items-center gap-[6px] rounded-full bg-accent px-[16px] py-[9px] text-[14px] font-medium text-white transition-colors hover:bg-accent-dark active:scale-95"
+          className="inline-flex shrink-0 items-center gap-[6px] rounded-full bg-accent px-[16px] py-[9px] text-sm font-medium text-white transition-colors hover:bg-accent-dark active:scale-95"
         >
-          <span className="text-[17px] leading-none">+</span>
+          <span className="text-base leading-none">+</span>
           <span className="hidden sm:inline">Tilføj</span>
         </button>
       )}

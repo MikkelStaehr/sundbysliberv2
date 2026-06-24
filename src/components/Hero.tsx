@@ -60,10 +60,10 @@ export function Hero() {
               <p className="kicker text-accent">Knivslibning · Nykøbing F.</p>
               <span aria-hidden="true" className="h-[1px] flex-1 bg-line" />
             </div>
-            <h1 className="mt-[24px] font-display text-[34px] uppercase leading-[1.12] text-ink md:text-[52px] xl:text-[60px]">
+            <h1 className="mt-[24px] font-display text-3xl uppercase leading-[1.12] text-ink md:text-5xl">
               <RotatingHeadline />
             </h1>
-            <p className="mt-[24px] max-w-[52ch] text-[16px] leading-relaxed text-muted md:text-[18px]">
+            <p className="mt-[24px] max-w-[52ch] text-base leading-relaxed text-muted md:text-lg">
               Jeg er en lokal sliber i Sundby på Lolland. Jeg sliber alt fra knive, værktøj og
               haveredskaber. Alt bliver slebet i hånden og poleret op. Ring eller bestil direkte i{" "}
               <Link href="/bestil" className="font-medium text-accent underline-offset-2 hover:underline">
@@ -90,7 +90,7 @@ export function Hero() {
                       className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/65 to-transparent"
                     />
                     <div className="absolute inset-0 flex flex-col justify-end p-[10px] sm:p-[14px] md:p-[18px]">
-                      <span className="font-display text-[14px] uppercase text-white transition-colors group-hover:text-apricot sm:text-[20px] lg:text-[26px]">
+                      <span className="font-display text-sm uppercase text-white transition-colors group-hover:text-apricot sm:text-lg lg:text-xl">
                         {tile.label}
                       </span>
                     </div>
@@ -105,7 +105,7 @@ export function Hero() {
                       />
                     )}
                     <div className="absolute inset-0 flex flex-col justify-end p-[10px] sm:p-[14px] md:p-[18px]">
-                      <span className="font-display text-[14px] uppercase text-white sm:text-[20px] lg:text-[26px]">
+                      <span className="font-display text-sm uppercase text-white sm:text-lg lg:text-xl">
                         {tile.label}
                       </span>
                     </div>
@@ -140,8 +140,8 @@ export function Hero() {
           {/* Anmeldelses-badge nestet i et hjørne (halo carver hakket) */}
           <div className="absolute left-[16px] top-[16px] rounded-full bg-bg p-[6px] lg:left-auto lg:right-[20px]">
             <div className="flex h-[72px] w-[72px] flex-col items-center justify-center rounded-full bg-surface text-center md:h-[84px] md:w-[84px]">
-              <span className="font-display text-[20px] text-ink md:text-[24px]">5,0</span>
-              <span className="product-name inline-flex items-center gap-[3px] text-[9px] text-muted">
+              <span className="font-display text-lg text-ink md:text-xl">5,0</span>
+              <span className="product-name inline-flex items-center gap-[3px] text-xs text-muted">
                 <Star className="h-[10px] w-[10px] text-accent" fill="currentColor" strokeWidth={0} aria-hidden="true" /> Google
               </span>
             </div>
@@ -151,13 +151,13 @@ export function Hero() {
           <div className="absolute inset-x-[20px] bottom-[20px] flex flex-wrap gap-[10px]">
             <Link
               href="/priser"
-              className="inline-flex items-center rounded-full bg-surface px-[20px] py-[12px] text-[14px] font-medium text-ink transition-colors hover:bg-bg"
+              className="inline-flex items-center rounded-full bg-surface px-[20px] py-[12px] text-sm font-medium text-ink transition-colors hover:bg-bg"
             >
               Se priser
             </Link>
             <a
               href={SITE.phoneHref}
-              className="inline-flex items-center gap-[8px] rounded-full bg-ink px-[20px] py-[12px] text-[14px] font-medium text-white transition-colors hover:bg-accent-dark"
+              className="inline-flex items-center gap-[8px] rounded-full bg-ink px-[20px] py-[12px] text-sm font-medium text-white transition-colors hover:bg-accent-dark"
             >
               Ring {SITE.phoneDisplay}
             </a>
@@ -173,10 +173,10 @@ export function Hero() {
               className="flex h-[116px] w-[116px] flex-col items-center justify-center gap-[5px] rounded-full bg-apricot text-center text-ink transition-colors hover:bg-apricot-deep hover:text-white md:h-[136px] md:w-[136px]"
             >
               <ShoppingBag className="h-[24px] w-[24px] md:h-[26px] md:w-[26px]" strokeWidth={1.7} aria-hidden="true" />
-              <span className="font-display text-[19px] uppercase leading-none md:text-[22px]">
+              <span className="font-display text-lg uppercase leading-none md:text-xl">
                 Bestil nu
               </span>
-              <span className="product-name text-[9px] leading-none opacity-80">
+              <span className="product-name text-xs leading-none opacity-80">
                 Online →
               </span>
             </Link>

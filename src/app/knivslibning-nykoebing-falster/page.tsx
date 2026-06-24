@@ -25,31 +25,31 @@ export default function KnivslibningNykoebingFalster() {
         {/* Venstre: alt om mig */}
         <div>
           <p className="kicker text-accent">Om mig</p>
-          <h1 className="mt-[14px] font-display text-[34px] uppercase leading-[1.05] text-ink md:text-[52px]">
+          <h1 className="mt-[14px] font-display text-3xl uppercase leading-[1.05] text-ink md:text-5xl">
             Knivslibning i Sundby, Nykøbing Falster
           </h1>
-          <p className="mt-[20px] text-[16px] leading-relaxed text-muted md:text-[18px]">
+          <p className="mt-[20px] text-base leading-relaxed text-muted md:text-lg">
             Jeg hedder Mikkel Stæhr, bor på Lolland og sliber knive, værktøj, haveredskaber og alt
             andet der skal gøres skarpt, ud af mit værksted i Sundby.
           </p>
 
-          <h2 className="mt-[32px] text-[22px] font-semibold text-ink">Med samme respekt, hver gang</h2>
-          <p className="mt-[12px] text-[16px] leading-relaxed text-muted">
+          <h2 className="mt-[32px] text-xl font-semibold text-ink">Med samme respekt, hver gang</h2>
+          <p className="mt-[12px] text-base leading-relaxed text-muted">
             Alt bliver håndslebet og renoveret i hånden. Intet er overladt til tilfældighederne. Med
             rigelig erfaring og en stadig sult efter ny viden bliver hver opgave taget ordentligt hånd
             om.
           </p>
-          <p className="mt-[12px] text-[16px] leading-relaxed text-muted">
+          <p className="mt-[12px] text-base leading-relaxed text-muted">
             Det er lige meget, om kniven er fundet i en container eller har kostet flere tusinde
             kroner. Alt bliver renoveret, slebet og poleret op med samme respekt for materialet.
           </p>
 
-          <h2 className="mt-[32px] text-[22px] font-semibold text-ink">Sådan bestiller du knivslibning</h2>
-          <p className="mt-[12px] text-[16px] leading-relaxed text-muted">
+          <h2 className="mt-[32px] text-xl font-semibold text-ink">Sådan bestiller du knivslibning</h2>
+          <p className="mt-[12px] text-base leading-relaxed text-muted">
             Bestillingen foregår online: vælg hvad du vil have slebet, og udfyld dine oplysninger. Når
             jeg har modtaget din bestilling, ringer jeg dig op og aftaler pris og leveringsdag.
           </p>
-          <p className="mt-[12px] text-[16px] leading-relaxed text-muted">
+          <p className="mt-[12px] text-base leading-relaxed text-muted">
             Jeg sliber blandt andet kokkeknive, urteknive, brødknive, økser, stemmejern,
             plæneklipperklinger og meget mere. Er du i tvivl, om jeg kan hjælpe med din skærekant, er
             du altid velkommen til at kontakte mig.
@@ -58,13 +58,13 @@ export default function KnivslibningNykoebingFalster() {
           <div className="mt-[32px] flex flex-wrap gap-[12px]">
             <Link
               href="/bestil"
-              className="inline-flex items-center justify-center rounded-full bg-accent px-[24px] py-[13px] text-[15px] font-medium text-white transition-colors hover:bg-accent-dark"
+              className="inline-flex items-center justify-center rounded-full bg-accent px-[24px] py-[13px] text-sm font-medium text-white transition-colors hover:bg-accent-dark"
             >
               Bestil slibning
             </Link>
             <Link
               href="/priser"
-              className="inline-flex items-center justify-center rounded-full border border-line px-[24px] py-[13px] text-[15px] font-medium text-ink transition-colors hover:border-accent hover:text-accent"
+              className="inline-flex items-center justify-center rounded-full border border-line px-[24px] py-[13px] text-sm font-medium text-ink transition-colors hover:border-accent hover:text-accent"
             >
               Se priser
             </Link>

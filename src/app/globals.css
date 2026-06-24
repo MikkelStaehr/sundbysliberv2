@@ -37,8 +37,20 @@
   --radius-input: 12px; /* input-felter, små thumbnails */
 
   /* Fonte */
-  --font-display: var(--font-archivo), "Arial Narrow", system-ui, sans-serif;
+  --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
   --font-sans: var(--font-inter), system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* Type-skala — LÅST. Brug altid disse trin (text-xs … text-5xl),
+     aldrig arbitrære text-[NNpx]. */
+  --text-xs: 13px; /* fine print, badges, captions */
+  --text-sm: 15px; /* sekundær tekst, labels */
+  --text-base: 16px; /* brødtekst */
+  --text-lg: 19px; /* lead-afsnit */
+  --text-xl: 24px; /* små overskrifter / kort-titler (h4) */
+  --text-2xl: 30px; /* h3 */
+  --text-3xl: 38px; /* h2 mobil / sektionsoverskrift */
+  --text-4xl: 52px; /* h1 mobil-stor / h2 desktop */
+  --text-5xl: 64px; /* hero / h1 desktop */
 }
 
 :root {

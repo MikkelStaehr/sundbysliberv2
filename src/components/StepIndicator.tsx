@@ -21,7 +21,7 @@ export function StepIndicator({ step }: { step: 1 | 2 | 3 }) {
           <span className="inline-flex items-center gap-[8px]">
             <span
               aria-hidden="true"
-              className={`inline-flex h-[20px] w-[20px] items-center justify-center rounded-full text-[11px] font-semibold ${
+              className={`inline-flex h-[20px] w-[20px] items-center justify-center rounded-full text-xs font-semibold ${
                 done
                   ? "bg-accent text-white"
                   : active
@@ -32,7 +32,7 @@ export function StepIndicator({ step }: { step: 1 | 2 | 3 }) {
               {done ? <Check className="h-[12px] w-[12px]" strokeWidth={3} /> : s.n}
             </span>
             <span
-              className={`kicker text-[12px] ${active ? "inline" : "hidden sm:inline"} ${
+              className={`kicker text-xs ${active ? "inline" : "hidden sm:inline"} ${
                 active ? "text-accent" : done ? "text-ink" : "text-muted"
               }`}
             >

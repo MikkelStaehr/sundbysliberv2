@@ -16,10 +16,10 @@ export default function Bestil() {
       {/* Trin-indikator — kunden ved hvor i forløbet de er */}
       <StepIndicator step={1} />
 
-      <h1 className="mt-[14px] font-display text-[40px] uppercase text-ink md:text-[60px]">
+      <h1 className="mt-[14px] font-display text-3xl uppercase text-ink md:text-5xl">
         Vælg dine ydelser
       </h1>
-      <p className="mt-[12px] max-w-[60ch] text-[16px] leading-relaxed text-muted">
+      <p className="mt-[12px] max-w-[60ch] text-base leading-relaxed text-muted">
         Læg det du vil have slebet i kurven. Alt er samlet efter type herunder. Prisen er
         vejledende; vi aftaler det endelige, før du betaler noget.
       </p>

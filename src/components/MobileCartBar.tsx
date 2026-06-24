@@ -22,19 +22,19 @@ export function MobileCartBar() {
       {open && (
         <div className="mx-[12px] mb-[8px] max-h-[55vh] overflow-y-auto rounded-bento border border-line bg-surface p-[16px]">
           <div className="flex items-center justify-between">
-            <span className="font-display text-[20px] uppercase text-ink">Din kurv</span>
-            <button onClick={clear} className="text-[13px] text-muted underline-offset-2 hover:text-ink hover:underline">
+            <span className="font-display text-lg uppercase text-ink">Din kurv</span>
+            <button onClick={clear} className="text-xs text-muted underline-offset-2 hover:text-ink hover:underline">
               Ryd
             </button>
           </div>
           <ul className="mt-[12px] flex flex-col gap-[10px]">
             {items.map((it) => (
-              <li key={it.id} className="flex items-center justify-between gap-[10px] text-[15px]">
+              <li key={it.id} className="flex items-center justify-between gap-[10px] text-sm">
                 <span className="min-w-0 flex-1 text-ink">{it.navn}</span>
                 <span className="flex items-center rounded-full bg-panel p-[2px]">
-                  <button onClick={() => dec(it.id)} aria-label="Færre" className="h-[30px] w-[30px] rounded-full bg-surface text-[18px] text-ink">−</button>
+                  <button onClick={() => dec(it.id)} aria-label="Færre" className="h-[30px] w-[30px] rounded-full bg-surface text-lg text-ink">−</button>
                   <span className="px-[10px] tabular-nums">{it.qty}</span>
-                  <button onClick={() => inc(it.id)} aria-label="Flere" className="h-[30px] w-[30px] rounded-full bg-surface text-[18px] text-ink">+</button>
+                  <button onClick={() => inc(it.id)} aria-label="Flere" className="h-[30px] w-[30px] rounded-full bg-surface text-lg text-ink">+</button>
                 </span>
                 <span className="w-[56px] shrink-0 text-right tabular-nums text-muted">{it.pris * it.qty} kr</span>
                 <button onClick={() => remove(it.id)} aria-label={`Fjern ${it.navn}`} className="text-muted hover:text-accent">
@@ -54,10 +54,10 @@ export function MobileCartBar() {
           aria-expanded={open}
           className="flex flex-1 items-center gap-[8px] text-left"
         >
-          <span className="inline-flex h-[26px] min-w-[26px] items-center justify-center rounded-full bg-accent px-[7px] text-[13px] font-medium text-white">
+          <span className="inline-flex h-[26px] min-w-[26px] items-center justify-center rounded-full bg-accent px-[7px] text-xs font-medium text-white">
             {count}
           </span>
-          <span className="text-[15px] font-medium text-ink">{total} kr</span>
+          <span className="text-sm font-medium text-ink">{total} kr</span>
           <ChevronUp
             className={`h-[16px] w-[16px] text-muted transition-transform ${open ? "rotate-180" : ""}`}
             strokeWidth={2}
@@ -66,7 +66,7 @@ export function MobileCartBar() {
         </button>
         <Link
           href="/aflevering"
-          className="inline-flex items-center rounded-full bg-accent px-[24px] py-[12px] text-[15px] font-medium text-white transition-colors hover:bg-accent-dark"
+          className="inline-flex items-center rounded-full bg-accent px-[24px] py-[12px] text-sm font-medium text-white transition-colors hover:bg-accent-dark"
         >
           Videre →
         </Link>

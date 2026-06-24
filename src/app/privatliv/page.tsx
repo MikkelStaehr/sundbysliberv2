@@ -23,17 +23,17 @@ export default function Privatliv() {
     <main className="mx-auto w-full max-w-none px-[20px] py-[48px] md:px-[32px] lg:px-[48px] xl:px-[72px] md:py-[64px]">
       <div className="mx-auto w-full max-w-[760px]">
         <p className="kicker text-accent">Privatliv</p>
-        <h1 className="mt-[14px] font-display text-[36px] uppercase leading-[1.05] text-ink md:text-[52px]">
+        <h1 className="mt-[14px] font-display text-3xl uppercase leading-[1.05] text-ink md:text-5xl">
           Privatliv &amp; cookies
         </h1>
-        <p className="mt-[16px] text-[16px] leading-relaxed text-muted">
+        <p className="mt-[16px] text-base leading-relaxed text-muted">
           Her kan du læse, hvordan Sundby Sliberi behandler dine oplysninger, når du bruger
           hjemmesiden, bestiller slibning eller kontakter os.
         </p>
 
-        <div className="mt-[28px] flex flex-col gap-[28px] rounded-bento border border-line bg-surface p-[24px] text-[15px] leading-relaxed text-muted md:p-[36px]">
+        <div className="mt-[28px] flex flex-col gap-[28px] rounded-bento border border-line bg-surface p-[24px] text-sm leading-relaxed text-muted md:p-[36px]">
           <section>
-            <h2 className="text-[19px] font-semibold text-ink">Dataansvarlig</h2>
+            <h2 className="text-lg font-semibold text-ink">Dataansvarlig</h2>
             <p className="mt-[10px]">
               Sundby Sliberi<br />
               CVR: {SITE.cvr}<br />
@@ -45,7 +45,7 @@ export default function Privatliv() {
           </section>
 
           <section>
-            <h2 className="text-[19px] font-semibold text-ink">Hvilke oplysninger vi behandler</h2>
+            <h2 className="text-lg font-semibold text-ink">Hvilke oplysninger vi behandler</h2>
             <p className="mt-[10px]">
               Når du bestiller slibning eller kontakter os via formularerne på siden, behandler vi de
               oplysninger, du selv indtaster, f.eks. navn, kontaktoplysninger, adresse og besked.
@@ -58,7 +58,7 @@ export default function Privatliv() {
           </section>
 
           <section>
-            <h2 className="text-[19px] font-semibold text-ink">Cookies og lokal lagring</h2>
+            <h2 className="text-lg font-semibold text-ink">Cookies og lokal lagring</h2>
             <p className="mt-[10px]">
               På sundby-sliberi.dk bruges teknologier, der minder om cookies – blandt andet lokal
               lagring i din browser – til at få siden til at fungere og gøre oplevelsen bedre.
@@ -82,7 +82,7 @@ export default function Privatliv() {
           </section>
 
           <section>
-            <h2 className="text-[19px] font-semibold text-ink">Google Analytics</h2>
+            <h2 className="text-lg font-semibold text-ink">Google Analytics</h2>
             <p className="mt-[10px]">
               Vi bruger kun Google Analytics, hvis du har givet samtykke til statistikcookies i
               cookiebanneret. Data bruges udelukkende i anonymiseret form til at se, hvordan siden
@@ -96,7 +96,7 @@ export default function Privatliv() {
           </section>
 
           <section>
-            <h2 className="text-[19px] font-semibold text-ink">Dine rettigheder</h2>
+            <h2 className="text-lg font-semibold text-ink">Dine rettigheder</h2>
             <p className="mt-[10px]">
               Du kan til enhver tid kontakte os, hvis du vil høre, hvilke oplysninger vi har om dig,
               eller hvis du ønsker dem rettet eller slettet – i det omfang vi ikke er forpligtet til at
@@ -109,7 +109,7 @@ export default function Privatliv() {
           </section>
 
           <section>
-            <h2 className="text-[19px] font-semibold text-ink">Spørgsmål</h2>
+            <h2 className="text-lg font-semibold text-ink">Spørgsmål</h2>
             <p className="mt-[10px]">
               Har du spørgsmål til, hvordan vi håndterer personoplysninger eller cookies, er du altid
               velkommen til at kontakte os på{" "}

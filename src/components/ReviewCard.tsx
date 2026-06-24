@@ -21,10 +21,10 @@ export function ReviewCard({ review }: { review: Review }) {
   return (
     <figure className="flex h-full flex-col rounded-card border border-line bg-surface p-[28px]">
       <Stars value={review.stjerner} />
-      <blockquote className="mt-[16px] flex-1 text-[16px] leading-relaxed text-ink">
+      <blockquote className="mt-[16px] flex-1 text-base leading-relaxed text-ink">
         “{review.citat}”
       </blockquote>
-      <figcaption className="mt-[20px] text-[13px] text-muted">
+      <figcaption className="mt-[20px] text-xs text-muted">
         {review.navn} · {review.dato}
       </figcaption>
     </figure>

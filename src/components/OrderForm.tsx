@@ -7,7 +7,7 @@ import { sendOrder } from "@/app/aflevering/order-action";
 import { SITE } from "@/lib/site";
 
 const inputClass =
-  "mt-[6px] w-full rounded-input border border-line bg-surface px-[12px] py-[10px] text-[15px] text-ink placeholder:text-muted";
+  "mt-[6px] w-full rounded-input border border-line bg-surface px-[12px] py-[10px] text-base text-ink placeholder:text-muted";
 
 export function OrderForm({ onDone }: { onDone?: () => void }) {
   const { items, total, clear } = useCart();
@@ -61,20 +61,20 @@ export function OrderForm({ onDone }: { onDone?: () => void }) {
   if (done) {
     return (
       <div className="rounded-card border border-line bg-surface p-[28px]">
-        <h2 className="font-display text-[28px] text-ink">Tak for din bestilling</h2>
-        <p className="mt-[12px] text-[15px] leading-relaxed text-ink">
+        <h2 className="font-display text-2xl text-ink">Tak for din bestilling</h2>
+        <p className="mt-[12px] text-sm leading-relaxed text-ink">
           Jeg ringer dig op hurtigst muligt, så vi kan aftale nærmere.
         </p>
         <div className="mt-[24px] flex flex-wrap gap-[12px]">
           <Link
             href="/"
-            className="rounded-full bg-accent px-[20px] py-[11px] text-[14px] font-medium text-white transition-colors hover:bg-accent-dark"
+            className="rounded-full bg-accent px-[20px] py-[11px] text-sm font-medium text-white transition-colors hover:bg-accent-dark"
           >
             Til forsiden
           </Link>
           <a
             href={SITE.phoneHref}
-            className="rounded-full border border-line px-[20px] py-[11px] text-[14px] font-medium text-ink transition-colors hover:border-accent hover:text-accent"
+            className="rounded-full border border-line px-[20px] py-[11px] text-sm font-medium text-ink transition-colors hover:border-accent hover:text-accent"
           >
             Ring {SITE.phoneDisplay}
           </a>
@@ -85,17 +85,17 @@ export function OrderForm({ onDone }: { onDone?: () => void }) {
 
   return (
     <form onSubmit={handleSubmit} className="rounded-card border border-line bg-surface p-[28px]">
-      <h1 className="font-display text-[36px] text-ink md:text-[44px]">Dine oplysninger</h1>
-      <p className="mt-[10px] text-[15px] leading-relaxed text-muted">
+      <h1 className="font-display text-3xl text-ink md:text-4xl">Dine oplysninger</h1>
+      <p className="mt-[10px] text-sm leading-relaxed text-muted">
         Udfyld dine oplysninger, så ringer jeg dig op og aftaler pris og dag.
       </p>
 
       <div className="mt-[24px] flex flex-col gap-[16px]">
-        <label className="block text-[14px] text-ink">
+        <label className="block text-sm text-ink">
           Navn*
           <input name="name" value={form.name} onChange={onChange} required autoComplete="name" className={inputClass} />
         </label>
-        <label className="block text-[14px] text-ink">
+        <label className="block text-sm text-ink">
           Telefon*
           <input
             name="phone"
@@ -107,15 +107,15 @@ export function OrderForm({ onDone }: { onDone?: () => void }) {
             className={inputClass}
           />
         </label>
-        <label className="block text-[14px] text-ink">
+        <label className="block text-sm text-ink">
           E-mail (valgfri)
           <input type="email" name="email" value={form.email} onChange={onChange} autoComplete="email" className={inputClass} />
         </label>
-        <label className="block text-[14px] text-ink">
+        <label className="block text-sm text-ink">
           Hvornår vil du aflevere dem? (valgfri)
           <input type="date" name="dropoff" value={form.dropoff} onChange={onChange} className={inputClass} />
         </label>
-        <label className="block text-[14px] text-ink">
+        <label className="block text-sm text-ink">
           Besked (valgfri)
           <textarea name="message" value={form.message} onChange={onChange} rows={4} className={inputClass} />
         </label>
@@ -129,17 +129,17 @@ export function OrderForm({ onDone }: { onDone?: () => void }) {
         </div>
       </div>
 
-      {error && <p className="mt-[16px] text-[14px] text-accent">{error}</p>}
+      {error && <p className="mt-[16px] text-sm text-accent">{error}</p>}
 
       <button
         type="submit"
         disabled={sending}
-        className="mt-[24px] w-full rounded-full bg-accent px-[20px] py-[13px] text-[15px] font-medium text-white transition-colors hover:bg-accent-dark disabled:opacity-60"
+        className="mt-[24px] w-full rounded-full bg-accent px-[20px] py-[13px] text-sm font-medium text-white transition-colors hover:bg-accent-dark disabled:opacity-60"
       >
         {sending ? "Sender…" : "Send bestilling"}
       </button>
 
-      <p className="mt-[14px] text-[13px] leading-relaxed text-muted">
+      <p className="mt-[14px] text-xs leading-relaxed text-muted">
         Ingen onlinebetaling. Vi aftaler pris og leveringsdag, før du betaler noget.
       </p>
     </form>

@@ -15,7 +15,7 @@ export function CartIcon() {
     >
       <ShoppingCart className="h-[22px] w-[22px]" strokeWidth={1.6} aria-hidden="true" />
       {count > 0 && (
-        <span className="absolute -right-[2px] -top-[2px] inline-flex h-[18px] min-w-[18px] items-center justify-center rounded-full bg-accent px-[5px] text-[11px] font-medium leading-none text-white">
+        <span className="absolute -right-[2px] -top-[2px] inline-flex h-[18px] min-w-[18px] items-center justify-center rounded-full bg-accent px-[5px] text-xs font-medium leading-none text-white">
           {count}
         </span>
       )}

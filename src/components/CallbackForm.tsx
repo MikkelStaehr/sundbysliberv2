@@ -62,8 +62,8 @@ export function CallbackForm() {
   if (success) {
     return (
       <div className="rounded-card bg-surface px-[24px] py-[32px] text-center">
-        <p className="font-display text-[24px] uppercase text-ink">Tak!</p>
-        <p className="mt-[8px] text-[15px] leading-relaxed text-muted">
+        <p className="font-display text-xl uppercase text-ink">Tak!</p>
+        <p className="mt-[8px] text-sm leading-relaxed text-muted">
           Jeg ringer dig op hurtigst muligt, som regel samme dag.
         </p>
       </div>
@@ -72,7 +72,7 @@ export function CallbackForm() {
 
   return (
     <form onSubmit={handleSubmit} className="grid gap-[12px]">
-      <label className="block text-[13px] font-medium text-ink">
+      <label className="block text-xs font-medium text-ink">
         Dit navn
         <input
           name="name"
@@ -80,10 +80,10 @@ export function CallbackForm() {
           onChange={onChange}
           required
           autoComplete="name"
-          className="mt-[6px] w-full rounded-input border border-line bg-surface px-[16px] py-[12px] text-[16px] text-ink outline-none transition-colors focus:border-accent"
+          className="mt-[6px] w-full rounded-input border border-line bg-surface px-[16px] py-[12px] text-base text-ink outline-none transition-colors focus:border-accent"
         />
       </label>
-      <label className="block text-[13px] font-medium text-ink">
+      <label className="block text-xs font-medium text-ink">
         Telefonnummer
         <input
           name="phone"
@@ -93,16 +93,16 @@ export function CallbackForm() {
           onChange={onChange}
           required
           autoComplete="tel"
-          className="mt-[6px] w-full rounded-input border border-line bg-surface px-[16px] py-[12px] text-[16px] text-ink outline-none transition-colors focus:border-accent"
+          className="mt-[6px] w-full rounded-input border border-line bg-surface px-[16px] py-[12px] text-base text-ink outline-none transition-colors focus:border-accent"
         />
       </label>
-      <label className="block text-[13px] font-medium text-ink">
+      <label className="block text-xs font-medium text-ink">
         Hvornår passer det bedst?
         <select
           name="time"
           value={form.time}
           onChange={onChange}
-          className="mt-[6px] w-full rounded-input border border-line bg-surface px-[16px] py-[12px] text-[16px] text-ink outline-none transition-colors focus:border-accent"
+          className="mt-[6px] w-full rounded-input border border-line bg-surface px-[16px] py-[12px] text-base text-ink outline-none transition-colors focus:border-accent"
         >
           {TIME_OPTIONS.map((t) => (
             <option key={t} value={t}>
@@ -111,11 +111,11 @@ export function CallbackForm() {
           ))}
         </select>
       </label>
-      {error && <p className="text-[13px] text-apricot-deep">{error}</p>}
+      {error && <p className="text-xs text-apricot-deep">{error}</p>}
       <button
         type="submit"
         disabled={isSending}
-        className="mt-[4px] inline-flex items-center justify-center rounded-full bg-accent px-[24px] py-[14px] text-[15px] font-medium text-white transition-colors hover:bg-accent-dark disabled:cursor-not-allowed disabled:opacity-60"
+        className="mt-[4px] inline-flex items-center justify-center rounded-full bg-accent px-[24px] py-[14px] text-sm font-medium text-white transition-colors hover:bg-accent-dark disabled:cursor-not-allowed disabled:opacity-60"
       >
         {isSending ? "Sender…" : "Ring mig op"}
       </button>
