@@ -1,5 +1,14 @@
 # Devlog
 
+## 2026-06-24 — Hero-overskrift: animeret højde (fix af overlap)
+
+- [RotatingHeadline](src/components/RotatingHeadline.tsx): den faste `min-h-[3.4em]`
+  passede ikke til den længste buzz-linje (5 linjer), så overskriften flød ned over
+  brødteksten i hero'en.
+- Omskrevet til at måle den aktive linjes højde (ResizeObserver → fanger også font-load
+  og breakpoint-skift) og animere beholderens højde. Brødteksten glider nu blødt op/ned
+  når linjen skifter. Ingen overlap, intet dødt mellemrum, alle tre linjer + rotation bevaret.
+
 ## 2026-06-24 — Tidsrum-kort: stacked på mobil, side om side fra sm
 
 - [OrderForm](src/components/OrderForm.tsx): tidsrum-kortene er nu `grid-cols-1` på mobil
