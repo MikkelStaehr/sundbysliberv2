@@ -40,7 +40,7 @@ export const SERVICES: Service[] = [
     kategori: "knive",
     pris: 100,
     image: "/images/breadknife.png",
-    note: "Tænder rettes op — bladet slibes ikke.",
+    note: "Tænder rettes op. Bladet slibes ikke.",
   },
 
   // Værktøj — uændrede priser

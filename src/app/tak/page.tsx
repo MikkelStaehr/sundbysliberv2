@@ -13,7 +13,7 @@ export default function TakSide() {
       <div className="rounded-[16px] border border-line bg-surface p-[32px] md:p-[48px]">
         <h1 className="font-display text-[44px] text-ink md:text-[56px]">Tak for din bestilling</h1>
         <p className="mt-[16px] text-[16px] leading-relaxed text-ink">
-          Tak — jeg ringer dig op hurtigst muligt for at aftale pris og leveringsdag. Du betaler
+          Tak. Jeg ringer dig op hurtigst muligt for at aftale pris og leveringsdag. Du betaler
           først, når aftalen er på plads.
         </p>
         <p className="mt-[12px] text-[15px] leading-relaxed text-muted">

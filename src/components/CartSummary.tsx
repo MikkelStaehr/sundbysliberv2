@@ -78,7 +78,7 @@ export function CartSummary({
 
           {variant === "summary" && (
             <p className="mt-[10px] text-[13px] text-muted">
-              Vejledende — endelig pris bekræftes ved aftale.
+              Vejledende. Endelig pris bekræftes ved aftale.
             </p>
           )}
         </>

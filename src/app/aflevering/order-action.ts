@@ -42,7 +42,7 @@ export async function sendOrder(input: OrderInput): Promise<OrderResult> {
     return { ok: false, error: "Udfyld venligst navn og telefon." };
   }
   if (phone.replace(/\D/g, "").length < 8) {
-    return { ok: false, error: "Telefonnummeret ser forkert ud — indtast mindst 8 cifre." };
+    return { ok: false, error: "Telefonnummeret ser forkert ud. Indtast mindst 8 cifre." };
   }
 
   const dropoff = formatDate(input.dropoff);

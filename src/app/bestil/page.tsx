@@ -20,7 +20,7 @@ export default function Bestil() {
         Vælg dine ydelser
       </h1>
       <p className="mt-[12px] max-w-[60ch] text-[16px] leading-relaxed text-muted">
-        Læg det du vil have slebet i kurven — alt er samlet efter type herunder. Prisen er
+        Læg det du vil have slebet i kurven. Alt er samlet efter type herunder. Prisen er
         vejledende; vi aftaler det endelige, før du betaler noget.
       </p>
 

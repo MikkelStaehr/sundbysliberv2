@@ -1,5 +1,14 @@
 # Devlog
 
+## 2026-06-24 — Fjernet em-dashes i synlig tekst
+
+- `/bestil` intro ([bestil/page.tsx](src/app/bestil/page.tsx)): "kurven — alt" → to sætninger.
+- Brødkniv-note ([services.ts](src/data/services.ts)): "rettes op — bladet" → punktum.
+- Fejlbesked ved telefon ([order-action.ts](src/app/aflevering/order-action.ts)): em-dash → punktum.
+- Tak-side ([tak/page.tsx](src/app/tak/page.tsx)): "Tak — jeg ringer" → "Tak. Jeg ringer".
+- Kurv-note ([CartSummary.tsx](src/components/CartSummary.tsx)): "Vejledende — endelig" → punktum.
+- Resterende em-dashes ligger kun i kode-kommentarer (usynlige) og er bevidst urørt.
+
 ## 2026-06-24 — Telefon i topnav: kun ikon på mobil
 
 ### Header ([Header.tsx](src/components/Header.tsx))
