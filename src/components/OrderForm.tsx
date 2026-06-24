@@ -134,6 +134,10 @@ export function OrderForm({ onDone }: { onDone?: () => void }) {
               <option value="Personlig aflevering (kl. 16-22)">Personligt · kl. 16-22</option>
               <option value="Dropoff-kasse (kl. 08-16)">Dropoff-kasse · kl. 08-16</option>
             </select>
+            <span className="mt-[6px] block text-xs leading-relaxed text-muted">
+              Personligt: du afleverer i hånden mellem kl. 16 og 22. Dropoff: du lægger dem i
+              kassen mellem kl. 8 og 16.
+            </span>
           </label>
         </div>
         <label className="block text-sm text-ink">

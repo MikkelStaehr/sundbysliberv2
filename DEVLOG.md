@@ -1,5 +1,11 @@
 # Devlog
 
+## 2026-06-24 — Forklarende tekst til tidsrum-feltet
+
+- [OrderForm](src/components/OrderForm.tsx): tilføjet hjælpetekst under Tidsrum-select:
+  "Personligt: du afleverer i hånden mellem kl. 16 og 22. Dropoff: du lægger dem i kassen
+  mellem kl. 8 og 16."
+
 ## 2026-06-24 — Tidsrum-felt ved siden af afleveringsdato
 
 - [OrderForm](src/components/OrderForm.tsx): nyt "Tidsrum"-select ved siden af datofeltet
