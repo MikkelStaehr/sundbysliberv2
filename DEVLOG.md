@@ -1,5 +1,13 @@
 # Devlog
 
+## 2026-06-24 — Tidsrum som pæne radio-kort
+
+- [OrderForm](src/components/OrderForm.tsx): erstattet den native select med to valgkort
+  (radio). Pænere og mere on-brand end browserens dropdown.
+- Rækkefølge ændret: Dropoff-kasse (08–16) øverst, Personligt (16–22) nederst.
+- Hvert kort viser titel + tidsrum + kort forklaring (Læg dem i kassen / Aflever i hånden).
+  Valgt kort får oliven kant + svag baggrund; tastatur-fokus via has-[:focus-visible].
+
 ## 2026-06-24 — "Kontakter" i stedet for "ringer dig op" i bestillingsflow
 
 - [OrderForm](src/components/OrderForm.tsx): webshop-bestillinger besvares altid via SMS,

@@ -9,6 +9,12 @@ import { SITE } from "@/lib/site";
 const inputClass =
   "mt-[6px] w-full rounded-input border border-line bg-surface px-[12px] py-[10px] text-base text-ink placeholder:text-muted";
 
+// Afleverings-tidsrum som valgkort. Dropoff øverst (dag), personligt nederst (aften).
+const TIDSRUM = [
+  { value: "Dropoff-kasse (kl. 08-16)", title: "Dropoff-kasse", time: "kl. 08–16", desc: "Læg dem i kassen" },
+  { value: "Personlig aflevering (kl. 16-22)", title: "Personligt", time: "kl. 16–22", desc: "Aflever i hånden" },
+];
+
 export function OrderForm({ onDone }: { onDone?: () => void }) {
   const { items, total, clear } = useCart();
   const [sending, setSending] = useState(false);
@@ -127,18 +133,46 @@ export function OrderForm({ onDone }: { onDone?: () => void }) {
               className={inputClass}
             />
           </label>
-          <label className="block text-sm text-ink">
-            Tidsrum (valgfri)
-            <select name="tidsrum" value={form.tidsrum} onChange={onChange} className={inputClass}>
-              <option value="">Vælg tidsrum</option>
-              <option value="Personlig aflevering (kl. 16-22)">Personligt · kl. 16-22</option>
-              <option value="Dropoff-kasse (kl. 08-16)">Dropoff-kasse · kl. 08-16</option>
-            </select>
-            <span className="mt-[6px] block text-xs leading-relaxed text-muted">
-              Personligt: du afleverer i hånden mellem kl. 16 og 22. Dropoff: du lægger dem i
-              kassen mellem kl. 8 og 16.
-            </span>
-          </label>
+          <fieldset className="min-w-0">
+            <legend className="text-sm text-ink">Tidsrum (valgfri)</legend>
+            <div className="mt-[6px] flex flex-col gap-[8px]">
+              {TIDSRUM.map((o) => {
+                const selected = form.tidsrum === o.value;
+                return (
+                  <label
+                    key={o.value}
+                    className={`flex cursor-pointer items-center gap-[12px] rounded-input border px-[14px] py-[10px] transition-colors has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-accent ${
+                      selected ? "border-accent bg-accent/5" : "border-line hover:border-accent/50"
+                    }`}
+                  >
+                    <input
+                      type="radio"
+                      name="tidsrum"
+                      value={o.value}
+                      checked={selected}
+                      onChange={onChange}
+                      className="sr-only"
+                    />
+                    <span
+                      aria-hidden="true"
+                      className={`flex h-[18px] w-[18px] shrink-0 items-center justify-center rounded-full border ${
+                        selected ? "border-accent" : "border-line"
+                      }`}
+                    >
+                      {selected && <span className="h-[9px] w-[9px] rounded-full bg-accent" />}
+                    </span>
+                    <span className="min-w-0 flex-1">
+                      <span className="flex items-baseline justify-between gap-[8px]">
+                        <span className="text-sm font-medium text-ink">{o.title}</span>
+                        <span className="text-xs tabular-nums text-muted">{o.time}</span>
+                      </span>
+                      <span className="block text-xs text-muted">{o.desc}</span>
+                    </span>
+                  </label>
+                );
+              })}
+            </div>
+          </fieldset>
         </div>
         <label className="block text-sm text-ink">
           Besked (valgfri)
