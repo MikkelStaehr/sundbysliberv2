@@ -13,7 +13,7 @@ const STEPS: Step[] = [
 // tilbage), det aktive er fremhævet, kommende er dæmpede.
 export function StepIndicator({ step }: { step: 1 | 2 | 3 }) {
   return (
-    <ol className="flex flex-wrap items-center gap-x-[10px] gap-y-[8px]">
+    <ol className="flex items-center gap-x-[10px]">
       {STEPS.map((s, i) => {
         const done = s.n < step;
         const active = s.n === step;
@@ -31,7 +31,11 @@ export function StepIndicator({ step }: { step: 1 | 2 | 3 }) {
             >
               {done ? <Check className="h-[12px] w-[12px]" strokeWidth={3} /> : s.n}
             </span>
-            <span className={`kicker text-[12px] ${active ? "text-accent" : done ? "text-ink" : "text-muted"}`}>
+            <span
+              className={`kicker text-[12px] ${active ? "inline" : "hidden sm:inline"} ${
+                active ? "text-accent" : done ? "text-ink" : "text-muted"
+              }`}
+            >
               {s.label}
             </span>
           </span>

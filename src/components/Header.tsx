@@ -38,7 +38,7 @@ export function Header() {
     <header className="sticky top-0 z-30 border-b border-line bg-bg/95 backdrop-blur-sm">
       <div className="mx-auto flex w-full max-w-none items-center justify-between px-[20px] py-[16px] md:px-[32px] lg:px-[48px] xl:px-[72px]">
         <Link href="/" aria-label={`${SITE.name} – forside`} className="inline-flex">
-          <span className="bg-ink px-[16px] py-[8px] font-logo text-[26px] leading-none text-bg md:px-[18px] md:py-[9px] md:text-[32px]">
+          <span className="whitespace-nowrap bg-ink px-[14px] py-[7px] font-logo text-[22px] leading-none text-bg sm:text-[26px] md:px-[18px] md:py-[9px] md:text-[32px]">
             {SITE.name}
           </span>
         </Link>

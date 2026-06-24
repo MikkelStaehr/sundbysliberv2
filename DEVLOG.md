@@ -1,5 +1,37 @@
 # Devlog
 
+## 2026-06-24 — Footer-kort, proces-tekst og mobil-finpudsning før go-live
+
+### Footer ([Footer.tsx](src/components/Footer.tsx))
+- **Google Maps-kort** ved siden af adressen — lille, klikbart, ingen API-nøgle
+  (`output=embed`, lazy-loadet). Linker til Maps-profilen i ny fane. Bevidst valgt
+  frem for "Locator Plus"-komponenten (kræver betalt API-nøgle + er overkill for ét sted).
+- **Mobil:** kortet er nu fuld bredde under adressen (160px højt) i stedet for cramped
+  ved siden af; kompakt 150×120 ved siden af adressen fra `sm` og op.
+- **CVR** flyttet op i adresseblokken og fjernet fra bundlinjen (stod før to steder).
+
+### Forside ([page.tsx](src/app/page.tsx))
+- Proces-trin omskrevet til personlig tone:
+  - Trin 02: "Jeg kontakter dig straks efter din bestilling, og vi aftaler nærmere."
+  - Trin 03: "Du afhenter dine knive og betaler."
+
+### Anmeldelser ([reviews.ts](src/data/reviews.ts))
+- `GOOGLE_REVIEW_URL` sat til den rigtige Google Maps-profil
+  (`maps.app.goo.gl/oVe1hXYYYvapZYEHA`) — placeholderen fra 06-17 er nu løst.
+
+### Mobil-fixes
+- **Header-logo** ([Header.tsx](src/components/Header.tsx)): `whitespace-nowrap` +
+  mindre skrift på mobil (22px → 26px `sm` → 32px desktop), så "Sundby Sliberi" bliver
+  én linje i en stram kasse i stedet for at wrappe til to linjer.
+- **Trin-indikator** ([StepIndicator.tsx](src/components/StepIndicator.tsx)): viser kun
+  cifre + den aktive etiket på mobil (én ren linje); fulde tekster fra `sm` og op.
+  Fjernet den grimme ombrydning.
+
+### Deploy
+- Vercel kobles om fra det gamle placeholder-repo (`SundbySliberi`) til `sundbysliberv2`.
+  Domænet `sundby-sliberi.dk` bliver hængende på projektet → serverer v2 efter første
+  deploy. Ingen DNS-ændring.
+
 ## 2026-06-17 — Forside: ring-op, step-redesign, Google-anmeldelser, font-test
 
 ### Tilføjet
